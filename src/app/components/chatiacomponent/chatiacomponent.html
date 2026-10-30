@@ -1,0 +1,57 @@
+<div class="chef-page">
+  <mat-card class="chef-card" appearance="outlined">
+
+    <mat-card-header class="chef-header">
+      <div mat-card-avatar class="chef-avatar">
+        <mat-icon>soup_kitchen</mat-icon>
+      </div>
+      <mat-card-title>
+        <h2>Asistente de Cocina IA</h2>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="chef-content">
+
+      <div class="chef-form-wrap">
+        <form (ngSubmit)="obtenerConsulta()" class="chef-form">
+          <p class="chef-label">¿Qué quieres cocinar o consultar hoy?:</p>
+
+          <div class="chef-input-row">
+            <mat-form-field appearance="outline" class="chef-field">
+              <mat-icon matPrefix>restaurant_menu</mat-icon>
+              <input matInput type="text" [(ngModel)]="consulta" [ngModelOptions]="{standalone: true}" placeholder="Ej: Receta con papa y huevo">
+            </mat-form-field>
+
+            <button mat-flat-button color="primary" type="submit" class="chef-button">
+              <mat-icon>send</mat-icon>
+              Consultar
+            </button>
+          </div>
+        </form>
+      </div>
+      @if (mensaje){
+        <div class="chef-mensaje">
+            <mat-icon>info</mat-icon>
+            <p>{{mensaje}}</p>
+        </div>
+        }
+        @if(respuesta){
+        <mat-card class="chef-respuesta" appearance="outlined">
+            <mat-card-header>
+            <div mat-card-avatar class="chef-avatar chef-avatar--small">
+                <mat-icon>ramen_dining</mat-icon>
+            </div>
+            <mat-card-title>
+                <h3>Respuesta del Chef:</h3>
+            </mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+            <p class="chef-respuesta-texto">{{respuesta}}</p>
+            </mat-card-content>
+        </mat-card>
+        }
+
+    </mat-card-content>
+  </mat-card>
+</div>

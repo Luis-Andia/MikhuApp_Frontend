@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+:host {
+  --naranja: #ff7a1a;
+  --naranja-oscuro: #e65c00;
+  --naranja-claro: #ffe3cc;
+  --durazno: #fff4ea;
+  --blanco: #ffffff;
+  --cafe: #4a2a12;
+  display: block;
+  font-family: 'Nunito', 'Segoe UI', sans-serif;
+  color: var(--cafe);
+}
+
+/* ---------- Página ---------- */
+.chef-page {
+  min-height: 100vh;
+  padding: 32px 16px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background:
+    radial-gradient(circle at 12% 8%, var(--naranja-claro) 0, transparent 38%),
+    radial-gradient(circle at 92% 92%, var(--naranja-claro) 0, transparent 34%),
+    var(--durazno);
+}
+
+/* ---------- Tarjeta principal ---------- */
+.chef-card {
+  width: 100%;
+  max-width: 760px;
+  border: 2px solid var(--naranja-claro);
+  border-radius: 28px;
+  background: var(--blanco);
+  box-shadow: 0 18px 40px rgba(230, 92, 0, 0.14);
+  overflow: hidden;
+}
+
+.chef-header {
+  padding: 24px 28px;
+  background: linear-gradient(120deg, var(--naranja) 0%, #ff9a47 100%);
+  align-items: center;
+}
+
+.chef-header h2 {
+  margin: 0;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--blanco);
+  letter-spacing: 0.2px;
+}
+
+.chef-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--blanco);
+  color: var(--naranja-oscuro);
+  box-shadow: 0 4px 10px rgba(74, 42, 18, 0.2);
+}
+
+.chef-avatar mat-icon {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+
+.chef-avatar--small {
+  width: 44px;
+  height: 44px;
+  background: var(--naranja-claro);
+}
+
+.chef-avatar--small mat-icon {
+  font-size: 26px;
+  width: 26px;
+  height: 26px;
+}
+
+.chef-content {
+  padding: 28px !important;
+}
+
+/* ---------- Formulario ---------- */
+.chef-label {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cafe);
+}
+
+.chef-input-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.chef-field {
+  flex: 1;
+}
+
+.chef-field mat-icon {
+  color: var(--naranja);
+  margin: 0 8px 0 12px;
+}
+
+.chef-button {
+  height: 56px;
+  padding: 0 26px;
+  border-radius: 16px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  background-color: var(--naranja) !important;
+  color: var(--blanco) !important;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.chef-button:hover {
+  background-color: var(--naranja-oscuro) !important;
+}
+
+.chef-button:active {
+  transform: scale(0.97);
+}
+
+.chef-button mat-icon {
+  margin-right: 6px;
+}
+
+/* ---------- Campo de Material (naranja) ---------- */
+::ng-deep .chef-field .mdc-text-field--outlined {
+  background: var(--durazno);
+  border-radius: 16px;
+}
+
+::ng-deep .chef-field .mdc-notched-outline__leading,
+::ng-deep .chef-field .mdc-notched-outline__notch,
+::ng-deep .chef-field .mdc-notched-outline__trailing {
+  border-color: var(--naranja-claro) !important;
+  border-width: 2px !important;
+}
+
+::ng-deep .chef-field .mdc-notched-outline__leading {
+  border-top-left-radius: 16px !important;
+  border-bottom-left-radius: 16px !important;
+}
+
+::ng-deep .chef-field .mdc-notched-outline__trailing {
+  border-top-right-radius: 16px !important;
+  border-bottom-right-radius: 16px !important;
+}
+
+::ng-deep .chef-field.mat-focused .mdc-notched-outline__leading,
+::ng-deep .chef-field.mat-focused .mdc-notched-outline__notch,
+::ng-deep .chef-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: var(--naranja) !important;
+}
+
+::ng-deep .chef-field input.mat-mdc-input-element {
+  caret-color: var(--naranja);
+  color: var(--cafe);
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+}
+
+/* ---------- Mensaje ---------- */
+.chef-mensaje {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  padding: 12px 16px;
+  border-left: 5px solid var(--naranja);
+  border-radius: 12px;
+  background: var(--naranja-claro);
+  color: var(--naranja-oscuro);
+  font-weight: 600;
+}
+
+.chef-mensaje p {
+  margin: 0;
+}
+
+/* ---------- Respuesta del chef ---------- */
+.chef-respuesta {
+  margin-top: 24px;
+  border: 2px solid var(--naranja-claro);
+  border-radius: 22px;
+  background: var(--durazno);
+  box-shadow: none;
+  animation: aparecer 0.35s ease-out;
+}
+
+.chef-respuesta mat-card-header {
+  padding: 16px 20px 12px;
+  align-items: center;
+}
+
+.chef-respuesta h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--naranja-oscuro);
+}
+
+.chef-respuesta mat-divider {
+  border-top-color: var(--naranja-claro);
+}
+
+.chef-respuesta-texto {
+  margin: 0;
+  padding: 16px 4px 8px;
+  max-width: 70ch;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Accesibilidad ---------- */
+.chef-button:focus-visible {
+  outline: 3px solid var(--cafe);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chef-respuesta {
+    animation: none;
+  }
+  .chef-button {
+    transition: none;
+  }
+}
+
