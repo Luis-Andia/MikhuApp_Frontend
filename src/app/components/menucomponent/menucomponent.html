@@ -1,1 +1,14 @@
-<p>menucomponent works!</p>
+<div class="container">
+    <mat-toolbar>
+        <button matIconButton  class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>home</mat-icon>
+        </button>
+        <button matButton [matMenuTriggerFor]="menuMikhuApp" style="color: aliceblue;">Inicio</button>
+        <mat-menu #menuMikhuApp="matMenu">
+            <button mat-menu-item routerLink="/inventario">Inventario</button>
+            <button mat-menu-item routerLink="/recetas">Recetas</button>
+            <button mat-menu-item routerLink="/consumo">Consumo</button>
+            <button mat-menu-item routerLink="/familia">Familia</button>
+        </mat-menu>       
+    </mat-toolbar>
+</div>
