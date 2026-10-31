@@ -1,8 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Menucomponent } from './components/menucomponent/menucomponent';
+import { Homecomponent } from './components/homecomponent/homecomponent';
+import { Chatiacomponent } from './components/chatiacomponent/chatiacomponent';
 @Component({
-  imports: [RouterOutlet, Menucomponent],
+  imports: [RouterOutlet, Menucomponent, Homecomponent, Chatiacomponent],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

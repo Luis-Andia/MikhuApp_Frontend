@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Service()
 export class Ingredientservice {
-    private apiURL='https://mikhuapp.onrender.com/ingredients';
+    private apiURL='http://localhost:8080/api/ingredients';
     
     private http=inject(HttpClient)
     
@@ -12,5 +12,4 @@ export class Ingredientservice {
         const url = `${this.apiURL}`;
         return this.http.get(url)
     }
-
 }
