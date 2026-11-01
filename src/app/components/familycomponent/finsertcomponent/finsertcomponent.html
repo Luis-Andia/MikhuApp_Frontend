@@ -1,28 +1,33 @@
-<p>finsertcomponent works!</p>
 <div>
     <h2>Registrar una familia</h2>
     <div> 
-        <!--REVISAR TODO
+        
         <form (ngSubmit)="registrarFamilia()">
             <mat-form-field>
                 <mat-label>Nombre</mat-label>
-                <input matInput [(ngModel)]="family.nomFamily" name="nomFamily" required />
+                <input matInput [(ngModel)]="family.nomFamily" [ngModelOptions]="{standalone: true}" name="nomFamily" required />
             </mat-form-field>
-
+            @if(mensajeErrorNombre){
+            <p class="error_mensaje">{{mensajeErrorNombre}}</p>
+            }
             <mat-form-field>
                 <mat-label>Contraseña</mat-label>
-                <input matInput [type]="hide() ? 'password' : 'text'" />
+                <input matInput [(ngModel)]="family.passwordFamily" [ngModelOptions]="{standalone: true}" name="passwordFamily" [type]="hide ? 'password' : 'text'" />
                 <button
                     matIconButton
                     matSuffix
                     (click)="clickEvent($event)"
                     [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide()"
+                    [attr.aria-pressed]="hide"
                 >
-                    <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
+            @if(mensajeErrorPassword){
+            <p class="error_mensaje">{{mensajeErrorPassword}}</p>
+            }
+            <button matButton="filled" type="submit">Registrar</button>
             </form>
-        --> 
+        
     </div>
 </div>

@@ -10,8 +10,9 @@
         <button matButton routerLink="/inventario" style="color: aliceblue;">Inventario</button>
         <button matButton routerLink="/recetas" style="color: aliceblue;">Recetas</button>
         <button matButton routerLink="/consumo" style="color: aliceblue;">Consumo</button>
-        <button matButton routerLink="/familia" style="color: aliceblue;">Familia</button>  
-        <mat-menu #inicio="matMenu">
+        
+        <button matButton [matMenuTriggerFor]="familiamenu" routerLink="/familia" style="color: aliceblue;">Familia</button>  
+        <mat-menu #familiamenu="matMenu">
             <button mat-menu-item routerLink="/familia/insertar">Agregar</button>
         </mat-menu>
     </mat-toolbar>
