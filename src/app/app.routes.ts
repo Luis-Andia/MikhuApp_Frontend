@@ -5,6 +5,7 @@ import { Recipecomponent } from './components/recipecomponent/recipecomponent';
 import { Consumptioncomponent } from './components/consumptioncomponent/consumptioncomponent';
 import { Familycomponent } from './components/familycomponent/familycomponent';
 import { Homecomponent } from './components/homecomponent/homecomponent';
+import { Finsertcomponent } from './components/familycomponent/finsertcomponent/finsertcomponent';
 
 export const routes: Routes = [
     {
@@ -25,7 +26,11 @@ export const routes: Routes = [
     },
     {
         path:'familia',
-        component:Familycomponent
+        component:Familycomponent,
+        children:[{
+            path:'insertar',
+            component:Finsertcomponent
+        }]
     }
 
 ];

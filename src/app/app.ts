@@ -4,7 +4,7 @@ import { Menucomponent } from './components/menucomponent/menucomponent';
 import { Homecomponent } from './components/homecomponent/homecomponent';
 import { Chatiacomponent } from './components/chatiacomponent/chatiacomponent';
 @Component({
-  imports: [RouterOutlet, Menucomponent, Homecomponent, Chatiacomponent],
+  imports: [RouterOutlet],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
