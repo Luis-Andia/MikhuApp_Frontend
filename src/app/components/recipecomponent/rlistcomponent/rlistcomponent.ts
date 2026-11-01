@@ -25,7 +25,7 @@ export class Rlistcomponent {
         this.dataSource = data
         this.cdr.detectChanges()
       }, error(err) {
-        console.log('Ocurrio un error al listar los registros')        
+        console.log('Ocurrio un error al listar las recetas')        
       },
     })
   }

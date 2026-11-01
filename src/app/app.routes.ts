@@ -6,6 +6,7 @@ import { Consumptioncomponent } from './components/consumptioncomponent/consumpt
 import { Familycomponent } from './components/familycomponent/familycomponent';
 import { Homecomponent } from './components/homecomponent/homecomponent';
 import { Finsertcomponent } from './components/familycomponent/finsertcomponent/finsertcomponent';
+import { Flistcomponent } from './components/familycomponent/flistcomponent/flistcomponent';
 
 export const routes: Routes = [
     {
@@ -27,10 +28,17 @@ export const routes: Routes = [
     {
         path:'familia',
         component:Familycomponent,
-        children:[{
+        children:
+        [
+            {
             path:'insertar',
             component:Finsertcomponent
-        }]
+            },
+            {
+            path:'listar',
+            component:Flistcomponent
+            }
+        ]
     }
 
 ];

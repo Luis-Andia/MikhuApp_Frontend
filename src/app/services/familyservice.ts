@@ -12,4 +12,13 @@ export class Familyservice {
         const url=`${this.apiURL}`
         return this.http.post(url,family)
     }
+
+    getfamilies():Observable<FamilyDTO[]>{
+        const url=`${this.apiURL}`
+        return this.http.get<FamilyDTO[]>(url)
+    }
+
+    deletefamily(id:number):Observable<void>{
+        return this.http.delete<void>(`${this.apiURL}/${id}`)
+    }
 }

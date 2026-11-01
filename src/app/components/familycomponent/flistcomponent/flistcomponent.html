@@ -1,0 +1,42 @@
+<div class="container">
+    <div>
+        <h1>Familias</h1>
+        <h3>Listado de las familias dentro de MikhuApp</h3>
+    </div>
+    <div>
+        @if(dataSource.length>0){
+            <table mat-table [dataSource]="dataSource" class="mat-shadow-2">
+            <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+
+            
+            <ng-container matColumnDef="C1">
+                <th mat-header-cell *matHeaderCellDef> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.idFamily}} </td>
+            </ng-container>
+
+            
+            <ng-container matColumnDef="C2">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.nomFamily}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="C3">
+                <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+                <td mat-cell *matCellDef="let element"> 
+                    <button mat-icon-button type="button" (click)="eliminarfamilia(element.idFamily)">
+                    <mat-icon>delete</mat-icon>
+                    </button> 
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        }
+        @else{
+            <p>No hay registros disponibles!</p>
+        }
+    </div>
+</div>
+

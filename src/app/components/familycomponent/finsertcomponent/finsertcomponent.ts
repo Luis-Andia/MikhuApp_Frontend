@@ -50,6 +50,7 @@ export class Finsertcomponent {
     this.fS.postfamily(this.family).subscribe({
       next:data => {
         this.family = data
+        
         this.cdr.detectChanges()
       }, error:(err) => {
         console.log('Ocurrio un error')
