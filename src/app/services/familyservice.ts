@@ -2,15 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FamilyDTO } from '../models/FamilyDTO';
+import { environment } from '../../environments/environment.development';
 
 @Service()
 export class Familyservice {
-    private apiURL = 'http://localhost:8080/api/families'
+    private apiURL=`${environment.base}/api/ingredients`;
     private http=inject(HttpClient)
 
-    postfamily(family:FamilyDTO):Observable<any>{
+    insertfamily(dto:FamilyDTO):Observable<any>{
         const url=`${this.apiURL}`
-        return this.http.post(url,family)
+        return this.http.post<FamilyDTO>(url,dto)
     }
 
     getfamilies():Observable<FamilyDTO[]>{

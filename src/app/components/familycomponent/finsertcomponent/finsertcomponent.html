@@ -1,16 +1,16 @@
 <div>
     <h2>Registrar una familia</h2>
     <div> 
-        
-        <form (ngSubmit)="registrarFamilia()">
-            <mat-form-field>
+        <form [formGroup]="formulario" (ngSubmit)="registrarFamilia()">
+            <mat-form-field class="example-full-width">
                 <mat-label>Nombre</mat-label>
-                <input matInput [(ngModel)]="family.nomFamily" [ngModelOptions]="{standalone: true}" name="nomFamily" required />
+                <input matInput formControlName="nombre">
             </mat-form-field>
+            <br>
             
             <mat-form-field>
                 <mat-label>Contraseña</mat-label>
-                <input matInput [(ngModel)]="family.passwordFamily" [ngModelOptions]="{standalone: true}" name="passwordFamily" [type]="hide ? 'password' : 'text'" />
+                <input matInput formControlName="categoria" [type]="hide ? 'password' : 'text'" />
                 <button
                     matIconButton
                     matSuffix

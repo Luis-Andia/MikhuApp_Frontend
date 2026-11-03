@@ -1,26 +1,31 @@
-<div>
-    <h2>Registrar un ingrediente</h2>
-    <div> 
-        
-        <form (ngSubmit)="registrarIngrediente()">
-            <mat-form-field>
+<div class="container">
+    <div>
+        <h2>Registrar un ingrediente</h2>
+    </div>
+
+    <div>     
+        <form [formGroup]="formulario" (ngSubmit)="registrarIngrediente()">
+            <mat-form-field class="example-full-width">
                 <mat-label>Nombre</mat-label>
-                <input matInput [(ngModel)]="ingredient.nomIngredient" [ngModelOptions]="{standalone: true}" name="nomIngredient" />
+                <input matInput formControlName="nombre">
             </mat-form-field>
+            <br>
             
             <mat-form-field>
                 <mat-label>Categoria</mat-label>
-                <mat-select [(ngModel)]="ingredient.ingredientCategory" [ngModelOptions]="{standalone: true}" name="ingredientCategory">
-                    @for (categoria of categorias; track categoria) {
-                    <mat-option [value]="categoria.value">{{categoria.viewValue}}</mat-option>
+                <mat-select formControlName="categoria">
+                    @for (tipo of categorias; track tipo) {
+                    <mat-option [value]="tipo.value">{{tipo.viewValue}}</mat-option>
                     }
                 </mat-select>
             </mat-form-field>
+            <br>
+
+            <button matButton="filled" type="submit">Registrar</button>
+        </form>
 
             @if(mensaje){
-            <p class="error_mensaje">{{mensaje}}</p>
+                <p>{{mensaje}}</p>
             }
-            <button matButton="filled" type="submit">Registrar</button>
-            </form>
     </div>
 </div>

@@ -2,30 +2,29 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { Familyservice } from '../../../services/familyservice';
 import { FamilyDTO } from '../../../models/FamilyDTO';
 import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+
 
 @Component({
-  imports: [MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, FormsModule],
+  imports: [MatInputModule, MatIconModule, MatButtonModule, ReactiveFormsModule],
   selector: 'app-finsertcomponent',
   styleUrl: './finsertcomponent.css',
   templateUrl: './finsertcomponent.html',
 })
 
 export class Finsertcomponent {
-  family:FamilyDTO = {
-    nomFamily:'',
-    passwordFamily:''
-  }
-
+  formulario:any
   mensaje:string=''
-  
+  hide: boolean = true; // Para la contraseña
 
-  hide: boolean = true;
-
-  constructor(private fS:Familyservice, private cdr:ChangeDetectorRef){}
+  constructor(private fS:Familyservice, private cdr:ChangeDetectorRef, private fb:FormBuilder){
+    this.formulario=fb.group({
+      nombre:['', Validators.required],
+      contrasena:['', Validators.required]
+    })
+  }
 
   clickEvent(event: MouseEvent) {
     this.hide = !this.hide;
@@ -33,30 +32,26 @@ export class Finsertcomponent {
   }
 
   registrarFamilia(){
-
-    if(this.family.nomFamily.trim()==='' && this.family.passwordFamily.trim()===''){
-      this.mensaje = 'Complete los campos solicitados'
-      return
-    }
-    
-    if(this.family.nomFamily.trim()===''){
-      this.mensaje = 'Nombre es obligatorio'
+    if(this.formulario.invalid){
+      this.mensaje = 'Los campos son obligatorios'
       return
     }
 
-    if(this.family.passwordFamily.trim()===''){
-      this.mensaje = 'Contraseña es obligatoria'
-      return
+    const familia:FamilyDTO={
+          idFamily:0,
+          nomFamily:this.formulario.value.nombre,
+          passwordFamily:this.formulario.value.contrasena,
     }
 
-    this.fS.postfamily(this.family).subscribe({
-      next:data => {
-        this.family = data
-        
+    this.fS.insertfamily(familia).subscribe({
+      next:respuesta=>{
+        this.mensaje = 'Familia registrada exitosamente'
         this.cdr.detectChanges()
-      }, error:(err) => {
-        console.log('Ocurrio un error')
-        this.mensaje='Error al registrar'
+        this.formulario.reset()
+      }, error:err => {
+        console.log("Ocurrio un error al registrar")
+        this.mensaje = 'Error de registro interno'
+        this.cdr.detectChanges()
       },
     })
   }
