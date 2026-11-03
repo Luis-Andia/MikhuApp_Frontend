@@ -1,1 +1,26 @@
-<p>iinsertcomponent works!</p>
+<div>
+    <h2>Registrar un ingrediente</h2>
+    <div> 
+        
+        <form (ngSubmit)="registrarIngrediente()">
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput [(ngModel)]="ingredient.nomIngredient" [ngModelOptions]="{standalone: true}" name="nomIngredient" />
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Categoria</mat-label>
+                <mat-select [(ngModel)]="ingredient.ingredientCategory" [ngModelOptions]="{standalone: true}" name="ingredientCategory">
+                    @for (categoria of categorias; track categoria) {
+                    <mat-option [value]="categoria.value">{{categoria.viewValue}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            @if(mensaje){
+            <p class="error_mensaje">{{mensaje}}</p>
+            }
+            <button matButton="filled" type="submit">Registrar</button>
+            </form>
+    </div>
+</div>

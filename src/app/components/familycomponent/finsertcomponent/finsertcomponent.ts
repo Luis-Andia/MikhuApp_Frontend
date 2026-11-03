@@ -21,8 +21,7 @@ export class Finsertcomponent {
   }
 
   mensaje:string=''
-  mensajeErrorNombre = ''
-  mensajeErrorPassword = ''
+  
 
   hide: boolean = true;
 
@@ -35,16 +34,19 @@ export class Finsertcomponent {
 
   registrarFamilia(){
 
-    if(this.family.nomFamily.trim() === ''){
-      this.mensajeErrorNombre = 'El nombre es obligatorio';
-      this.cdr.detectChanges();
-      return;
+    if(this.family.nomFamily.trim()==='' && this.family.passwordFamily.trim()===''){
+      this.mensaje = 'Complete los campos solicitados'
+      return
+    }
+    
+    if(this.family.nomFamily.trim()===''){
+      this.mensaje = 'Nombre es obligatorio'
+      return
     }
 
-    if(this.family.passwordFamily.trim() === ''){
-      this.mensajeErrorPassword = 'La contraseña es obligatoria';
-      this.cdr.detectChanges();
-      return;
+    if(this.family.passwordFamily.trim()===''){
+      this.mensaje = 'Contraseña es obligatoria'
+      return
     }
 
     this.fS.postfamily(this.family).subscribe({

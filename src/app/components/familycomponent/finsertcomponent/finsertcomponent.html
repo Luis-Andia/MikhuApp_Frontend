@@ -7,9 +7,7 @@
                 <mat-label>Nombre</mat-label>
                 <input matInput [(ngModel)]="family.nomFamily" [ngModelOptions]="{standalone: true}" name="nomFamily" required />
             </mat-form-field>
-            @if(mensajeErrorNombre){
-            <p class="error_mensaje">{{mensajeErrorNombre}}</p>
-            }
+            
             <mat-form-field>
                 <mat-label>Contraseña</mat-label>
                 <input matInput [(ngModel)]="family.passwordFamily" [ngModelOptions]="{standalone: true}" name="passwordFamily" [type]="hide ? 'password' : 'text'" />
@@ -23,12 +21,10 @@
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
-            @if(mensajeErrorPassword){
-            <p class="error_mensaje">{{mensajeErrorPassword}}</p>
+            @if(mensaje){
+            <p class="error_mensaje">{{mensaje}}</p>
             }
             <button matButton="filled" type="submit">Registrar</button>
-            <button matButton="filled" disabled>Registrar</button>
-
             </form>
     </div>
 </div>
