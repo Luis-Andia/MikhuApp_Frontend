@@ -43,7 +43,6 @@ export class Iinsertcomponent {
     }
 
     const ingrediente:IngredientDTO={
-      idIngredient:0,
       nomIngredient:this.formulario.value.nombre,
       ingredientCategory:this.formulario.value.categoria,
     }

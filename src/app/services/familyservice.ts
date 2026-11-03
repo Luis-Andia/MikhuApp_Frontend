@@ -6,10 +6,10 @@ import { environment } from '../../environments/environment.development';
 
 @Service()
 export class Familyservice {
-    private apiURL=`${environment.base}/api/ingredients`;
+    private apiURL=`${environment.base}/api/families`;
     private http=inject(HttpClient)
 
-    insertfamily(dto:FamilyDTO):Observable<any>{
+    insertfamily(dto:FamilyDTO):Observable<FamilyDTO>{
         const url=`${this.apiURL}`
         return this.http.post<FamilyDTO>(url,dto)
     }

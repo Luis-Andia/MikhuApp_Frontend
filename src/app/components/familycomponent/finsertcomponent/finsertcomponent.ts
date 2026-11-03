@@ -38,9 +38,8 @@ export class Finsertcomponent {
     }
 
     const familia:FamilyDTO={
-          idFamily:0,
-          nomFamily:this.formulario.value.nombre,
-          passwordFamily:this.formulario.value.contrasena,
+      nomFamily:this.formulario.value.nombre,
+      passwordFamily:this.formulario.value.contrasena,
     }
 
     this.fS.insertfamily(familia).subscribe({

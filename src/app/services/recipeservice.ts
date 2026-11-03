@@ -6,7 +6,7 @@ import { RecipeDTO } from '../models/RecipeDTO';
 
 @Service()
 export class Recipeservice {
-    private apiURL=`${environment.base}/api/ingredients`;
+    private apiURL=`${environment.base}/api/recipes`;
     private http=inject(HttpClient)
 
     getRecipes():Observable<RecipeDTO[]> {

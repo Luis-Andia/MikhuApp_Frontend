@@ -14,7 +14,7 @@ export class Ingredientservice {
         return this.http.get<IngredientDTO[]>(url)
     }
 
-    insertIngredient(dto: IngredientDTO):Observable<any>{
+    insertIngredient(dto: IngredientDTO):Observable<IngredientDTO>{
         const url = `${this.apiURL}`;
         return this.http.post<IngredientDTO>(url, dto)
     }

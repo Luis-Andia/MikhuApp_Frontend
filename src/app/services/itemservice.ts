@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment.development';
 
 @Service()
 export class Itemservice {
-    private apiURL=`${environment.base}/api/ingredients`;
+    private apiURL=`${environment.base}/api/items`;
     private http=inject(HttpClient)
     
     //
