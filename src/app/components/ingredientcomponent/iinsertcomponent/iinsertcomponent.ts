@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { Ingredientservice } from '../../../services/ingredientservice';
 
 @Component({
   imports: [],
@@ -6,4 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './iinsertcomponent.css',
   templateUrl: './iinsertcomponent.html',
 })
-export class Iinsertcomponent {}
+export class Iinsertcomponent {
+  constructor(private iS: Ingredientservice, private cdr: ChangeDetectorRef){}
+
+  registrarIngrediente(){
+    
+  }
+}

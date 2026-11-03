@@ -1,5 +1,5 @@
 export class RecipeDTO {
-    idRecipe: number = 0;
+    idRecipe?: number
     nomRecipe:string = '';
     idCountry:number = 0;
     calories:number = 0;

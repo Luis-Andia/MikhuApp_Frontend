@@ -7,6 +7,9 @@ import { Familycomponent } from './components/familycomponent/familycomponent';
 import { Homecomponent } from './components/homecomponent/homecomponent';
 import { Finsertcomponent } from './components/familycomponent/finsertcomponent/finsertcomponent';
 import { Flistcomponent } from './components/familycomponent/flistcomponent/flistcomponent';
+import { Ingredientcomponent } from './components/ingredientcomponent/ingredientcomponent';
+import { Iinsertcomponent } from './components/ingredientcomponent/iinsertcomponent/iinsertcomponent';
+import { Ilistcomponent } from './components/ingredientcomponent/ilistcomponent/ilistcomponent';
 
 export const routes: Routes = [
     {
@@ -37,6 +40,21 @@ export const routes: Routes = [
             {
             path:'listar',
             component:Flistcomponent
+            }
+        ]
+    },
+    {
+        path:'ingrediente',
+        component:Ingredientcomponent,
+        children:
+        [
+            {
+            path:'insertar',
+            component:Iinsertcomponent
+            },
+            {
+            path:'listar',
+            component:Ilistcomponent
             }
         ]
     }

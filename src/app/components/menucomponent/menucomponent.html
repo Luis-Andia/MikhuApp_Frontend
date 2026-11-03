@@ -17,5 +17,12 @@
             <button mat-menu-item routerLink="/familia/listar">Listar</button>
         </mat-menu>
         
+        <button matButton [matMenuTriggerFor]="ingredientemenu" routerLink="/ingrediente" style="color: aliceblue;">Ingrediente</button>  
+        <mat-menu #ingredientemenu="matMenu">
+            <button mat-menu-item routerLink="/ingrediente/insertar">Agregar</button>
+            <button mat-menu-item routerLink="/ingrediente/listar">Listar</button>
+        </mat-menu>
+        
+        
     </mat-toolbar>
 </div>
