@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Itemservice } from '../../../services/itemservice';
 import { Menucomponent } from '../../menucomponent/menucomponent';
 import {MatTableModule} from '@angular/material/table';
@@ -10,7 +10,7 @@ import {MatIconModule} from '@angular/material/icon';
   styleUrl: './itlistcomponent.css',
   templateUrl: './itlistcomponent.html',
 })
-export class Itlistcomponent {
+export class Itlistcomponent implements OnInit {
   
     constructor(private itS:Itemservice){}
 

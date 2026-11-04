@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Recipeservice } from '../../../services/recipeservice';
 import { RecipeDTO } from '../../../models/RecipeDTO';
 import {MatTableModule} from '@angular/material/table';
@@ -10,7 +10,7 @@ import {MatIconModule} from '@angular/material/icon';
   styleUrl: './rlistcomponent.css',
   templateUrl: './rlistcomponent.html',
 })
-export class Rlistcomponent {
+export class Rlistcomponent implements OnInit {
   displayedColumns:string[]=['C1', 'C2', 'C3', 'C4']
   dataSource:RecipeDTO[]=[]
   constructor(private rS:Recipeservice, private cdr:ChangeDetectorRef){}
@@ -19,7 +19,7 @@ export class Rlistcomponent {
     this.obtenerRecetas()
   }
 
-  obtenerRecetas(){
+  obtenerRecetas(){ // Verificar el tema del pais
     this.rS.getRecipes().subscribe({
       next:data => {
         this.dataSource = data

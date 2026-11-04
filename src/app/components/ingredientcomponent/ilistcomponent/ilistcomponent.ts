@@ -1,4 +1,4 @@
-import { ChangeDetectorRef,Component } from '@angular/core';
+import { ChangeDetectorRef,Component, OnInit } from '@angular/core';
 import { IngredientDTO } from '../../../models/IngredientDTO';
 import { Ingredientservice } from '../../../services/ingredientservice';
 import { error } from 'console';
@@ -11,7 +11,7 @@ import { MatTableModule } from '@angular/material/table';
   styleUrl: './ilistcomponent.css',
   templateUrl: './ilistcomponent.html',
 })
-export class Ilistcomponent {
+export class Ilistcomponent implements OnInit {
   displayedColumns:string[]=['C1', 'C2', 'C3', 'C4']
   dataSource:IngredientDTO[]=[]
   

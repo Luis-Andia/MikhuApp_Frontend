@@ -1,17 +1,18 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Familyservice } from '../../../services/familyservice';
 import { FamilyDTO } from '../../../models/FamilyDTO';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [MatIconModule, MatTableModule],
+  imports: [MatIconModule, MatTableModule, RouterLink],
   selector: 'app-flistcomponent',
   styleUrl: './flistcomponent.css',
   templateUrl: './flistcomponent.html',
 })
-export class Flistcomponent {
-    displayedColumns:string[]=['C1', 'C2', 'C3']
+export class Flistcomponent implements OnInit {
+    displayedColumns:string[]=['C1', 'C2', 'C3', 'C4']
     dataSource:FamilyDTO[]=[]
 
     constructor(private fS:Familyservice, private cdr:ChangeDetectorRef){}

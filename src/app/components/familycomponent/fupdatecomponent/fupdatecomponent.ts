@@ -1,21 +1,21 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Familyservice } from '../../../services/familyservice';
-import { Router } from 'express';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FamilyDTO } from '../../../models/FamilyDTO';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 @Component({
   imports: [MatInputModule, MatButtonModule, MatIconModule, ReactiveFormsModule],
+  providers: [provideNativeDateAdapter()],
   selector: 'app-fupdatecomponent',
   styleUrl: './fupdatecomponent.css',
   templateUrl: './fupdatecomponent.html',
 })
-export class Fupdatecomponent {
+export class Fupdatecomponent implements OnInit{
   idfamily:any = null
   formulario:any
   mensaje:string=''
@@ -53,7 +53,7 @@ export class Fupdatecomponent {
   buscarporId():void{
     this.fS.listId(this.idfamily).subscribe({
       next:(data:FamilyDTO) => {
-        console.log("Cultivo encontrado: ", data) // Verificacion 2
+        console.log("Familia encontrada: ", data) // Verificacion 2
 
         this.formulario.patchValue({ // Actualiza los campos del formulario con los valores que trajo el servidor
           codigo:data.idFamily,
@@ -81,7 +81,7 @@ export class Fupdatecomponent {
         this.mensaje = 'Actualizado correctamente!!';
         this.cdr.detectChanges()
         this.formulario.reset()
-        // this.router.navigate(['/families/listar']);
+        this.router.navigate(['/familia/listar']);
       },
       error: (error) => {
         console.error(error);
