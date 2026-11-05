@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Menucomponent } from '../menucomponent/menucomponent';
+import { RouterOutlet } from '@angular/router';
 
-@Component({
-  imports: [Menucomponent],
+  @Component({
   selector: 'app-itemcomponent',
-  styleUrl: './itemcomponent.css',
+  imports: [Menucomponent,RouterOutlet],
   templateUrl: './itemcomponent.html',
+  styleUrl: './itemcomponent.css',
 })
+
 export class Itemcomponent {}

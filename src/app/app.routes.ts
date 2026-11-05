@@ -11,6 +11,8 @@ import { Ingredientcomponent } from './components/ingredientcomponent/ingredient
 import { Iinsertcomponent } from './components/ingredientcomponent/iinsertcomponent/iinsertcomponent';
 import { Ilistcomponent } from './components/ingredientcomponent/ilistcomponent/ilistcomponent';
 import { Fupdatecomponent } from './components/familycomponent/fupdatecomponent/fupdatecomponent';
+import { Itlistcomponent } from './components/itemcomponent/itlistcomponent/itlistcomponent';
+import {Itinsertcomponent} from './components/itemcomponent/itinsertcomponent/itinsertcomponent';
 
 export const routes: Routes = [
     {
@@ -18,8 +20,19 @@ export const routes: Routes = [
         component: Homecomponent
     },
     {
-        path: 'inventario',
+        path: 'items',
         component: Itemcomponent,
+        children:
+        [
+            {
+            path:'insertar',
+            component:Itinsertcomponent
+            },
+            {
+            path:'listar',
+            component:Itlistcomponent
+            },
+        ]
     },
     {
         path:'recetas',

@@ -7,7 +7,13 @@
         <mat-menu #inicio="matMenu">
             <button mat-menu-item routerLink="/familia">Familia</button>
         </mat-menu>
-        <button matButton routerLink="/inventario" style="color: aliceblue;">Inventario</button>
+
+        <button matButton [matMenuTriggerFor]="inventariomenu" routerLink="/items" style="color: aliceblue;">Inventario</button>
+        <mat-menu #inventariomenu="matMenu">
+            <button mat-menu-item routerLink="/items/insertar">Agregar</button>
+            <button mat-menu-item routerLink="/items/listar">Listar</button>
+        </mat-menu>
+
         <button matButton routerLink="/recetas" style="color: aliceblue;">Recetas</button>
         <button matButton routerLink="/consumo" style="color: aliceblue;">Consumo</button>
         
