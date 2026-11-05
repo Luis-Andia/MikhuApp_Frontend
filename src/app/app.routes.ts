@@ -14,6 +14,10 @@ import { Fupdatecomponent } from './components/familycomponent/fupdatecomponent/
 import { Itlistcomponent } from './components/itemcomponent/itlistcomponent/itlistcomponent';
 import {Itinsertcomponent} from './components/itemcomponent/itinsertcomponent/itinsertcomponent';
 import { Iupdatecomponent } from './components/ingredientcomponent/iupdatecomponent/iupdatecomponent';
+import { Countrycomponent } from './components/countrycomponent/countrycomponent';
+import { Coinsertcomponent } from './components/countrycomponent/coinsertcomponent/coinsertcomponent';
+import { Colistcomponent } from './components/countrycomponent/colistcomponent/colistcomponent';
+import { Coupdatecomponent } from './components/countrycomponent/coupdatecomponent/coupdatecomponent';
 
 export const routes: Routes = [
     {
@@ -78,6 +82,25 @@ export const routes: Routes = [
             {
             path:'actualizar/:id',
             component:Iupdatecomponent
+            }
+        ]
+    },
+    {
+        path:'pais',
+        component:Countrycomponent,
+        children:
+        [
+            {
+            path:'insertar',
+            component:Coinsertcomponent
+            },
+            {
+            path:'listar',
+            component:Colistcomponent
+            },
+            {
+            path:'actualizar/:id',
+            component:Coupdatecomponent
             }
         ]
     },
