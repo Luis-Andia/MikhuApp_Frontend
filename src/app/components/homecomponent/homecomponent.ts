@@ -3,7 +3,7 @@ import { Menucomponent } from '../menucomponent/menucomponent';
 import { Chatiacomponent } from '../chatiacomponent/chatiacomponent';
 
 @Component({
-  imports: [Menucomponent, Chatiacomponent],
+  imports: [Menucomponent],
   selector: 'app-homecomponent',
   styleUrl: './homecomponent.css',
   templateUrl: './homecomponent.html',

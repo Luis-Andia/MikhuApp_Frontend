@@ -13,6 +13,7 @@ import { Ilistcomponent } from './components/ingredientcomponent/ilistcomponent/
 import { Fupdatecomponent } from './components/familycomponent/fupdatecomponent/fupdatecomponent';
 import { Itlistcomponent } from './components/itemcomponent/itlistcomponent/itlistcomponent';
 import {Itinsertcomponent} from './components/itemcomponent/itinsertcomponent/itinsertcomponent';
+import { Iupdatecomponent } from './components/ingredientcomponent/iupdatecomponent/iupdatecomponent';
 
 export const routes: Routes = [
     {
@@ -73,8 +74,16 @@ export const routes: Routes = [
             {
             path:'listar',
             component:Ilistcomponent
+            },
+            {
+            path:'actualizar/:id',
+            component:Iupdatecomponent
             }
         ]
+    },
+    {
+        path:'chatia',
+        component:Chatiacomponent
     }
 
 ];

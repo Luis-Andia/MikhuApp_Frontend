@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container">
     <mat-toolbar>
         <button matIconButton  class="example-icon" aria-label="Example icon-button with menu icon">
@@ -16,18 +17,40 @@
 
         <button matButton routerLink="/recetas" style="color: aliceblue;">Recetas</button>
         <button matButton routerLink="/consumo" style="color: aliceblue;">Consumo</button>
+=======
+<header class="container">
+    <mat-toolbar class="menu-toolbar">
+        <a class="brand" routerLink="" aria-label="MikhuApp - Inicio">
+            <span class="brand-logo">
+                <mat-icon>eco</mat-icon>
+            </span>
+            <span class="brand-name">MikhuApp</span>
+        </a>
+            <nav class="nav">
+            <button matButton class="nav-link" routerLink="">Inicio</button>
+            <button matButton class="nav-link" routerLink="/inventario" >Inventario</button>
+            <button matButton class="nav-link" routerLink="/recetas" >Recetas</button>
+            <button matButton class="nav-link" routerLink="/consumo">Consumo</button>
+            
+            <button matButton class="nav-link" [matMenuTriggerFor]="familiamenu" routerLink="/familia">Familia</button>  
+            <mat-menu #familiamenu="matMenu">
+                <button mat-menu-item routerLink="/familia/insertar">Agregar</button>
+                <button mat-menu-item routerLink="/familia/listar">Listar</button>
+            </mat-menu>
+            
+            <button matButton class="nav-link" [matMenuTriggerFor]="ingredientemenu" routerLink="/ingrediente">Ingrediente</button>  
+            <mat-menu #ingredientemenu="matMenu">
+                <button mat-menu-item routerLink="/ingrediente/insertar">Agregar</button>
+                <button mat-menu-item routerLink="/ingrediente/listar">Listar</button>
+            </mat-menu>
+        </nav>
+>>>>>>> origin/master
         
-        <button matButton [matMenuTriggerFor]="familiamenu" routerLink="/familia" style="color: aliceblue;">Familia</button>  
-        <mat-menu #familiamenu="matMenu">
-            <button mat-menu-item routerLink="/familia/insertar">Agregar</button>
-            <button mat-menu-item routerLink="/familia/listar">Listar</button>
-        </mat-menu>
-        
-        <button matButton [matMenuTriggerFor]="ingredientemenu" routerLink="/ingrediente" style="color: aliceblue;">Ingrediente</button>  
-        <mat-menu #ingredientemenu="matMenu">
-            <button mat-menu-item routerLink="/ingrediente/insertar">Agregar</button>
-            <button mat-menu-item routerLink="/ingrediente/listar">Listar</button>
-        </mat-menu>
-                
+        <span class="spacer"></span>
+
+        <a class="ia-button" routerLink="/chatia">
+            <mat-icon>auto_awesome</mat-icon>
+            <span>Asistente IA</span>
+        </a>
     </mat-toolbar>
-</div>
+</header>

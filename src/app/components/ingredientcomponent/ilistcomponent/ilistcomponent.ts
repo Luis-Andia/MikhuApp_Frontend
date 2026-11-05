@@ -1,18 +1,18 @@
 import { ChangeDetectorRef,Component, OnInit } from '@angular/core';
 import { IngredientDTO } from '../../../models/IngredientDTO';
 import { Ingredientservice } from '../../../services/ingredientservice';
-import { error } from 'console';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [MatIconModule, MatTableModule],
+  imports: [MatIconModule, MatTableModule, RouterLink],
   selector: 'app-ilistcomponent',
   styleUrl: './ilistcomponent.css',
   templateUrl: './ilistcomponent.html',
 })
 export class Ilistcomponent implements OnInit {
-  displayedColumns:string[]=['C1', 'C2', 'C3', 'C4']
+  displayedColumns:string[]=['C1', 'C2', 'C3', 'C4', 'C5']
   dataSource:IngredientDTO[]=[]
   
   constructor(private iS: Ingredientservice, private cdr: ChangeDetectorRef){}
