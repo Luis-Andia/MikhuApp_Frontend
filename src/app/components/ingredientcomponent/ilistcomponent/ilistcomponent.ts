@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './ilistcomponent.html',
 })
 export class Ilistcomponent implements OnInit {
-  displayedColumns:string[]=['C1', 'C2', 'C3', 'C4', 'C5']
+  displayedColumns:string[]=['C1', 'C2', 'C3', 'C4']
   dataSource:IngredientDTO[]=[]
   
   constructor(private iS: Ingredientservice, private cdr: ChangeDetectorRef){}

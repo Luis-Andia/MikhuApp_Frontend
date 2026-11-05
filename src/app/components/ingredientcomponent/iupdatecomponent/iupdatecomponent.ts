@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router, RouterLink} from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,7 +10,7 @@ import { IngredientDTO } from '../../../models/IngredientDTO';
 
 
 @Component({
-  imports: [MatInputModule, ReactiveFormsModule, MatIconModule, MatButtonModule, MatSelectModule],
+  imports: [MatInputModule, ReactiveFormsModule, MatIconModule, MatButtonModule, MatSelectModule, RouterLink],
   selector: 'app-iupdatecomponent',
   styleUrl: './iupdatecomponent.css',
   templateUrl: './iupdatecomponent.html',

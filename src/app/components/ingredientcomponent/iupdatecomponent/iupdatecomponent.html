@@ -1,14 +1,20 @@
-<div class="container">
-    <div>
-        <h2>Formulario de Actualización de Cultivos</h2>
+<div class="ingrediente-page">
+  <div class="ingrediente-card">
+
+    <div class="ingrediente-icono" aria-hidden="true">
+      <mat-icon>edit</mat-icon>
     </div>
 
-    <div>
+    <h2>Actualiza tu ingrediente</h2>
+    <p class="ingrediente-desc">
+      Modifica el nombre o la categoría del ingrediente
+    </p>
         <form [formGroup]="formulario" (ngSubmit)="actualizarIngrediente()">
             <!-- ID -->
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="campo-id">
                 <mat-label>ID</mat-label>
                 <input matInput  formControlName="codigo" readonly>
+                <mat-icon matSuffix>lock</mat-icon>
             </mat-form-field>
 
             <!-- Nombre -->
@@ -18,26 +24,30 @@
                 <mat-error>Ingrese el nombre del ingrediente</mat-error>
             </mat-form-field>
 
-            <br>
-            <mat-form-field>
+            <mat-form-field  appearance="outline">
                 <mat-label>Categoria</mat-label>
-                <mat-select formControlName="categoria">
+                <mat-select formControlName="categoria" panelClass="mikhu-select-panel">
                     @for (tipo of categorias; track tipo) {
                     <mat-option [value]="tipo.value">{{tipo.viewValue}}</mat-option>
                     }
                 </mat-select>
             </mat-form-field>
-                       
             
-            <br><br>
+            @if (mensaje) {
+                <p class="mensaje" role="status">
+                <mat-icon>info</mat-icon>
+                {{ mensaje }}
+                </p>
+            }
 
-            <button matButton type="submit">Guardar</button>
+      <button matButton="filled" type="submit">Guardar cambios</button>
+      <button matButton type="button" class="btn-cancelar" routerLink="/ingrediente/listar">Cancelar</button>
 
-        </form>
+      <div class="ingrediente-nota">
+        <mat-icon>info</mat-icon>
+        <p>El ID del ingrediente no se puede modificar.</p>
+      </div>
 
-        @if(mensaje){
-        <p>{{mensaje}}</p>
-        }
-    </div>
+    </form>
+  </div>
 </div>
-

@@ -1,26 +1,29 @@
-<div class="container">
-    <div>
-        <h2>Formulario de Actualización de Cultivos</h2>
+<div class="familia-page">
+  <div class="familia-card">
+    <div class="familia-icono" aria-hidden="true">
+      <mat-icon>edit</mat-icon>
     </div>
 
-    <div>
+    <h2>Actualiza tu familia</h2>
+    <p class="familia-desc">
+      Modifica el nombre o la contraseña de tu grupo familiar
+    </p>
         <form [formGroup]="formulario" (ngSubmit)="actualizarfamilia()">
             <!-- ID -->
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="campo-id">
                 <mat-label>ID</mat-label>
                 <input matInput  formControlName="codigo" readonly>
+                <mat-icon matSuffix>lock</mat-icon>
             </mat-form-field>
 
             <!-- Nombre -->
             <mat-form-field appearance="outline">
                 <mat-label>Nombre de la familia</mat-label>
                 <input matInput formControlName="nombre">
-                <mat-error>Ingrese el nombre del cultivo</mat-error>
+                <mat-error>Ingrese el nombre de la familia</mat-error>
             </mat-form-field>
 
-            <br>
-
-            <mat-form-field>
+            <mat-form-field appearance="outline">
                 <mat-label>Contraseña</mat-label>
                 <input matInput formControlName="contrasena" [type]="hide ? 'password' : 'text'" />
                 <button
@@ -29,20 +32,22 @@
                     type="button"
                     (click)="clickEvent($event)"
                     [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide"
-                >
+                    [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>             
             
-            <br><br>
+            @if (mensaje) {
+            <p class="error_mensaje" role="alert">{{ mensaje }}</p>
+            }
+            
+            <button matButton="filled" type="submit">Guardar cambios</button>
+            <button matButton type="button" class="btn-cancelar" routerLink="/familia/listar">Cancelar</button>
 
-            <button matButton type="submit">Guardar</button>
-
+            <div class="familia-nota">
+                <mat-icon>info</mat-icon>
+                <p>El ID de la familia no se puede modificar.</p>
+            </div>      
         </form>
-
-        @if(mensaje){
-        <p>{{mensaje}}</p>
-        }
     </div>
 </div>

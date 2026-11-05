@@ -28,20 +28,19 @@
             </ng-container>
 
             <ng-container matColumnDef="C4">
-                <th mat-header-cell *matHeaderCellDef> Eliminar </th>
-                <td mat-cell *matCellDef="let element"> 
-                    <button mat-icon-button type="button" (click)="eliminaringredient(element.idIngredient)">
-                    <mat-icon>delete</mat-icon>
-                    </button> 
-                </td>
-            </ng-container>
-
-             <ng-container matColumnDef="C5">
-                <th mat-header-cell *matHeaderCellDef>Editar</th>
-                <td mat-cell *matCellDef="let element">
-                    <button mat-button class="btn-actualizar" [routerLink]="['/ingrediente/actualizar', element.idIngredient]">
+                <th mat-header-cell *matHeaderCellDef class="col-acciones">Acciones</th>
+                <td mat-cell *matCellDef="let element" class="col-acciones">
+                    
+                <button matIconButton type="button" class="btn-editar"
+                        aria-label="Editar ingrediente"
+                        [routerLink]="['/ingrediente/actualizar', element.idIngredient]">
                         <mat-icon>edit</mat-icon>
-                    </button>
+                </button>
+
+                <button matIconButton type="button" class="btn-eliminar" aria-label="Eliminar ingrediente"
+                        (click)="eliminaringredient(element.idIngredient)">
+                        <mat-icon>delete</mat-icon>
+                </button>
                 </td>
             </ng-container>
 

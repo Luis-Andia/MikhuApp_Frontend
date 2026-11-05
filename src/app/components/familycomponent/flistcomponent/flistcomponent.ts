@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './flistcomponent.html',
 })
 export class Flistcomponent implements OnInit {
-    displayedColumns:string[]=['C1', 'C2', 'C3', 'C4']
+    displayedColumns:string[]=['C1', 'C2', 'C3']
     dataSource:FamilyDTO[]=[]
 
     constructor(private fS:Familyservice, private cdr:ChangeDetectorRef){}

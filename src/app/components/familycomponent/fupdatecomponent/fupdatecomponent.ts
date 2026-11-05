@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Familyservice } from '../../../services/familyservice';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FamilyDTO } from '../../../models/FamilyDTO';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { provideNativeDateAdapter } from '@angular/material/core';
 
 @Component({
-  imports: [MatInputModule, MatButtonModule, MatIconModule, ReactiveFormsModule],
+  imports: [MatInputModule, MatButtonModule, MatIconModule, ReactiveFormsModule, RouterLink],
   providers: [provideNativeDateAdapter()],
   selector: 'app-fupdatecomponent',
   styleUrl: './fupdatecomponent.css',

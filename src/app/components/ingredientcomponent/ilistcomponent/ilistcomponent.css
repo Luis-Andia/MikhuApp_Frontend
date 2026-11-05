@@ -72,31 +72,25 @@
   --mat-table-row-item-outline-color: var(--mikhu-green-light);
 }
 
+/* ===== Fila de títulos resaltada ===== */
 .tabla th.mat-mdc-header-cell {
-  background: var(--mikhu-mint-soft);
+  background: var(--mikhu-mint);
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--mikhu-green-dark);
-}
-
-.tabla td.mat-mdc-cell {
-  font-size: 14px;
-  color: var(--mikhu-green-dark);
+  color: var(--mikhu-ink);
+  border-bottom: 1px solid var(--mikhu-mint);
 }
 
 .tabla th.mat-mdc-header-cell,
 .tabla td.mat-mdc-cell {
-  padding: 0 16px;
+  padding: 0 24px;
 }
 
-.tabla tr.mat-mdc-row {
-  transition: background-color 0.2s ease;
-}
-
-.tabla tr.mat-mdc-row:hover {
-  background: var(--mikhu-mint-soft);
+.tabla td.mat-mdc-cell {
+  font-size: 14px;
+  border-bottom: 1px solid var(--mikhu-mint);
 }
 
 /* ===== Categoría ===== */
@@ -113,25 +107,41 @@
 
 /* ===== Acciones ===== */
 .tabla .col-acciones {
-  width: 120px;
-  text-align: center;
+  width: 160px;
+  text-align: right;
 }
 
 .tabla td.col-acciones {
   white-space: nowrap;
 }
 
+/* Separación entre editar y eliminar */
+.btn-eliminar {
+  margin-left: 16px;
+}
+
+/* ===== Botones de acción: sin contorno, hover circular ===== */
 .btn-editar,
 .btn-eliminar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #44545A;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  --mat-icon-button-icon-color: #44545A;
   --mat-icon-button-state-layer-color: currentColor;
 }
 
-.btn-editar {
-  --mat-icon-button-icon-color: var(--mikhu-blue);
-}
-
 .btn-eliminar {
-  --mat-icon-button-icon-color: var(--mikhu-red);
+  margin-left: 16px;
 }
 
 .btn-editar mat-icon,
@@ -140,6 +150,24 @@
   height: 20px;
   font-size: 20px;
   line-height: 20px;
+  color: inherit;
+}
+
+/* Hover circular de color suave */
+.btn-editar:hover {
+  background: rgba(31, 100, 133, 0.12);
+  color: var(--mikhu-blue);
+}
+
+.btn-eliminar:hover {
+  background: rgba(229, 72, 72, 0.12);
+  color: var(--mikhu-red);
+}
+
+.btn-editar:focus-visible,
+.btn-eliminar:focus-visible {
+  outline: 2px solid var(--mikhu-green-dark);
+  outline-offset: 2px;
 }
 
 /* ===== Estado vacío ===== */
