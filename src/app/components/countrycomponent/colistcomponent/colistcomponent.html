@@ -1,0 +1,51 @@
+<div class="container">
+    <div>
+        <h1>Países</h1>
+        <h3>Listado de los países registrados en MikhuApp</h3>
+    </div>
+    <div>
+        @if(dataSource.length>0){
+            <table mat-table [dataSource]="dataSource" class="mat-shadow-2">
+
+            <ng-container matColumnDef="C1">
+                <th mat-header-cell *matHeaderCellDef> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.idCountry}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="C2">
+                <th mat-header-cell *matHeaderCellDef> Código </th>
+                <td mat-cell *matCellDef="let element"> {{element.codCountry}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="C3">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.nomCountry}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="C4">
+                <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button type="button" (click)="eliminarpais(element.idCountry)" aria-label="Eliminar país">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="C5">
+                <th mat-header-cell *matHeaderCellDef> Editar </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-button [routerLink]="['/pais/actualizar', element.idCountry]" aria-label="Editar país">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        }
+        @else{
+            <p>No hay países registrados</p>
+        }
+    </div>
+</div>
