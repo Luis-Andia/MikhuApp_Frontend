@@ -1,11 +1,14 @@
-<div class="container">
-    <div>
+<div class="ingredientes-page">
+  <div class="ingredientes-card">
+    <header class="ingredientes-header">
         <h1>Ingredientes</h1>
-        <h3>Listado de las ingredientes dentro de MikhuApp</h3>
-    </div>
-    <div>
+        <p>Listado de los ingredientes dentro de MikhuApp</p>
+    </header>
+    
+    
         @if(dataSource.length>0){
-            <table mat-table [dataSource]="dataSource" class="mat-shadow-2">
+            <div class="tabla-wrap">
+            <table mat-table [dataSource]="dataSource" class="tabla">
             <!--- Note that these columns can be defined in any order.
                     The actual rendered columns are set as a property on the row definition" -->
             
@@ -45,11 +48,15 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
+        </div>
         }
         @else{
-            <p>No hay registros disponibles!</p>
+            <p class="vacio">
+                <mat-icon>inventory_2</mat-icon>
+                No hay registros disponibles
+            </p>
         }
-    </div>
+  </div>
 </div>
 
 

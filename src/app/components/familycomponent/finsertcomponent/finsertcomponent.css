@@ -1,0 +1,173 @@
+:host {
+  --mikhu-green: #2E7D5B;
+  --mikhu-green-dark: #1F3A33;
+  --mikhu-green-light: #E3F2EA;
+  --mikhu-ink: #0F2A24;
+  --mikhu-red: #E54848;
+  --mikhu-white: #FFFFFF;
+
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #F4FAF7 0%, var(--mikhu-white) 100%);
+  color: var(--mikhu-green-dark);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ===== Layout ===== */
+.familia-page {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 32px;
+}
+
+/* ===== Tarjeta ===== */
+.familia-card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 480px;
+  padding: 32px;
+  border-radius: 16px;
+  background: var(--mikhu-white);
+  box-shadow: 0 4px 16px rgba(31, 58, 51, 0.10);
+}
+
+.familia-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 24px;
+  border-radius: 16px;
+  background: var(--mikhu-mint);
+  color: var(--mikhu-green);
+}
+
+.familia-icono mat-icon {
+  width: 28px;
+  height: 28px;
+  font-size: 28px;
+  line-height: 28px;
+}
+
+.familia-card h2 {
+  margin: 0 0 24px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--mikhu-ink);
+}
+
+.familia-desc {
+  margin: 0 0 24px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--mikhu-green-dark);
+  opacity: 0.85;
+}
+
+/* ===== Formulario ===== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Los <br> del HTML ya no hacen falta: el espaciado lo da el gap */
+form br {
+  display: none;
+}
+
+mat-form-field {
+  width: 100%;
+
+  --mat-form-field-outlined-container-shape: 12px;
+  --mat-form-field-outlined-outline-color: #B7D7C7;
+  --mat-form-field-outlined-hover-outline-color: var(--mikhu-green);
+  --mat-form-field-outlined-focus-outline-color: var(--mikhu-green);
+  --mat-form-field-outlined-label-text-color: var(--mikhu-green-dark);
+  --mat-form-field-outlined-focus-label-text-color: var(--mikhu-green);
+  --mat-form-field-outlined-input-text-color: var(--mikhu-green-dark);
+  --mat-form-field-outlined-caret-color: var(--mikhu-green);
+}
+
+/* Botón de mostrar/ocultar contraseña */
+mat-form-field button[matSuffix] {
+  --mat-icon-button-icon-color: var(--mikhu-green);
+  --mat-icon-button-state-layer-color: var(--mikhu-green);
+}
+
+mat-form-field button[matSuffix] mat-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+/* ===== Mensaje de error ===== */
+.error_mensaje {
+  margin: 0;
+  padding: 8px 16px;
+  border-left: 4px solid var(--mikhu-red);
+  border-radius: 8px;
+  background: rgba(229, 72, 72, 0.10);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--mikhu-green-dark);
+}
+
+/* ===== Botón principal ===== */
+button[type="submit"] {
+  height: 48px;
+  margin-top: 8px;
+  padding: 0 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  --mat-button-filled-container-color: var(--mikhu-green);
+  --mat-button-filled-label-text-color: var(--mikhu-white);
+  --mat-button-filled-container-shape: 12px;
+}
+
+button[type="submit"]:hover {
+  --mat-button-filled-container-color: #266A4D;
+}
+
+button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+
+/* ===== Nota informativa ===== */
+.familia-nota {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--mikhu-mint-soft);
+}
+
+.familia-nota mat-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  line-height: 22px;
+  color: var(--mikhu-green);
+}
+
+.familia-nota p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ===== Accesibilidad: foco visible ===== */
+button[type="submit"]:focus-visible {
+  outline: 2px solid var(--mikhu-green-dark);
+  outline-offset: 2px;
+}

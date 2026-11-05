@@ -1,15 +1,21 @@
-<div class="container">
-    <div>
-        <h2>Registrar un ingrediente</h2>
+<div class="ingrediente-page">
+  <div class="ingrediente-card">
+
+    <div class="ingrediente-icono" aria-hidden="true">
+      <mat-icon>nutrition</mat-icon>
     </div>
 
-    <div>     
+        <h2>Registra un ingrediente</h2>
+        <br>
+        <p class="ingrediente-desc">
+        Agrega un ingrediente y clasifícalo para tenerlo ordenado en tu despensa
+        </p>
+   
         <form [formGroup]="formulario" (ngSubmit)="registrarIngrediente()">
             <mat-form-field class="example-full-width">
                 <mat-label>Nombre</mat-label>
                 <input matInput formControlName="nombre">
             </mat-form-field>
-            <br>
             
             <mat-form-field>
                 <mat-label>Categoria</mat-label>
@@ -19,13 +25,18 @@
                     }
                 </mat-select>
             </mat-form-field>
-            <br>
+                       
+            @if(mensaje){
+                <p class="error_mensaje">{{mensaje}}</p>
+            }
 
             <button matButton="filled" type="submit">Registrar</button>
-        </form>
 
-            @if(mensaje){
-                <p>{{mensaje}}</p>
-            }
+            <div class="ingrediente-nota">
+                <mat-icon>lightbulb</mat-icon>
+                <p>Elegir bien la categoría ayudará a encontrar los ingredientes más rápido en el inventario.</p>
+            </div>
+            
+        </form>
     </div>
 </div>

@@ -1,31 +1,46 @@
-<div>
-    <h2>Registrar una familia</h2>
-    <div> 
-        <form [formGroup]="formulario" (ngSubmit)="registrarFamilia()">
-            <mat-form-field class="example-full-width">
-                <mat-label>Nombre</mat-label>
-                <input matInput formControlName="nombre">
-            </mat-form-field>
-            <br>
-            
-            <mat-form-field>
-                <mat-label>Contraseña</mat-label>
-                <input matInput formControlName="contrasena" [type]="hide ? 'password' : 'text'" />
-                <button
-                    matIconButton
-                    matSuffix
-                    (click)="clickEvent($event)"
-                    type="button"
-                    [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide"
-                >
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-            </mat-form-field>
-            @if(mensaje){
-            <p class="error_mensaje">{{mensaje}}</p>
-            }
-            <button matButton="filled" type="submit">Registrar</button>
+<div class="familia-page">
+    <div class="familia-card">
+        <div class="familia-icono" aria-hidden="true">
+            <mat-icon>home_work</mat-icon>
+        </div>
+
+            <h2>Crea tu familia</h2>
+            <p class="familia-desc">
+                Crea un grupo familiar para gestionar juntos el inventario del hogar
+            </p>
+
+            <form [formGroup]="formulario" (ngSubmit)="registrarFamilia()">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="nombre">
+                </mat-form-field>
+                <br>
+                
+                <mat-form-field>
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput formControlName="contrasena" [type]="hide ? 'password' : 'text'" />
+                    <button
+                        matIconButton
+                        matSuffix
+                        (click)="clickEvent($event)"
+                        type="button"
+                        [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide"
+                    >
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                
+                @if(mensaje){
+                <p class="error_mensaje">{{mensaje}}</p>
+                }
+                <button matButton="filled" type="submit">Registrar</button>
+
+                <div class="familia-nota">
+                    <mat-icon>shield</mat-icon>
+                    <p>Esta clave permitirá que otros integrantes se unan de forma segura a la administración de insumos.</p>
+                </div>
+
             </form>
     </div>
 </div>

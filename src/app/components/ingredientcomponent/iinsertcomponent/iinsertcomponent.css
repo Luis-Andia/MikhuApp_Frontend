@@ -1,0 +1,196 @@
+:host {
+  --mikhu-green: #2E7D5B;
+  --mikhu-green-dark: #1F3A33;
+  --mikhu-green-light: #E3F2EA;
+  --mikhu-mint: #D3F3E6;
+  --mikhu-mint-soft: #E8FAF1;
+  --mikhu-ink: #0F2A24;
+  --mikhu-red: #E54848;
+  --mikhu-muted: #5F6F69;
+  --mikhu-white: #FFFFFF;
+
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #F4FAF7 0%, var(--mikhu-white) 100%);
+  color: var(--mikhu-green-dark);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ===== Layout ===== */
+.ingrediente-page {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 32px;
+}
+
+/* ===== Tarjeta ===== */
+.ingrediente-card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 544px;
+  padding: 32px;
+  border-radius: 16px;
+  background: var(--mikhu-white);
+  box-shadow: 0 2px 12px rgba(31, 58, 51, 0.08);
+}
+
+.ingrediente-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 24px;
+  border-radius: 16px;
+  background: var(--mikhu-mint);
+  color: var(--mikhu-green);
+}
+
+.ingrediente-icono mat-icon {
+  width: 28px;
+  height: 28px;
+  font-size: 28px;
+  line-height: 28px;
+}
+
+.ingrediente-card h2 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--mikhu-ink);
+}
+
+.ingrediente-desc {
+  margin: 0 0 24px;
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* ===== Formulario ===== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo-grupo label {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--mikhu-ink);
+}
+
+/* Campo: sin contorno visible, fondo blanco y sombra suave */
+.campo {
+  width: 100%;
+  border-radius: 12px;
+  background: var(--mikhu-white);
+  box-shadow: 0 1px 6px rgba(31, 58, 51, 0.10);
+
+  --mat-form-field-outlined-container-shape: 12px;
+  --mat-form-field-outlined-outline-color: transparent;
+  --mat-form-field-outlined-hover-outline-color: var(--mikhu-mint);
+  --mat-form-field-outlined-focus-outline-color: var(--mikhu-green);
+  --mat-form-field-outlined-input-text-color: var(--mikhu-green-dark);
+  --mat-form-field-outlined-caret-color: var(--mikhu-green);
+
+  --mat-select-enabled-trigger-text-color: var(--mikhu-green-dark);
+  --mat-select-placeholder-text-color: var(--mikhu-muted);
+  --mat-select-enabled-arrow-color: var(--mikhu-muted);
+  --mat-select-focused-arrow-color: var(--mikhu-green);
+}
+
+.campo input::placeholder {
+  color: var(--mikhu-muted);
+  opacity: 0.8;
+}
+
+/* ===== Mensaje de error ===== */
+.error_mensaje {
+  margin: 0;
+  padding: 8px 16px;
+  border-left: 4px solid var(--mikhu-red);
+  border-radius: 8px;
+  background: rgba(229, 72, 72, 0.10);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--mikhu-green-dark);
+}
+
+/* ===== Botón principal + ayuda ===== */
+.accion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-registrar {
+  width: 100%;
+  height: 56px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+
+  --mat-button-filled-container-color: var(--mikhu-green);
+  --mat-button-filled-label-text-color: var(--mikhu-white);
+  --mat-button-filled-container-shape: 12px;
+  --mat-button-filled-disabled-container-color: var(--mikhu-mint);
+  --mat-button-filled-disabled-label-text-color: var(--mikhu-muted);
+}
+
+.btn-registrar:not(:disabled):hover {
+  --mat-button-filled-container-color: #266A4D;
+}
+
+.btn-registrar mat-icon {
+  width: 22px;
+  height: 22px;
+  margin: 0 8px 0 0;
+  font-size: 22px;
+  line-height: 22px;
+}
+
+.accion-ayuda {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* ===== Nota informativa ===== */
+.ingrediente-nota {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--mikhu-mint-soft);
+}
+
+.ingrediente-nota mat-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  line-height: 22px;
+  color: var(--mikhu-green);
+}
+
+.ingrediente-nota p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ===== Accesibilidad: foco visible ===== */
+.btn-registrar:focus-visible {
+  outline: 2px solid var(--mikhu-green-dark);
+  outline-offset: 2px;
+}
