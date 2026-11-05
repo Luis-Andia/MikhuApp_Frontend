@@ -7,9 +7,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { Menucomponent } from '../menucomponent/menucomponent';
 
 @Component({
-  imports: [FormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatDividerModule ],
+  imports: [FormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatDividerModule, Menucomponent],
   selector: 'app-chatiacomponent',
   styleUrl: './chatiacomponent.css',
   templateUrl: './chatiacomponent.html',

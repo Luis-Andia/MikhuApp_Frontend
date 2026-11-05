@@ -1,249 +1,231 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
-
 :host {
-  --naranja: #ff7a1a;
-  --naranja-oscuro: #e65c00;
-  --naranja-claro: #ffe3cc;
-  --durazno: #fff4ea;
-  --blanco: #ffffff;
-  --cafe: #4a2a12;
+  --mikhu-green: #2E7D5B;
+  --mikhu-green-dark: #1F3A33;
+  --mikhu-green-light: #E3F2EA;
+  --mikhu-green-mid: #CFE9DC;
+  --mikhu-green-aviso: #D9F5E7;
+  --mikhu-ink: #0F2A24;
+  --mikhu-ia: #1F6485;
+  --mikhu-ia-light: #E3F0FA;
+  --mikhu-white: #FFFFFF;
+
   display: block;
-  font-family: 'Nunito', 'Segoe UI', sans-serif;
-  color: var(--cafe);
-}
-
-/* ---------- Página ---------- */
-.chef-page {
   min-height: 100vh;
-  padding: 32px 16px;
-  box-sizing: border-box;
+  background: linear-gradient(180deg, #F4FAF7 0%, var(--mikhu-white) 100%);
+  color: var(--mikhu-green-dark);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ===== Layout ===== */
+.chef-page {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background:
-    radial-gradient(circle at 12% 8%, var(--naranja-claro) 0, transparent 38%),
-    radial-gradient(circle at 92% 92%, var(--naranja-claro) 0, transparent 34%),
-    var(--durazno);
-}
-
-/* ---------- Tarjeta principal ---------- */
-.chef-card {
-  width: 100%;
-  max-width: 760px;
-  border: 2px solid var(--naranja-claro);
-  border-radius: 28px;
-  background: var(--blanco);
-  box-shadow: 0 18px 40px rgba(230, 92, 0, 0.14);
-  overflow: hidden;
-}
-
-.chef-header {
-  padding: 24px 28px;
-  background: linear-gradient(120deg, var(--naranja) 0%, #ff9a47 100%);
+  flex-direction: column;
   align-items: center;
+  gap: 24px;
+  box-sizing: border-box;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 32px;
 }
 
-.chef-header h2 {
-  margin: 0;
-  font-size: 1.7rem;
-  font-weight: 800;
-  color: var(--blanco);
-  letter-spacing: 0.2px;
+/* ===== Encabezado ===== */
+.chef-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
 }
 
 .chef-avatar {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 64px;
+  height: 64px;
+  margin: 0 0 8px;
   border-radius: 50%;
-  background: var(--blanco);
-  color: var(--naranja-oscuro);
-  box-shadow: 0 4px 10px rgba(74, 42, 18, 0.2);
+  background: var(--mikhu-ia-light);
+  color: var(--mikhu-ia);
 }
 
 .chef-avatar mat-icon {
-  font-size: 32px;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
+  font-size: 28px;
+  line-height: 28px;
 }
 
-.chef-avatar--small {
-  width: 44px;
-  height: 44px;
-  background: var(--naranja-claro);
-}
-
-.chef-avatar--small mat-icon {
-  font-size: 26px;
-  width: 26px;
-  height: 26px;
-}
-
-.chef-content {
-  padding: 28px !important;
-}
-
-/* ---------- Formulario ---------- */
-.chef-label {
-  margin: 0 0 12px;
-  font-size: 1.1rem;
+.chef-hero h1 {
+  margin: 0;
+  font-size: 36px;
   font-weight: 700;
-  color: var(--cafe);
+  letter-spacing: -0.5px;
+  color: var(--mikhu-ink);
+}
+
+.chef-subtitle {
+  margin: 0;
+  font-size: 16px;
+  color: var(--mikhu-green-dark);
+  opacity: 0.85;
+}
+
+.chef-aviso {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding: 4px 16px;
+  border-radius: 999px;
+  background: var(--mikhu-green-aviso);
+  font-size: 13px;
+  color: var(--mikhu-green-dark);
+}
+
+.chef-aviso mat-icon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+/* ===== Formulario ===== */
+.chef-form {
+  width: 100%;
+  max-width: 640px;
 }
 
 .chef-input-row {
   display: flex;
-  gap: 12px;
   align-items: flex-start;
+  gap: 8px;
 }
 
 .chef-field {
   flex: 1;
+  background: var(--mikhu-white);
+  border-radius: 12px;
+
+  --mat-form-field-outlined-container-shape: 12px;
+  --mat-form-field-outlined-outline-color: #B7D7C7;
+  --mat-form-field-outlined-hover-outline-color: var(--mikhu-green);
+  --mat-form-field-outlined-focus-outline-color: var(--mikhu-green);
+  --mat-form-field-outlined-input-text-color: var(--mikhu-green-dark);
+  --mat-form-field-outlined-caret-color: var(--mikhu-green);
 }
 
+/* Ícono prefijo: Material le agrega su propio padding, por eso se ajusta aquí */
 .chef-field mat-icon {
-  color: var(--naranja);
-  margin: 0 8px 0 12px;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0 8px 0 16px;
+  box-sizing: content-box;
+  font-size: 20px;
+  line-height: 20px;
+  color: var(--mikhu-green);
 }
 
 .chef-button {
   height: 56px;
-  padding: 0 26px;
-  border-radius: 16px;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 800;
-  background-color: var(--naranja) !important;
-  color: var(--blanco) !important;
-  transition: background-color 0.2s ease, transform 0.15s ease;
+  padding: 0 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+
+  --mat-button-filled-container-color: var(--mikhu-green);
+  --mat-button-filled-label-text-color: var(--mikhu-white);
+  --mat-button-filled-container-shape: 12px;
 }
 
 .chef-button:hover {
-  background-color: var(--naranja-oscuro) !important;
-}
-
-.chef-button:active {
-  transform: scale(0.97);
+  --mat-button-filled-container-color: #266A4D;
 }
 
 .chef-button mat-icon {
-  margin-right: 6px;
+  width: 18px;
+  height: 18px;
+  margin: 0 8px 0 0;
+  font-size: 18px;
+  line-height: 18px;
 }
 
-/* ---------- Campo de Material (naranja) ---------- */
-::ng-deep .chef-field .mdc-text-field--outlined {
-  background: var(--durazno);
-  border-radius: 16px;
-}
-
-::ng-deep .chef-field .mdc-notched-outline__leading,
-::ng-deep .chef-field .mdc-notched-outline__notch,
-::ng-deep .chef-field .mdc-notched-outline__trailing {
-  border-color: var(--naranja-claro) !important;
-  border-width: 2px !important;
-}
-
-::ng-deep .chef-field .mdc-notched-outline__leading {
-  border-top-left-radius: 16px !important;
-  border-bottom-left-radius: 16px !important;
-}
-
-::ng-deep .chef-field .mdc-notched-outline__trailing {
-  border-top-right-radius: 16px !important;
-  border-bottom-right-radius: 16px !important;
-}
-
-::ng-deep .chef-field.mat-focused .mdc-notched-outline__leading,
-::ng-deep .chef-field.mat-focused .mdc-notched-outline__notch,
-::ng-deep .chef-field.mat-focused .mdc-notched-outline__trailing {
-  border-color: var(--naranja) !important;
-}
-
-::ng-deep .chef-field input.mat-mdc-input-element {
-  caret-color: var(--naranja);
-  color: var(--cafe);
-  font-family: 'Nunito', sans-serif;
-  font-size: 1rem;
-}
-
-/* ---------- Mensaje ---------- */
+/* ===== Mensaje de estado ===== */
 .chef-mensaje {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 8px;
-  padding: 12px 16px;
-  border-left: 5px solid var(--naranja);
-  border-radius: 12px;
-  background: var(--naranja-claro);
-  color: var(--naranja-oscuro);
-  font-weight: 600;
-}
-
-.chef-mensaje p {
+  gap: 8px;
   margin: 0;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: var(--mikhu-green-light);
+  font-size: 14px;
 }
 
-/* ---------- Respuesta del chef ---------- */
+.chef-mensaje mat-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+  color: var(--mikhu-green);
+}
+
+/* ===== Tarjeta de respuesta ===== */
 .chef-respuesta {
-  margin-top: 24px;
-  border: 2px solid var(--naranja-claro);
-  border-radius: 22px;
-  background: var(--durazno);
-  box-shadow: none;
-  animation: aparecer 0.35s ease-out;
+  --mat-card-outlined-container-color: var(--mikhu-white);
+  --mat-card-outlined-outline-color: var(--mikhu-green);
+  --mat-card-outlined-outline-width: 1px;
+  --mat-card-outlined-container-shape: 16px;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: 32px;
+  border: 1px solid var(--mikhu-green);
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--mikhu-white) 0%, #F4FAF7 100%);
+  box-shadow: 0 4px 16px rgba(31, 58, 51, 0.10);
 }
 
 .chef-respuesta mat-card-header {
-  padding: 16px 20px 12px;
   align-items: center;
+  padding: 0 0 16px;
+}
+
+/* Avatar pequeño: mayor especificidad para ganarle al tamaño por defecto de mat-card-avatar */
+.chef-respuesta .chef-avatar.chef-avatar--small {
+  width: 40px;
+  height: 40px;
+  margin: 0 16px 0 0;
+}
+
+.chef-respuesta .chef-avatar--small mat-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
 }
 
 .chef-respuesta h3 {
   margin: 0;
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: var(--naranja-oscuro);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--mikhu-ink);
 }
 
 .chef-respuesta mat-divider {
-  border-top-color: var(--naranja-claro);
+  --mat-divider-color: var(--mikhu-green-light);
+}
+
+.chef-respuesta mat-card-content {
+  padding: 24px 0 0;
 }
 
 .chef-respuesta-texto {
   margin: 0;
-  padding: 16px 4px 8px;
-  max-width: 70ch;
-  font-size: 1.05rem;
+  font-size: 14px;
   line-height: 1.7;
-  white-space: pre-line;
+  color: var(--mikhu-green-dark);
+  white-space: pre-wrap;
 }
-
-@keyframes aparecer {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ---------- Accesibilidad ---------- */
-.chef-button:focus-visible {
-  outline: 3px solid var(--cafe);
-  outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .chef-respuesta {
-    animation: none;
-  }
-  .chef-button {
-    transition: none;
-  }
-}
-

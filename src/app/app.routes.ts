@@ -67,6 +67,10 @@ export const routes: Routes = [
             component:Iupdatecomponent
             }
         ]
+    },
+    {
+        path:'chatia',
+        component:Chatiacomponent
     }
 
 ];

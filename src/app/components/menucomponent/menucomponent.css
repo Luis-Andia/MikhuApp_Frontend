@@ -1,23 +1,151 @@
-mat-toolbar {
- background: #ff7a1a;
- color: #ffffff;
- padding: 0 24px;
- gap: 8px;
- box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
- border-bottom: 3px solid #ece3e3;
- --mat-button-text-label-text-color: #ffffff;
+:host {
+  --mikhu-green: #2E7D5B;
+  --mikhu-green-dark: #1F3A33;
+  --mikhu-green-title: #0F5F43;
+  --mikhu-green-light: #E3F2EA;
+  --mikhu-white: #FFFFFF;
+  --mikhu-ia: #1F6485;
+  --mikhu-ia-hover: #19556F;
+  --mikhu-ia-ring: rgba(31, 100, 133, 0.30);
+
+  display: block;
+  font-family: 'Roboto', sans-serif;
 }
 
-button {
- color: #e65c00;
- font-weight: 500;
- border-radius: 8px;
+/* ===== Contenedor y toolbar ===== */
+.container {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--mikhu-white);
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 2px 8px rgba(31, 58, 51, 0.10);
 }
 
-button:hover {
- background: #e65c00;
+.menu-toolbar {
+  --mat-toolbar-container-background-color: transparent;
+  --mat-toolbar-container-text-color: var(--mikhu-green-dark);
+
+  display: flex;
+  align-items: center;
+  height: 72px;
+  padding: 0 32px;
+  gap: 24px;
+  background: transparent;
+  font-family: 'Roboto', sans-serif;
 }
 
-mat-icon {
- color: #f4f1f1;
+/* ===== Marca ===== */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #CFE9DC;
+  color: var(--mikhu-green);
+}
+
+.brand-logo mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.brand-name {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: var(--mikhu-green-title);
+}
+
+/* ===== Navegación ===== */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-link {
+  --mat-button-text-label-text-color: var(--mikhu-green-dark);
+  --mat-button-text-state-layer-color: var(--mikhu-green);
+  --mat-button-text-hover-state-layer-opacity: 0.08;
+  --mat-button-text-container-shape: 8px;
+  --mat-button-text-label-text-font: 'Roboto', sans-serif;
+  --mat-button-text-label-text-size: 14px;
+  --mat-button-text-label-text-weight: 500;
+
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 8px;
+  letter-spacing: 0.2px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-link:hover {
+  background: var(--mikhu-green-light);
+}
+
+/* Ítem activo: no depende solo del color (subrayado) */
+.nav-link.active {
+  --mat-button-text-label-text-color: var(--mikhu-green);
+  background: var(--mikhu-green-light);
+  font-weight: 700;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* ===== Botón Asistente IA ===== */
+.ia-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 8px;
+  background: var(--mikhu-ia);
+  color: var(--mikhu-white);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  /* Anillo doble como en la referencia */
+  box-shadow: 0 0 0 2px var(--mikhu-white), 0 0 0 4px var(--mikhu-ia-ring);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.ia-button mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.ia-button:hover {
+  background: var(--mikhu-ia-hover);
+  box-shadow: 0 0 0 2px var(--mikhu-white), 0 0 0 5px var(--mikhu-ia-ring);
+}
+
+.ia-button:active {
+  transform: scale(0.97);
+}
+
+.ia-button:focus-visible,
+.nav-link:focus-visible {
+  outline: 2px solid var(--mikhu-green);
+  outline-offset: 2px;
+}
+
+.ia-button.ia-active {
+  background: var(--mikhu-ia-hover);
 }
