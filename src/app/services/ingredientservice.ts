@@ -22,4 +22,12 @@ export class Ingredientservice {
     deleteIngredient(id:number):Observable<void>{
         return this.http.delete<void>(`${this.apiURL}/${id}`)
     }
+
+    listId(id:number):Observable<IngredientDTO>{
+        return this.http.get<IngredientDTO>(`${this.apiURL}/${id}`)
+    }
+
+    updateingredient(dto:IngredientDTO):Observable<IngredientDTO> {
+        return this.http.put<IngredientDTO>(this.apiURL, dto)
+    }
 }

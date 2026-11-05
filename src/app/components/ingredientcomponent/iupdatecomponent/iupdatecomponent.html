@@ -1,0 +1,43 @@
+<div class="container">
+    <div>
+        <h2>Formulario de Actualización de Cultivos</h2>
+    </div>
+
+    <div>
+        <form [formGroup]="formulario" (ngSubmit)="actualizarIngrediente()">
+            <!-- ID -->
+            <mat-form-field appearance="outline">
+                <mat-label>ID</mat-label>
+                <input matInput  formControlName="codigo" readonly>
+            </mat-form-field>
+
+            <!-- Nombre -->
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre del ingrediente</mat-label>
+                <input matInput formControlName="nombre">
+                <mat-error>Ingrese el nombre del ingrediente</mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <mat-label>Categoria</mat-label>
+                <mat-select formControlName="categoria">
+                    @for (tipo of categorias; track tipo) {
+                    <mat-option [value]="tipo.value">{{tipo.viewValue}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+                       
+            
+            <br><br>
+
+            <button matButton type="submit">Guardar</button>
+
+        </form>
+
+        @if(mensaje){
+        <p>{{mensaje}}</p>
+        }
+    </div>
+</div>
+

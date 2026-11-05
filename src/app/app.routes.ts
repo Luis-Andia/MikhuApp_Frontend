@@ -11,6 +11,7 @@ import { Ingredientcomponent } from './components/ingredientcomponent/ingredient
 import { Iinsertcomponent } from './components/ingredientcomponent/iinsertcomponent/iinsertcomponent';
 import { Ilistcomponent } from './components/ingredientcomponent/ilistcomponent/ilistcomponent';
 import { Fupdatecomponent } from './components/familycomponent/fupdatecomponent/fupdatecomponent';
+import { Iupdatecomponent } from './components/ingredientcomponent/iupdatecomponent/iupdatecomponent';
 
 export const routes: Routes = [
     {
@@ -60,6 +61,10 @@ export const routes: Routes = [
             {
             path:'listar',
             component:Ilistcomponent
+            },
+            {
+            path:'actualizar/:id',
+            component:Iupdatecomponent
             }
         ]
     }
