@@ -76,6 +76,11 @@ export class Fupdatecomponent implements OnInit{
       passwordFamily:this.formulario.value.contrasena
     }
 
+    if(this.formulario.invalid){
+      this.mensaje = 'Los campos son obligatorios'
+      return
+    }
+
     this.fS.updatefamily(dto).subscribe({
       next: () => {
         this.mensaje = 'Actualizado correctamente!!';

@@ -75,10 +75,6 @@ form {
   gap: 16px;
 }
 
-form br {
-  display: none;
-}
-
 mat-form-field {
   width: 100%;
 
@@ -103,7 +99,6 @@ mat-form-field {
   --mat-form-field-outlined-focus-label-text-color: var(--mikhu-green-dark);
 
   border-radius: 12px;
-  background: var(--mikhu-mint-soft);
 }
 
 .campo-id input {

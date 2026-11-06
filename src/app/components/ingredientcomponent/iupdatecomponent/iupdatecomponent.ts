@@ -78,6 +78,11 @@ export class Iupdatecomponent implements OnInit{
       ingredientCategory:this.formulario.value.categoria
     }
 
+    if(this.formulario.invalid){
+      this.mensaje = 'Los campos son obligatorios'
+      return
+    }
+    
     this.iS.updateingredient(dto).subscribe({
       next: () => {
         this.mensaje = 'Actualizado correctamente!!';

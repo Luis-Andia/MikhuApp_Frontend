@@ -186,3 +186,24 @@
   outline: 2px solid var(--mikhu-green-dark);
   outline-offset: 2px;
 }
+
+/* ===== Paginador ===== */
+.paginador {
+  border-top: 1px solid var(--mikhu-mint);
+  background: var(--mikhu-white);
+  font-family: 'Roboto', sans-serif;
+
+  --mat-paginator-container-text-color: var(--mikhu-green-dark);
+  --mat-paginator-container-background-color: var(--mikhu-white);
+  --mat-paginator-enabled-icon-color: var(--mikhu-green);
+  --mat-paginator-disabled-icon-color: #B7C4BE;
+  --mat-paginator-container-size: 56px;
+  --mat-paginator-container-text-size: 13px;
+
+  /* Select de "elementos por página" */
+  --mat-form-field-outlined-outline-color: #B7D7C7;
+  --mat-form-field-outlined-hover-outline-color: var(--mikhu-green);
+  --mat-form-field-outlined-focus-outline-color: var(--mikhu-green);
+  --mat-select-enabled-trigger-text-color: var(--mikhu-green-dark);
+  --mat-select-enabled-arrow-color: var(--mikhu-green);
+}

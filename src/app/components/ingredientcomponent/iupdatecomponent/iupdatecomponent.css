@@ -108,7 +108,6 @@ mat-form-field {
   --mat-form-field-outlined-focus-label-text-color: var(--mikhu-green-dark);
 
   border-radius: 12px;
-  background: var(--mikhu-mint-soft);
 }
 
 .campo-id input {
@@ -124,26 +123,15 @@ mat-form-field {
   color: var(--mikhu-muted);
 }
 
-/* ===== Mensaje de estado ===== */
-.mensaje {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+/* ===== Mensaje de error ===== */
+.error_mensaje {
   margin: 0;
   padding: 8px 16px;
-  border-radius: 12px;
-  background: var(--mikhu-green-light);
+  border-left: 4px solid var(--mikhu-red);
+  border-radius: 8px;
+  background: rgba(229, 72, 72, 0.10);
   font-size: 14px;
   line-height: 1.4;
-}
-
-.mensaje mat-icon {
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  font-size: 20px;
-  line-height: 20px;
-  color: var(--mikhu-green);
 }
 
 /* ===== Botón principal ===== */

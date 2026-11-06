@@ -21,7 +21,6 @@
             <mat-form-field appearance="outline">
                 <mat-label>Nombre del ingrediente</mat-label>
                 <input matInput formControlName="nombre">
-                <mat-error>Ingrese el nombre del ingrediente</mat-error>
             </mat-form-field>
 
             <mat-form-field  appearance="outline">
@@ -34,10 +33,7 @@
             </mat-form-field>
             
             @if (mensaje) {
-                <p class="mensaje" role="status">
-                <mat-icon>info</mat-icon>
-                {{ mensaje }}
-                </p>
+            <p class="error_mensaje" role="alert">{{ mensaje }}</p>
             }
 
       <button matButton="filled" type="submit">Guardar cambios</button>
