@@ -7,8 +7,8 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule, RouterLink],
-  selector: 'app-menucomponent',
-  styleUrl: './menucomponent.css',
-  templateUrl: './menucomponent.html',
+  selector: 'app-menuadmincomponent',
+  styleUrl: './menuadmincomponent.css',
+  templateUrl: './menuadmincomponent.html',
 })
-export class Menucomponent {}
+export class Menuadmincomponent {}

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Menucomponent } from '../menucomponent/menucomponent';
+import { Menuadmincomponent } from '../menuadmincomponent/menuadmincomponent';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  imports: [Menucomponent, RouterOutlet],
+  imports: [Menuadmincomponent, RouterOutlet],
   selector: 'app-countrycomponent',
   styleUrl: './countrycomponent.css',
   templateUrl: './countrycomponent.html',

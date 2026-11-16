@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Menucomponent } from '../menucomponent/menucomponent';
+import { Menuadmincomponent } from '../menuadmincomponent/menuadmincomponent';
 
 @Component({
-  imports: [Menucomponent],
+  imports: [Menuadmincomponent],
   selector: 'app-consumptioncomponent',
   styleUrl: './consumptioncomponent.css',
   templateUrl: './consumptioncomponent.html',

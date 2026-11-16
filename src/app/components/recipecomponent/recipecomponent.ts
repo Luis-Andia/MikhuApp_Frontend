@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Menucomponent } from '../menucomponent/menucomponent';
+import { Menuadmincomponent } from '../menuadmincomponent/menuadmincomponent';
 import { Rlistcomponent } from './rlistcomponent/rlistcomponent';
 
 @Component({
-  imports: [Menucomponent, Rlistcomponent],
+  imports: [Menuadmincomponent, Rlistcomponent],
   selector: 'app-recipecomponent',
   styleUrl: './recipecomponent.css',
   templateUrl: './recipecomponent.html',

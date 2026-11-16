@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Menucomponent } from '../menucomponent/menucomponent';
+import { Menuadmincomponent } from '../menuadmincomponent/menuadmincomponent';
 import { Chatiacomponent } from '../chatiacomponent/chatiacomponent';
 
 @Component({
-  imports: [Menucomponent],
+  imports: [Menuadmincomponent],
   selector: 'app-homecomponent',
   styleUrl: './homecomponent.css',
   templateUrl: './homecomponent.html',

@@ -1,8 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Menucomponent } from './components/menucomponent/menucomponent';
 import { Homecomponent } from './components/homecomponent/homecomponent';
 import { Chatiacomponent } from './components/chatiacomponent/chatiacomponent';
+import {Menuadmincomponent} from './components/menuadmincomponent/menuadmincomponent';
 @Component({
   imports: [RouterOutlet],
   selector: 'app-root',
