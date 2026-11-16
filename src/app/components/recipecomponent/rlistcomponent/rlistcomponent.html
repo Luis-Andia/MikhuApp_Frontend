@@ -1,46 +1,81 @@
-<div class="container">
-    <div>
-        <h1>Recetas</h1>
-        <h3>Conoce la gran variedad de comidas de MikhuApp</h3>
-    </div>
-    <div>
-        @if(dataSource.length>0){
-            <table mat-table [dataSource]="dataSource" class="mat-shadow-2">
-            <!--- Note that these columns can be defined in any order.
-                    The actual rendered columns are set as a property on the row definition" -->
+<!-- Encabezado con franja verde -->
+<header class="encabezado">
+  <div class="encabezado-inner">
+    <p class="encabezado-etiqueta"><span class="punto"></span>Catálogo gastronómico</p>
+    <h1>Recetas</h1>
+    <p class="encabezado-desc">Descubre platos para aprovechar tus ingredientes</p>
+  </div>
+</header>
 
-            <!-- Position Column -->
-            <ng-container matColumnDef="C1">
-                <th mat-header-cell *matHeaderCellDef> ID </th>
-                <td mat-cell *matCellDef="let element"> {{element.idRecipe}} </td>
-            </ng-container>
+<main class="recetas-page">
 
-            <!-- Name Column -->
-            <ng-container matColumnDef="C2">
-                <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                <td mat-cell *matCellDef="let element"> {{element.nomRecipe}} </td>
-            </ng-container>
+  <!-- Filtros -->
+    <section class="filtros" aria-label="Filtros de recetas">
+        <mat-form-field appearance="outline" class="campo">
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput type="search" [(ngModel)]="busqueda"
+                placeholder="Buscar receta por nombre" aria-label="Buscar receta por nombre">
+        </mat-form-field>
 
-            <!-- Weight Column -->
-            <ng-container matColumnDef="C3">
-                <th mat-header-cell *matHeaderCellDef> Calorias </th>
-                <td mat-cell *matCellDef="let element"> {{element.calories}} </td>
-            </ng-container>
+        <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
+        <mat-icon matPrefix>public</mat-icon>
+        <mat-select [(ngModel)]="paisSeleccionado" panelClass="mikhu-select-panel"
+                    aria-label="Filtrar por país">
+            <mat-option value="">Todos los países</mat-option>
+            @for (p of paises; track p) {
+            <mat-option [value]="p">{{ p }}</mat-option>
+            }
+        </mat-select>
+        </mat-form-field>
 
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="C4">
-                <th mat-header-cell *matHeaderCellDef> Dificultad </th>
-                <td mat-cell *matCellDef="let element"> {{element.difficulty}} </td>
-            </ng-container>
+        <mat-form-field appearance="outline" class="campo">
+        <mat-icon matPrefix>nutrition</mat-icon>
+        <input matInput type="search" [(ngModel)]="ingredienteBuscado"
+                placeholder="Contiene el ingrediente..." aria-label="Filtrar por ingrediente">
+        </mat-form-field>
 
-            <!-- Agregar un boton de conocer mas-->
+        <button matButton="filled" type="submit">Buscar</button>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-        }
-        @else{
-            <p>No hay registros disponibles!</p>
-        }
-    </div>
-</div>
+    </section>
+
+  <!-- Listado de tarjetas -->
+  @if (dataSource.length > 0) {
+    <section class="grid-recetas">
+      @for (r of dataSource; track r.idRecipe; let i = $index) {
+        <mat-card class="receta-card" appearance="outlined">
+
+          <mat-card-header class="receta-header">
+            <mat-card-title class="receta-titulo">{{ r.nomRecipe }}</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content class="receta-datos">
+            <span class="dato-kcal">
+              <mat-icon>local_fire_department</mat-icon>
+              {{ r.calories }} kcal
+            </span>
+
+            <span class="dato-dificultad">
+              Dificultad: {{ r.difficulty }}
+            </span>
+          </mat-card-content>
+
+          <mat-card-actions class="receta-acciones">
+            <a matButton class="btn-detalle" [routerLink]="['/recetas', r.idRecipe]"
+               [attr.aria-label]="'Ver detalle de ' + r.nomRecipe">
+              Ver detalle
+              <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+            </a>
+          </mat-card-actions>
+
+        </mat-card>
+      }
+    </section>
+
+  } @else {
+    <p class="vacio">
+      <mat-icon>search_off</mat-icon>
+      No hay registros disponibles
+    </p>
+  }
+
+</main>

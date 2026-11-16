@@ -10,7 +10,22 @@ export class Recipeservice {
     private http=inject(HttpClient)
 
     getRecipes():Observable<RecipeDTO[]> {
-            const url = `${this.apiURL}`;
-            return this.http.get<RecipeDTO[]>(url)
-        }
+        const url = `${this.apiURL}`;
+        return this.http.get<RecipeDTO[]>(url)
+    }
+
+    getRecipesbyName(name:String):Observable<RecipeDTO[]> {
+        const url = `${this.apiURL}/nombre/${name}`;
+        return this.http.get<RecipeDTO[]>(url)
+    }
+
+    getRecipesbyCountry(nameCountry:String):Observable<RecipeDTO[]> {
+        const url = `${this.apiURL}/pais/${nameCountry}`;
+        return this.http.get<RecipeDTO[]>(url)
+    }
+
+    getRecipesbyIngrediente(nameIngredient:String):Observable<RecipeDTO[]> {
+        const url = `${this.apiURL}/ingrediente/${nameIngredient}`;
+        return this.http.get<RecipeDTO[]>(url)
+    }
 }

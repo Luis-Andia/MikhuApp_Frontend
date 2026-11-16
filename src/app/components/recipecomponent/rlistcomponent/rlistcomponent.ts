@@ -1,11 +1,18 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Recipeservice } from '../../../services/recipeservice';
 import { RecipeDTO } from '../../../models/RecipeDTO';
-import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [MatIconModule, MatTableModule],
+  imports: [FormsModule, RouterLink, MatCardModule, MatIconModule,
+    MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule],
   selector: 'app-rlistcomponent',
   styleUrl: './rlistcomponent.css',
   templateUrl: './rlistcomponent.html',
@@ -13,13 +20,21 @@ import {MatIconModule} from '@angular/material/icon';
 export class Rlistcomponent implements OnInit {
   displayedColumns:string[]=['C1', 'C2', 'C3', 'C4']
   dataSource:RecipeDTO[]=[]
+
+  // Filtros
+  busqueda: string = ''
+  paisSeleccionado: string = ''
+  ingredienteBuscado: string = ''
+
+  paises: string[] = ['México', 'Italia', 'Japón', 'India', 'Francia', 'España', 'China', 'Tailandia', 'Grecia', 'Turquía']
+  
   constructor(private rS:Recipeservice, private cdr:ChangeDetectorRef){}
 
   ngOnInit():void {
     this.obtenerRecetas()
   }
 
-  obtenerRecetas(){ // Verificar el tema del pais
+  obtenerRecetas(){
     this.rS.getRecipes().subscribe({
       next:data => {
         this.dataSource = data
@@ -28,6 +43,65 @@ export class Rlistcomponent implements OnInit {
         console.log('Ocurrio un error al listar las recetas')        
       },
     })
+  }
+
+  obtenerRecetasPorNombre(name: string) {
+    this.rS.getRecipesbyName(name).subscribe({
+      next: (data) => {
+        this.dataSource = data;
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.log('Ocurrio un error al buscar recetas por nombre');
+      }
+    });
+  }
+
+  obtenerRecetasPorPais(pais: string) {
+    this.rS.getRecipesbyCountry(pais).subscribe({
+      next: (data) => {
+        this.dataSource = data;
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.log('Ocurrio un error al buscar recetas por país');
+      }
+    });
+  }
+
+    obtenerRecetasPorIngrediente(ingrediente: string) {
+      this.rS.getRecipesbyIngrediente(ingrediente).subscribe({
+        next: (data) => {
+          this.dataSource = data;
+          this.cdr.detectChanges();
+        },
+        error: (err) => {
+          console.log('Ocurrio un error al buscar recetas por ingrediente');
+        }
+      });
+    }
+
+  aplicarFiltros() {
+    const ing = this.ingredienteBuscado.trim();
+    const pais = this.paisSeleccionado;
+    const nombre = this.busqueda.trim();
+
+    if (ing) {
+      this.obtenerRecetasPorIngrediente(ing);
+    } else if (pais) {
+      this.obtenerRecetasPorPais(pais);
+    } else if (nombre) {
+      this.obtenerRecetasPorNombre(nombre);
+    } else {
+      this.obtenerRecetas();
+    }
+  }
+
+  limpiarFiltros() {
+    this.busqueda = '';
+    this.paisSeleccionado = '';
+    this.ingredienteBuscado = '';
+    this.obtenerRecetas();
   }
 
 }
