@@ -30,6 +30,11 @@ export const routes: Routes = [
         children:
         [
             {
+                path: '',
+                redirectTo: 'listar',
+                pathMatch: 'full'
+            },
+            {
             path:'insertar',
             component:Itinsertcomponent
             },
@@ -53,6 +58,11 @@ export const routes: Routes = [
         children:
         [
             {
+                path: '',
+                redirectTo: 'listar',
+                pathMatch: 'full'
+            },
+            {
             path:'insertar',
             component:Finsertcomponent
             },
@@ -72,6 +82,11 @@ export const routes: Routes = [
         children:
         [
             {
+                path: '',
+                redirectTo: 'listar',
+                pathMatch: 'full'
+            },
+            {
             path:'insertar',
             component:Iinsertcomponent
             },
@@ -90,6 +105,11 @@ export const routes: Routes = [
         component:Countrycomponent,
         children:
         [
+            {
+                path: '',
+                redirectTo: 'listar',
+                pathMatch: 'full'
+            },
             {
             path:'insertar',
             component:Coinsertcomponent

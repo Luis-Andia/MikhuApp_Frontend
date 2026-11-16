@@ -1,0 +1,81 @@
+<main class="login-page">
+  <div class="login-card">
+
+    <!-- Panel izquierdo -->
+    <aside class="login-panel">
+      <span class="login-badge">
+        <mat-icon>spa</mat-icon>
+        Despensa consciente
+      </span>
+
+      <h2>Organiza tu despensa, aprovecha cada ingrediente</h2>
+      <p class="login-panel-desc">
+        Planifica comidas familiares sin desperdicios y mantén tu inventario sincronizado.
+      </p>
+
+      <div class="login-ilustracion" aria-hidden="true">
+        <mat-icon>rice_bowl</mat-icon>
+      </div>
+
+      <p class="login-panel-pie">
+        <span class="punto"></span>
+        Gestión inteligente de alimentos
+      </p>
+    </aside>
+
+    <!-- Formulario -->
+    <section class="login-form-wrap">
+
+      <div class="login-marca">
+        <span class="login-logo" aria-hidden="true"><mat-icon>eco</mat-icon></span>
+        <span class="login-marca-nombre">Mikhu<span>App</span></span>
+      </div>
+
+      <h1>Bienvenido</h1>
+      <p class="login-desc">Ingresa tus credenciales para acceder a tu hogar</p>
+
+      <form [formGroup]="formulario" (ngSubmit)="iniciarSesion()">
+
+        <div class="campo-grupo">
+          <label for="usuario">Nombre de usuario</label>
+          <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
+            <input matInput id="usuario" formControlName="usuario" autocomplete="username">
+            <mat-icon matSuffix>person_outline</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="campo-grupo">
+          <label for="contrasena">Contraseña</label>
+          <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
+            <input matInput id="contrasena" formControlName="contrasena"
+                   [type]="hide ? 'password' : 'text'" autocomplete="current-password">
+            <button matIconButton matSuffix type="button" (click)="clickEvent($event)"
+                    [attr.aria-label]="hide ? 'Mostrar contraseña' : 'Ocultar contraseña'"
+                    [attr.aria-pressed]="!hide">
+              <mat-icon>{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        @if (mensaje) {
+          <p class="error_mensaje" role="alert">{{ mensaje }}</p>
+        }
+
+        <button matButton="filled" type="submit" class="btn-login">
+          Iniciar sesión
+          <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+        </button>
+      </form>
+
+      <p class="login-registro">
+        ¿No tienes cuenta?
+        <a routerLink="/registro">Regístrate</a>
+      </p>
+
+    </section>
+  </div>
+</main>
+
+<footer class="login-footer">
+  © 2026 FoodMind Technologies · Términos y condiciones · Política de privacidad
+</footer>

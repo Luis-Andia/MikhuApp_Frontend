@@ -1,0 +1,311 @@
+:host {
+  --mikhu-green: #2E7D5B;
+  --mikhu-green-dark: #1F3A33;
+  --mikhu-green-light: #E3F2EA;
+  --mikhu-mint: #D3F3E6;
+  --mikhu-mint-soft: #E8FAF1;
+  --mikhu-panel: #E6F3EC;
+  --mikhu-ink: #0F2A24;
+  --mikhu-muted: #5F6F69;
+  --mikhu-border: #E3E8E6;
+  --mikhu-red: #E54848;
+  --mikhu-white: #FFFFFF;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #F4F6F5 0%, var(--mikhu-white) 100%);
+  color: var(--mikhu-green-dark);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ===== Layout ===== */
+.login-page {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 32px;
+}
+
+/* ===== Tarjeta de dos paneles ===== */
+.login-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 890px;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--mikhu-white);
+  box-shadow: 0 8px 32px rgba(31, 58, 51, 0.10);
+}
+
+/* ===== Panel izquierdo ===== */
+.login-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 40px;
+  background: var(--mikhu-panel);
+}
+
+.login-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 16px 4px 8px;
+  border: 1px solid #CFE3D8;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.login-badge mat-icon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+  color: var(--mikhu-green);
+}
+
+.login-panel h2 {
+  margin: 24px 0 16px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--mikhu-green-dark);
+}
+
+.login-panel-desc {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--mikhu-muted);
+}
+
+/* Ilustración: círculos concéntricos con el ícono al centro */
+.login-ilustracion {
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  margin: auto;
+  border-radius: 50%;
+  background: #CFE9DC;
+  box-shadow: 0 0 0 16px rgba(207, 233, 220, 0.6),
+              0 0 0 32px rgba(207, 233, 220, 0.3);
+}
+
+.login-ilustracion mat-icon {
+  width: 64px;
+  height: 64px;
+  font-size: 64px;
+  line-height: 64px;
+  color: var(--mikhu-green);
+}
+
+.login-panel-pie {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.login-panel-pie .punto {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mikhu-green);
+}
+
+/* ===== Panel derecho ===== */
+.login-form-wrap {
+  box-sizing: border-box;
+  padding: 40px 48px;
+}
+
+.login-marca {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.login-logo {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--mikhu-mint-soft);
+  color: var(--mikhu-green);
+}
+
+.login-logo mat-icon {
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  line-height: 22px;
+}
+
+.login-marca-nombre {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--mikhu-green-dark);
+}
+
+.login-marca-nombre span {
+  color: var(--mikhu-green);
+}
+
+.login-form-wrap h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--mikhu-ink);
+}
+
+.login-desc {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: var(--mikhu-muted);
+}
+
+/* ===== Formulario ===== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo-grupo label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--mikhu-green-dark);
+}
+
+.campo {
+  width: 100%;
+
+  --mat-form-field-outlined-container-shape: 12px;
+  --mat-form-field-outlined-outline-color: var(--mikhu-border);
+  --mat-form-field-outlined-hover-outline-color: var(--mikhu-green);
+  --mat-form-field-outlined-focus-outline-color: var(--mikhu-green);
+  --mat-form-field-outlined-input-text-color: var(--mikhu-ink);
+  --mat-form-field-outlined-caret-color: var(--mikhu-green);
+}
+
+.campo mat-icon[matSuffix] {
+  margin-right: 16px;
+  color: var(--mikhu-muted);
+}
+
+/* Botón de mostrar/ocultar contraseña */
+.campo button[matSuffix] {
+  --mat-icon-button-icon-color: var(--mikhu-muted);
+  --mat-icon-button-state-layer-color: var(--mikhu-green);
+}
+
+.campo mat-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+/* ===== Mensaje de error ===== */
+.error_mensaje {
+  margin: 0;
+  padding: 8px 16px;
+  border-left: 4px solid var(--mikhu-red);
+  border-radius: 8px;
+  background: rgba(229, 72, 72, 0.10);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* ===== Botón principal ===== */
+.btn-login {
+  height: 48px;
+  margin-top: 8px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  box-shadow: 0 4px 12px rgba(46, 125, 91, 0.30);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  --mat-button-filled-container-color: var(--mikhu-green);
+  --mat-button-filled-label-text-color: var(--mikhu-white);
+  --mat-button-filled-container-shape: 12px;
+}
+
+.btn-login:hover {
+  --mat-button-filled-container-color: #266A4D;
+}
+
+.btn-login:active {
+  transform: scale(0.98);
+}
+
+.btn-login mat-icon {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+/* ===== Enlace de registro ===== */
+.login-registro {
+  margin: 24px 0 0;
+  font-size: 14px;
+  text-align: center;
+  color: var(--mikhu-muted);
+}
+
+.login-registro a {
+  font-weight: 500;
+  color: var(--mikhu-green);
+  text-decoration: none;
+}
+
+.login-registro a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Pie de página ===== */
+.login-footer {
+  padding: 24px 16px;
+  border-top: 1px solid var(--mikhu-border);
+  background: var(--mikhu-white);
+  font-size: 12px;
+  text-align: center;
+  color: var(--mikhu-muted);
+}
+
+/* ===== Accesibilidad: foco visible ===== */
+.btn-login:focus-visible,
+.login-registro a:focus-visible {
+  outline: 2px solid var(--mikhu-green-dark);
+  outline-offset: 2px;
+}
+
+/* ===== Tablet / celular: apila los paneles (puedes borrar este bloque) ===== */
+@media (max-width: 768px) {
+  .login-card { grid-template-columns: 1fr; max-width: 480px; }
+  .login-panel { display: none; }
+  .login-form-wrap { padding: 32px 24px; }
+}
