@@ -5,9 +5,10 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { Menuadmincomponent } from '../../menuadmincomponent/menuadmincomponent';
 
 @Component({
-  imports: [MatIconModule, MatTableModule, RouterLink, MatPaginatorModule],
+  imports: [MatIconModule, MatTableModule, RouterLink, MatPaginatorModule, Menuadmincomponent],
   selector: 'app-flistcomponent',
   styleUrl: './flistcomponent.css',
   templateUrl: './flistcomponent.html',

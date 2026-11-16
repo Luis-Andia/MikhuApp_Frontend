@@ -5,10 +5,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Menuadmincomponent } from '../../menuadmincomponent/menuadmincomponent';
+
 
 
 @Component({
-  imports: [MatInputModule, MatIconModule, MatButtonModule, ReactiveFormsModule],
+  imports: [MatInputModule, MatIconModule, MatButtonModule, ReactiveFormsModule, Menuadmincomponent],
   selector: 'app-finsertcomponent',
   styleUrl: './finsertcomponent.css',
   templateUrl: './finsertcomponent.html',

@@ -7,9 +7,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { Menuadmincomponent } from '../../menuadmincomponent/menuadmincomponent';
 
 @Component({
-  imports: [MatInputModule, MatButtonModule, MatIconModule, ReactiveFormsModule, RouterLink],
+  imports: [MatInputModule, MatButtonModule, MatIconModule, ReactiveFormsModule, RouterLink, Menuadmincomponent],
   providers: [provideNativeDateAdapter()],
   selector: 'app-fupdatecomponent',
   styleUrl: './fupdatecomponent.css',
