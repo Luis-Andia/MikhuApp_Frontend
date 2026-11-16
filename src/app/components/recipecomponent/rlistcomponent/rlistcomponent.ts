@@ -26,7 +26,7 @@ export class Rlistcomponent implements OnInit {
   paisSeleccionado: string = ''
   ingredienteBuscado: string = ''
 
-  paises: string[] = ['México', 'Italia', 'Japón', 'India', 'Francia', 'España', 'China', 'Tailandia', 'Grecia', 'Turquía']
+  paises: string[] = ['Peru', 'Chile', 'México', 'Italia', 'Japón', 'India', 'Francia', 'España', 'China', 'Tailandia', 'Grecia', 'Turquía']
   
   constructor(private rS:Recipeservice, private cdr:ChangeDetectorRef){}
 
@@ -81,27 +81,32 @@ export class Rlistcomponent implements OnInit {
       });
     }
 
+
   aplicarFiltros() {
-    const ing = this.ingredienteBuscado.trim();
-    const pais = this.paisSeleccionado;
-    const nombre = this.busqueda.trim();
+    const ing = this.ingredienteBuscado.trim()
+    const pais = this.paisSeleccionado
+    const nombre = this.busqueda.trim()
 
     if (ing) {
-      this.obtenerRecetasPorIngrediente(ing);
+      this.obtenerRecetasPorIngrediente(ing)
     } else if (pais) {
-      this.obtenerRecetasPorPais(pais);
+      this.obtenerRecetasPorPais(pais)
     } else if (nombre) {
-      this.obtenerRecetasPorNombre(nombre);
+      this.obtenerRecetasPorNombre(nombre)
     } else {
-      this.obtenerRecetas();
+      this.obtenerRecetas()
     }
   }
 
   limpiarFiltros() {
-    this.busqueda = '';
-    this.paisSeleccionado = '';
-    this.ingredienteBuscado = '';
-    this.obtenerRecetas();
+    this.busqueda = ''
+    this.paisSeleccionado = ''
+    this.ingredienteBuscado = ''
+    this.obtenerRecetas()
+  }
+
+  get hayFiltros(): boolean {
+    return !!(this.busqueda.trim() || this.paisSeleccionado || this.ingredienteBuscado.trim())
   }
 
 }

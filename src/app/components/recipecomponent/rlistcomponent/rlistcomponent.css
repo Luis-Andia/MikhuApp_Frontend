@@ -2,6 +2,7 @@
   --mikhu-green: #2E7D5B;
   --mikhu-green-dark: #1F3A33;
   --mikhu-green-light: #E3F2EA;
+  --mikhu-skyblue: #0D9488;
   --mikhu-mint: #D3F3E6;
   --mikhu-mint-soft: #E8FAF1;
   --mikhu-border: #B7D7C7;
@@ -19,7 +20,7 @@
 }
 
 .encabezado {
-  background: var(--mikhu-green);
+  background: var(--mikhu-skyblue);
   border-bottom: 2px solid var(--mikhu-border);
 }
 
@@ -39,7 +40,7 @@
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  color: var(--mikhu-green);
+  color: var(--mikhu-white);
 }
 
 .encabezado-etiqueta .punto {
@@ -75,14 +76,15 @@
 /* ===== Filtros ===== */
 .filtros {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-columns: 1.4fr 1fr 1fr auto;
   gap: 16px;
   margin-bottom: 32px;
   padding: 16px;
-  border: 2px solid var(--mikhu-border);
+  border: 2px solid var(--mikhu-skyblue);
   border-radius: 16px;
   background: var(--mikhu-white);
   box-shadow: 0 2px 8px rgba(31, 58, 51, 0.08);
+  align-items: center;
 }
 
 .campo {
@@ -254,7 +256,7 @@
   width: 100%;
   height: 44px;
   border-radius: 12px;
-  background: var(--mikhu-green-light);
+  background: var(--mikhu-mint);
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.2px;
@@ -262,10 +264,6 @@
   --mat-button-text-label-text-color: var(--mikhu-green-dark);
   --mat-button-text-state-layer-color: var(--mikhu-green);
   --mat-button-text-container-shape: 12px;
-}
-
-.btn-detalle:hover {
-  background: var(--mikhu-mint);
 }
 
 .btn-detalle mat-icon {
@@ -318,6 +316,29 @@
 
 .btn-limpiar:hover {
   background: #266A4D;
+}
+
+.btn-buscar {
+  height: 56px;
+  padding: 0 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+
+  --mat-button-filled-container-color: var(--mikhu-green);
+  --mat-button-filled-label-text-color: var(--mikhu-white);
+  --mat-button-filled-container-shape: 12px;
+}
+
+.btn-buscar:hover {
+  --mat-button-filled-container-color: #266A4D;
+}
+
+.btn-buscar mat-icon {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  line-height: 18px;
 }
 
 /* ===== Accesibilidad: foco visible ===== */

@@ -10,33 +10,35 @@
 <main class="recetas-page">
 
   <!-- Filtros -->
-    <section class="filtros" aria-label="Filtros de recetas">
-        <mat-form-field appearance="outline" class="campo">
-        <mat-icon matPrefix>search</mat-icon>
-        <input matInput type="search" [(ngModel)]="busqueda"
-                placeholder="Buscar receta por nombre" aria-label="Buscar receta por nombre">
-        </mat-form-field>
+  <section class="filtros" aria-label="Filtros de recetas">
+    <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput type="search" [(ngModel)]="busqueda" (keyup.enter)="aplicarFiltros()"
+             placeholder="Buscar receta por nombre" aria-label="Buscar receta por nombre">
+    </mat-form-field>
 
-        <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
-        <mat-icon matPrefix>public</mat-icon>
-        <mat-select [(ngModel)]="paisSeleccionado" panelClass="mikhu-select-panel"
-                    aria-label="Filtrar por país">
-            <mat-option value="">Todos los países</mat-option>
-            @for (p of paises; track p) {
-            <mat-option [value]="p">{{ p }}</mat-option>
-            }
-        </mat-select>
-        </mat-form-field>
+    <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
+      <mat-icon matPrefix>public</mat-icon>
+      <mat-select [(ngModel)]="paisSeleccionado" panelClass="mikhu-select-panel"
+                  aria-label="Filtrar por país">
+        <mat-option value="">Todos los países</mat-option>
+        @for (p of paises; track p) {
+          <mat-option [value]="p">{{ p }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
 
-        <mat-form-field appearance="outline" class="campo">
-        <mat-icon matPrefix>nutrition</mat-icon>
-        <input matInput type="search" [(ngModel)]="ingredienteBuscado"
-                placeholder="Contiene el ingrediente..." aria-label="Filtrar por ingrediente">
-        </mat-form-field>
+    <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
+      <mat-icon matPrefix>nutrition</mat-icon>
+      <input matInput type="search" [(ngModel)]="ingredienteBuscado" (keyup.enter)="aplicarFiltros()"
+             placeholder="Contiene el ingrediente..." aria-label="Filtrar por ingrediente">
+    </mat-form-field>
 
-        <button matButton="filled" type="submit">Buscar</button>
-
-    </section>
+    <button matButton="filled" type="button" class="btn-buscar" (click)="aplicarFiltros()">
+      <mat-icon>search</mat-icon>
+      Buscar
+    </button>
+  </section>
 
   <!-- Listado de tarjetas -->
   @if (dataSource.length > 0) {
@@ -60,7 +62,7 @@
           </mat-card-content>
 
           <mat-card-actions class="receta-acciones">
-            <a matButton class="btn-detalle" [routerLink]="['/recetas', r.idRecipe]"
+            <a matButton class="btn-detalle" [routerLink]="['']"
                [attr.aria-label]="'Ver detalle de ' + r.nomRecipe">
               Ver detalle
               <mat-icon iconPositionEnd>arrow_forward</mat-icon>
@@ -74,7 +76,12 @@
   } @else {
     <p class="vacio">
       <mat-icon>search_off</mat-icon>
-      No hay registros disponibles
+      @if (hayFiltros) {
+        No encontramos recetas con esos filtros.
+        <button type="button" class="btn-limpiar" (click)="limpiarFiltros()">Limpiar filtros</button>
+      } @else {
+        No hay registros disponibles
+      }
     </p>
   }
 
