@@ -86,6 +86,8 @@ export class Rlistcomponent implements OnInit {
     const ing = this.ingredienteBuscado.trim()
     const pais = this.paisSeleccionado
     const nombre = this.busqueda.trim()
+    
+    this.dataSource = []
 
     if (ing) {
       this.obtenerRecetasPorIngrediente(ing)
