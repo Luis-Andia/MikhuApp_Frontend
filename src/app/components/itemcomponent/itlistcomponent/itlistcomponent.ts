@@ -24,9 +24,7 @@ export class Itlistcomponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
   private iS = inject(Itemservice)
-  private uS = inject(Userservice)
   private cdr = inject(ChangeDetectorRef)
-
 
   ngOnInit(): void {
     this.obtenerItems()
@@ -37,20 +35,7 @@ export class Itlistcomponent implements OnInit{
   }
 
   obtenerItems() {
-    const usernamelogeado = localStorage.getItem('username')
-
-    if (!usernamelogeado) {
-      console.log('No hay un usuario sesión activa');
-      return;
-    }
-
-    // Obtener usuario por su username
-    this.uS.getuserbyusername(usernamelogeado).subscribe({
-      next:(data:any) =>{
-        const idFamily = data.idFamily // Obtener familia del usuario
-      
-      if (idFamily) {
-        this.iS.getItemsFamily(idFamily).subscribe({ // Buscar los items de la familia del usuario
+        this.iS.getItems().subscribe({ // Buscar los items de la familia del usuario
         next: data => {
           this.dataSource.data = data;
           this.cdr.detectChanges();
@@ -60,16 +45,8 @@ export class Itlistcomponent implements OnInit{
           this.cdr.detectChanges();
         }
         });
-        } else {
-            console.log('El usuario no tiene una familia asociada');
-          }
-        },
-        error(err) {
-          console.log('Error al obtener la información del usuario logueado');
-        }
-      })
-  }
-
+      }
+  
   eliminarItem(id: number) {
     this.iS.deleteItem(id).subscribe({
       next: () => {

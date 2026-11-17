@@ -1,0 +1,163 @@
+
+/* CONTENEDOR PRINCIPAL */
+.ingredientes-page {
+  min-height: 100vh;
+  padding: 18px;
+  background-color: #eafaf5;
+  box-sizing: border-box;
+}
+
+/* TARJETA */
+.ingredientes-card {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+/* ENCABEZADO */
+.ingredientes-header {
+  padding: 18px 24px;
+}
+
+.ingredientes-header h1 {
+  margin: 0;
+  color: #123b32;
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.ingredientes-header p {
+  margin: 5px 0 0;
+  color: #71817b;
+  font-size: 13px;
+}
+
+/* TABLA */
+.tabla-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+/* CABECERA */
+.tabla .mat-mdc-header-row {
+  height: 46px;
+  background-color: #d9f8ef;
+}
+
+.tabla .mat-mdc-header-cell {
+  padding: 0 16px;
+  color: #45534e;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  border-right: 1px solid rgba(255,255,255,0.5);
+  white-space: nowrap;
+}
+
+/* FILAS */
+.tabla .mat-mdc-row {
+  height: 68px;
+}
+
+.tabla .mat-mdc-row:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.tabla .mat-mdc-row:nth-child(even) {
+  background-color: #f5fdfb;
+}
+
+.tabla .mat-mdc-row:hover {
+  background-color: #eaf8f3;
+}
+
+/* CELDAS */
+.tabla .mat-mdc-cell {
+  padding: 0 16px;
+  color: #34443e;
+  font-size: 13px;
+  border-bottom: none;
+  white-space: nowrap;
+}
+
+/* ACCIONES */
+.col-acciones {
+  text-align: center;
+  min-width: 100px;
+}
+
+.btn-editar,
+.btn-eliminar {
+  width: 34px !important;
+  height: 34px !important;
+  line-height: 34px !important;
+  color: #78847e !important;
+}
+
+.btn-editar {
+  margin-right: 5px;
+}
+
+.btn-editar mat-icon,
+.btn-eliminar mat-icon {
+  font-size: 19px;
+  width: 19px;
+  height: 19px;
+  line-height: 19px;
+}
+
+.btn-editar:hover {
+  color: #16845f !important;
+}
+
+.btn-eliminar:hover {
+  color: #dc4444 !important;
+}
+
+/* SIN REGISTROS */
+.vacio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 40px 15px;
+  color: #71817b;
+  font-size: 14px;
+}
+
+.vacio mat-icon {
+  color: #69a991;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .ingredientes-page {
+    padding: 10px;
+  }
+
+  .ingredientes-header {
+    padding: 16px;
+  }
+
+  .ingredientes-header h1 {
+    font-size: 19px;
+  }
+
+  .tabla .mat-mdc-cell,
+  .tabla .mat-mdc-header-cell {
+    padding: 0 12px;
+  }
+
+  .tabla .mat-mdc-row {
+    height: 58px;
+  }
+}
