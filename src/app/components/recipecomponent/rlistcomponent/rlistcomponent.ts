@@ -9,6 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { CountryDTO } from '../../../models/CountryDTO';
+import { Countryservice } from '../../../services/countryservice';
 
 @Component({
   imports: [FormsModule, RouterLink, MatCardModule, MatIconModule,
@@ -26,12 +28,25 @@ export class Rlistcomponent implements OnInit {
   paisSeleccionado: string = ''
   ingredienteBuscado: string = ''
 
-  paises: string[] = ['Peru', 'Chile', 'México', 'Italia', 'Japón', 'India', 'Francia', 'España', 'China', 'Tailandia', 'Grecia', 'Turquía']
+  paises: CountryDTO[] = []
   
-  constructor(private rS:Recipeservice, private cdr:ChangeDetectorRef){}
+  constructor(private rS:Recipeservice, private cS: Countryservice, private cdr:ChangeDetectorRef){}
 
   ngOnInit():void {
     this.obtenerRecetas()
+    this.obtenerPaises()
+  }
+
+  obtenerPaises(){
+    this.cS.getcountries().subscribe({
+      next: (data) => {
+        this.paises = data;
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.log('Ocurrió un error al listar los países');
+      }
+    });
   }
 
   obtenerRecetas(){
@@ -39,7 +54,7 @@ export class Rlistcomponent implements OnInit {
       next:data => {
         this.dataSource = data
         this.cdr.detectChanges()
-      }, error(err) {
+      }, error:(err) =>{
         console.log('Ocurrio un error al listar las recetas')        
       },
     })

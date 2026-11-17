@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { loginrequestDTO } from '../../services/loginrequestDTO';
+import { loginrequestDTO } from '../../models/loginrequestDTO';
 
 @Component({
   imports: [MatInputModule, MatIconModule, MatButtonModule, ReactiveFormsModule],
@@ -21,9 +21,9 @@ export class Logincomponent {
   mensajeInfo = ''
   hide: boolean = true // Para la contraseña
 
-  constructor(private lS: Loginservice,private cdr: ChangeDetectorRef,private fb: FormBuilder, private router: Router) {
+  constructor(private lS: Loginservice,private cdr: ChangeDetectorRef, private fb: FormBuilder, private router: Router) {
     this.formulario = fb.group({
-      usuario: ['', Validators.required, Validators.email],
+      usuario: ['', Validators.required],
       contrasena: ['', Validators.required]
     })
   }
@@ -46,8 +46,8 @@ export class Logincomponent {
 
     this.lS.postlogin(dto).subscribe({
       next: data => {
-        
-
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('username', data.username);
         this.mensajeError = ''
         this.mensajeInfo = 'Sesión iniciada correctamente'
         this.cdr.detectChanges()
