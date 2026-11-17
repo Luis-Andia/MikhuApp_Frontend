@@ -1,4 +1,4 @@
 export class loginresponseDTO {
-    token:String = ''
-    username:String = ''
+  token: string = '';
+  username: string = '';
 }
