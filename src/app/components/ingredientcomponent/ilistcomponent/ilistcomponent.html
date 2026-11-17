@@ -1,10 +1,13 @@
+<header class="encabezado">
+  <div class="encabezado-inner">
+    <p class="encabezado-etiqueta"><span class="punto"></span>Administración</p>
+    <h1>Ingredientes</h1>
+    <p class="encabezado-desc">Listado de los ingredientes dentro de MikhuApp</p>
+  </div>
+</header>
+
 <div class="ingredientes-page">
   <div class="ingredientes-card">
-
-    <header class="ingredientes-header">
-      <h1>Ingredientes</h1>
-      <p>Listado de los ingredientes dentro de MikhuApp</p>
-    </header>
 
     <div class="tabla-wrap" [hidden]="dataSource.data.length === 0">
       <table mat-table [dataSource]="dataSource" class="tabla">

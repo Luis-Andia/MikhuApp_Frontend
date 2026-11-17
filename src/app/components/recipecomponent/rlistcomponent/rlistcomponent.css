@@ -1,5 +1,6 @@
 :host {
   --mikhu-green: #2E7D5B;
+  --mikhu-green-2: #0ab86c;
   --mikhu-green-dark: #1F3A33;
   --mikhu-green-light: #E3F2EA;
   --mikhu-skyblue: #0D9488;
@@ -20,7 +21,7 @@
 }
 
 .encabezado {
-  background: var(--mikhu-skyblue);
+  background: var(--mikhu-green-2);
   border-bottom: 2px solid var(--mikhu-border);
 }
 

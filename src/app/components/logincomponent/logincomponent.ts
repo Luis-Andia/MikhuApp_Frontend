@@ -1,11 +1,12 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Loginservice } from '../../services/loginservice';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { loginrequestDTO } from '../../models/loginrequestDTO';
+
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { loginrequestDTO } from '../../services/loginrequestDTO';
 
 @Component({
   imports: [MatInputModule, MatIconModule, MatButtonModule, ReactiveFormsModule],
@@ -13,14 +14,16 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './logincomponent.css',
   templateUrl: './logincomponent.html',
 })
+
 export class Logincomponent {
   formulario: any
-  mensaje: string = ''
+  mensajeError = ''
+  mensajeInfo = ''
   hide: boolean = true // Para la contraseña
 
-  constructor(private lS: Loginservice,private cdr: ChangeDetectorRef, private fb: FormBuilder, private router: Router) {
+  constructor(private lS: Loginservice,private cdr: ChangeDetectorRef,private fb: FormBuilder, private router: Router) {
     this.formulario = fb.group({
-      usuario: ['', Validators.required],
+      usuario: ['', Validators.required, Validators.email],
       contrasena: ['', Validators.required]
     })
   }
@@ -32,7 +35,7 @@ export class Logincomponent {
   
   iniciarSesion() {
     if (this.formulario.invalid) {
-      this.mensaje = 'Ingresa tu usuario y contraseña'
+      this.mensajeError = 'Ingresa tu usuario y contraseña'
       return
     }
 
@@ -43,15 +46,20 @@ export class Logincomponent {
 
     this.lS.postlogin(dto).subscribe({
       next: data => {
-        this.mensaje = ''
+        
+
+        this.mensajeError = ''
+        this.mensajeInfo = 'Sesión iniciada correctamente'
         this.cdr.detectChanges()
         this.router.navigate([''])
       },
       error: err => {
         console.log("Ocurrio un error al iniciar sesion")
-        this.mensaje = 'Usuario o contraseña incorrectos'
+        this.mensajeError = 'Usuario o contraseña incorrectos'
+        this.mensajeInfo = ''
         this.cdr.detectChanges()
       },
     })
   }
+
 }

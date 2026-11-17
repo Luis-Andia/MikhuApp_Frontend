@@ -57,8 +57,8 @@
           </mat-form-field>
         </div>
 
-        @if (mensaje) {
-          <p class="error_mensaje" role="alert">{{ mensaje }}</p>
+        @if (mensajeError) {
+          <p class="error_mensaje" role="alert">{{ mensajeError }}</p>
         }
 
         <button matButton="filled" type="submit" class="btn-login">

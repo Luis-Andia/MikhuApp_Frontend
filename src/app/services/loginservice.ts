@@ -2,14 +2,15 @@ import { inject, Service } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { loginrequestDTO } from '../models/loginrequestDTO';
+import { loginresponseDTO } from '../models/loginresponseDTO';
+import { loginrequestDTO } from './loginrequestDTO';
 
 @Service()
 export class Loginservice {
     private apiURL=`${environment.base}/api/items`;
     private http=inject(HttpClient)
 
-    postlogin(dto:loginrequestDTO):Observable<loginrequestDTO> {
-        return this.http.post<loginrequestDTO>(this.apiURL, dto);
+    postlogin(dto:loginrequestDTO):Observable<loginresponseDTO> {
+        return this.http.post<loginresponseDTO>(this.apiURL, dto);
     }
 }
