@@ -1,12 +1,13 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ItemDTO } from '../../../models/ItemDTO';
 import { Itemservice } from '../../../services/itemservice';
-import { Injectable } from '@angular/core';
 import { inject } from '@angular/core';
 import { Userservice } from '../../../services/userservice';
+import { RouterLink } from '@angular/router';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 
 @Component({
@@ -51,7 +52,7 @@ export class Itlistcomponent implements OnInit{
       if (idFamily) {
         this.iS.getItemsFamily(idFamily).subscribe({ // Buscar los items de la familia del usuario
         next: data => {
-          this.dataSource = data;
+          this.dataSource.data = data;
           this.cdr.detectChanges();
         },
         error:err => {
