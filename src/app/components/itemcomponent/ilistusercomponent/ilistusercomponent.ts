@@ -2,12 +2,14 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { ItemDTO } from '../../../models/ItemDTO';
 import { Itemservice } from '../../../services/itemservice';
 import { inject } from '@angular/core';
 import { Userservice } from '../../../services/userservice';
 import { RouterLink } from '@angular/router';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { FamilyInventoryDTO } from '../../../models/FamilyInventoryDTO';
+import { Recommendationiacomponent } from '../../recommendationiacomponent/recommendationiacomponent';
 
 
 @Component({
@@ -16,16 +18,17 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
   styleUrl: './ilistusercomponent.css',
   templateUrl: './ilistusercomponent.html',
 })
+
 export class Ilistusercomponent implements OnInit {
-  displayedColumns: string[] = ['C1', 'C2', 'C3', 'C4','C5', 'C6', 'C7', 'C8', 'C9']
-  dataSource = new MatTableDataSource<ItemDTO>([])
+  displayedColumns: string[] = ['C1', 'C2', 'C3', 'C4','C5', 'C6', 'C7', 'C8']
+  dataSource = new MatTableDataSource<FamilyInventoryDTO>([])
 
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
   private iS = inject(Itemservice)
   private uS = inject(Userservice)
   private cdr = inject(ChangeDetectorRef)
-
+  private dialog = inject(MatDialog);
 
   ngOnInit(): void {
     this.obtenerItems()
@@ -79,5 +82,12 @@ export class Ilistusercomponent implements OnInit {
         this.cdr.detectChanges()
       },
     })
+  }
+
+  abrirRecomendaciones() {
+  this.dialog.open(Recommendationiacomponent, {
+    data: this.dataSource.data,
+    width: '520px',
+  });
   }
 }

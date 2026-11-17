@@ -2,8 +2,8 @@ import { inject, Service } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { IngredientAvailableByFamilyDTO } from '../models/IngredientAvailableByFamilyDTO';
 import { RecommendationDTO } from '../models/RecommendationDTO';
+import { FamilyInventoryDTO } from '../models/FamilyInventoryDTO';
 
 @Service()
 export class Chatiaservice {
@@ -17,9 +17,12 @@ export class Chatiaservice {
         return this.http.post<any>(this.apiURL,body);
     }
 
-    postRecommendations(items: IngredientAvailableByFamilyDTO[]): Observable<RecommendationDTO[]> {
-    const lista = items
-      .map(i => `- ${i.nomIngredient}: ${i.amountAvailable} disponibles`)
+    postRecommendations(items: FamilyInventoryDTO[]): Observable<RecommendationDTO[]> {
+      const hoy = new Date().toLocaleDateString('en-CA'); // yyyy-MM-dd en hora local
+
+      const lista = items
+      .filter(i => i.amountAvailable > 0 && i.dueDate >= hoy)   // sin stock o vencidos fuera
+      .map(i => `- ${i.ingredientName}: ${i.amountAvailable} disponibles (vence ${i.dueDate})`)
       .join('\n');
 
     const body = {
