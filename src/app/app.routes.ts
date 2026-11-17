@@ -19,6 +19,8 @@ import { Coinsertcomponent } from './components/countrycomponent/coinsertcompone
 import { Colistcomponent } from './components/countrycomponent/colistcomponent/colistcomponent';
 import { Coupdatecomponent } from './components/countrycomponent/coupdatecomponent/coupdatecomponent';
 import { Itupdatecomponent } from './components/itemcomponent/itupdatecomponent/itupdatecomponent';
+import { Cslistcomponent } from './components/consumptioncomponent/cslistcomponent/cslistcomponent';
+import { Csinsertcomponent } from './components/consumptioncomponent/csinsertcomponent/csinsertcomponent';
 
 export const routes: Routes = [
     {
@@ -59,7 +61,25 @@ export const routes: Routes = [
     },
     {
         path:'consumo',
-        component: Consumptioncomponent
+        component: Consumptioncomponent,
+
+        children:
+        [
+            {
+                path: '',
+                redirectTo: 'listar',
+                pathMatch: 'full'
+            },
+            {
+            path:'listar',
+            component: Cslistcomponent
+            },
+            {
+            path:'insertar',
+            component: Csinsertcomponent
+            },
+        ]
+
     },
     {
         path:'familia',
