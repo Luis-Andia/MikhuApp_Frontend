@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="formulario-card">
+    
+    <!-- Encabezado integrado dentro de la tarjeta -->
+    <div class="formulario-header">
+      <h2>Formulario de Registro de Ítems</h2>
+    </div>
+
+    <!-- Formulario -->
+    <form [formGroup]="formConsumption" (ngSubmit)="registrarConsumo()">
+
+      <!-- Fecha de cONSUMO -->
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha de Consumo</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="fechaConsumo" [max]="fechaActual" />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"> </mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <br />
+
+
+      <!-- ID Item -->
+      <mat-form-field appearance="outline">
+        <mat-label>Item</mat-label>
+        <mat-select formControlName="idItem">
+          <mat-option value="">Seleccione un item</mat-option>
+          @for (ing of listaitems; track $index) {
+            <mat-option [value]="ing.idItem">
+              {{ ing.idItem }}
+            </mat-option>
+          }
+        </mat-select>
+        <mat-error>Seleccione un item</mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <!-- ID Receta -->
+      <mat-form-field appearance="outline">
+        <mat-label>Receta</mat-label>
+        <mat-select formControlName="idReceta">
+          <mat-option value="">Seleccione una receta</mat-option>
+          @for (rec of listaRecetas; track $index) {
+            <mat-option [value]="rec.idRecipe">
+              {{ rec.nomRecipe }}
+            </mat-option>
+          }
+        </mat-select>
+        <mat-error>Seleccione una Receta</mat-error>
+      </mat-form-field>
+
+      <br /><br />
+
+      <button mat-raised-button color="primary" type="submit">Guardar</button>
+    </form>
+
+    @if (mensaje) {
+      <p class="mensaje">{{ mensaje }}</p>
+    }
+  </div>
+</div>
