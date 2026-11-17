@@ -126,6 +126,11 @@
         </button>
       </mat-menu>
 
+            <button matButton class="nav-link" [matMenuTriggerFor]="usermenu" routerLink="/user">Usuarios</button>  
+            <mat-menu #usermenu="matMenu">
+                <button mat-menu-item routerLink="/user/insertar">Agregar</button>
+                <button mat-menu-item routerLink="/user/listar">Listar</button>
+            </mat-menu>
     </nav>
 
     <span class="spacer"></span>
