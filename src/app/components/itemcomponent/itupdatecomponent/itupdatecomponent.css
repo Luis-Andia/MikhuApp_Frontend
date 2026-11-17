@@ -1,0 +1,144 @@
+
+/* ===== CONTENEDOR GENERAL ===== */
+.container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 20px;
+  box-sizing: border-box;
+  background: #f3f8f5;
+}
+
+/* ===== ENCABEZADO ===== */
+.container > div:first-child {
+  width: 100%;
+  max-width: 850px;
+  box-sizing: border-box;
+  padding: 22px;
+  background: #e8f6ef;
+  border: 1px solid #d7ebe0;
+  border-radius: 18px 18px 0 0;
+  text-align: center;
+}
+
+.container h2 {
+  margin: 0;
+  color: #1f4034;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* ===== TARJETA DEL FORMULARIO ===== */
+.container > div:last-child {
+  width: 100%;
+  max-width: 850px;
+  box-sizing: border-box;
+  padding: 30px 38px;
+  background: #ffffff;
+  border: 1px solid #d7ebe0;
+  border-radius: 0 0 18px 18px;
+  box-shadow: 0 12px 35px rgba(31, 64, 52, 0.07);
+}
+
+/* ===== FORMULARIO HORIZONTAL ===== */
+.container form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: 10px;
+  align-items: center;
+}
+
+/* Campos */
+mat-form-field {
+  width: 100%;
+  margin: 0;
+}
+
+mat-form-field input,
+mat-form-field mat-select {
+  font-size: 15px;
+}
+
+/* ===== SALTOS DE LÍNEA ===== */
+.container form br {
+  display: none;
+}
+
+/* ===== BOTONES ===== */
+.container form button {
+  width: 100%;
+  min-height: 46px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.container form button[type="submit"] {
+  background: #1d5140;
+  color: white;
+}
+
+.container form button[type="submit"]:hover {
+  background: #163e31;
+}
+
+.container form .btn-cancelar {
+  background: #edf4f0;
+  color: #315a49;
+  border: 1px solid #dce9e1;
+}
+
+/* Botones en la parte inferior */
+.container form button {
+  grid-row: auto;
+}
+
+.container form button[type="submit"] {
+  grid-column: 1;
+  margin-top: 12px;
+}
+
+.container form .btn-cancelar {
+  grid-column: 2;
+  margin-top: 12px;
+}
+
+/* Mensajes */
+.container p {
+  text-align: center;
+  color: #1d674b;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 650px) {
+  .container {
+    padding: 20px 12px;
+    justify-content: flex-start;
+  }
+
+  .container > div:last-child {
+    padding: 22px 18px;
+  }
+
+  .container form {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .container form button[type="submit"],
+  .container form .btn-cancelar {
+    grid-column: 1;
+  }
+
+  .container h2 {
+    font-size: 20px;
+  }
+}

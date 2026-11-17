@@ -1,1 +1,94 @@
-<p>iinsertcomponent works!</p>
+<div class="container">
+  <div class="formulario-card">
+    
+    <!-- Encabezado integrado dentro de la tarjeta -->
+    <div class="formulario-header">
+      <h2>Formulario de Registro de Ítems</h2>
+    </div>
+
+    <!-- Formulario -->
+    <form [formGroup]="formItem" (ngSubmit)="registrarItem()">
+      <!-- Cantidad Disponible -->
+      <mat-form-field appearance="outline">
+        <mat-label>Cantidad Disponible</mat-label>
+        <input matInput type="number" min="1" placeholder="Ej. 10" formControlName="cantidad" />
+        @if (formItem.get('cantidad')?.hasError('min')) {
+          <mat-error>Para cantidad no se aceptan valores inferiores a 1</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- Fecha de Compra -->
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha de Compra</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="fechaCompra" [max]="fechaActual" />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"> </mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <br />
+
+      <!-- Fecha de Vencimiento -->
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha de Vencimiento</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="fechaVencimiento" [min]="fechaActual" />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"> </mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+
+      <br />
+
+      <!-- Stock Mínimo -->
+      <mat-form-field appearance="outline">
+        <mat-label>Stock Mínimo</mat-label>
+        <input matInput type="number" placeholder="Ej. 3" formControlName="stockMinimo" />
+        @if (formItem.get('stockMinimo')?.hasError('min')) {
+          <mat-error>Para cantidad no se aceptan valores inferiores a 1</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- ID Ingrediente -->
+      <mat-form-field appearance="outline">
+        <mat-label>Ingrediente</mat-label>
+        <mat-select formControlName="idIngrediente">
+          <mat-option value="">Seleccione un ingrediente</mat-option>
+          @for (ing of listaIngredientes; track $index) {
+            <mat-option [value]="ing.idIngredient">
+              {{ ing.nomIngredient }}
+            </mat-option>
+          }
+        </mat-select>
+        <mat-error>Seleccione un ingrediente</mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <!-- ID Familia -->
+      <mat-form-field appearance="outline">
+        <mat-label>Familia</mat-label>
+        <mat-select formControlName="idFamilia">
+          <mat-option value="">Seleccione una familia</mat-option>
+          @for (fam of listaFamilias; track $index) {
+            <mat-option [value]="fam.idFamily">
+              {{ fam.nomFamily }}
+            </mat-option>
+          }
+        </mat-select>
+        <mat-error>Seleccione una familia</mat-error>
+      </mat-form-field>
+
+      <br /><br />
+
+      <button mat-raised-button color="primary" type="submit">Guardar</button>
+    </form>
+
+    @if (mensaje) {
+      <p class="mensaje">{{ mensaje }}</p>
+    }
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<div class="container">
+  <div>
+    <h2>Formulario de Actualización de Items</h2>
+  </div>
+
+  <div>
+    <form [formGroup]="formItem" (ngSubmit)="actualizarItem()">
+      <mat-form-field appearance="outline">
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="codigo" readonly />
+      </mat-form-field>
+      <!-- Cantidad Disponible -->
+      <mat-form-field appearance="outline">
+        <mat-label>Cantidad Disponible</mat-label>
+        <input matInput type="number" placeholder="Ej. 10" formControlName="cantidad" />
+        @if (formItem.get('cantidad')?.hasError('min')) {
+          <mat-error>Para cantidad no se aceptan valores inferiores a 1</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- Fecha de Compra -->
+       <mat-form-field appearance="outline">
+        <mat-label>Fecha de Compra</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="fechaCompra" [max]="formItem.get('fechaCompra')?.value"/>
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"> </mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <br />
+      <!-- Fecha de Vencimiento -->
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha de Vencimiento</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="fechaVencimiento" [min] = "formItem.get('fechaVencimiento')?.value" />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"> </mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+
+      <br />
+
+      <!-- Stock Mínimo -->
+      <mat-form-field appearance="outline">
+        <mat-label>Stock Mínimo</mat-label>
+        <input matInput type="number" placeholder="Ej. 3" formControlName="stockMinimo" />
+        @if (formItem.get('cantidad')?.hasError('min')) {
+          <mat-error>Para cantidad no se aceptan valores inferiores a 1</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+
+      <!-- ID Ingrediente (Llave Foránea - Select) -->
+      <mat-form-field appearance="outline">
+        <mat-label>Ingrediente</mat-label>
+        <mat-select formControlName="idIngrediente">
+          <mat-option value="">Seleccione un ingrediente</mat-option>
+          @for (ing of listaIngredientes; track $index) {
+            <mat-option [value]="ing.idIngredient">
+              {{ ing.nomIngredient }}
+            </mat-option>
+          }
+        </mat-select>
+        <mat-error>Seleccione un ingrediente</mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <!-- ID Familia (Llave Foránea - Select) -->
+      <mat-form-field appearance="outline">
+        <mat-label>Familia</mat-label>
+        <mat-select formControlName="idFamilia">
+          <mat-option value="">Seleccione una familia</mat-option>
+          @for (fam of listaFamilias; track $index) {
+            <mat-option [value]="fam.idFamily">
+              {{ fam.nomFamily }}
+            </mat-option>
+          }
+        </mat-select>
+        <mat-error>Seleccione una familia</mat-error>
+      </mat-form-field>
+
+      <br /><br />
+
+      <button matButton type="submit">Guardar Cambios</button>
+      <button matButton type="button" class="btn-cancelar" routerLink="/items/listar">Cancelar</button>
+
+    </form>
+
+    @if (mensaje) {
+      <p>{{ mensaje }}</p>
+    }
+  </div>
+</div>
