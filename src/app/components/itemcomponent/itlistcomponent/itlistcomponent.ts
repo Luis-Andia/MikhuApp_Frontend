@@ -4,8 +4,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ItemDTO } from '../../../models/ItemDTO';
 import { Itemservice } from '../../../services/itemservice';
-import { RouterLink } from '@angular/router';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { Injectable } from '@angular/core';
+import { inject } from '@angular/core';
+import { Userservice } from '../../../services/userservice';
+
 
 @Component({
   imports: [MatTableModule, MatTableModule,MatIconModule, RouterLink, MatPaginator, MatPaginatorModule, MatButtonModule],
@@ -21,7 +23,9 @@ export class Itlistcomponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
   private iS = inject(Itemservice)
+  private uS = inject(Userservice)
   private cdr = inject(ChangeDetectorRef)
+
 
   ngOnInit(): void {
     this.obtenerItems()
@@ -32,15 +36,37 @@ export class Itlistcomponent implements OnInit{
   }
 
   obtenerItems() {
-    this.iS.getItems().subscribe({
-      next: (data: ItemDTO[]) => {
-        this.dataSource.data = data
-        this.cdr.detectChanges()
-      }, error: (err: any) => {
-        console.log('Ocurrió un error al listar los registros!!')
-        this.cdr.detectChanges()
-      },
-    })
+    const usernamelogeado = localStorage.getItem('username')
+
+    if (!usernamelogeado) {
+      console.log('No hay un usuario sesión activa');
+      return;
+    }
+
+    // Obtener usuario por su username
+    this.uS.getuserbyusername(usernamelogeado).subscribe({
+      next:(data:any) =>{
+        const idFamily = data.idFamily // Obtener familia del usuario
+      
+      if (idFamily) {
+        this.iS.getItemsFamily(idFamily).subscribe({ // Buscar los items de la familia del usuario
+        next: data => {
+          this.dataSource = data;
+          this.cdr.detectChanges();
+        },
+        error:err => {
+          console.log('Ocurrió un error al listar los ítems de la familia');
+          this.cdr.detectChanges();
+        }
+        });
+        } else {
+            console.log('El usuario no tiene una familia asociada');
+          }
+        },
+        error(err) {
+          console.log('Error al obtener la información del usuario logueado');
+        }
+      })
   }
 
   eliminarItem(id: number) {
@@ -48,13 +74,10 @@ export class Itlistcomponent implements OnInit{
       next: () => {
         this.obtenerItems()
         this.cdr.detectChanges()
-      }, error: (err: any) => {
+      }, error: (err) => {
         console.log('Error al eliminar!!')
         this.cdr.detectChanges()
       },
     })
-
-
   }
-
 }
