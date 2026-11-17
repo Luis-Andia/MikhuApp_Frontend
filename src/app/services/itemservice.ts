@@ -27,4 +27,18 @@ export class Itemservice {
         return this.http.delete<void>(`${this.apiURL}/${id}`)
     }
 
+    insert(it: ItemDTO): Observable<ItemDTO> {
+    return this.http.post<ItemDTO>(this.apiURL, it)
+    }
+
+    update(id: number, dto: ItemDTO): Observable<ItemDTO> {
+    return this.http.put<ItemDTO>(`${this.apiURL}/${id}`, dto);
+}
+
+    listId(id: number): Observable<ItemDTO> {
+    return this.http.get<ItemDTO>(`${this.apiURL}/${id}`);
+    }
+
+
+
 }

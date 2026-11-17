@@ -18,6 +18,7 @@ import { Countrycomponent } from './components/countrycomponent/countrycomponent
 import { Coinsertcomponent } from './components/countrycomponent/coinsertcomponent/coinsertcomponent';
 import { Colistcomponent } from './components/countrycomponent/colistcomponent/colistcomponent';
 import { Coupdatecomponent } from './components/countrycomponent/coupdatecomponent/coupdatecomponent';
+import { Itupdatecomponent } from './components/itemcomponent/itupdatecomponent/itupdatecomponent';
 
 export const routes: Routes = [
     {
@@ -42,6 +43,14 @@ export const routes: Routes = [
             path:'listar',
             component:Itlistcomponent
             },
+
+            {
+            path: 'editar/:id',
+            component: Itupdatecomponent
+            },
+
+
+
         ]
     },
     {
