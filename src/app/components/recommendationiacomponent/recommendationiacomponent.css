@@ -1,0 +1,21 @@
+.contenido { 
+    min-width: 340px; 
+    max-height: 60vh; 
+}
+
+.estado { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 12px; 
+    padding: 24px; 
+    color: #71817b; 
+}
+
+.error { color: #dc4444; }
+.reco { padding: 12px 0; border-bottom: 1px solid #e3f3ee; font-size: 13px; color: #34443e; }
+.reco-top { display: flex; justify-content: space-between; align-items: center; }
+.badge { background: #d9f8ef; color: #16845f; padding: 2px 10px; border-radius: 12px; font-weight: 600; }
+.barra { height: 6px; background: #eaf8f3; border-radius: 4px; margin: 8px 0; }
+.barra-fill { height: 100%; background: #2e7d5b; border-radius: 4px; }
+.faltan { color: #b26a00; }

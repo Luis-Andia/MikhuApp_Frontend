@@ -1,1 +1,29 @@
-<p>recommendationiacomponent works!</p>
+<h2 mat-dialog-title>
+  <mat-icon>auto_awesome</mat-icon> Recomendaciones del Chef IA
+</h2>
+
+<mat-dialog-content class="contenido">
+  @if (loading) {
+    <div class="estado"><mat-spinner diameter="36"></mat-spinner><p>Buscando platillos...</p></div>
+  } @else if (error) {
+    <p class="estado error">No se pudieron obtener las recomendaciones. Intenta nuevamente.</p>
+  } @else {
+    @for (r of recommendations; track r.dish) {
+      <div class="reco">
+        <div class="reco-top">
+          <strong>{{ r.dish }}</strong>
+          <span class="badge">{{ r.compatibility }}%</span>
+        </div>
+        <div class="barra"><div class="barra-fill" [style.width.%]="r.compatibility"></div></div>
+        <p><b>Tienes:</b> {{ r.ingredientsUsed.join(', ') }}</p>
+        @if (r.missingIngredients.length > 0) {
+          <p class="faltan"><b>Te falta:</b> {{ r.missingIngredients.join(', ') }}</p>
+        }
+      </div>
+    }
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>
