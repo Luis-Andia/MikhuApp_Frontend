@@ -26,6 +26,10 @@ import { Coinsertcomponent } from './components/countrycomponent/coinsertcompone
 import { Colistcomponent } from './components/countrycomponent/colistcomponent/colistcomponent';
 import { Coupdatecomponent } from './components/countrycomponent/coupdatecomponent/coupdatecomponent';
 
+// Gestión de consumos
+import { Cslistcomponent } from './components/consumptioncomponent/cslistcomponent/cslistcomponent';
+import { Csinsertcomponent } from './components/consumptioncomponent/csinsertcomponent/csinsertcomponent';
+
 // Gestión de roles
 import { Rlistcomponent } from './components/rolecomponent/rlistcomponent/rlistcomponent';
 import { Rinsertcomponent } from './components/rolecomponent/rinsertcomponent/rinsertcomponent';
@@ -72,7 +76,22 @@ export const routes: Routes = [
   },
   {
     path: 'consumo',
-    component: Consumptioncomponent
+    component: Consumptioncomponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'listar',
+        pathMatch: 'full'
+      },
+      {
+        path: 'listar',
+        component: Cslistcomponent
+      },
+      {
+        path: 'insertar',
+        component: Csinsertcomponent
+      }
+    ]
   },
   {
     path: 'familia',

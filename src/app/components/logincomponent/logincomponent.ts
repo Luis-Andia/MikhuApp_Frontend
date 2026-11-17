@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { loginrequestDTO } from '../../services/loginrequestDTO';
+import { loginrequestDTO } from '../../models/loginrequestDTO';
 
 @Component({
   imports: [

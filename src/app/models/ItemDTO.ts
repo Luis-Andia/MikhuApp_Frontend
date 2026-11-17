@@ -6,5 +6,4 @@ export class ItemDTO {
     purchaseDate: Date = new Date()
     dueDate: Date = new Date()
     minimumStock: number = 0
-    
 }

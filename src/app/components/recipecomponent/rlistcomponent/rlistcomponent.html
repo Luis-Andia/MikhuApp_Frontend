@@ -22,8 +22,8 @@
       <mat-select [(ngModel)]="paisSeleccionado" panelClass="mikhu-select-panel"
                   aria-label="Filtrar por país">
         <mat-option value="">Todos los países</mat-option>
-        @for (p of paises; track p) {
-          <mat-option [value]="p">{{ p }}</mat-option>
+        @for (p of paises; track p.idCountry) {
+          <mat-option [value]="p.nomCountry">{{ p.nomCountry }}</mat-option>
         }
       </mat-select>
     </mat-form-field>

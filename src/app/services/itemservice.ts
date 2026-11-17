@@ -12,12 +12,12 @@ export class Itemservice {
     private apiURL=`${environment.base}/api/items`;
     private http=inject(HttpClient)
     
-    //
-    // getItemsFamily(idFamily:number):Observable<any> { 
-        // const url = `${this.apiURL}/familia/${idFamily}`;
-        // return this.http.get(url)
-    // }
-    ///
+
+    getItemsFamily(idFamily:number):Observable<ItemDTO[]> { 
+        const url = `${this.apiURL}/familia/${idFamily}`;
+        return this.http.get<ItemDTO[]>(url)
+    }
+    
 
     getItems(): Observable<ItemDTO[]> {
         return this.http.get<ItemDTO[]>(this.apiURL)

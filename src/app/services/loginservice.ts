@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { loginresponseDTO } from '../models/loginresponseDTO';
-import { loginrequestDTO } from './loginrequestDTO';
+import { loginrequestDTO } from '../models/loginrequestDTO';
 
 @Injectable({
   providedIn: 'root'
