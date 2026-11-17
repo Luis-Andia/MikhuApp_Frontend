@@ -18,6 +18,9 @@ import { Countrycomponent } from './components/countrycomponent/countrycomponent
 import { Coinsertcomponent } from './components/countrycomponent/coinsertcomponent/coinsertcomponent';
 import { Colistcomponent } from './components/countrycomponent/colistcomponent/colistcomponent';
 import { Coupdatecomponent } from './components/countrycomponent/coupdatecomponent/coupdatecomponent';
+import { Uinsertcomponent } from './components/usercomponent/uinsertcomponent/uinsertcomponent';
+import { Ulistcomponent } from './components/usercomponent/ulistcomponent/ulistcomponent';
+import { Usercomponent } from './components/usercomponent/usercomponent';
 
 export const routes: Routes = [
     {
@@ -127,6 +130,25 @@ export const routes: Routes = [
     {
         path:'chatia',
         component:Chatiacomponent
+    },
+    {
+        path:'user',
+        component:Usercomponent,
+        children:
+        [
+            {
+                path: '',
+                redirectTo: 'listar',
+                pathMatch: 'full'
+            },
+            {
+            path:'insertar',
+            component: Uinsertcomponent
+            },
+            {
+            path:'listar',
+            component:Ulistcomponent
+            }
+        ]
     }
-
 ];
