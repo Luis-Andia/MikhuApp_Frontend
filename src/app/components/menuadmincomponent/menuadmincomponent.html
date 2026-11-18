@@ -13,7 +13,12 @@
                 <button mat-menu-item routerLink="/items/insertar">Agregar</button>
                 <button mat-menu-item routerLink="/items/listar">Listar</button>
             </mat-menu>
-            <button matButton class="nav-link" routerLink="/recetas" >Recetas</button>
+                        <button matButton class="nav-link" [matMenuTriggerFor]="recetamenu" routerLink="/recetas">Recetas</button>
+            <mat-menu #recetamenu="matMenu">
+                <button mat-menu-item routerLink="/recetas">Catálogo</button>
+                <button mat-menu-item routerLink="/recetas/insertar">Agregar</button>
+                <button mat-menu-item routerLink="/recetas/listar">Listar</button>
+            </mat-menu>
 
             <button matButton class="nav-link" [matMenuTriggerFor]="consumomenu" routerLink="/consumo">Consumo</button>  
             <mat-menu #consumomenu="matMenu">

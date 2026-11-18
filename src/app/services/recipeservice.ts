@@ -28,4 +28,21 @@ export class Recipeservice {
         const url = `${this.apiURL}/ingrediente/${nameIngredient}`;
         return this.http.get<RecipeDTO[]>(url)
     }
+
+    
+    insertRecipe(dto:RecipeDTO):Observable<RecipeDTO> {
+        return this.http.post<RecipeDTO>(this.apiURL, dto)
+    }
+
+    deleteRecipe(id:number):Observable<void> {
+        return this.http.delete<void>(`${this.apiURL}/${id}`)
+    }
+
+    listId(id:number):Observable<RecipeDTO> {
+        return this.http.get<RecipeDTO>(`${this.apiURL}/${id}`)
+    }
+
+    updateRecipe(dto:RecipeDTO):Observable<RecipeDTO> {
+        return this.http.put<RecipeDTO>(this.apiURL, dto)
+    }
 }
