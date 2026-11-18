@@ -59,7 +59,7 @@
           <mat-option value="">Seleccione un ingrediente</mat-option>
           @for (ing of listaIngredientes; track $index) {
             <mat-option [value]="ing.idIngredient">
-              {{ ing.nomIngredient }}
+              {{ ing.nomIngredient  }}
             </mat-option>
           }
         </mat-select>
