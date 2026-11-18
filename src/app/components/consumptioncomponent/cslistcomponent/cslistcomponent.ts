@@ -3,11 +3,13 @@ import { MatTableModule } from '@angular/material/table';
 import { ConsumptionDTO } from '../../../models/ConsumptionDTO';
 import { Consumptionservice } from '../../../services/consumptionservice';
 import {MatIconModule} from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 @Component({
   imports: [
     MatIconModule,
     MatTableModule,
+    RouterLink
   ],
   selector: 'app-cslistcomponent',
   styleUrl: './cslistcomponent.css',
