@@ -4,6 +4,10 @@ import { Routes } from '@angular/router';
 import { Chatiacomponent } from './components/chatiacomponent/chatiacomponent';
 import { Itemcomponent } from './components/itemcomponent/itemcomponent';
 import { Recipecomponent } from './components/recipecomponent/recipecomponent';
+import { Rlistcomponent as Recipecatalogocomponent } from './components/recipecomponent/rlistcomponent/rlistcomponent';
+import { Reinsertcomponent } from './components/recipecomponent/reinsertcomponent/reinsertcomponent';
+import { Relistcomponent } from './components/recipecomponent/relistcomponent/relistcomponent';
+import { Reupdatecomponent } from './components/recipecomponent/reupdatecomponent/reupdatecomponent';
 import { Consumptioncomponent } from './components/consumptioncomponent/consumptioncomponent';
 import { Familycomponent } from './components/familycomponent/familycomponent';
 import { Homecomponent } from './components/homecomponent/homecomponent';
@@ -70,9 +74,27 @@ export const routes: Routes = [
       }
     ]
   },
-  {
+    {
     path: 'recetas',
-    component: Recipecomponent
+    component: Recipecomponent,
+    children: [
+      {
+        path: '',
+        component: Recipecatalogocomponent
+      },
+      {
+        path: 'insertar',
+        component: Reinsertcomponent
+      },
+      {
+        path: 'listar',
+        component: Relistcomponent
+      },
+      {
+        path: 'actualizar/:id',
+        component: Reupdatecomponent
+      }
+    ]
   },
   {
     path: 'consumo',
