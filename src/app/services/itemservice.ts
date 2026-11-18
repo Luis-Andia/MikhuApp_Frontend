@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment.development';
 import { ItemDTO } from '../models/ItemDTO';
 import { Injectable } from '@angular/core';
 import { FamilyInventoryDTO } from '../models/FamilyInventoryDTO';
+import { MostConsumedIngredientsDTO } from '../models/MostConsumedIngredientsDTO';
 
 @Injectable({
   providedIn: 'root' // <-- El servicio va aquí
