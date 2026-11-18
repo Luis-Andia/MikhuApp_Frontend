@@ -1,0 +1,55 @@
+<div class="receta-page">
+  <div class="receta-card">
+
+    <div class="receta-icono" aria-hidden="true">
+      <mat-icon>restaurant_menu</mat-icon>
+    </div>
+
+    <h2>Registra una receta</h2>
+    <p class="receta-desc">
+      Agrega una receta al catálogo para que las familias aprovechen sus ingredientes
+    </p>
+
+    <form [formGroup]="formulario" (ngSubmit)="registrarReceta()">
+      <!-- Nombre -->
+      <mat-form-field>
+        <mat-label>Nombre de la receta</mat-label>
+        <input matInput formControlName="nombre" maxlength="60" placeholder="Ej: Lomo saltado">
+      </mat-form-field>
+
+      <!-- País -->
+      <mat-form-field>
+        <mat-label>País</mat-label>
+        <mat-select formControlName="pais">
+          @for (p of paises; track p.idCountry) {
+            <mat-option [value]="p.idCountry">{{ p.nomCountry }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Calorías -->
+      <mat-form-field>
+        <mat-label>Calorías (kcal)</mat-label>
+        <input matInput type="number" formControlName="calorias" min="1" placeholder="Ej: 450">
+      </mat-form-field>
+
+      <!-- Dificultad -->
+      <mat-form-field>
+        <mat-label>Dificultad</mat-label>
+        <input matInput type="number" formControlName="dificultad" min="1" placeholder="Ej: 2">
+      </mat-form-field>
+
+      @if(mensaje){
+        <p class="error_mensaje">{{mensaje}}</p>
+      }
+
+      <button matButton="filled" type="submit">Registrar</button>
+
+      <div class="receta-nota">
+        <mat-icon>lightbulb</mat-icon>
+        <p>Si el país no aparece en la lista, primero regístralo en el menú País.</p>
+      </div>
+    </form>
+
+  </div>
+</div>

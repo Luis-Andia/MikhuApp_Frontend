@@ -1,1 +1,49 @@
-<p>coupdatecomponent works!</p>
+<div class="pais-page">
+  <div class="pais-card">
+
+    <div class="pais-icono" aria-hidden="true">
+      <mat-icon>edit</mat-icon>
+    </div>
+
+    <h2>Actualiza el país</h2>
+    <p class="pais-desc">Modifica el código o el nombre del país</p>
+
+    @if (formulario) {
+    <form [formGroup]="formulario" (ngSubmit)="actualizarPais()">
+      <!-- ID -->
+      <mat-form-field appearance="outline" class="campo-id">
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="id" readonly>
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+
+      <!-- Código -->
+      <mat-form-field appearance="outline">
+        <mat-label>Código del país</mat-label>
+        <input matInput formControlName="codigo" maxlength="5" placeholder="Ej: PE">
+      </mat-form-field>
+
+      <!-- Nombre -->
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre del país</mat-label>
+        <input matInput formControlName="nombre" maxlength="40">
+      </mat-form-field>
+
+      @if (mensaje) {
+      <p class="error_mensaje" role="alert">{{ mensaje }}</p>
+      }
+
+      <button matButton="filled" type="submit">Guardar cambios</button>
+      <button matButton type="button" class="btn-cancelar" routerLink="/pais/listar">Cancelar</button>
+
+      <div class="pais-nota">
+        <mat-icon>info</mat-icon>
+        <p>El ID del país no se puede modificar.</p>
+      </div>
+    </form>
+    } @else {
+      <p class="error_mensaje" role="alert">{{ mensaje }}</p>
+    }
+
+  </div>
+</div>

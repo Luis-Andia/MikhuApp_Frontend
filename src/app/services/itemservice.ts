@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { ItemDTO } from '../models/ItemDTO';
 import { Injectable } from '@angular/core';
+import { FamilyInventoryDTO } from '../models/FamilyInventoryDTO';
+import { MostConsumedIngredientsDTO } from '../models/MostConsumedIngredientsDTO';
 
 @Injectable({
   providedIn: 'root' // <-- El servicio va aquí
@@ -13,12 +15,11 @@ export class Itemservice {
     private http=inject(HttpClient)
     
 
-    getItemsFamily(idFamily:number):Observable<ItemDTO[]> { 
+    getItemsFamily(idFamily:number):Observable<FamilyInventoryDTO[]> { 
         const url = `${this.apiURL}/familia/${idFamily}`;
-        return this.http.get<ItemDTO[]>(url)
+        return this.http.get<FamilyInventoryDTO[]>(url)
     }
     
-
     getItems(): Observable<ItemDTO[]> {
         return this.http.get<ItemDTO[]>(this.apiURL)
     }
@@ -33,12 +34,9 @@ export class Itemservice {
 
     update(id: number, dto: ItemDTO): Observable<ItemDTO> {
     return this.http.put<ItemDTO>(`${this.apiURL}/${id}`, dto);
-}
+    }
 
     listId(id: number): Observable<ItemDTO> {
     return this.http.get<ItemDTO>(`${this.apiURL}/${id}`);
     }
-
-
-
 }

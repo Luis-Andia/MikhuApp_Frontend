@@ -1,0 +1,96 @@
+
+.form-container {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.form-card {
+  background: white;
+  width: 100%;
+  max-width: 550px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+  margin: 0 0 8px;
+  color: #263238;
+}
+
+p {
+  color: #718096;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #37474f;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #d5ded8;
+  border-radius: 7px;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #2e7d32;
+}
+
+input[readonly] {
+  background: #f1f3f2;
+}
+
+small,
+.error-message {
+  color: #d32f2f;
+  margin-top: 6px;
+}
+
+.success-message {
+  color: #28743b;
+  margin-top: 12px;
+}
+
+.loading {
+  padding: 20px 0;
+  color: #718096;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+button {
+  padding: 11px 18px;
+  border: none;
+  border-radius: 7px;
+  background: #2e7d32;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button.cancel {
+  background: #e8ece9;
+  color: #37474f;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
