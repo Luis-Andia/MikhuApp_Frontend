@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { ConsumptionDTO } from '../models/ConsumptionDTO';
-import { Observable } from 'rxjs';
+import { Cons, Observable } from 'rxjs';
 import { MostConsumedIngredientsDTO } from '../models/MostConsumedIngredientsDTO';
 
 @Service()
@@ -21,21 +21,15 @@ export class Consumptionservice {
   insertconsumption(dto: ConsumptionDTO): Observable<ConsumptionDTO> {
     return this.http.post<ConsumptionDTO>(this.apiURL, dto);
   }
+  listId(id: number): Observable<ConsumptionDTO> {
+    return this.http.get<ConsumptionDTO>(`${this.apiURL}/${id}`);
+  }
+  update(dto: ConsumptionDTO): Observable<ConsumptionDTO> {
+    return this.http.put<ConsumptionDTO>(this.apiURL, dto);
+  }
 
   MostConsumedIngredientsByFamily(id: number):Observable<MostConsumedIngredientsDTO[]>{
     return this.http.get<MostConsumedIngredientsDTO[]>(`${this.apiURL}/alimentos-mas-consumidos/${id}`)
-  }
+    }
 
-  MostConsumedIngredientsGlobal():Observable<MostConsumedIngredientsDTO[]>{
-    return this.http.get<MostConsumedIngredientsDTO[]>(`${this.apiURL}/alimentos-mas-consumidos-global`)
-  }
-
-
-  Ingredienteconsumedbydate(fechaInicio: string, fechaFin: string): Observable<MostConsumedIngredientsDTO[]> {
-  const params = new HttpParams()
-    .set('fechaInicio', fechaInicio) // formato yyyy-MM-dd
-    .set('fechaFin', fechaFin)
-
-    return this.http.get<MostConsumedIngredientsDTO[]>(`${this.apiURL}/fecha`, { params })
-  }
 }

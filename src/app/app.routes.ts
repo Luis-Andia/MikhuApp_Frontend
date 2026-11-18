@@ -1,20 +1,5 @@
+import { Routes } from '@angular/router';
 
-import { Routes, Router } from '@angular/router';
-import { inject } from '@angular/core';
-import { Loginservice } from './services/loginservice';
-
-// Guards
-import { authGuard } from './core/guards/auth-guard';
-import { roleGuard } from './core/guards/role-guard';
-
-// Autenticación
-import { Logincomponent } from './components/logincomponent/logincomponent';
-import { Registrocomponent } from './components/registrocomponent/registrocomponent';
-
-// Dashboard
-import { Dashboardcomponent } from './components/dashboardcomponent/dashboardcomponent';
-
-// Chat IA
 import { Chatiacomponent } from './components/chatiacomponent/chatiacomponent';
 
 // Inventario
@@ -58,28 +43,25 @@ import { Coupdatecomponent } from './components/countrycomponent/coupdatecompone
 import { Usercomponent } from './components/usercomponent/usercomponent';
 import { Ulistcomponent } from './components/usercomponent/ulistcomponent/ulistcomponent';
 
-// Roles
-import { Rlistcomponent as Rolelistcomponent } from './components/rolcomponent/rlistcomponent/rlistcomponent';
-import { Rinsertcomponent } from './components/rolcomponent/rinsertcomponent/rinsertcomponent';
-import { Rupdatecomponent } from './components/rolcomponent/rupdatecomponent/rupdatecomponent';
-import { Rolcomponent } from './components/rolcomponent/rolcomponent';
+// Gestión de roles
+import { Rlistcomponent } from './components/rolecomponent/rlistcomponent/rlistcomponent';
+import { Rinsertcomponent } from './components/rolecomponent/rinsertcomponent/rinsertcomponent';
+import { Rupdatecomponent } from './components/rolecomponent/rupdatecomponent/rupdatecomponent';
 
+// Inicio de sesión
+import { Logincomponent } from './components/logincomponent/logincomponent';
+import { Csupdatecomponent } from './components/consumptioncomponent/csupdatecomponent/csupdatecomponent';
 
 export const routes: Routes = [
-
-  // Inicio
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-
-  // Login público
-  { 
-    path: 'login', 
-    component: Logincomponent 
+  {
+    path: 'login',
+    component: Logincomponent,
   },
 
   // Registro público
   {
-    path: 'registro',
-    component: Registrocomponent
+    path: '',
+    component: Homecomponent,
   },
 
   // Dashboard
@@ -99,24 +81,22 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'insertar',
-        component: Itinsertcomponent
+        component: Itinsertcomponent,
       },
       {
         path: 'listar',
-        component: Itlistcomponent
+        component: Itlistcomponent,
       },
       {
         path: 'editar/:id',
-        component: Itupdatecomponent
-      }
-    ]
+        component: Itupdatecomponent,
+      },
+    ],
   },
-
-  // Recetas
   {
     path: 'recetas',
     component: Recipecomponent,
@@ -125,25 +105,21 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: Recipecatalogocomponent
+        component: Recipecatalogocomponent,
       },
       {
         path: 'insertar',
-        component: Reinsertcomponent
+        component: Reinsertcomponent,
       },
       {
         path: 'listar',
-        component: Relistcomponent
+        component: Relistcomponent,
       },
       {
         path: 'actualizar/:id',
-        component: Reupdatecomponent
+        component: Reupdatecomponent,
       },
-      {
-        path: 'ingredientes/:idRecipe',
-        component: Recipeingredientcomponent
-      }
-    ]
+    ],
   },
 
   // Consumos
@@ -156,17 +132,21 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'listar',
-        component: Cslistcomponent
+        component: Cslistcomponent,
       },
       {
         path: 'insertar',
-        component: Csinsertcomponent
-      }
-    ]
+        component: Csinsertcomponent,
+      },
+      {
+        path: 'editar/:id',
+        component: Csupdatecomponent,
+      },
+    ],
   },
 
   // Familia
@@ -179,21 +159,21 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'insertar',
-        component: Finsertcomponent
+        component: Finsertcomponent,
       },
       {
         path: 'listar',
-        component: Flistcomponent
+        component: Flistcomponent,
       },
       {
         path: 'actualizar/:id',
-        component: Fupdatecomponent
-      }
-    ]
+        component: Fupdatecomponent,
+      },
+    ],
   },
 
   // Ingredientes
@@ -206,21 +186,21 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'insertar',
-        component: Iinsertcomponent
+        component: Iinsertcomponent,
       },
       {
         path: 'listar',
-        component: Ilistcomponent
+        component: Ilistcomponent,
       },
       {
         path: 'actualizar/:id',
-        component: Iupdatecomponent
-      }
-    ]
+        component: Iupdatecomponent,
+      },
+    ],
   },
 
   // Países
@@ -233,21 +213,21 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'insertar',
-        component: Coinsertcomponent
+        component: Coinsertcomponent,
       },
       {
         path: 'listar',
-        component: Colistcomponent
+        component: Colistcomponent,
       },
       {
         path: 'actualizar/:id',
-        component: Coupdatecomponent
-      }
-    ]
+        component: Coupdatecomponent,
+      },
+    ],
   },
 
   // Usuarios: acceso administrativo
@@ -272,41 +252,20 @@ export const routes: Routes = [
   // Roles: acceso administrativo
   {
     path: 'roles',
-    component: Rolcomponent,
-    canActivate: [authGuard, roleGuard],
-    data: { roles: ['ADMIN'] },
-    children: [
-      {
-        path: '',
-        redirectTo: 'listar',
-        pathMatch: 'full'
-      },
-      {
-        path: 'registrar',
-        component: Rinsertcomponent
-      },
-      {
-        path: 'listar',
-        component: Rolelistcomponent
-      },
-      {
-        path: 'editar/:id',
-        component: Rupdatecomponent
-      }
-    ]
+    component: Rlistcomponent,
+  },
+  {
+    path: 'roles/registrar',
+    component: Rinsertcomponent,
+  },
+  {
+    path: 'roles/editar/:id',
+    component: Rupdatecomponent,
   },
 
   // Asistente IA
   {
     path: 'chatia',
     component: Chatiacomponent,
-    canActivate: [authGuard, roleGuard],
-    data: { roles: ['ADMIN', 'MODERATOR', 'MEMBER', 'GUEST'] },
   },
-
-  // Ruta no encontrada
-  {
-    path: '**',
-    redirectTo: 'login'
-  }
 ];

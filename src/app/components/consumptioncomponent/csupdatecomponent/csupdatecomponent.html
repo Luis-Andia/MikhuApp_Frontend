@@ -1,0 +1,65 @@
+<div class="container">
+  <div>
+    <h2>Formulario de Actualización de Items</h2>
+  </div>
+
+  <div>
+    <form [formGroup]="formConsumo" (ngSubmit)="actualizarItem()">
+      <mat-form-field appearance="outline">
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="codigo" readonly />
+      </mat-form-field>
+      <!-- Fecha de cONSUMO -->
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha de Consumo</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="fechaConsumo" [max]= "formConsumo.get('fechaConsumo')?.value" />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"> </mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <br />
+
+
+      <!-- ID Item -->
+      <mat-form-field appearance="outline">
+        <mat-label>Item</mat-label>
+        <mat-select formControlName="idItem">
+          <mat-option value="">Seleccione un item</mat-option>
+          @for (ing of listaItems; track $index) {
+            <mat-option [value]="ing.idItem">
+              {{ ing.idItem }}
+            </mat-option>
+          }
+        </mat-select>
+        <mat-error>Seleccione un item</mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <!-- ID Receta -->
+      <mat-form-field appearance="outline">
+        <mat-label>Receta</mat-label>
+        <mat-select formControlName="idReceta">
+          <mat-option value="">Seleccione una receta</mat-option>
+          @for (rec of listaRecipes; track $index) {
+            <mat-option [value]="rec.idRecipe">
+              {{ rec.nomRecipe }}
+            </mat-option>
+          }
+        </mat-select>
+        <mat-error>Seleccione una Receta</mat-error>
+      </mat-form-field>
+
+      <br /><br />
+
+      <button matButton type="submit">Guardar Cambios</button>
+      <button matButton type="button" class="btn-cancelar" routerLink="/items/listar">Cancelar</button>
+
+    </form>
+
+    @if (mensaje) {
+      <p>{{ mensaje }}</p>
+    }
+  </div>
+</div>

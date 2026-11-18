@@ -3,11 +3,13 @@ import { MatTableModule } from '@angular/material/table';
 import { ConsumptionDTO } from '../../../models/ConsumptionDTO';
 import { Consumptionservice } from '../../../services/consumptionservice';
 import {MatIconModule} from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 @Component({
   imports: [
     MatIconModule,
     MatTableModule,
+    RouterLink
   ],
   selector: 'app-cslistcomponent',
   styleUrl: './cslistcomponent.css',
@@ -15,7 +17,7 @@ import {MatIconModule} from '@angular/material/icon';
 })
 export class Cslistcomponent implements OnInit{
 
-  displayedColumns: string[] = ['C1', 'C2', 'C3', 'C4','C5']
+  displayedColumns: string[] = ['C1', 'C2', 'C3', 'C4','C5', 'C6']
   dataSource: ConsumptionDTO[] = []
 
   private csS = inject(Consumptionservice)
