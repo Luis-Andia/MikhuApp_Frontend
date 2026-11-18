@@ -2,11 +2,12 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { Countryservice } from '../../../services/countryservice';
 import { CountryDTO } from '../../../models/CountryDTO';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  imports: [MatInputModule, MatButtonModule, ReactiveFormsModule],
+  imports: [MatInputModule, MatIconModule, MatButtonModule, ReactiveFormsModule],
   selector: 'app-coinsertcomponent',
   styleUrl: './coinsertcomponent.css',
   templateUrl: './coinsertcomponent.html',

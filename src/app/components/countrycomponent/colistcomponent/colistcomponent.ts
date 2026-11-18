@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './colistcomponent.html',
 })
 export class Colistcomponent implements OnInit {
-    displayedColumns:string[]=['C1', 'C2', 'C3', 'C4', 'C5']
+        displayedColumns:string[]=['C1', 'C2', 'C3', 'C4']
     dataSource:CountryDTO[]=[]
 
     constructor(private coS:Countryservice, private cdr:ChangeDetectorRef){}
