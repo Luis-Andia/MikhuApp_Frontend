@@ -1,0 +1,255 @@
+
+<main class="registro-page">
+  <div class="registro-card">
+
+    <!-- Panel izquierdo -->
+    <aside class="registro-panel">
+      <span class="registro-badge">
+        <mat-icon>spa</mat-icon>
+        Despensa consciente
+      </span>
+
+      <h2>Organiza tu despensa, aprovecha cada ingrediente</h2>
+
+      <p class="registro-panel-desc">
+        Planifica comidas familiares sin desperdicios
+        y mantén tu inventario sincronizado.
+      </p>
+
+      <div class="registro-ilustracion">
+        <img
+          src="/mikhuapp-illustracion-ingredientes.png"
+          alt="Recipiente con frutas y verduras"
+        >
+      </div>
+
+      <p class="registro-panel-pie">
+        <span class="punto"></span>
+        Gestión inteligente de alimentos
+      </p>
+    </aside>
+
+    <!-- Formulario -->
+    <section class="registro-form-wrap">
+
+      <div class="registro-marca">
+        <span class="registro-logo">
+          <mat-icon>eco</mat-icon>
+        </span>
+        <span class="registro-marca-nombre">Mikhu<span>App</span></span>
+      </div>
+
+      <h1>Crea tu cuenta</h1>
+
+      <p class="registro-desc">
+        Únete a MikhuApp para gestionar los alimentos de tu hogar
+      </p>
+
+      <form [formGroup]="formulario" (ngSubmit)="registrar()">
+
+        <!-- Nombre y apellido -->
+        <div class="campos-fila">
+
+          <div class="campo-grupo">
+            <label for="nombre">Nombre</label>
+
+            <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
+              <input
+                matInput
+                id="nombre"
+                formControlName="nombre"
+                autocomplete="given-name"
+                placeholder="Escribe tu nombre"
+              >
+            </mat-form-field>
+          </div>
+
+          <div class="campo-grupo">
+            <label for="apellido">Apellido</label>
+
+            <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
+              <input
+                matInput
+                id="apellido"
+                formControlName="apellido"
+                autocomplete="family-name"
+                placeholder="Escribe tus apellidos"
+              >
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <!-- Edad y país -->
+        <div class="campos-fila">
+
+          <div class="campo-grupo">
+            <label for="edad">Edad</label>
+
+            <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
+              <input
+                matInput
+                id="edad"
+                type="number"
+                formControlName="edad"
+                min="13"
+                max="120"
+                placeholder="Ingresa tu edad"
+              >
+            </mat-form-field>
+          </div>
+
+          <div class="campo-grupo">
+            <label for="pais">País</label>
+
+            <div class="select-wrapper">
+              <select id="pais" formControlName="pais">
+                @for (pais of paises; track pais) {
+                  <option [value]="pais">{{ pais }}</option>
+                }
+              </select>
+              <mat-icon>keyboard_arrow_down</mat-icon>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Nombre de usuario -->
+        <div class="campo-grupo">
+          <label for="username">Nombre de usuario</label>
+
+          <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
+            <input
+              matInput
+              id="username"
+              formControlName="username"
+              autocomplete="username"
+              placeholder="Elige un nombre de usuario"
+            >
+          </mat-form-field>
+        </div>
+
+        <!-- Correo electrónico -->
+        <div class="campo-grupo">
+          <label for="email">Correo electrónico</label>
+
+          <mat-form-field
+            appearance="outline"
+            class="campo"
+            subscriptSizing="dynamic"
+            [class.campo-invalido]="formulario.get('email')?.invalid && formulario.get('email')?.touched"
+          >
+            <input
+              matInput
+              id="email"
+              type="email"
+              formControlName="email"
+              autocomplete="email"
+              placeholder="Ingresa tu correo electrónico"
+            >
+
+            @if (formulario.get('email')?.invalid && formulario.get('email')?.touched) {
+              <mat-icon matSuffix class="icono-error">error_outline</mat-icon>
+            }
+          </mat-form-field>
+
+          @if (formulario.get('email')?.hasError('email') && formulario.get('email')?.touched) {
+            <span class="mensaje-campo-error">
+              <mat-icon>error_outline</mat-icon>
+              Formato de correo inválido
+            </span>
+          }
+
+          @if (formulario.get('email')?.hasError('required') && formulario.get('email')?.touched) {
+            <span class="mensaje-campo-error">
+              <mat-icon>error_outline</mat-icon>
+              El correo electrónico es obligatorio
+            </span>
+          }
+        </div>
+
+        <!-- Contraseña -->
+        <div class="campo-grupo">
+          <label for="contrasena">Contraseña</label>
+
+          <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
+            <input
+              matInput
+              id="contrasena"
+              formControlName="contrasena"
+              [type]="hide ? 'password' : 'text'"
+              autocomplete="new-password"
+              placeholder="Crea una contraseña segura"
+            >
+
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              (click)="clickEvent()"
+              [attr.aria-label]="hide ? 'Mostrar contraseña' : 'Ocultar contraseña'"
+            >
+              <mat-icon>
+                {{ hide ? 'visibility' : 'visibility_off' }}
+              </mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <!-- Términos y condiciones -->
+        <label class="terminos">
+          <input
+            type="checkbox"
+            formControlName="aceptarTerminos"
+          >
+          <span>
+            Acepto los
+            <a href="#" (click)="$event.preventDefault()">Términos y condiciones</a>
+            y la
+            <a href="#" (click)="$event.preventDefault()">Política de privacidad</a>
+          </span>
+        </label>
+
+        @if (formulario.get('aceptarTerminos')?.invalid && formulario.get('aceptarTerminos')?.touched) {
+          <p class="mensaje-terminos-error">
+            Debes aceptar los términos y condiciones.
+          </p>
+        }
+
+        <!-- Mensajes generales -->
+        @if (mensajeError) {
+          <p class="error_mensaje" role="alert">
+            {{ mensajeError }}
+          </p>
+        }
+
+        @if (mensajeInfo) {
+          <p class="info_mensaje" role="status">
+            {{ mensajeInfo }}
+          </p>
+        }
+
+        <!-- Botón -->
+        <button
+          matButton="filled"
+          type="submit"
+          class="btn-registro"
+        >
+          Crear cuenta
+          <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+        </button>
+
+      </form>
+
+      <p class="registro-login">
+        ¿Ya tienes una cuenta?
+        <a routerLink="/login">Inicia sesión</a>
+      </p>
+
+    </section>
+  </div>
+</main>
+
+<footer class="registro-footer">
+  © 2026 FoodMind Technologies · Términos y condiciones · Política de privacidad
+</footer>

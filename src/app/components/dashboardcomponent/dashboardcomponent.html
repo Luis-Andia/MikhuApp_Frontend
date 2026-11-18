@@ -1,2 +1,176 @@
+
+<!-- Menú principal -->
 <app-menuadmincomponent></app-menuadmincomponent>
+
+<!-- Contenido del dashboard -->
+<main class="dashboard-page">
+
+  <!-- Bienvenida -->
+  <section class="bienvenida">
+    <h1>Hola, {{ nombreUsuario }}</h1>
+    <p>Así está la despensa de la {{ nombreFamilia }} hoy</p>
+  </section>
+
+  <!-- Indicadores principales -->
+  <section class="indicadores-grid">
+
+    @for (indicador of indicadores; track indicador.titulo) {
+      <article class="indicador-card">
+        <div class="indicador-cabecera">
+          <span>{{ indicador.titulo }}</span>
+          <mat-icon [class]="indicador.clase">
+            {{ indicador.icono }}
+          </mat-icon>
+        </div>
+
+        <strong [class]="indicador.clase">
+          {{ indicador.cantidad }}
+        </strong>
+      </article>
+    }
+
+  </section>
+
+  <!-- Secciones centrales -->
+  <section class="contenido-central">
+
+    <!-- Consume primero -->
+    <article class="panel consume-panel">
+
+      <div class="panel-titulo">
+        <h2>Consume primero</h2>
+        <a routerLink="/items/listar" class="enlace-panel">
+          Ver inventario
+          <mat-icon>arrow_forward</mat-icon>
+        </a>
+      </div>
+
+      <div class="lista-consumo">
+
+        @for (alimento of alimentosPorConsumir; track alimento.nombre) {
+          <div class="consumo-item">
+
+            <div class="consumo-info">
+              <strong>{{ alimento.nombre }}</strong>
+              <span>{{ alimento.fecha }}</span>
+            </div>
+
+            <span class="consumo-cantidad">
+              {{ alimento.cantidad }}
+            </span>
+
+            <span
+              class="estado-alimento"
+              [class.estado-vencer]="alimento.estado === 'Por vencer'"
+              [class.estado-vencido]="alimento.estado === 'Vencido'"
+            >
+              <mat-icon>
+                {{ alimento.estado === 'Vencido' ? 'error_outline' : 'schedule' }}
+              </mat-icon>
+              {{ alimento.estado }}
+            </span>
+
+          </div>
+        }
+
+      </div>
+    </article>
+
+    <!-- Alimentos más consumidos -->
+    <article class="panel consumo-grafico-panel">
+
+      <h2>Alimentos más consumidos</h2>
+      <p class="panel-subtitulo">Número de consumos registrados</p>
+
+      <div class="grafico-lista">
+
+        @for (alimento of alimentosConsumidos; track alimento.nombre) {
+          <div class="grafico-item">
+
+            <div class="grafico-etiqueta">
+              <span>{{ alimento.nombre }}</span>
+              <strong>{{ alimento.cantidad }}</strong>
+            </div>
+
+            <div class="barra-fondo">
+              <div
+                class="barra-progreso"
+                [style.width.%]="alimento.porcentaje"
+              ></div>
+            </div>
+
+          </div>
+        }
+
+      </div>
+    </article>
+
+  </section>
+
+  <!-- Necesitas reponer -->
+  <section class="panel reponer-panel">
+
+    <div class="reponer-titulo">
+      <h2>Necesitas reponer</h2>
+      <p>Artículos que se encuentran por debajo del nivel óptimo</p>
+    </div>
+
+    <div class="reponer-grid">
+
+      @for (alimento of alimentosPorReponer; track alimento.nombre) {
+        <article class="reponer-card">
+
+          <div class="reponer-card-cabecera">
+            <strong>{{ alimento.nombre }}</strong>
+
+            <span class="badge-stock">
+              <mat-icon>inventory_2</mat-icon>
+              Bajo stock
+            </span>
+          </div>
+
+          <div class="reponer-detalle">
+            <span>Nivel</span>
+            <strong>
+              {{ alimento.cantidadActual }} de
+              {{ alimento.cantidadMinima }} mínimo
+            </strong>
+          </div>
+
+          <div class="barra-fondo barra-stock">
+            <div
+              class="barra-progreso barra-progreso-stock"
+              [style.width.%]="alimento.porcentaje"
+            ></div>
+          </div>
+
+        </article>
+      }
+
+    </div>
+
+  </section>
+
+  <!-- Acceso al asistente IA -->
+  <section class="asistente-banner">
+
+    <div class="asistente-mensaje">
+      <mat-icon>auto_awesome</mat-icon>
+      <strong>¿No sabes qué cocinar hoy? Pregúntale al Chef IA</strong>
+    </div>
+
+    <a routerLink="/chatia" class="asistente-abrir">
+      Abrir asistente
+    </a>
+
+  </section>
+
+</main>
+
+<!-- Pie de página -->
+<footer class="dashboard-footer">
+  © 2026 FoodMind Technologies · Términos y condiciones · Política de privacidad
+</footer>
+
+<!-- Espacio para las rutas hijas existentes -->
 <router-outlet></router-outlet>
