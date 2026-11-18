@@ -112,21 +112,21 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'insertar',
-        component: Itinsertcomponent
+        component: Itinsertcomponent,
       },
       {
         path: 'listar',
-        component: Itlistcomponent
+        component: Itlistcomponent,
       },
       {
         path: 'editar/:id',
-        component: Itupdatecomponent
-      }
-    ]
+        component: Itupdatecomponent,
+      },
+    ],
   },
 
   // Recetas
@@ -138,15 +138,15 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: Recipecatalogocomponent
+        component: Recipecatalogocomponent,
       },
       {
         path: 'insertar',
-        component: Reinsertcomponent
+        component: Reinsertcomponent,
       },
       {
         path: 'listar',
-        component: Relistcomponent
+        component: Relistcomponent,
       },
       {
         path: 'actualizar/:id',
@@ -169,17 +169,21 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'listar',
-        component: Cslistcomponent
+        component: Cslistcomponent,
       },
       {
         path: 'insertar',
-        component: Csinsertcomponent
-      }
-    ]
+        component: Csinsertcomponent,
+      },
+      {
+        path: 'editar/:id',
+        component: Csupdatecomponent,
+      },
+    ],
   },
 
   // Familia
@@ -192,21 +196,21 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'insertar',
-        component: Finsertcomponent
+        component: Finsertcomponent,
       },
       {
         path: 'listar',
-        component: Flistcomponent
+        component: Flistcomponent,
       },
       {
         path: 'actualizar/:id',
-        component: Fupdatecomponent
-      }
-    ]
+        component: Fupdatecomponent,
+      },
+    ],
   },
 
   // Ingredientes
@@ -219,21 +223,21 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'insertar',
-        component: Iinsertcomponent
+        component: Iinsertcomponent,
       },
       {
         path: 'listar',
-        component: Ilistcomponent
+        component: Ilistcomponent,
       },
       {
         path: 'actualizar/:id',
-        component: Iupdatecomponent
-      }
-    ]
+        component: Iupdatecomponent,
+      },
+    ],
   },
 
   // Países
@@ -246,21 +250,21 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'insertar',
-        component: Coinsertcomponent
+        component: Coinsertcomponent,
       },
       {
         path: 'listar',
-        component: Colistcomponent
+        component: Colistcomponent,
       },
       {
         path: 'actualizar/:id',
-        component: Coupdatecomponent
-      }
-    ]
+        component: Coupdatecomponent,
+      },
+    ],
   },
 
   // Usuarios: acceso administrativo
