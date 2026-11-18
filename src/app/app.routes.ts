@@ -1,4 +1,3 @@
-
 import { Routes } from '@angular/router';
 
 import { Chatiacomponent } from './components/chatiacomponent/chatiacomponent';
@@ -41,15 +40,16 @@ import { Rupdatecomponent } from './components/rolecomponent/rupdatecomponent/ru
 
 // Inicio de sesión
 import { Logincomponent } from './components/logincomponent/logincomponent';
+import { Csupdatecomponent } from './components/consumptioncomponent/csupdatecomponent/csupdatecomponent';
 
 export const routes: Routes = [
   {
     path: 'login',
-    component: Logincomponent
+    component: Logincomponent,
   },
   {
     path: '',
-    component: Homecomponent
+    component: Homecomponent,
   },
   {
     path: 'items',
@@ -58,43 +58,43 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'insertar',
-        component: Itinsertcomponent
+        component: Itinsertcomponent,
       },
       {
         path: 'listar',
-        component: Itlistcomponent
+        component: Itlistcomponent,
       },
       {
         path: 'editar/:id',
-        component: Itupdatecomponent
-      }
-    ]
+        component: Itupdatecomponent,
+      },
+    ],
   },
-    {
+  {
     path: 'recetas',
     component: Recipecomponent,
     children: [
       {
         path: '',
-        component: Recipecatalogocomponent
+        component: Recipecatalogocomponent,
       },
       {
         path: 'insertar',
-        component: Reinsertcomponent
+        component: Reinsertcomponent,
       },
       {
         path: 'listar',
-        component: Relistcomponent
+        component: Relistcomponent,
       },
       {
         path: 'actualizar/:id',
-        component: Reupdatecomponent
-      }
-    ]
+        component: Reupdatecomponent,
+      },
+    ],
   },
   {
     path: 'consumo',
@@ -103,17 +103,21 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'listar',
-        component: Cslistcomponent
+        component: Cslistcomponent,
       },
       {
         path: 'insertar',
-        component: Csinsertcomponent
-      }
-    ]
+        component: Csinsertcomponent,
+      },
+      {
+        path: 'editar/:id',
+        component: Csupdatecomponent,
+      },
+    ],
   },
   {
     path: 'familia',
@@ -122,21 +126,21 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'insertar',
-        component: Finsertcomponent
+        component: Finsertcomponent,
       },
       {
         path: 'listar',
-        component: Flistcomponent
+        component: Flistcomponent,
       },
       {
         path: 'actualizar/:id',
-        component: Fupdatecomponent
-      }
-    ]
+        component: Fupdatecomponent,
+      },
+    ],
   },
   {
     path: 'ingrediente',
@@ -145,21 +149,21 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'insertar',
-        component: Iinsertcomponent
+        component: Iinsertcomponent,
       },
       {
         path: 'listar',
-        component: Ilistcomponent
+        component: Ilistcomponent,
       },
       {
         path: 'actualizar/:id',
-        component: Iupdatecomponent
-      }
-    ]
+        component: Iupdatecomponent,
+      },
+    ],
   },
   {
     path: 'pais',
@@ -168,36 +172,36 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'insertar',
-        component: Coinsertcomponent
+        component: Coinsertcomponent,
       },
       {
         path: 'listar',
-        component: Colistcomponent
+        component: Colistcomponent,
       },
       {
         path: 'actualizar/:id',
-        component: Coupdatecomponent
-      }
-    ]
+        component: Coupdatecomponent,
+      },
+    ],
   },
   {
     path: 'roles',
-    component: Rlistcomponent
+    component: Rlistcomponent,
   },
   {
     path: 'roles/registrar',
-    component: Rinsertcomponent
+    component: Rinsertcomponent,
   },
   {
     path: 'roles/editar/:id',
-    component: Rupdatecomponent
+    component: Rupdatecomponent,
   },
   {
     path: 'chatia',
-    component: Chatiacomponent
-  }
+    component: Chatiacomponent,
+  },
 ];
