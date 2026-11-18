@@ -1,3 +1,4 @@
+
 :host {
   display: flex;
   flex-direction: column;
@@ -18,13 +19,15 @@
 }
 
 /* ===== Tarjeta principal ===== */
+/* ===== Tarjeta principal ===== */
 .login-card {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
   max-width: 990px;
+  max-width: 990px;
   overflow: hidden;
-  border: 1px solid #E3E8E6;
+  border: 1px solid var(--mikhu-border);
   border-radius: 24px;
   background: #FFFFFF;
   box-shadow: 0 8px 32px rgba(31, 58, 51, 0.10);
@@ -76,7 +79,23 @@
 }
 
 /* ===== Ilustración de ingredientes ===== */
+/* ===== Ilustración de ingredientes ===== */
 .login-ilustracion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex: 1;
+  min-height: 230px;
+  margin: 16px 0;
+}
+
+.login-ilustracion img {
+  display: block;
+  width: 100%;
+  max-width: 270px;
+  height: auto;
+  object-fit: contain;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,6 +133,10 @@
 /* ===== Panel derecho ===== */
 .login-form-wrap {
   box-sizing: border-box;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 48px;
   display: flex;
   flex-direction: column;
@@ -189,7 +212,9 @@ form {
 }
 
 /* ===== Campos Angular Material ===== */
+/* ===== Campos Angular Material ===== */
 .campo {
+  display: block;
   display: block;
   width: 100%;
 
@@ -206,11 +231,13 @@ form {
   box-sizing: border-box;
 }
 
+/* Icono del usuario */
 .campo mat-icon[matSuffix] {
   margin: 0;
-  color: #5F6F69;
+  color: var(--mikhu-muted);
 }
 
+/* Botón del ojo */
 .campo button[matSuffix] {
   width: 40px;
   height: 40px;
@@ -220,10 +247,11 @@ form {
   align-items: center;
   justify-content: center;
 
-  --mat-icon-button-icon-color: #5F6F69;
-  --mat-icon-button-state-layer-color: #2E7D5B;
+  --mat-icon-button-icon-color: var(--mikhu-muted);
+  --mat-icon-button-state-layer-color: var(--mikhu-green);
 }
 
+/* Tamaño uniforme de los iconos */
 .campo mat-icon {
   width: 20px;
   height: 20px;
@@ -249,6 +277,7 @@ form {
   line-height: 1.4;
 }
 
+/* ===== Botón de inicio de sesión ===== */
 /* ===== Botón de inicio de sesión ===== */
 .btn-login {
   display: inline-flex;
@@ -315,6 +344,7 @@ form {
 }
 
 /* ===== Accesibilidad ===== */
+/* ===== Accesibilidad ===== */
 .btn-login:focus-visible,
 .login-registro a:focus-visible {
   outline: 2px solid #1F3A33;
@@ -322,7 +352,36 @@ form {
 }
 
 /* ===== Diseño responsive ===== */
+/* ===== Diseño responsive ===== */
 @media (max-width: 768px) {
+  .login-page {
+    padding: 20px;
+  }
+
+  .login-card {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+  }
+
+  .login-panel {
+    padding: 28px;
+  }
+
+  .login-panel h2 {
+    font-size: 24px;
+  }
+
+  .login-ilustracion {
+    min-height: 180px;
+  }
+
+  .login-ilustracion img {
+    max-width: 200px;
+  }
+
+  .login-form-wrap {
+    padding: 32px 24px;
+  }
   .login-page {
     padding: 20px;
   }

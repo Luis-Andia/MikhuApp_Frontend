@@ -1,14 +1,10 @@
 
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 import { Menuadmincomponent } from '../menuadmincomponent/menuadmincomponent';
-import { Loginservice } from '../../services/loginservice';
-
-import { Ingredconsumglobalcomponent } from './ingredconsumglobalcomponent/ingredconsumglobalcomponent';
-import { Ingredconsumdateglobalcomponent } from './ingredconsumdateglobalcomponent/ingredconsumdateglobalcomponent';
 
 interface AlimentoPorConsumir {
   nombre: string;
@@ -38,23 +34,19 @@ interface AlimentoPorReponer {
     RouterOutlet,
     RouterLink,
     MatIconModule,
-    MatButtonModule,
-    Ingredconsumglobalcomponent,
-    Ingredconsumdateglobalcomponent
+    MatButtonModule
   ],
   templateUrl: './dashboardcomponent.html',
+  styleUrl: './dashboardcomponent.css'
   styleUrl: './dashboardcomponent.css'
 })
 export class Dashboardcomponent {
 
-  private loginService = inject(Loginservice);
+  // Datos de bienvenida de demostración
+  nombreUsuario = 'Bianzel';
+  nombreFamilia = 'Familia Torres';
 
-  // Usuario que inició sesión
-  get nombreUsuario(): string {
-    return this.loginService.getUsername() || 'Usuario';
-  }
-
-  // Indicadores principales (datos de demostración)
+  // Indicadores principales
   indicadores = [
     {
       titulo: 'Alimentos en inventario',
@@ -82,7 +74,7 @@ export class Dashboardcomponent {
     }
   ];
 
-  // Alimentos que requieren atención (datos de demostración)
+  // Alimentos que requieren atención
   alimentosPorConsumir: AlimentoPorConsumir[] = [
     {
       nombre: 'Leche',
@@ -110,7 +102,7 @@ export class Dashboardcomponent {
     }
   ];
 
-  // Alimentos más consumidos (datos de demostración)
+  // Alimentos más consumidos
   alimentosConsumidos: AlimentoConsumido[] = [
     { nombre: 'Arroz', cantidad: 12, porcentaje: 100 },
     { nombre: 'Huevos', cantidad: 9, porcentaje: 75 },
@@ -119,7 +111,7 @@ export class Dashboardcomponent {
     { nombre: 'Pollo', cantidad: 5, porcentaje: 42 }
   ];
 
-  // Alimentos que necesitan reposición (datos de demostración)
+  // Alimentos que necesitan reposición
   alimentosPorReponer: AlimentoPorReponer[] = [
     {
       nombre: 'Aceite vegetal',
@@ -148,6 +140,6 @@ export class Dashboardcomponent {
   ];
 
   abrirAsistente(): void {
-    // La navegación se realiza mediante el enlace del HTML.
+    // La navegación al asistente se realiza mediante el enlace del HTML.
   }
 }

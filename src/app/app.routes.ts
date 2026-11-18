@@ -23,15 +23,24 @@ import { Csinsertcomponent } from './components/consumptioncomponent/csinsertcom
 
 // Familia
 import { Familycomponent } from './components/familycomponent/familycomponent';
+import { Dashboardcomponent } from './components/dashboardcomponent/dashboardcomponent';
+
+// Familia
 import { Finsertcomponent } from './components/familycomponent/finsertcomponent/finsertcomponent';
 import { Flistcomponent } from './components/familycomponent/flistcomponent/flistcomponent';
 import { Fupdatecomponent } from './components/familycomponent/fupdatecomponent/fupdatecomponent';
 
 // Ingredientes
+// Ingredientes
 import { Ingredientcomponent } from './components/ingredientcomponent/ingredientcomponent';
 import { Iinsertcomponent } from './components/ingredientcomponent/iinsertcomponent/iinsertcomponent';
 import { Ilistcomponent } from './components/ingredientcomponent/ilistcomponent/ilistcomponent';
 import { Iupdatecomponent } from './components/ingredientcomponent/iupdatecomponent/iupdatecomponent';
+
+// Inventario
+import { Itlistcomponent } from './components/itemcomponent/itlistcomponent/itlistcomponent';
+import { Itinsertcomponent } from './components/itemcomponent/itinsertcomponent/itinsertcomponent';
+import { Itupdatecomponent } from './components/itemcomponent/itupdatecomponent/itupdatecomponent';
 
 // Países
 import { Countrycomponent } from './components/countrycomponent/countrycomponent';
@@ -39,36 +48,44 @@ import { Coinsertcomponent } from './components/countrycomponent/coinsertcompone
 import { Colistcomponent } from './components/countrycomponent/colistcomponent/colistcomponent';
 import { Coupdatecomponent } from './components/countrycomponent/coupdatecomponent/coupdatecomponent';
 
-// Usuarios
-import { Usercomponent } from './components/usercomponent/usercomponent';
-import { Ulistcomponent } from './components/usercomponent/ulistcomponent/ulistcomponent';
+// Consumos
+import { Cslistcomponent } from './components/consumptioncomponent/cslistcomponent/cslistcomponent';
+import { Csinsertcomponent } from './components/consumptioncomponent/csinsertcomponent/csinsertcomponent';
 
-// Gestión de roles
+// Roles
 import { Rlistcomponent } from './components/rolecomponent/rlistcomponent/rlistcomponent';
 import { Rinsertcomponent } from './components/rolecomponent/rinsertcomponent/rinsertcomponent';
 import { Rupdatecomponent } from './components/rolecomponent/rupdatecomponent/rupdatecomponent';
 
-// Inicio de sesión
+// Autenticación
 import { Logincomponent } from './components/logincomponent/logincomponent';
-import { Csupdatecomponent } from './components/consumptioncomponent/csupdatecomponent/csupdatecomponent';
+import { Registrocomponent } from './components/registrocomponent/registrocomponent';
 
 export const routes: Routes = [
+
+  // Login
   {
     path: 'login',
-    component: Logincomponent,
+    component: Logincomponent
   },
 
-  // Registro público
+  // Registro
   {
-    path: '',
-    component: Homecomponent,
+    path: 'registro',
+    component: Registrocomponent
   },
 
-  // Dashboard
+  // Dashboard principal
   {
     path: 'dashboard',
-    component: Dashboardcomponent,
-    canActivate: [authGuard]
+    component: Dashboardcomponent
+  },
+
+  // Página inicial: redirige al login
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
 
   // Inventario
@@ -97,6 +114,8 @@ export const routes: Routes = [
       },
     ],
   },
+
+  // Recetas
   {
     path: 'recetas',
     component: Recipecomponent,
@@ -122,7 +141,7 @@ export const routes: Routes = [
     ],
   },
 
-  // Consumos
+  // Consumo
   {
     path: 'consumo',
     component: Consumptioncomponent,
@@ -148,6 +167,8 @@ export const routes: Routes = [
       },
     ],
   },
+
+  // Familia
 
   // Familia
   {
@@ -177,6 +198,8 @@ export const routes: Routes = [
   },
 
   // Ingredientes
+
+  // Ingredientes
   {
     path: 'ingrediente',
     component: Ingredientcomponent,
@@ -202,6 +225,8 @@ export const routes: Routes = [
       },
     ],
   },
+
+  // Países
 
   // Países
   {
@@ -230,26 +255,7 @@ export const routes: Routes = [
     ],
   },
 
-  // Usuarios: acceso administrativo
-  {
-    path: 'usuarios',
-    component: Usercomponent,
-    canActivate: [authGuard, roleGuard],
-    data: { roles: ['ADMIN'] },
-    children: [
-      {
-        path: '',
-        redirectTo: 'listar',
-        pathMatch: 'full'
-      },
-      {
-        path: 'listar',
-        component: Ulistcomponent
-      }
-    ]
-  },
-
-  // Roles: acceso administrativo
+  // Roles
   {
     path: 'roles',
     component: Rlistcomponent,
@@ -264,8 +270,16 @@ export const routes: Routes = [
   },
 
   // Asistente IA
+
+  // Asistente IA
   {
     path: 'chatia',
-    component: Chatiacomponent,
+    component: Chatiacomponent
   },
+
+  // Cualquier ruta desconocida vuelve al login
+  {
+    path: '**',
+    redirectTo: 'login'
+  }
 ];

@@ -1,5 +1,7 @@
 
 <!-- Menú principal -->
+
+<!-- Menú principal -->
 <app-menuadmincomponent></app-menuadmincomponent>
 
 <!-- Contenido del dashboard -->
@@ -7,8 +9,8 @@
 
   <!-- Bienvenida -->
   <section class="bienvenida">
-    <h1>¡Hola, {{ nombreUsuario }}!</h1>
-    <p>Bienvenido a MikhuApp. Aquí tienes el resumen de tu despensa.</p>
+    <h1>Hola, {{ nombreUsuario }}</h1>
+    <p>Así está la despensa de la {{ nombreFamilia }} hoy</p>
   </section>
 
   <!-- Indicadores principales -->
@@ -39,7 +41,6 @@
 
       <div class="panel-titulo">
         <h2>Consume primero</h2>
-
         <a routerLink="/items/listar" class="enlace-panel">
           Ver inventario
           <mat-icon>arrow_forward</mat-icon>
@@ -68,7 +69,6 @@
               <mat-icon>
                 {{ alimento.estado === 'Vencido' ? 'error_outline' : 'schedule' }}
               </mat-icon>
-
               {{ alimento.estado }}
             </span>
 
@@ -133,7 +133,6 @@
 
           <div class="reponer-detalle">
             <span>Nivel</span>
-
             <strong>
               {{ alimento.cantidadActual }} de
               {{ alimento.cantidadMinima }} mínimo
@@ -153,11 +152,6 @@
     </div>
 
   </section>
-
-  <!--Reporte Top 5 Alimentos mas consumidos a nivel global -->
-  <app-ingredconsumglobalcomponent></app-ingredconsumglobalcomponent>
-  <!--Reporte Top 5 Alimentos mas consumidos a nivel global por fecha -->
-  <app-ingredconsumdateglobalcomponent></app-ingredconsumdateglobalcomponent>
 
   <!-- Acceso al asistente IA -->
   <section class="asistente-banner">
@@ -182,3 +176,4 @@
 
 <!-- Espacio para las rutas hijas existentes -->
 <router-outlet></router-outlet>
+
