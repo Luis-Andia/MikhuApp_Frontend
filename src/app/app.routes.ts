@@ -18,7 +18,7 @@ import { Itupdatecomponent } from './components/itemcomponent/itupdatecomponent/
 
 // Recetas
 import { Recipecomponent } from './components/recipecomponent/recipecomponent';
-import { Rlistcomponent as Recipecatalogocomponent } from './components/recipecomponent/rlistcomponent/rlistcomponent';
+import { Rlistcomponent as Recipecatalogocomponent, Rlistcomponent } from './components/recipecomponent/rlistcomponent/rlistcomponent';
 import { Reinsertcomponent } from './components/recipecomponent/reinsertcomponent/reinsertcomponent';
 import { Relistcomponent } from './components/recipecomponent/relistcomponent/relistcomponent';
 import { Reupdatecomponent } from './components/recipecomponent/reupdatecomponent/reupdatecomponent';
@@ -50,12 +50,12 @@ import { Coupdatecomponent } from './components/countrycomponent/coupdatecompone
 // Usuarios
 import { Usercomponent } from './components/usercomponent/usercomponent';
 import { Ulistcomponent } from './components/usercomponent/ulistcomponent/ulistcomponent';
-import { Uinsertcomponent } from './components/usercomponent/uinsertcomponent/uinsertcomponent';
 
 // Roles
-import { Rlistcomponent as Rolelistcomponent } from './components/rolecomponent/rlistcomponent/rlistcomponent';
-import { Rinsertcomponent } from './components/rolecomponent/rinsertcomponent/rinsertcomponent';
-import { Rupdatecomponent } from './components/rolecomponent/rupdatecomponent/rupdatecomponent';
+import { Rlistcomponent as Rolelistcomponent } from './components/rolcomponent/rlistcomponent/rlistcomponent';
+import { Rinsertcomponent } from './components/rolcomponent/rinsertcomponent/rinsertcomponent';
+import { Rupdatecomponent } from './components/rolcomponent/rupdatecomponent/rupdatecomponent';
+import { Rolcomponent } from './components/rolcomponent/rolcomponent';
 
 
 // Consumos
@@ -256,10 +256,6 @@ export const routes: Routes = [
       {
         path: 'listar',
         component: Ulistcomponent
-      },
-      {
-        path: 'insertar',
-        component: Uinsertcomponent
       }
     ]
   },
@@ -267,17 +263,27 @@ export const routes: Routes = [
   // Roles
   {
     path: 'roles',
-    component: Rolelistcomponent
+    component: Rolcomponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'listar',
+        pathMatch: 'full'
+      },
+      {
+        path: 'registrar',
+        component: Rinsertcomponent
+      },
+      {
+        path:'listar',
+        component:Rolelistcomponent
+      },
+      {
+        path: 'editar/:id',
+        component: Rupdatecomponent
+      },
+    ]
   },
-  {
-    path: 'roles/registrar',
-    component: Rinsertcomponent
-  },
-  {
-    path: 'roles/editar/:id',
-    component: Rupdatecomponent
-  },
-
   // Asistente IA
   {
     path: 'chatia',

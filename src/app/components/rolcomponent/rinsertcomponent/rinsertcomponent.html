@@ -1,1 +1,59 @@
-<p>rinsertcomponent works!</p>
+
+<div class="form-container">
+  <div class="form-card">
+    <h2>Registrar nuevo rol</h2>
+    <p>Completa los datos para asignar un rol a un usuario.</p>
+
+    <form [formGroup]="formulario" (ngSubmit)="registrarRol()">
+
+      <div class="form-group">
+        <label for="rol">Nombre del rol</label>
+        <input
+          id="rol"
+          type="text"
+          formControlName="rol"
+          placeholder="Ejemplo: ROLE_ADMIN"
+        />
+
+        <small *ngIf="formulario.get('rol').touched &&
+                      formulario.get('rol').invalid">
+          El nombre del rol es obligatorio y admite máximo 30 caracteres.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="idUser">ID del usuario</label>
+        <input
+          id="idUser"
+          type="number"
+          formControlName="idUser"
+          placeholder="Ejemplo: 1"
+        />
+
+        <small *ngIf="formulario.get('idUser').touched &&
+                      formulario.get('idUser').invalid">
+          Ingresa un ID de usuario válido.
+        </small>
+      </div>
+
+      <div class="success-message" *ngIf="mensaje">
+        {{ mensaje }}
+      </div>
+
+      <div class="error-message" *ngIf="error">
+        {{ error }}
+      </div>
+
+      <div class="buttons">
+        <button type="button" class="cancel" (click)="cancelar()">
+          Cancelar
+        </button>
+
+        <button type="submit" [disabled]="guardando">
+          {{ guardando ? 'Registrando...' : 'Registrar rol' }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

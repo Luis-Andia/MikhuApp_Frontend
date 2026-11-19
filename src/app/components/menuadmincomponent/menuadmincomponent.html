@@ -1,130 +1,79 @@
-
 <header class="container">
   <mat-toolbar class="menu-toolbar">
-
-    <!-- Logo -->
     <a class="brand" routerLink="/dashboard" aria-label="MikhuApp - Inicio">
-      <span class="brand-logo">
-        <mat-icon>eco</mat-icon>
-      </span>
+      <span class="brand-logo"><mat-icon>eco</mat-icon></span>
       <span class="brand-name">MikhuApp</span>
     </a>
 
-    <!-- Navegación principal -->
-    <nav class="nav">
+    <button mat-icon-button routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" aria-label="Inicio">
+      <mat-icon>home</mat-icon>
+    </button>
 
-      <a
-        mat-button
-        class="nav-link"
-        routerLink="/dashboard"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        Inicio
-      </a>
+    <a mat-button class="nav-link" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
 
-      <!-- Inventario -->
-      <button
-        mat-button
-        class="nav-link"
-        [matMenuTriggerFor]="inventariomenu"
-      >
-        Inventario
-        <mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon>
-      </button>
+    <!--Pais [solo para el ADMIN]-->
+    <button mat-button class="nav-link" [matMenuTriggerFor]="paismenu">Paises<mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #paismenu="matMenu">
+      <button mat-menu-item routerLink="/pais/insertar"><mat-icon>add</mat-icon>Agregar</button>
+      <button mat-menu-item routerLink="/pais/listar"><mat-icon>inventory_2</mat-icon>Listar</button>
+    </mat-menu>
 
-      <mat-menu #inventariomenu="matMenu">
-        <button mat-menu-item routerLink="/items/insertar">
-          <mat-icon>add</mat-icon>
-          Agregar alimento
-        </button>
+    <!-- Familia -->
+    <button mat-button class="nav-link" [matMenuTriggerFor]="familiamenu">Familia <mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #familiamenu="matMenu">
+      <button mat-menu-item routerLink="/familia/insertar"><mat-icon>add</mat-icon>Crear familia</button>
+      <button mat-menu-item routerLink="/familia/listar"><mat-icon>groups</mat-icon>Ver familia</button>
+    </mat-menu>
 
-        <button mat-menu-item routerLink="/items/listar">
-          <mat-icon>inventory_2</mat-icon>
-          Listar alimentos
-        </button>
+    <!-- Ingrediente -->
+    <button mat-button class="nav-link" [matMenuTriggerFor]="ingredientemenu">Ingrediente <mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #ingredientemenu="matMenu">
+      <button mat-menu-item routerLink="/ingrediente/insertar"><mat-icon>add</mat-icon>Agregar</button>
+      <button mat-menu-item routerLink="/ingrediente/listar"><mat-icon>groups</mat-icon>Listar</button>
+    </mat-menu>
 
-        <button mat-menu-item routerLink="/ingrediente">
-          <mat-icon>nutrition</mat-icon>
-          Ingredientes
-        </button>
+    <!-- Inventario -->
+    <button mat-button class="nav-link" [matMenuTriggerFor]="inventariomenu">Inventario <mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #inventariomenu="matMenu">
+      <button mat-menu-item routerLink="/items/insertar"><mat-icon>add</mat-icon>Agregar alimento</button>
+      <button mat-menu-item routerLink="/items/listar"><mat-icon>inventory_2</mat-icon>Listar alimentos</button>
+    </mat-menu>
+    
+    <!--Recetas-->
+    <button mat-button class="nav-link" [matMenuTriggerFor]="recetamenu">Recetas <mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #recetamenu="matMenu">
+      <button mat-menu-item routerLink="/recetas"><mat-icon>menu_book</mat-icon>Catálogo</button> <!--Para el usuario -->
+      <button mat-menu-item routerLink="/recetas/insertar"><mat-icon>add</mat-icon>Agregar receta</button>
+      <button mat-menu-item routerLink="/recetas/listar"><mat-icon>list</mat-icon>Listar recetas</button>  <!--Para el admin -->
+    </mat-menu>
 
-        <button mat-menu-item routerLink="/pais">
-          <mat-icon>public</mat-icon>
-          Países
-        </button>
-      </mat-menu>
+    <!-- Consumo -->
+    <button mat-button class="nav-link" [matMenuTriggerFor]="consumomenu">Consumo <mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #consumomenu="matMenu">
+      <button mat-menu-item routerLink="/consumo/insertar"><mat-icon>add</mat-icon>Registrar consumo</button>
+      <button mat-menu-item routerLink="/consumo/listar"><mat-icon>receipt_long</mat-icon>Historial</button>
+    </mat-menu>
 
-      <!-- Recetas -->
-      <button
-        mat-button
-        class="nav-link"
-        [matMenuTriggerFor]="recetamenu"
-      >
-        Recetas
-        <mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon>
-      </button>
+    <!-- Rol -->
+    <button mat-button class="nav-link" [matMenuTriggerFor]="rolmenu">Roles <mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #rolmenu="matMenu">
+      <button mat-menu-item routerLink="/roles/registrar"><mat-icon>add</mat-icon>Registrar rol</button>
+      <button mat-menu-item routerLink="/roles/listar"><mat-icon>receipt_long</mat-icon>Listar roles</button>
+    </mat-menu>
 
-      <mat-menu #recetamenu="matMenu">
-        <button mat-menu-item routerLink="/recetas">
-          <mat-icon>menu_book</mat-icon>
-          Catálogo
-        </button>
-
-        <button mat-menu-item routerLink="/recetas/insertar">
-          <mat-icon>add</mat-icon>
-          Agregar receta
-        </button>
-
-        <button mat-menu-item routerLink="/recetas/listar">
-          <mat-icon>list</mat-icon>
-          Listar recetas
-        </button>
-      </mat-menu>
-
-      <!-- Consumo -->
-      <button
-        mat-button
-        class="nav-link"
-        [matMenuTriggerFor]="consumomenu"
-      >
-        Consumo
-        <mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon>
-      </button>
-
-      <mat-menu #consumomenu="matMenu">
-        <button mat-menu-item routerLink="/consumo/insertar">
-          <mat-icon>add</mat-icon>
-          Registrar consumo
-        </button>
-
-        <button mat-menu-item routerLink="/consumo/listar">
-          <mat-icon>receipt_long</mat-icon>
-          Historial
-        </button>
-      </mat-menu>
-
-      <!-- Familia -->
-      <button
-        mat-button
-        class="nav-link"
-        [matMenuTriggerFor]="familiamenu"
-      >
-        Familia
-        <mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon>
-      </button>
-
-      <mat-menu #familiamenu="matMenu">
-        <button mat-menu-item routerLink="/familia/insertar">
-          <mat-icon>person_add</mat-icon>
-          Agregar integrante
-        </button>
-
-        <button mat-menu-item routerLink="/familia/listar">
-          <mat-icon>groups</mat-icon>
-          Ver familia
-        </button>
-      </mat-menu>
+    <!-- Usuarios [solo para el ADMIN] -->
+    <button mat-button class="nav-link" [matMenuTriggerFor]="usuariomenu">Usuarios <mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #usuariomenu="matMenu">
+      <button mat-menu-item routerLink="/usuarios/listar"><mat-icon>receipt_long</mat-icon>Listar roles</button>
+    </mat-menu>
 
             <button matButton class="nav-link" [matMenuTriggerFor]="usermenu" routerLink="/user">Usuarios</button>  
             <mat-menu #usermenu="matMenu">
@@ -135,23 +84,17 @@
 
     <span class="spacer"></span>
 
-    <!-- Asistente IA -->
     <a class="ia-button" routerLink="/chatia">
       <mat-icon>auto_awesome</mat-icon>
       <span>Asistente IA</span>
     </a>
 
-    <!-- Idioma -->
     <div class="language-selector" aria-label="Idioma seleccionado: español">
       <span class="language-active">ES</span>
       <span class="language-divider">|</span>
       <span class="language-option">EN</span>
     </div>
 
-    <!-- Perfil -->
-    <div class="user-avatar" title="Perfil de usuario">
-      BT
-    </div>
-
+    <div class="user-avatar" title="Perfil de usuario">BT</div>
   </mat-toolbar>
 </header>
