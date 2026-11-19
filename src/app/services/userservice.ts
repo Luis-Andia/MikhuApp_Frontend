@@ -36,4 +36,5 @@ export class Userservice {
         const url = `${this.apiURL}/username/${username}`;
         return this.http.get<userlistDTO[]>(url)
     }
+
 }
