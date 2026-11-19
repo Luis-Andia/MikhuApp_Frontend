@@ -1,17 +1,36 @@
 import { Routes } from '@angular/router';
 
+// Autenticación
+import { Logincomponent } from './components/logincomponent/logincomponent';
+import { Registrocomponent } from './components/registrocomponent/registrocomponent';
+
+// Dashboard
+import { Dashboardcomponent } from './components/dashboardcomponent/dashboardcomponent';
+
+// Chat IA
 import { Chatiacomponent } from './components/chatiacomponent/chatiacomponent';
+
+// Inventario
 import { Itemcomponent } from './components/itemcomponent/itemcomponent';
+import { Itinsertcomponent } from './components/itemcomponent/itinsertcomponent/itinsertcomponent';
+import { Itlistcomponent } from './components/itemcomponent/itlistcomponent/itlistcomponent';
+import { Itupdatecomponent } from './components/itemcomponent/itupdatecomponent/itupdatecomponent';
+
+// Recetas
 import { Recipecomponent } from './components/recipecomponent/recipecomponent';
 import { Rlistcomponent as Recipecatalogocomponent } from './components/recipecomponent/rlistcomponent/rlistcomponent';
 import { Reinsertcomponent } from './components/recipecomponent/reinsertcomponent/reinsertcomponent';
 import { Relistcomponent } from './components/recipecomponent/relistcomponent/relistcomponent';
 import { Reupdatecomponent } from './components/recipecomponent/reupdatecomponent/reupdatecomponent';
+import { Recipeingredientcomponent } from './components/recipecomponent/recipeingredientcomponent/recipeingredientcomponent';
+
+// Consumos
 import { Consumptioncomponent } from './components/consumptioncomponent/consumptioncomponent';
-import { Familycomponent } from './components/familycomponent/familycomponent';
-import { Dashboardcomponent } from './components/dashboardcomponent/dashboardcomponent';
+import { Cslistcomponent } from './components/consumptioncomponent/cslistcomponent/cslistcomponent';
+import { Csinsertcomponent } from './components/consumptioncomponent/csinsertcomponent/csinsertcomponent';
 
 // Familia
+import { Familycomponent } from './components/familycomponent/familycomponent';
 import { Finsertcomponent } from './components/familycomponent/finsertcomponent/finsertcomponent';
 import { Flistcomponent } from './components/familycomponent/flistcomponent/flistcomponent';
 import { Fupdatecomponent } from './components/familycomponent/fupdatecomponent/fupdatecomponent';
@@ -22,17 +41,22 @@ import { Iinsertcomponent } from './components/ingredientcomponent/iinsertcompon
 import { Ilistcomponent } from './components/ingredientcomponent/ilistcomponent/ilistcomponent';
 import { Iupdatecomponent } from './components/ingredientcomponent/iupdatecomponent/iupdatecomponent';
 
-// Inventario
-import { Itlistcomponent } from './components/itemcomponent/itlistcomponent/itlistcomponent';
-import { Itinsertcomponent } from './components/itemcomponent/itinsertcomponent/itinsertcomponent';
-import { Itupdatecomponent } from './components/itemcomponent/itupdatecomponent/itupdatecomponent';
-
 // Países
 import { Countrycomponent } from './components/countrycomponent/countrycomponent';
 import { Coinsertcomponent } from './components/countrycomponent/coinsertcomponent/coinsertcomponent';
 import { Colistcomponent } from './components/countrycomponent/colistcomponent/colistcomponent';
 import { Coupdatecomponent } from './components/countrycomponent/coupdatecomponent/coupdatecomponent';
-import { Homecomponent } from './components/homecomponent/homecomponent';
+
+// Usuarios
+import { Usercomponent } from './components/usercomponent/usercomponent';
+import { Ulistcomponent } from './components/usercomponent/ulistcomponent/ulistcomponent';
+import { Uinsertcomponent } from './components/usercomponent/uinsertcomponent/uinsertcomponent';
+
+// Roles
+import { Rlistcomponent as Rolelistcomponent } from './components/rolecomponent/rlistcomponent/rlistcomponent';
+import { Rinsertcomponent } from './components/rolecomponent/rinsertcomponent/rinsertcomponent';
+import { Rupdatecomponent } from './components/rolecomponent/rupdatecomponent/rupdatecomponent';
+
 
 // Consumos
 import { Cslistcomponent } from './components/consumptioncomponent/cslistcomponent/cslistcomponent';
@@ -49,29 +73,25 @@ import { Registrocomponent } from './components/registrocomponent/registrocompon
 
 export const routes: Routes = [
 
-  // Login
+  // Pantalla principal: Login
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
   {
     path: 'login',
     component: Logincomponent
   },
-
-  // Registro
   {
     path: 'registro',
     component: Registrocomponent
   },
 
-  // Dashboard principal
+  // Dashboard
   {
     path: 'dashboard',
     component: Dashboardcomponent
-  },
-
-  // Página inicial: redirige al login
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
   },
 
   // Inventario
@@ -82,21 +102,21 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full',
+        pathMatch: 'full'
       },
       {
         path: 'insertar',
-        component: Itinsertcomponent,
+        component: Itinsertcomponent
       },
       {
         path: 'listar',
-        component: Itlistcomponent,
+        component: Itlistcomponent
       },
       {
         path: 'editar/:id',
-        component: Itupdatecomponent,
-      },
-    ],
+        component: Itupdatecomponent
+      }
+    ]
   },
 
   // Recetas
@@ -106,24 +126,28 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: Recipecatalogocomponent,
+        component: Recipecatalogocomponent
       },
       {
         path: 'insertar',
-        component: Reinsertcomponent,
+        component: Reinsertcomponent
       },
       {
         path: 'listar',
-        component: Relistcomponent,
+        component: Relistcomponent
       },
       {
         path: 'actualizar/:id',
-        component: Reupdatecomponent,
+        component: Reupdatecomponent
       },
-    ],
+      {
+        path: 'ingredientes/:idRecipe',
+        component: Recipeingredientcomponent
+      }
+    ]
   },
 
-  // Consumo
+  // Consumos
   {
     path: 'consumo',
     component: Consumptioncomponent,
@@ -131,21 +155,17 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full',
+        pathMatch: 'full'
       },
       {
         path: 'listar',
-        component: Cslistcomponent,
+        component: Cslistcomponent
       },
       {
         path: 'insertar',
-        component: Csinsertcomponent,
-      },
-      {
-        path: 'editar/:id',
-        component: Csupdatecomponent,
-      },
-    ],
+        component: Csinsertcomponent
+      }
+    ]
   },
 
   // Familia
@@ -156,21 +176,21 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full',
+        pathMatch: 'full'
       },
       {
         path: 'insertar',
-        component: Finsertcomponent,
+        component: Finsertcomponent
       },
       {
         path: 'listar',
-        component: Flistcomponent,
+        component: Flistcomponent
       },
       {
         path: 'actualizar/:id',
-        component: Fupdatecomponent,
-      },
-    ],
+        component: Fupdatecomponent
+      }
+    ]
   },
 
   // Ingredientes
@@ -181,21 +201,21 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full',
+        pathMatch: 'full'
       },
       {
         path: 'insertar',
-        component: Iinsertcomponent,
+        component: Iinsertcomponent
       },
       {
         path: 'listar',
-        component: Ilistcomponent,
+        component: Ilistcomponent
       },
       {
         path: 'actualizar/:id',
-        component: Iupdatecomponent,
-      },
-    ],
+        component: Iupdatecomponent
+      }
+    ]
   },
 
   // Países
@@ -206,35 +226,56 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full',
+        pathMatch: 'full'
       },
       {
         path: 'insertar',
-        component: Coinsertcomponent,
+        component: Coinsertcomponent
       },
       {
         path: 'listar',
-        component: Colistcomponent,
+        component: Colistcomponent
       },
       {
         path: 'actualizar/:id',
-        component: Coupdatecomponent,
+        component: Coupdatecomponent
+      }
+    ]
+  },
+
+  // Usuarios
+  {
+    path: 'usuarios',
+    component: Usercomponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'listar',
+        pathMatch: 'full'
       },
-    ],
+      {
+        path: 'listar',
+        component: Ulistcomponent
+      },
+      {
+        path: 'insertar',
+        component: Uinsertcomponent
+      }
+    ]
   },
 
   // Roles
   {
     path: 'roles',
-    component: Rlistcomponent,
+    component: Rolelistcomponent
   },
   {
     path: 'roles/registrar',
-    component: Rinsertcomponent,
+    component: Rinsertcomponent
   },
   {
     path: 'roles/editar/:id',
-    component: Rupdatecomponent,
+    component: Rupdatecomponent
   },
 
   // Asistente IA
@@ -243,9 +284,10 @@ export const routes: Routes = [
     component: Chatiacomponent
   },
 
-  // Cualquier ruta desconocida vuelve al login
+  // Si la ruta no existe, regresar al Login
   {
     path: '**',
     redirectTo: 'login'
   }
+
 ];

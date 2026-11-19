@@ -1,9 +1,15 @@
+
 <!-- Encabezado con franja verde -->
 <header class="encabezado">
   <div class="encabezado-inner">
-    <p class="encabezado-etiqueta"><span class="punto"></span>Catálogo gastronómico</p>
+    <p class="encabezado-etiqueta">
+      <span class="punto"></span>
+      Catálogo gastronómico
+    </p>
     <h1>Recetas</h1>
-    <p class="encabezado-desc">Descubre platos para aprovechar tus ingredientes</p>
+    <p class="encabezado-desc">
+      Descubre platos para aprovechar tus ingredientes
+    </p>
   </div>
 </header>
 
@@ -11,46 +17,76 @@
 
   <!-- Filtros -->
   <section class="filtros" aria-label="Filtros de recetas">
+
     <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
       <mat-icon matPrefix>search</mat-icon>
-      <input matInput type="search" [(ngModel)]="busqueda" (keyup.enter)="aplicarFiltros()"
-             placeholder="Buscar receta por nombre" aria-label="Buscar receta por nombre">
+      <input
+        matInput
+        type="search"
+        [(ngModel)]="busqueda"
+        (keyup.enter)="aplicarFiltros()"
+        placeholder="Buscar receta por nombre"
+        aria-label="Buscar receta por nombre">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
       <mat-icon matPrefix>public</mat-icon>
-      <mat-select [(ngModel)]="paisSeleccionado" panelClass="mikhu-select-panel"
-                  aria-label="Filtrar por país">
+      <mat-select
+        [(ngModel)]="paisSeleccionado"
+        panelClass="mikhu-select-panel"
+        aria-label="Filtrar por país">
+
         <mat-option value="">Todos los países</mat-option>
+
         @for (p of paises; track p.idCountry) {
-          <mat-option [value]="p.nomCountry">{{ p.nomCountry }}</mat-option>
+          <mat-option [value]="p.nomCountry">
+            {{ p.nomCountry }}
+          </mat-option>
         }
+
       </mat-select>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
       <mat-icon matPrefix>nutrition</mat-icon>
-      <input matInput type="search" [(ngModel)]="ingredienteBuscado" (keyup.enter)="aplicarFiltros()"
-             placeholder="Contiene el ingrediente..." aria-label="Filtrar por ingrediente">
+      <input
+        matInput
+        type="search"
+        [(ngModel)]="ingredienteBuscado"
+        (keyup.enter)="aplicarFiltros()"
+        placeholder="Contiene el ingrediente..."
+        aria-label="Filtrar por ingrediente">
     </mat-form-field>
 
-    <button matButton="filled" type="button" class="btn-buscar" (click)="aplicarFiltros()">
+    <button
+      matButton="filled"
+      type="button"
+      class="btn-buscar"
+      (click)="aplicarFiltros()">
+
       <mat-icon>search</mat-icon>
       Buscar
     </button>
+
   </section>
 
   <!-- Listado de tarjetas -->
   @if (dataSource.length > 0) {
+
     <section class="grid-recetas">
+
       @for (r of dataSource; track r.idRecipe; let i = $index) {
+
         <mat-card class="receta-card" appearance="outlined">
 
           <mat-card-header class="receta-header">
-            <mat-card-title class="receta-titulo">{{ r.nomRecipe }}</mat-card-title>
+            <mat-card-title class="receta-titulo">
+              {{ r.nomRecipe }}
+            </mat-card-title>
           </mat-card-header>
 
           <mat-card-content class="receta-datos">
+
             <span class="dato-kcal">
               <mat-icon>local_fire_department</mat-icon>
               {{ r.calories }} kcal
@@ -59,30 +95,55 @@
             <span class="dato-dificultad">
               Dificultad: {{ r.difficulty }}
             </span>
+
           </mat-card-content>
 
           <mat-card-actions class="receta-acciones">
-            <a matButton class="btn-detalle" [routerLink]="['']"
-               [attr.aria-label]="'Ver detalle de ' + r.nomRecipe">
+
+            <a
+              matButton
+              class="btn-detalle"
+              [routerLink]="['/recetas/ingredientes', r.idRecipe]"
+              [attr.aria-label]="'Ver detalle de ' + r.nomRecipe">
+
               Ver detalle
               <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+
             </a>
+
           </mat-card-actions>
 
         </mat-card>
+
       }
+
     </section>
 
   } @else {
+
     <p class="vacio">
+
       <mat-icon>search_off</mat-icon>
+
       @if (hayFiltros) {
+
         No encontramos recetas con esos filtros.
-        <button type="button" class="btn-limpiar" (click)="limpiarFiltros()">Limpiar filtros</button>
+
+        <button
+          type="button"
+          class="btn-limpiar"
+          (click)="limpiarFiltros()">
+          Limpiar filtros
+        </button>
+
       } @else {
+
         No hay registros disponibles
+
       }
+
     </p>
+
   }
 
 </main>
