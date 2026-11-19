@@ -1,4 +1,7 @@
-import { Routes } from '@angular/router';
+
+import { Routes, Router } from '@angular/router';
+import { inject } from '@angular/core';
+import { Loginservice } from './services/loginservice';
 
 // Autenticación
 import { Logincomponent } from './components/logincomponent/logincomponent';
@@ -88,16 +91,51 @@ import { Registrocomponent } from './components/registrocomponent/registrocompon
 
 export const routes: Routes = [
 
-  // Pantalla principal: Login
+  // Pantalla principal: verificar sesión
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    redirectTo: () => {
+      const loginService = inject(Loginservice);
+
+      const token = loginService.obtenerToken();
+
+      if (token && !loginService.tokenExpirado()) {
+        return '/dashboard';
+      }
+
+      if (token) {
+        loginService.cerrarSesion();
+      }
+
+      return '/login';
+    }
   },
+
+  // Login: si existe una sesión vigente, ir al dashboard
   {
     path: 'login',
-    component: Logincomponent
+    component: Logincomponent,
+    canActivate: [
+      () => {
+        const loginService = inject(Loginservice);
+        const router = inject(Router);
+
+        const token = loginService.obtenerToken();
+
+        if (token && !loginService.tokenExpirado()) {
+          return router.createUrlTree(['/dashboard']);
+        }
+
+        if (token) {
+          loginService.cerrarSesion();
+        }
+
+        return true;
+      }
+    ]
   },
+
   {
     path: 'registro',
     component: Registrocomponent

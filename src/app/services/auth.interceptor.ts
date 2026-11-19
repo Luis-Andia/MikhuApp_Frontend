@@ -1,32 +1,44 @@
-import { isPlatformBrowser } from '@angular/common';
+
 import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
-import { inject, PLATFORM_ID } from '@angular/core';
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
+  const router = inject(Router);
 
-  const platformId = inject(PLATFORM_ID);
-
-  if (!isPlatformBrowser(platformId)) {
+  // No enviar el token en las peticiones de login.
+  if (req.url.includes('/login')) {
     return next(req);
   }
 
-  const backendUrl = 'http://localhost:8080/';
-  if (!req.url.startsWith(backendUrl)) {
-    return next(req);
+  let token: string | null = null;
+
+  if (typeof window !== 'undefined') {
+    token = window.localStorage.getItem('token');
   }
 
-  if (req.url.endsWith('/login')) {
-    return next(req);
-  }
+  const request = token
+    ? req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+    : req;
 
-  const token = sessionStorage.getItem('token');
-  if (!token) {
-    return next(req);
-  }
+  return next(request).pipe(
+    catchError((error: HttpErrorResponse) => {
+      if (
+        (error.status === 401 || error.status === 403) &&
+        token &&
+        typeof window !== 'undefined'
+      ) {
+        window.localStorage.removeItem('token');
+        window.localStorage.removeItem('username');
+        router.navigate(['/login']);
+      }
 
-  return next(
-    req.clone({
-      setHeaders: { Authorization: `Bearer ${token}` },
+      return throwError(() => error);
     })
   );
 };
