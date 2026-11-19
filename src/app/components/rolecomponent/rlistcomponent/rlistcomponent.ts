@@ -33,7 +33,7 @@ export class Rlistcomponent implements OnInit {
     this.mensaje = '';
     this.cdr.detectChanges();
 
-    this.rS.listarRoles()
+    this.rS.getRoles()
       .pipe(
         finalize(() => {
           this.cargando = false;
@@ -79,7 +79,7 @@ export class Rlistcomponent implements OnInit {
     this.eliminandoId = rol.idRol;
     this.mensaje = '';
 
-    this.rS.eliminarRol(rol.idRol)
+    this.rS.deleteRole(rol.idRol)
       .pipe(
         finalize(() => {
           this.eliminandoId = null;
