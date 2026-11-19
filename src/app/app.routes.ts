@@ -47,6 +47,7 @@ import { Countrycomponent } from './components/countrycomponent/countrycomponent
 import { Coinsertcomponent } from './components/countrycomponent/coinsertcomponent/coinsertcomponent';
 import { Colistcomponent } from './components/countrycomponent/colistcomponent/colistcomponent';
 import { Coupdatecomponent } from './components/countrycomponent/coupdatecomponent/coupdatecomponent';
+import { Homecomponent } from './components/homecomponent/homecomponent';
 
 // Consumos
 import { Cslistcomponent } from './components/consumptioncomponent/cslistcomponent/cslistcomponent';

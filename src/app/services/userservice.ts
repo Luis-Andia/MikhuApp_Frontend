@@ -32,5 +32,10 @@ export class Userservice {
   updateUser(dto: UserinsertDTO): Observable<UserinsertDTO> {
     return this.http.put<UserinsertDTO>(this.apiURL, dto);
   }
+
+  getuserbyusername(username:String):Observable<userlistDTO[]>{
+        const url = `${this.apiURL}/username/${username}`;
+        return this.http.get<userlistDTO[]>(url)
+    }
 }
 
