@@ -34,214 +34,114 @@ import { Coinsertcomponent } from './components/countrycomponent/coinsertcompone
 import { Colistcomponent } from './components/countrycomponent/colistcomponent/colistcomponent';
 import { Coupdatecomponent } from './components/countrycomponent/coupdatecomponent/coupdatecomponent';
 
-// Consumos
-import { Cslistcomponent } from './components/consumptioncomponent/cslistcomponent/cslistcomponent';
-import { Csinsertcomponent } from './components/consumptioncomponent/csinsertcomponent/csinsertcomponent';
-
-// Roles
-import { Rlistcomponent } from './components/rolecomponent/rlistcomponent/rlistcomponent';
-import { Rinsertcomponent } from './components/rolecomponent/rinsertcomponent/rinsertcomponent';
-import { Rupdatecomponent } from './components/rolecomponent/rupdatecomponent/rupdatecomponent';
-
-// Autenticación
-import { Logincomponent } from './components/logincomponent/logincomponent';
-import { Registrocomponent } from './components/registrocomponent/registrocomponent';
-
 export const routes: Routes = [
+    {
+        path:'',
+        component: Homecomponent
+    },
+    {
+        path: 'items',
+        component: Itemcomponent,
+        children:
+        [
+            {
+                path: '',
+                redirectTo: 'listar',
+                pathMatch: 'full'
+            },
+            {
+            path:'insertar',
+            component:Itinsertcomponent
+            },
+            {
+            path:'listar',
+            component:Itlistcomponent
+            },
+        ]
+    },
+    {
+        path:'recetas',
+        component: Recipecomponent
+    },
+    {
+        path:'consumo',
+        component: Consumptioncomponent
+    },
+    {
+        path:'familia',
+        component:Familycomponent,
+        children:
+        [
+            {
+                path: '',
+                redirectTo: 'listar',
+                pathMatch: 'full'
+            },
+            {
+            path:'insertar',
+            component:Finsertcomponent
+            },
+            {
+            path:'listar',
+            component:Flistcomponent
+            },
+            {
+            path:'actualizar/:id',
+            component:Fupdatecomponent
+            }
+        ]
+    },
+    {
+        path:'ingrediente',
+        component:Ingredientcomponent,
+        children:
+        [
+            {
+                path: '',
+                redirectTo: 'listar',
+                pathMatch: 'full'
+            },
+            {
+            path:'insertar',
+            component:Iinsertcomponent
+            },
+            {
+            path:'listar',
+            component:Ilistcomponent
+            },
+            {
+            path:'actualizar/:id',
+            component:Iupdatecomponent
+            }
+        ]
+    },
+    {
+        path:'pais',
+        component:Countrycomponent,
+        children:
+        [
+            {
+                path: '',
+                redirectTo: 'listar',
+                pathMatch: 'full'
+            },
+            {
+            path:'insertar',
+            component:Coinsertcomponent
+            },
+            {
+            path:'listar',
+            component:Colistcomponent
+            },
+            {
+            path:'actualizar/:id',
+            component:Coupdatecomponent
+            }
+        ]
+    },
+    {
+        path:'chatia',
+        component:Chatiacomponent
+    }
 
-  // Login
-  {
-    path: 'login',
-    component: Logincomponent
-  },
-
-  // Registro
-  {
-    path: 'registro',
-    component: Registrocomponent
-  },
-
-  // Dashboard principal
-  {
-    path: 'dashboard',
-    component: Dashboardcomponent
-  },
-
-  // Página inicial: redirige al login
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-
-  // Inventario
-  {
-    path: 'items',
-    component: Itemcomponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'listar',
-        pathMatch: 'full'
-      },
-      {
-        path: 'insertar',
-        component: Itinsertcomponent
-      },
-      {
-        path: 'listar',
-        component: Itlistcomponent
-      },
-      {
-        path: 'editar/:id',
-        component: Itupdatecomponent
-      }
-    ]
-  },
-
-  // Recetas
-  {
-    path: 'recetas',
-    component: Recipecomponent,
-    children: [
-      {
-        path: '',
-        component: Recipecatalogocomponent
-      },
-      {
-        path: 'insertar',
-        component: Reinsertcomponent
-      },
-      {
-        path: 'listar',
-        component: Relistcomponent
-      },
-      {
-        path: 'actualizar/:id',
-        component: Reupdatecomponent
-      }
-    ]
-  },
-
-  // Consumo
-  {
-    path: 'consumo',
-    component: Consumptioncomponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'listar',
-        pathMatch: 'full'
-      },
-      {
-        path: 'listar',
-        component: Cslistcomponent
-      },
-      {
-        path: 'insertar',
-        component: Csinsertcomponent
-      }
-    ]
-  },
-
-  // Familia
-  {
-    path: 'familia',
-    component: Familycomponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'listar',
-        pathMatch: 'full'
-      },
-      {
-        path: 'insertar',
-        component: Finsertcomponent
-      },
-      {
-        path: 'listar',
-        component: Flistcomponent
-      },
-      {
-        path: 'actualizar/:id',
-        component: Fupdatecomponent
-      }
-    ]
-  },
-
-  // Ingredientes
-  {
-    path: 'ingrediente',
-    component: Ingredientcomponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'listar',
-        pathMatch: 'full'
-      },
-      {
-        path: 'insertar',
-        component: Iinsertcomponent
-      },
-      {
-        path: 'listar',
-        component: Ilistcomponent
-      },
-      {
-        path: 'actualizar/:id',
-        component: Iupdatecomponent
-      }
-    ]
-  },
-
-  // Países
-  {
-    path: 'pais',
-    component: Countrycomponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'listar',
-        pathMatch: 'full'
-      },
-      {
-        path: 'insertar',
-        component: Coinsertcomponent
-      },
-      {
-        path: 'listar',
-        component: Colistcomponent
-      },
-      {
-        path: 'actualizar/:id',
-        component: Coupdatecomponent
-      }
-    ]
-  },
-
-  // Roles
-  {
-    path: 'roles',
-    component: Rlistcomponent
-  },
-  {
-    path: 'roles/registrar',
-    component: Rinsertcomponent
-  },
-  {
-    path: 'roles/editar/:id',
-    component: Rupdatecomponent
-  },
-
-  // Asistente IA
-  {
-    path: 'chatia',
-    component: Chatiacomponent
-  },
-
-  // Cualquier ruta desconocida vuelve al login
-  {
-    path: '**',
-    redirectTo: 'login'
-  }
 ];

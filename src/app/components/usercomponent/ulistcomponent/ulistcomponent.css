@@ -1,0 +1,162 @@
+:host {
+  --mikhu-green: #2E7D5B;
+  --mikhu-green-dark: #1F3A33;
+  --mikhu-green-light: #E3F2EA;
+  --mikhu-skyblue: #0D9488;
+  --mikhu-mint: #D3F3E6;
+  --mikhu-mint-soft: #E8FAF1;
+  --mikhu-border: #B7D7C7;
+  --mikhu-ink: #0F2A24;
+  --mikhu-muted: #5F6F69;
+  --mikhu-blue: #1F6485;
+  --mikhu-blue-soft: #E3F0FA;
+  --mikhu-white: #FFFFFF;
+
+  display: block;
+  min-height: 100vh;
+  background: var(--mikhu-white);
+  color: var(--mikhu-green-dark);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ===== Contenedor principal ===== */
+.container {
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.container h2 {
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--mikhu-border);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--mikhu-ink);
+}
+
+/* ===== Tabla Angular Material ===== */
+.mat-mdc-table {
+  width: 100%;
+  overflow-x: auto;
+  border: 2px solid var(--mikhu-border);
+  border-radius: 16px;
+  background: var(--mikhu-white);
+  box-shadow: 0 4px 16px rgba(31, 58, 51, 0.08);
+
+  --mat-table-background-color: var(--mikhu-white);
+  --mat-table-header-headline-color: var(--mikhu-white);
+  --mat-table-row-item-label-text-color: var(--mikhu-green-dark);
+}
+
+/* Encabezado de la tabla */
+.mat-mdc-header-row {
+  height: 52px;
+  background: var(--mikhu-skyblue);
+}
+
+.mat-mdc-header-cell {
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--mikhu-white);
+  border-bottom-color: var(--mikhu-border);
+  white-space: nowrap;
+}
+
+/* Filas y celdas */
+.mat-mdc-row {
+  height: 56px;
+  transition: background-color 0.15s ease;
+}
+
+.mat-mdc-row:nth-child(even) {
+  background: var(--mikhu-mint-soft);
+}
+
+.mat-mdc-row:hover {
+  background: var(--mikhu-green-light);
+}
+
+.mat-mdc-cell {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: var(--mikhu-green-dark);
+  border-bottom-color: var(--mikhu-border);
+  white-space: nowrap;
+}
+
+/* Columnas específicas (ID, ID Rol, ID Familia, ID Pais) */
+.mat-column-C1,
+.mat-column-C2,
+.mat-column-C6,
+.mat-column-C7 {
+  text-align: center;
+  font-weight: 500;
+  color: var(--mikhu-muted);
+}
+
+.mat-column-C1 {
+  font-weight: 700;
+  color: var(--mikhu-ink);
+}
+
+/* Columna Eliminar */
+.mat-column-C8 {
+  text-align: center;
+  width: 96px;
+}
+
+.mat-column-C8 button {
+  border-radius: 10px;
+  color: var(--mikhu-blue);
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.mat-column-C8 button:hover {
+  background: rgba(180, 35, 24, 0.12);
+  color: #B42318;
+}
+
+.mat-column-C8 mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+/* ===== Estado vacío ===== */
+.container > div:last-child > p {
+  margin: 0;
+  padding: 32px 24px;
+  border: 2px dashed var(--mikhu-border);
+  border-radius: 16px;
+  background: var(--mikhu-mint-soft);
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--mikhu-muted);
+}
+
+/* ===== Accesibilidad y responsive ===== */
+button:focus-visible {
+  outline: 2px solid var(--mikhu-green-dark);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .container h2 {
+    font-size: 22px;
+  }
+
+  .container > div:last-child {
+    overflow-x: auto;
+  }
+}
