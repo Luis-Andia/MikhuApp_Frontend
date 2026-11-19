@@ -1,0 +1,285 @@
+
+<main class="pagina-ingredientes">
+
+  <!-- Encabezado de la receta -->
+  <section class="encabezado-receta">
+
+    <button class="btn-volver" type="button" (click)="volverARecetas()">
+      <span class="flecha">←</span>
+      Volver a recetas
+    </button>
+
+    @if (receta) {
+      <div class="titulo-contenido">
+        <h1>Ingredientes de: {{ receta.nomRecipe }}</h1>
+
+        <span class="etiqueta-receta">
+          ⚑ {{ paisNombre || 'Cargando país...' }}
+          · {{ receta.calories }} kcal
+          · Nivel {{ receta.difficulty }}
+        </span>
+      </div>
+
+      <p class="descripcion">
+        Configura y administra los ingredientes requeridos para la preparación
+        de esta receta del catálogo base.
+      </p>
+    } @else {
+      <h1>Cargando información de la receta...</h1>
+    }
+
+  </section>
+
+  <!-- Asignar ingrediente -->
+  <section class="tarjeta asignar-card">
+
+    <div class="titulo-seccion">
+      <h2>Asignar ingrediente</h2>
+      <p>Selecciona el ingrediente y especifica la cantidad necesaria para la receta.</p>
+    </div>
+
+    <div class="formulario-asignacion">
+
+      <div class="campo campo-ingrediente">
+        <div class="campo-etiqueta">
+          <label for="ingrediente">Ingrediente</label>
+          <span>Catálogo general</span>
+        </div>
+
+        <select
+          id="ingrediente"
+          [(ngModel)]="ingredienteSeleccionado">
+
+          <option [ngValue]="null">Seleccionar ingrediente...</option>
+
+          @for (ingrediente of ingredientesDisponibles; track ingrediente.idIngredient) {
+            <option [ngValue]="ingrediente.idIngredient">
+              {{ ingrediente.nomIngredient }}
+            </option>
+          }
+
+        </select>
+      </div>
+
+      <div class="campo campo-cantidad">
+        <label for="cantidad">Cantidad solicitada</label>
+
+        <input
+          id="cantidad"
+          type="number"
+          min="1"
+          step="1"
+          [(ngModel)]="cantidadSolicitada">
+      </div>
+
+      <button
+        type="button"
+        class="btn-agregar"
+        (click)="agregarIngrediente()"
+        [disabled]="guardando">
+
+        <span>＋</span>
+        {{ guardando ? 'Agregando...' : 'Agregar ingrediente' }}
+
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- Ingredientes asignados -->
+  <section class="tarjeta tabla-card">
+
+    <div class="tabla-titulo">
+      <h2>Ingredientes asignados</h2>
+
+      @if (receta) {
+        <span class="etiqueta-receta etiqueta-tabla">
+          {{ paisNombre }} · {{ receta.calories }} kcal · Nivel {{ receta.difficulty }}
+        </span>
+      }
+    </div>
+
+    <div class="tabla-contenedor">
+
+      <table class="tabla-ingredientes">
+
+        <thead>
+          <tr>
+            <th>Ingrediente</th>
+            <th>Cantidad solicitada</th>
+            <th class="col-acciones">Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          @if (cargando) {
+            <tr>
+              <td colspan="3" class="mensaje-tabla">
+                Cargando ingredientes...
+              </td>
+            </tr>
+          } @else if (ingredientesAsignados.length === 0) {
+            <tr>
+              <td colspan="3" class="mensaje-tabla">
+                Esta receta todavía no tiene ingredientes asignados.
+              </td>
+            </tr>
+          } @else {
+
+            @for (ingrediente of ingredientesAsignados; track ingrediente.idRecipeIngredient) {
+
+              <tr>
+
+                <td>
+                  <div class="nombre-ingrediente">
+                    <span class="punto-ingrediente"></span>
+                    <div>
+                      <span>{{ ingrediente.nombreIngrediente }}</span>
+                      @if (ingrediente.categoriaIngrediente) {
+                        <small>{{ ingrediente.categoriaIngrediente }}</small>
+                      }
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  @if (editandoId === ingrediente.idRecipeIngredient) {
+                    <input
+                      class="input-edicion"
+                      type="number"
+                      min="1"
+                      [(ngModel)]="cantidadEdicion">
+                  } @else {
+                    <span class="cantidad-badge">
+                      {{ ingrediente.requestedQuantity }}
+                    </span>
+                  }
+                </td>
+
+                <td class="acciones">
+
+                  @if (editandoId === ingrediente.idRecipeIngredient) {
+
+                    <button
+                      type="button"
+                      class="btn-accion btn-guardar"
+                      title="Guardar cambios"
+                      (click)="guardarEdicion(ingrediente)">
+                      ✓
+                    </button>
+
+                    <button
+                      type="button"
+                      class="btn-accion btn-cancelar"
+                      title="Cancelar"
+                      (click)="cancelarEdicion()">
+                      ✕
+                    </button>
+
+                  } @else {
+
+                    <button
+                      type="button"
+                      class="btn-accion"
+                      title="Editar cantidad"
+                      (click)="iniciarEdicion(ingrediente)">
+                      ✎
+                    </button>
+
+                    <button
+                      type="button"
+                      class="btn-accion btn-eliminar"
+                      title="Eliminar ingrediente"
+                      (click)="eliminarIngrediente(ingrediente)">
+                      ♜
+                    </button>
+
+                  }
+
+                </td>
+
+              </tr>
+
+            }
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div class="tabla-pie">
+      Mostrando {{ ingredientesAsignados.length }} ingrediente(s) asignado(s) a esta receta.
+    </div>
+
+  </section>
+
+</main>
+
+<!-- Notificación -->
+@if (mensaje) {
+  <div
+    class="notificacion"
+    [class.notificacion-error]="tipoMensaje === 'error'">
+
+    <span class="notificacion-icono">
+      {{ tipoMensaje === 'success' ? '✓' : '!' }}
+    </span>
+
+    <span>{{ mensaje }}</span>
+
+    <button type="button" (click)="cerrarMensaje()">×</button>
+
+  </div>
+}
+
+<!-- Confirmación personalizada -->
+@if (confirmandoEliminacion && ingredientePorEliminar) {
+
+  <div class="modal-fondo">
+
+    <section
+      class="modal-confirmacion"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="titulo-modal">
+
+      <div class="modal-icono">
+        !
+      </div>
+
+      <h2 id="titulo-modal">¿Eliminar ingrediente?</h2>
+
+      <p>
+        ¿Deseas quitar
+        <strong>{{ ingredientePorEliminar.nombreIngrediente }}</strong>
+        de esta receta?
+      </p>
+
+      <div class="modal-acciones">
+
+        <button
+          type="button"
+          class="btn-modal-cancelar"
+          (click)="cancelarEliminacion()">
+          Cancelar
+        </button>
+
+        <button
+          type="button"
+          class="btn-modal-eliminar"
+          (click)="confirmarEliminacion()">
+          Sí, eliminar
+        </button>
+
+      </div>
+
+    </section>
+
+  </div>
+
+}

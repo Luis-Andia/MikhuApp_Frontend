@@ -1,0 +1,539 @@
+
+:host {
+  display: block;
+  min-height: 100%;
+  background: #e5fff6;
+  color: #183b34;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.pagina-ingredientes {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 35px 30px 70px;
+  box-sizing: border-box;
+}
+
+/* Encabezado */
+
+.encabezado-receta {
+  margin-bottom: 28px;
+}
+
+.btn-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  color: #48645c;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 0;
+  margin-bottom: 22px;
+}
+
+.btn-volver:hover {
+  color: #168363;
+}
+
+.flecha {
+  font-size: 22px;
+}
+
+.titulo-contenido {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.titulo-contenido h1 {
+  margin: 0;
+  font-size: 29px;
+  font-weight: 700;
+  color: #102d27;
+}
+
+.etiqueta-receta {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 11px;
+  border-radius: 20px;
+  background: #c9f1e4;
+  color: #326d5c;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.descripcion {
+  margin: 10px 0 0;
+  color: #60766e;
+  font-size: 14px;
+}
+
+/* Tarjetas */
+
+.tarjeta {
+  background: #f8fffc;
+  border-radius: 15px;
+  box-shadow: 0 3px 12px rgba(34, 105, 81, 0.06);
+  overflow: hidden;
+  margin-bottom: 23px;
+}
+
+.asignar-card {
+  padding: 26px 25px 24px;
+}
+
+.titulo-seccion h2,
+.tabla-titulo h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  color: #48665c;
+}
+
+.titulo-seccion p {
+  margin: 5px 0 23px;
+  color: #879991;
+  font-size: 12px;
+}
+
+/* Formulario */
+
+.formulario-asignacion {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 16px;
+  align-items: end;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+}
+
+.campo label,
+.campo-etiqueta label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #526b62;
+}
+
+.campo-etiqueta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.campo-etiqueta span {
+  color: #9aa9a2;
+  font-size: 11px;
+}
+
+.campo select,
+.campo input {
+  width: 100%;
+  height: 49px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 0 15px;
+  background: #e0f8ef;
+  color: #45675c;
+  font-size: 14px;
+  outline: none;
+}
+
+.campo select:focus,
+.campo input:focus {
+  border-color: #73b79c;
+  box-shadow: 0 0 0 3px rgba(115, 183, 156, 0.13);
+}
+
+.btn-agregar {
+  height: 49px;
+  border: none;
+  border-radius: 12px;
+  background: #72ad98;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-agregar:hover:not(:disabled) {
+  background: #438d72;
+}
+
+.btn-agregar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-agregar span {
+  font-size: 21px;
+  vertical-align: -2px;
+  margin-right: 5px;
+}
+
+/* Tabla */
+
+.tabla-card {
+  padding-top: 21px;
+}
+
+.tabla-titulo {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 25px 18px;
+}
+
+.tabla-titulo h2 {
+  font-size: 18px;
+}
+
+.etiqueta-tabla {
+  font-size: 11px;
+  padding: 5px 9px;
+}
+
+.tabla-contenedor {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.tabla-ingredientes {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.tabla-ingredientes thead {
+  background: #dff8ef;
+}
+
+.tabla-ingredientes th {
+  padding: 11px 25px;
+  color: #82978d;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.tabla-ingredientes td {
+  padding: 17px 25px;
+  border-bottom: 1px solid #e8f3ee;
+  color: #536e63;
+  font-size: 14px;
+}
+
+.tabla-ingredientes tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tabla-ingredientes tbody tr:hover {
+  background: #f2fcf7;
+}
+
+.col-acciones {
+  text-align: center;
+  width: 130px;
+}
+
+.nombre-ingrediente {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.nombre-ingrediente small {
+  display: block;
+  margin-top: 3px;
+  color: #91a49a;
+  font-size: 10px;
+}
+
+.punto-ingrediente {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #72ad98;
+}
+
+.cantidad-badge {
+  display: inline-block;
+  min-width: 22px;
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: #d9f6eb;
+  color: #477b68;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.input-edicion {
+  width: 75px;
+  height: 33px;
+  border: 1px solid #9bcdb7;
+  border-radius: 7px;
+  padding: 4px 7px;
+  background: white;
+  color: #355d4d;
+}
+
+.acciones {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn-accion {
+  width: 32px;
+  height: 32px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: #82958c;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.btn-accion:hover {
+  background: #e4f5ed;
+  color: #368365;
+}
+
+.btn-guardar {
+  color: #25875f;
+}
+
+.btn-cancelar,
+.btn-eliminar:hover {
+  color: #c45d5d;
+}
+
+.mensaje-tabla {
+  padding: 35px !important;
+  text-align: center;
+  color: #91a49a !important;
+}
+
+.tabla-pie {
+  padding: 17px 18px;
+  background: #f1fcf7;
+  color: #8a9e94;
+  font-size: 12px;
+}
+
+/* Notificaciones */
+
+.notificacion {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  max-width: calc(100vw - 50px);
+  padding: 15px 19px;
+  border-radius: 12px;
+  background: #27815e;
+  color: white;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.notificacion-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #c9f4dc;
+  color: #27815e;
+}
+
+.notificacion button {
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 21px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.notificacion-error {
+  background: #b94d4d;
+}
+
+/* Ventana personalizada de confirmación */
+
+.modal-fondo {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 42, 36, 0.50);
+  backdrop-filter: blur(3px);
+}
+
+.modal-confirmacion {
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+  padding: 30px;
+  border-radius: 18px;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0 15px 45px rgba(15, 42, 36, 0.20);
+  animation: modalEntrada 0.2s ease-out;
+}
+
+.modal-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: #fff0ed;
+  color: #d65b50;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.modal-confirmacion h2 {
+  margin: 0 0 12px;
+  color: #183b34;
+  font-size: 21px;
+}
+
+.modal-confirmacion p {
+  margin: 0;
+  color: #71847b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.modal-confirmacion strong {
+  color: #2e7d5b;
+}
+
+.modal-acciones {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 27px;
+}
+
+.modal-acciones button {
+  min-width: 125px;
+  height: 42px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-modal-cancelar {
+  background: #edf4f0;
+  color: #49675c;
+}
+
+.btn-modal-cancelar:hover {
+  background: #dcebe3;
+}
+
+.btn-modal-eliminar {
+  background: #c9534e;
+  color: #ffffff;
+}
+
+.btn-modal-eliminar:hover {
+  background: #ad403c;
+}
+
+@keyframes modalEntrada {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Adaptación a celulares */
+
+@media (max-width: 750px) {
+
+  .pagina-ingredientes {
+    padding: 25px 15px 50px;
+  }
+
+  .titulo-contenido {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .titulo-contenido h1 {
+    font-size: 23px;
+  }
+
+  .formulario-asignacion {
+    grid-template-columns: 1fr;
+  }
+
+  .asignar-card {
+    padding: 21px 17px;
+  }
+
+  .tabla-titulo {
+    padding: 0 17px 16px;
+  }
+
+  .tabla-ingredientes th,
+  .tabla-ingredientes td {
+    padding: 13px 12px;
+  }
+
+  .col-acciones {
+    width: 100px;
+  }
+
+  .modal-confirmacion {
+    padding: 25px 20px;
+  }
+
+  .modal-acciones {
+    flex-direction: column-reverse;
+  }
+
+  .modal-acciones button {
+    width: 100%;
+  }
+}
