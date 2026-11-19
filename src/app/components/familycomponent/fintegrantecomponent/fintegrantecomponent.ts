@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
-import { Menuusercomponent } from '../../menuusercomponent/menuusercomponent';
 import { userlistDTO } from '../../../models/UserlistDTO';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -11,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 
 
 @Component({
-  imports: [Menuusercomponent, MatInputModule, MatButtonModule, MatIconModule, MatTableModule, MatPaginatorModule],
+  imports: [MatInputModule, MatButtonModule, MatIconModule, MatTableModule, MatPaginatorModule],
   selector: 'app-fintegrantecomponent',
   styleUrl: './fintegrantecomponent.css',
   templateUrl: './fintegrantecomponent.html',
