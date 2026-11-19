@@ -33,6 +33,7 @@ import { Countrycomponent } from './components/countrycomponent/countrycomponent
 import { Coinsertcomponent } from './components/countrycomponent/coinsertcomponent/coinsertcomponent';
 import { Colistcomponent } from './components/countrycomponent/colistcomponent/colistcomponent';
 import { Coupdatecomponent } from './components/countrycomponent/coupdatecomponent/coupdatecomponent';
+import { Homecomponent } from './components/homecomponent/homecomponent';
 
 export const routes: Routes = [
     {

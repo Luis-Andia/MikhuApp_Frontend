@@ -1,4 +1,3 @@
-
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -45,7 +44,7 @@ export class Rupdatecomponent implements OnInit {
     this.cargando = true;
     this.error = '';
 
-    this.rS.buscarRol(this.idRol)
+    this.rS.listId(this.idRol)
       .pipe(
         finalize(() => {
           this.cargando = false;
@@ -86,7 +85,7 @@ export class Rupdatecomponent implements OnInit {
     this.error = '';
     this.mensaje = '';
 
-    this.rS.actualizarRol(dto)
+    this.rS.updateRole(dto)
       .pipe(
         finalize(() => {
           this.actualizando = false;

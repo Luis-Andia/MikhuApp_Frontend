@@ -9,7 +9,6 @@ import { RouterLink } from '@angular/router';
   imports: [
     MatIconModule,
     MatTableModule,
-    RouterLink,
   ],
   selector: 'app-cslistcomponent',
   styleUrl: './cslistcomponent.css',

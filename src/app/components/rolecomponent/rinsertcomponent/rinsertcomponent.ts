@@ -47,7 +47,7 @@ export class Rinsertcomponent {
     this.error = '';
     this.mensaje = '';
 
-    this.rS.registrarRol(dto).subscribe({
+    this.rS.insertRole(dto).subscribe({
       next: () => {
         this.mensaje = 'Rol registrado correctamente.';
         this.guardando = false;
