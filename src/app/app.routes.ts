@@ -78,6 +78,7 @@ import { Rlistcomponent as Rolelistcomponent } from './components/rolcomponent/r
 import { Rinsertcomponent } from './components/rolcomponent/rinsertcomponent/rinsertcomponent';
 import { Rupdatecomponent } from './components/rolcomponent/rupdatecomponent/rupdatecomponent';
 import { Rolcomponent } from './components/rolcomponent/rolcomponent';
+import { Csupdatecomponent } from './components/consumptioncomponent/csupdatecomponent/csupdatecomponent';
 
 
 // Consumos
