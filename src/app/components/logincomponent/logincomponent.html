@@ -47,20 +47,13 @@
 
         <!-- Usuario -->
         <div class="campo-grupo">
-          <label for="usuario">Nombre de usuario</label>
-
-          <mat-form-field
-            appearance="outline"
-            class="campo"
-            subscriptSizing="dynamic"
-          >
-            <input
-              matInput
-              id="usuario"
-              formControlName="username"
-              autocomplete="username"
-            >
+          <label for="username">Nombre de usuario</label>
+          <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
+            <input matInput id="username" formControlName="username" autocomplete="username">
             <mat-icon matSuffix>person_outline</mat-icon>
+            @if (formulario.controls.username.touched && formulario.controls.username.invalid) {
+            <p class="field-error">*Ingresa tu usuario.</p>
+            }
           </mat-form-field>
         </div>
 
@@ -73,26 +66,14 @@
             class="campo"
             subscriptSizing="dynamic"
           >
-            <input
-              matInput
-              id="contrasena"
-              formControlName="contrasena"
-              [type]="hide ? 'password' : 'text'"
-              autocomplete="current-password"
-            >
+            <input matInput id="password" formControlName="password" [type]="hide ? 'password' : 'text'" autocomplete="current-password">
 
-            <button
-              mat-icon-button
-              matSuffix
-              type="button"
-              (click)="clickEvent($event)"
-              [attr.aria-label]="hide ? 'Mostrar contraseña' : 'Ocultar contraseña'"
-              [attr.aria-pressed]="!hide"
-            >
-              <mat-icon>
-                {{ hide ? 'visibility' : 'visibility_off' }}
-              </mat-icon>
+            <button mat-icon-button matSuffix type="button" (click)="clickEvent($event)" [attr.aria-label]="hide ? 'Mostrar contraseña' : 'Ocultar contraseña'" [attr.aria-pressed]="!hide">
+              <mat-icon> {{ hide ? 'visibility' : 'visibility_off' }} </mat-icon>
             </button>
+            @if (formulario.controls.password.touched && formulario.controls.password.invalid) {
+              <p class="field-error">*Ingresa tu contraseña.</p>
+            }
           </mat-form-field>
         </div>
 
@@ -104,15 +85,10 @@
         }
 
         <!-- Botón de inicio de sesión -->
-        <button
-          matButton="filled"
-          type="submit"
-          class="btn-login"
-        >
+        <button matButton="filled" type="submit" class="btn-login">
           Iniciar sesión
           <mat-icon iconPositionEnd>arrow_forward</mat-icon>
         </button>
-
       </form>
 
       <!-- Registro -->
