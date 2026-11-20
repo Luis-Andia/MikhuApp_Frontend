@@ -80,20 +80,6 @@ import { Rupdatecomponent } from './components/rolcomponent/rupdatecomponent/rup
 import { Rolcomponent } from './components/rolcomponent/rolcomponent';
 import { Csupdatecomponent } from './components/consumptioncomponent/csupdatecomponent/csupdatecomponent';
 
-
-// Consumos
-import { Cslistcomponent } from './components/consumptioncomponent/cslistcomponent/cslistcomponent';
-import { Csinsertcomponent } from './components/consumptioncomponent/csinsertcomponent/csinsertcomponent';
-
-// Roles
-import { Rlistcomponent } from './components/rolecomponent/rlistcomponent/rlistcomponent';
-import { Rinsertcomponent } from './components/rolecomponent/rinsertcomponent/rinsertcomponent';
-import { Rupdatecomponent } from './components/rolecomponent/rupdatecomponent/rupdatecomponent';
-
-// Autenticación
-import { Logincomponent } from './components/logincomponent/logincomponent';
-import { Registrocomponent } from './components/registrocomponent/registrocomponent';
-
 export const routes: Routes = [
 
   // Inicio
