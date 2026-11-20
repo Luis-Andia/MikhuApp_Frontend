@@ -18,57 +18,122 @@ export class Loginservice {
   
   private http = inject(HttpClient);
 
+  // Iniciar sesión
   postlogin(dto: loginrequestDTO): Observable<loginresponseDTO> {
     return this.http.post<loginresponseDTO>(this.apiURL, dto).pipe(
       tap(response => {
         if (typeof window !== 'undefined') {
-          localStorage.setItem('token', response.token);
-          localStorage.setItem('username', response.username);
+          sessionStorage.setItem('token', response.token);
+          sessionStorage.setItem('username', response.username);
         }
       })
     );
   }
 
-  obtenerToken(): string | null {
+  // Obtener token
+  getToken(): string | null {
     if (typeof window === 'undefined') {
       return null;
     }
 
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
 
-  tokenExpirado(): boolean {
-    const token = this.obtenerToken();
+  // Obtener nombre del usuario
+  getUsername(): string | null {
+    if (typeof window === 'undefined') {
+      return null;
+    }
+
+    return sessionStorage.getItem('username');
+  }
+
+  // Obtener información del JWT
+  private getTokenPayload(): any {
+    const token = this.getToken();
 
     if (!token) {
-      return true;
+      return null;
     }
 
     try {
       const payload = token.split('.')[1];
-      const datos = JSON.parse(atob(payload));
 
-      return !datos.exp || datos.exp * 1000 <= Date.now();
+      const base64 = payload
+        .replace(/-/g, '+')
+        .replace(/_/g, '/');
+
+      const decoded = atob(base64);
+
+      return JSON.parse(decoded);
 
     } catch {
-      return true;
+      return null;
     }
   }
 
-  validarSesion(): void {
-    if (
-      typeof window !== 'undefined' &&
-      this.obtenerToken() &&
-      this.tokenExpirado()
-    ) {
-      this.cerrarSesion();
+  // Comprobar si el token expiró
+  isExpired(): boolean {
+    const payload = this.getTokenPayload();
+
+    if (!payload || typeof payload.exp !== 'number') {
+      return true;
     }
+
+    return payload.exp * 1000 <= Date.now();
+  }
+
+  // Obtener roles del usuario
+  getRoles(): string[] {
+    const payload = this.getTokenPayload();
+
+    if (!payload || typeof payload.roles !== 'string') {
+      return [];
+    }
+
+    return payload.roles
+      .split(',')
+      .map((role: string) => role.trim())
+      .filter((role: string) => role.length > 0);
+  }
+
+  // Comprobar si tiene alguno de los roles indicados
+  hasAnyRole(roles: string[]): boolean {
+    const userRoles = this.getRoles();
+
+    return roles.some(role => userRoles.includes(role));
+  }
+
+  // Comprobar si el usuario está autenticado
+  isAuthenticated(): boolean {
+    return !!this.getToken() && !this.isExpired();
+  }
+
+  // Cerrar sesión
+  logout(): void {
+    if (typeof window !== 'undefined') {
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('username');
+    }
+  }
+
+  // Validar sesión
+  validarSesion(): void {
+    if (this.getToken() && this.isExpired()) {
+      this.logout();
+    }
+  }
+
+  // Métodos de compatibilidad con las rutas actuales
+  obtenerToken(): string | null {
+    return this.getToken();
+  }
+
+  tokenExpirado(): boolean {
+    return this.isExpired();
   }
 
   cerrarSesion(): void {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('token');
-      localStorage.removeItem('username');
-    }
+    this.logout();
   }
 }

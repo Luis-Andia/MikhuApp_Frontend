@@ -281,7 +281,7 @@
   color: #66766D;
 }
 
-/* Avatar */
+/* Avatar dinámico */
 
 .user-avatar {
   display: flex;
@@ -289,19 +289,51 @@
   justify-content: center;
   width: 36px;
   height: 36px;
+  min-width: 36px;
   flex-shrink: 0;
   border-radius: 50%;
   background: var(--mikhu-green);
   color: var(--mikhu-white);
+  font-family: 'Roboto', sans-serif;
   font-size: 12px;
   font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.user-avatar:hover {
+  background: var(--mikhu-green-dark);
+  transform: scale(1.05);
+}
+
+/* Encabezado del menú de perfil */
+
+.profile-menu-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 160px;
+  padding: 12px 16px;
+  color: var(--mikhu-green-dark);
+}
+
+.profile-menu-header strong {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.profile-menu-header span {
+  font-size: 12px;
+  color: #73877C;
 }
 
 /* Accesibilidad */
 
 .ia-button:focus-visible,
 .nav-link:focus-visible,
-.brand:focus-visible {
+.brand:focus-visible,
+.user-avatar:focus-visible {
   outline: 2px solid var(--mikhu-green);
   outline-offset: 3px;
 }
@@ -378,6 +410,7 @@
   .user-avatar {
     width: 33px;
     height: 33px;
+    min-width: 33px;
   }
 }
 

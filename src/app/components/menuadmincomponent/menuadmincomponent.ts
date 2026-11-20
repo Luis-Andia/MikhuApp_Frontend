@@ -1,11 +1,14 @@
 
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+
+import { Loginservice } from '../../services/loginservice';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-menuadmincomponent',
@@ -15,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatDividerModule,
     RouterLink,
     RouterLinkActive
   ],
@@ -28,54 +32,37 @@ export class Menuadmincomponent {
   private router = inject(Router);
 
   // Obtener nombre del usuario autenticado
-  get username(): string {
-    return this.loginService.getUsername();
-  }
-
-  get roles(): string {
-    return this.loginService.getRoles().join(', ');
+  get nombreUsuario(): string {
+    return this.loginService.getUsername() || 'Usuario';
   }
 
   // Obtener iniciales del usuario
   get inicialesUsuario(): string {
-    const nombre = this.username
+    const nombre = this.nombreUsuario
       .replace(/[^a-zA-Z0-9 ]/g, ' ')
       .trim();
 
     if (!nombre) {
-      return 'U';}
+      return 'U';
+    }
 
     const palabras = nombre.split(/\s+/);
 
     if (palabras.length > 1) {
-      return (palabras[0][0] + palabras[1][0]).toUpperCase();}
-      
+      return (palabras[0][0] + palabras[1][0]).toUpperCase();
+    }
+
     return palabras[0].substring(0, 2).toUpperCase();
   }
 
   // Comprobar si es administrador
   get esAdmin(): boolean {
-    return this.loginService.hasAnyRole(['ADMIN']);
-  }
-
-  // Comprobar si es miembro de familia
-  get esMiembro(): boolean {
-    return this.loginService.hasAnyRole(['MEMBER']);
-  }
-
-    // Comprobar si es invitado
-  get esInvitado(): boolean {
-    return this.loginService.hasAnyRole(['GUEST']);
-  }
- 
-  // Comprobar si es moderador de una familia
-  get esModerador(): boolean {
-    return this.loginService.hasAnyRole(['MODERATOR']);
+    return this.loginService.hasAnyRole(['ROLE_ADMIN']);
   }
 
   // Cerrar sesión
   cerrarSesion(): void {
     this.loginService.logout();
-    void this.router.navigateByUrl('/login', { replaceUrl: true });
+    this.router.navigate(['/login']);
   }
 }
