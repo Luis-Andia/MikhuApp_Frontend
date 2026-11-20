@@ -7,6 +7,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { Menuadmincomponent } from '../menuadmincomponent/menuadmincomponent';
 import { Loginservice } from '../../services/loginservice';
 
+import { Ingredconsumglobalcomponent } from './ingredconsumglobalcomponent/ingredconsumglobalcomponent';
+import { Ingredconsumdateglobalcomponent } from './ingredconsumdateglobalcomponent/ingredconsumdateglobalcomponent';
+
 interface AlimentoPorConsumir {
   nombre: string;
   fecha: string;
@@ -35,7 +38,9 @@ interface AlimentoPorReponer {
     RouterOutlet,
     RouterLink,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    Ingredconsumglobalcomponent,
+    Ingredconsumdateglobalcomponent
   ],
   templateUrl: './dashboardcomponent.html',
   styleUrl: './dashboardcomponent.css'

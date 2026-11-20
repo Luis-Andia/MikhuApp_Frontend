@@ -9,11 +9,11 @@ type TipoGrafico = 'bar' | 'line' | 'pie' | 'doughnut' | 'radar';
 
 @Component({
   imports: [BaseChartDirective],
-  selector: 'app-coningrecomponent',
-  styleUrl: './coningrecomponent.css',
-  templateUrl: './coningrecomponent.html',
+  selector: 'app-ingredconsumglobalcomponent',
+  styleUrl: './ingredconsumglobalcomponent.css',
+  templateUrl: './ingredconsumglobalcomponent.html',
 })
-export class Coningrecomponent implements OnInit{
+export class Ingredconsumglobalcomponent implements OnInit {
   lista:MostConsumedIngredientsDTO[] = []
   
   public chartType: TipoGrafico = 'bar';
@@ -47,22 +47,11 @@ export class Coningrecomponent implements OnInit{
   constructor(private cS: Consumptionservice, private uS:Userservice, private cdr:ChangeDetectorRef){}
 
   ngOnInit(): void {
-    this.obtenerItemsdisponibles()
+    this.obtenerItemsConsumidos()
   }
 
-  obtenerItemsdisponibles():void {
-    const usernamelogeado = localStorage.getItem('username')
-    if (!usernamelogeado) {
-      console.log('No hay un usuario sesión activa');
-      return;
-    }
-
-    this.uS.getuserbyusername(usernamelogeado).subscribe({
-      next:(data:any) =>{
-        const idFamily = data.idFamily // Obtener familia del usuario
-      
-      if (idFamily){
-        this.cS.MostConsumedIngredients(idFamily).subscribe({
+  obtenerItemsConsumidos():void {
+        this.cS.MostConsumedIngredientsGlobal().subscribe({
           next: (data: MostConsumedIngredientsDTO[]) => {
             this.lista = data;
             this.chartData = {
@@ -80,11 +69,6 @@ export class Coningrecomponent implements OnInit{
           error: (error) => {
             console.error('Error al cargar los datos del reporte:', error);
           }
-        })
-      }
-    }
-
-  })
+    })
+  }
 }
-}
-
