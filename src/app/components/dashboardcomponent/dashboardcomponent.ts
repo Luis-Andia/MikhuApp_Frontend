@@ -1,11 +1,11 @@
-
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-
 import { Menuadmincomponent } from '../menuadmincomponent/menuadmincomponent';
-import { Loginservice } from '../../services/loginservice';
+import { Ingredconsumglobalcomponent } from './ingredconsumglobalcomponent/ingredconsumglobalcomponent';
+import { Ingredconsumdateglobalcomponent } from './ingredconsumdateglobalcomponent/ingredconsumdateglobalcomponent';
+
 
 interface AlimentoPorConsumir {
   nombre: string;
@@ -35,8 +35,10 @@ interface AlimentoPorReponer {
     RouterOutlet,
     RouterLink,
     MatIconModule,
-    MatButtonModule
-  ],
+    MatButtonModule,
+    Ingredconsumglobalcomponent,
+    Ingredconsumdateglobalcomponent
+],
   templateUrl: './dashboardcomponent.html',
   styleUrl: './dashboardcomponent.css'
   styleUrl: './dashboardcomponent.css'
