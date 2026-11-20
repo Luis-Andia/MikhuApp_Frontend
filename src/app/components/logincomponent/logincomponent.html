@@ -1,5 +1,4 @@
 
-
 <main class="login-page">
   <div class="login-card">
 
@@ -12,16 +11,10 @@
 
       <h2>Organiza tu despensa, aprovecha cada ingrediente</h2>
 
-
       <p class="login-panel-desc">
         Planifica comidas familiares sin desperdicios y mantén tu inventario sincronizado.
       </p>
 
-      <div class="login-ilustracion">
-        <img
-          src="/mikhuapp-illustracion-ingredientes.png"
-          alt="Recipiente con frutas y verduras"
-        >
       <div class="login-ilustracion">
         <img
           src="/mikhuapp-illustracion-ingredientes.png"
@@ -42,16 +35,9 @@
         <span class="login-logo">
           <mat-icon>eco</mat-icon>
         </span>
-        <span class="login-logo">
-          <mat-icon>eco</mat-icon>
-        </span>
         <span class="login-marca-nombre">Mikhu<span>App</span></span>
       </div>
 
-      <h1>Bienvenido de nuevo</h1>
-      <p class="login-desc">
-        Ingresa tus credenciales para acceder a tu hogar
-      </p>
       <h1>Bienvenido de nuevo</h1>
       <p class="login-desc">
         Ingresa tus credenciales para acceder a tu hogar
@@ -60,21 +46,10 @@
       <form [formGroup]="formulario" (ngSubmit)="iniciarSesion()">
 
         <!-- Usuario -->
-        <!-- Usuario -->
         <div class="campo-grupo">
-          <label for="usuario">Nombre de usuario</label>
-
-          <mat-form-field
-            appearance="outline"
-            class="campo"
-            subscriptSizing="dynamic"
-          >
-            <input
-              matInput
-              id="usuario"
-              formControlName="username"
-              autocomplete="username"
-            >
+          <label for="username">Nombre de usuario</label>
+          <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
+            <input matInput id="username" formControlName="username" autocomplete="username">
             <mat-icon matSuffix>person_outline</mat-icon>
             @if (formulario.controls.username.touched && formulario.controls.username.invalid) {
             <p class="field-error">*Ingresa tu usuario.</p>
@@ -82,7 +57,6 @@
           </mat-form-field>
         </div>
 
-        <!-- Contraseña -->
         <!-- Contraseña -->
         <div class="campo-grupo">
           <label for="contrasena">Contraseña</label>
@@ -92,25 +66,10 @@
             class="campo"
             subscriptSizing="dynamic"
           >
-            <input
-              matInput
-              id="contrasena"
-              formControlName="contrasena"
-              [type]="hide ? 'password' : 'text'"
-              autocomplete="current-password"
-            >
+            <input matInput id="password" formControlName="password" [type]="hide ? 'password' : 'text'" autocomplete="current-password">
 
-            <button
-              mat-icon-button
-              matSuffix
-              type="button"
-              (click)="clickEvent($event)"
-              [attr.aria-label]="hide ? 'Mostrar contraseña' : 'Ocultar contraseña'"
-              [attr.aria-pressed]="!hide"
-            >
-              <mat-icon>
-                {{ hide ? 'visibility' : 'visibility_off' }}
-              </mat-icon>
+            <button mat-icon-button matSuffix type="button" (click)="clickEvent($event)" [attr.aria-label]="hide ? 'Mostrar contraseña' : 'Ocultar contraseña'" [attr.aria-pressed]="!hide">
+              <mat-icon> {{ hide ? 'visibility' : 'visibility_off' }} </mat-icon>
             </button>
             @if (formulario.controls.password.touched && formulario.controls.password.invalid) {
               <p class="field-error">*Ingresa tu contraseña.</p>
@@ -119,29 +78,20 @@
         </div>
 
         <!-- Mensaje de error -->
-        <!-- Mensaje de error -->
         @if (mensajeError) {
-          <p class="error_mensaje" role="alert">
-            {{ mensajeError }}
-          </p>
           <p class="error_mensaje" role="alert">
             {{ mensajeError }}
           </p>
         }
 
         <!-- Botón de inicio de sesión -->
-        <button
-          matButton="filled"
-          type="submit"
-          class="btn-login"
-        >
+        <button matButton="filled" type="submit" class="btn-login">
           Iniciar sesión
           <mat-icon iconPositionEnd>arrow_forward</mat-icon>
         </button>
 
       </form>
 
-      <!-- Registro -->
       <!-- Registro -->
       <p class="login-registro">
         ¿No tienes cuenta?
@@ -152,7 +102,6 @@
   </div>
 </main>
 
-<!-- Pie de página -->
 <!-- Pie de página -->
 <footer class="login-footer">
   © 2026 FoodMind Technologies · Términos y condiciones · Política de privacidad

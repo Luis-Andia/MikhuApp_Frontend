@@ -19,12 +19,17 @@ export class Loginservice {
   private http = inject(HttpClient);
 
   // Iniciar sesión
-  postlogin(dto: loginrequestDTO): Observable<loginresponseDTO> {
-    return this.http.post<loginresponseDTO>(this.apiURL, dto).pipe(
-      tap(response => {
-        if (typeof window !== 'undefined') {
+  login(credentials: loginrequestDTO): Observable<loginresponseDTO> {
+    return this.http.post<loginresponseDTO>(this.apiURL, credentials).pipe(
+      tap((response) => {
+        if (!response?.token) {
+          throw new Error('La respuesta de login no contiene un token.');
+        }
+
+        if (this.isBrowser) {
           sessionStorage.setItem('token', response.token);
-          sessionStorage.setItem('username', response.username);
+          sessionStorage.setItem('username', response.username ?? '');
+          sessionStorage.setItem('roles', JSON.stringify(response.roles ?? []));
         }
       })
     );
@@ -32,20 +37,30 @@ export class Loginservice {
 
   // Obtener token
   getToken(): string | null {
-    if (typeof window === 'undefined') {
+    if (!this.isBrowser) {
       return null;
     }
 
-    return sessionStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+      return null;
+    }
+
+    if (this.isExpired(token)) {
+      this.logout();
+      return null;
+    }
+
+    return token;
   }
 
   // Obtener nombre del usuario
-  getUsername(): string | null {
-    if (typeof window === 'undefined') {
-      return null;
+  getUsername(): string {
+    if (!this.isBrowser || !this.isAuthenticated()) {
+      return '';
     }
 
-    return sessionStorage.getItem('username');
+    return sessionStorage.getItem('username') ?? '';
   }
 
   // Obtener información del JWT
@@ -73,67 +88,75 @@ export class Loginservice {
   }
 
   // Comprobar si el token expiró
-  isExpired(): boolean {
-    const payload = this.getTokenPayload();
+  private isExpired(token: string): boolean {
+    try {
+      const payloadPart = token.split('.')[1];
+      if (!payloadPart) {
+        return true;
+      }
 
-    if (!payload || typeof payload.exp !== 'number') {
+      const base64 = payloadPart.replace(/-/g, '+').replace(/_/g, '/');
+      const payload: unknown = JSON.parse(
+        atob(base64.padEnd(Math.ceil(base64.length / 4) * 4, '='))
+      );
+
+      if (payload === null || typeof payload !== 'object' || !('exp' in payload)) {
+        return true;
+      }
+
+      const exp = payload.exp;
+      return typeof exp !== 'number' || !Number.isFinite(exp) || exp * 1000 <= Date.now();
+    } catch {
       return true;
     }
-
-    return payload.exp * 1000 <= Date.now();
   }
 
   // Obtener roles del usuario
   getRoles(): string[] {
-    const payload = this.getTokenPayload();
-
-    if (!payload || typeof payload.roles !== 'string') {
+    if (!this.isBrowser || !this.isAuthenticated()) {
       return [];
     }
 
-    return payload.roles
-      .split(',')
-      .map((role: string) => role.trim())
-      .filter((role: string) => role.length > 0);
+    const value = sessionStorage.getItem('roles');
+    if (!value) {
+      return [];
+    }
+
+    try {
+      const roles: unknown = JSON.parse(value);
+
+      if (Array.isArray(roles) && roles.every((role) => typeof role === 'string')) {
+        return roles;
+      }
+    } catch {
+      sessionStorage.removeItem('roles');
+      return [];
+    }
+
+    sessionStorage.removeItem('roles');
+    return [];
   }
 
   // Comprobar si tiene alguno de los roles indicados
-  hasAnyRole(roles: string[]): boolean {
-    const userRoles = this.getRoles();
+  hasAnyRole(allowedRoles: readonly string[]): boolean {
+    const normalize = (role: string) =>
+      role.startsWith('ROLE_') ? role.slice('ROLE_'.length) : role;
 
-    return roles.some(role => userRoles.includes(role));
+    const allowed = new Set(allowedRoles.map(normalize));
+    return this.getRoles().some((role) => allowed.has(normalize(role)));
   }
 
   // Comprobar si el usuario está autenticado
   isAuthenticated(): boolean {
-    return !!this.getToken() && !this.isExpired();
+    return this.getToken() !== null;
   }
 
   // Cerrar sesión
   logout(): void {
-    if (typeof window !== 'undefined') {
+    if (this.isBrowser) {
       sessionStorage.removeItem('token');
       sessionStorage.removeItem('username');
+      sessionStorage.removeItem('roles');
     }
-  }
-
-  // Validar sesión
-  validarSesion(): void {
-    if (this.getToken() && this.isExpired()) {
-      this.logout();
-    }
-  }
-
-  // Métodos de compatibilidad con las rutas actuales
-  obtenerToken(): string | null {
-    return this.getToken();
-  }
-
-  tokenExpirado(): boolean {
-    return this.isExpired();
-  }
-
-  cerrarSesion(): void {
-    this.logout();
   }
 }

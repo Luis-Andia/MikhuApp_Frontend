@@ -1,5 +1,4 @@
 
-
 :host {
   --mikhu-green: #2E7D5B;
   --mikhu-green-dark: #1F3A33;
@@ -9,15 +8,11 @@
   --mikhu-ia: #1F6485;
   --mikhu-ia-hover: #19556F;
   --mikhu-ia-ring: rgba(31, 100, 133, 0.20);
-  --mikhu-ia-ring: rgba(31, 100, 133, 0.20);
 
   display: block;
   width: 100%;
-  width: 100%;
   font-family: 'Roboto', sans-serif;
 }
-
-/* Barra superior */
 
 /* Barra superior */
 
@@ -26,9 +21,7 @@
   top: 0;
   z-index: 100;
   width: 100%;
-  width: 100%;
   background: var(--mikhu-white);
-  box-shadow: 0 2px 8px rgba(31, 58, 51, 0.08);
   box-shadow: 0 2px 8px rgba(31, 58, 51, 0.08);
 }
 
@@ -44,25 +37,15 @@
   height: 64px;
   padding: 0 3.7%;
   gap: 22px;
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 64px;
-  height: 64px;
-  padding: 0 3.7%;
-  gap: 22px;
   background: transparent;
   font-family: 'Roboto', sans-serif;
 }
 
 /* Marca */
 
-/* Marca */
-
 .brand {
   display: flex;
   align-items: center;
-  gap: 9px;
-  flex-shrink: 0;
   gap: 9px;
   flex-shrink: 0;
   text-decoration: none;
@@ -77,15 +60,10 @@
   height: 40px;
   border-radius: 50%;
   background: #DDF4EA;
-  background: #DDF4EA;
   color: var(--mikhu-green);
 }
 
 .brand-logo mat-icon {
-  width: 21px;
-  height: 21px;
-  font-size: 21px;
-  line-height: 21px;
   width: 21px;
   height: 21px;
   font-size: 21px;
@@ -96,21 +74,14 @@
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.1px;
-  letter-spacing: 0.1px;
   color: var(--mikhu-green-title);
 }
-
-/* Navegación */
 
 /* Navegación */
 
 .nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 5px;
-  height: 64px;
-  margin-left: auto;
   justify-content: center;
   gap: 5px;
   height: 64px;
@@ -131,52 +102,17 @@
   font-weight: 500;
   white-space: nowrap;
   text-decoration: none;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 64px;
-  padding: 0 13px;
-  border-radius: 0;
-  color: #39443F;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  white-space: nowrap;
-  text-decoration: none;
 }
 
 .nav-link:hover {
-  background: #F5F9F6;
-  color: var(--mikhu-green);
   background: #F5F9F6;
   color: var(--mikhu-green);
 }
 
 .nav-link.active {
   color: var(--mikhu-green);
-  color: var(--mikhu-green);
   font-weight: 700;
 }
-
-.nav-link.active::after {
-  position: absolute;
-  right: 12px;
-  bottom: 0;
-  left: 12px;
-  height: 2px;
-  background: var(--mikhu-green);
-  content: '';
-}
-
-.menu-arrow {
-  width: 17px;
-  height: 17px;
-  margin-left: 2px;
-  font-size: 17px;
-}
-
-/* Espaciador */
 
 .nav-link.active::after {
   position: absolute;
@@ -203,19 +139,12 @@
 
 /* Asistente IA */
 
-/* Asistente IA */
-
 .ia-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 7px;
-  justify-content: center;
-  gap: 7px;
   height: 40px;
-  padding: 0 15px;
-  flex-shrink: 0;
-  border-radius: 12px;
   padding: 0 15px;
   flex-shrink: 0;
   border-radius: 12px;
@@ -223,12 +152,7 @@
   color: var(--mikhu-white);
   font-size: 13px;
   font-weight: 600;
-  font-size: 13px;
-  font-weight: 600;
   text-decoration: none;
-  white-space: nowrap;
-  box-shadow: 0 0 0 2px var(--mikhu-white), 0 0 0 3px var(--mikhu-ia-ring);
-  transition: background-color 0.2s ease, transform 0.1s ease;
   white-space: nowrap;
   box-shadow: 0 0 0 2px var(--mikhu-white), 0 0 0 3px var(--mikhu-ia-ring);
   transition: background-color 0.2s ease, transform 0.1s ease;
@@ -237,8 +161,6 @@
 .ia-button mat-icon {
   width: 18px;
   height: 18px;
-  font-size: 18px;
-  line-height: 18px;
   font-size: 18px;
   line-height: 18px;
 }

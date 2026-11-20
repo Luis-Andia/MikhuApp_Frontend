@@ -18,14 +18,7 @@ import { Dashboardcomponent } from './components/dashboardcomponent/dashboardcom
 import { Chatiacomponent } from './components/chatiacomponent/chatiacomponent';
 
 // Inventario
-
-// Inventario
 import { Itemcomponent } from './components/itemcomponent/itemcomponent';
-import { Itinsertcomponent } from './components/itemcomponent/itinsertcomponent/itinsertcomponent';
-import { Itlistcomponent } from './components/itemcomponent/itlistcomponent/itlistcomponent';
-import { Itupdatecomponent } from './components/itemcomponent/itupdatecomponent/itupdatecomponent';
-
-// Recetas
 import { Itinsertcomponent } from './components/itemcomponent/itinsertcomponent/itinsertcomponent';
 import { Itlistcomponent } from './components/itemcomponent/itlistcomponent/itlistcomponent';
 import { Itupdatecomponent } from './components/itemcomponent/itupdatecomponent/itupdatecomponent';
@@ -39,14 +32,7 @@ import { Reupdatecomponent } from './components/recipecomponent/reupdatecomponen
 import { Recipeingredientcomponent } from './components/recipecomponent/recipeingredientcomponent/recipeingredientcomponent';
 
 // Consumos
-import { Recipeingredientcomponent } from './components/recipecomponent/recipeingredientcomponent/recipeingredientcomponent';
-
-// Consumos
 import { Consumptioncomponent } from './components/consumptioncomponent/consumptioncomponent';
-import { Cslistcomponent } from './components/consumptioncomponent/cslistcomponent/cslistcomponent';
-import { Csinsertcomponent } from './components/consumptioncomponent/csinsertcomponent/csinsertcomponent';
-
-// Familia
 import { Cslistcomponent } from './components/consumptioncomponent/cslistcomponent/cslistcomponent';
 import { Csinsertcomponent } from './components/consumptioncomponent/csinsertcomponent/csinsertcomponent';
 
@@ -56,7 +42,6 @@ import { Finsertcomponent } from './components/familycomponent/finsertcomponent/
 import { Flistcomponent } from './components/familycomponent/flistcomponent/flistcomponent';
 import { Fupdatecomponent } from './components/familycomponent/fupdatecomponent/fupdatecomponent';
 
-// Ingredientes
 // Ingredientes
 import { Ingredientcomponent } from './components/ingredientcomponent/ingredientcomponent';
 import { Iinsertcomponent } from './components/ingredientcomponent/iinsertcomponent/iinsertcomponent';
@@ -80,38 +65,29 @@ import { Rupdatecomponent } from './components/rolcomponent/rupdatecomponent/rup
 import { Rolcomponent } from './components/rolcomponent/rolcomponent';
 import { Csupdatecomponent } from './components/consumptioncomponent/csupdatecomponent/csupdatecomponent';
 
+
+// Consumos
+import { Cslistcomponent } from './components/consumptioncomponent/cslistcomponent/cslistcomponent';
+import { Csinsertcomponent } from './components/consumptioncomponent/csinsertcomponent/csinsertcomponent';
+
+// Roles
+import { Rlistcomponent } from './components/rolecomponent/rlistcomponent/rlistcomponent';
+import { Rinsertcomponent } from './components/rolecomponent/rinsertcomponent/rinsertcomponent';
+import { Rupdatecomponent } from './components/rolecomponent/rupdatecomponent/rupdatecomponent';
+
+// Autenticación
+import { Logincomponent } from './components/logincomponent/logincomponent';
+import { Registrocomponent } from './components/registrocomponent/registrocomponent';
+
 export const routes: Routes = [
 
   // Inicio
-  {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: () => {
-      const loginService = inject(Loginservice);
-
-      return loginService.isAuthenticated()
-        ? '/dashboard'
-        : '/login';
-    }
-  },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   // Login público
-  {
-    path: 'login',
-    component: Logincomponent,
-    canActivate: [
-      () => {
-        const loginService = inject(Loginservice);
-        const router = inject(Router);
-
-        if (loginService.isAuthenticated()) {
-          return router.createUrlTree(['/dashboard']);
-        }
-
-        loginService.logout();
-        return true;
-      }
-    ]
+  { 
+    path: 'login', 
+    component: Logincomponent 
   },
 
   // Registro público
@@ -131,8 +107,8 @@ export const routes: Routes = [
   {
     path: 'items',
     component: Itemcomponent,
-    canActivate: [authGuard],
-    canActivateChild: [authGuard],
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN', 'MODERATOR', 'MEMBER'] },
     children: [
       {
         path: '',
@@ -158,8 +134,8 @@ export const routes: Routes = [
   {
     path: 'recetas',
     component: Recipecomponent,
-    canActivate: [authGuard],
-    canActivateChild: [authGuard],
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN', 'MODERATOR', 'MEMBER', 'GUEST'] },
     children: [
       {
         path: '',
@@ -188,8 +164,8 @@ export const routes: Routes = [
   {
     path: 'consumo',
     component: Consumptioncomponent,
-    canActivate: [authGuard],
-    canActivateChild: [authGuard],
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN', 'MODERATOR', 'MEMBER', 'GUEST'] },
     children: [
       {
         path: '',
@@ -212,13 +188,11 @@ export const routes: Routes = [
   },
 
   // Familia
-
-  // Familia
   {
     path: 'familia',
     component: Familycomponent,
-    canActivate: [authGuard],
-    canActivateChild: [authGuard],
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN', 'MODERATOR', 'MEMBER', 'GUEST'] },
     children: [
       {
         path: '',
@@ -241,13 +215,11 @@ export const routes: Routes = [
   },
 
   // Ingredientes
-
-  // Ingredientes
   {
     path: 'ingrediente',
     component: Ingredientcomponent,
-    canActivate: [authGuard],
-    canActivateChild: [authGuard],
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN', 'MODERATOR', 'MEMBER', 'GUEST'] },
     children: [
       {
         path: '',
@@ -270,13 +242,11 @@ export const routes: Routes = [
   },
 
   // Países
-
-  // Países
   {
     path: 'pais',
     component: Countrycomponent,
-    canActivate: [authGuard],
-    canActivateChild: [authGuard],
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN'] },
     children: [
       {
         path: '',
@@ -303,8 +273,7 @@ export const routes: Routes = [
     path: 'usuarios',
     component: Usercomponent,
     canActivate: [authGuard, roleGuard],
-    canActivateChild: [authGuard, roleGuard],
-    data: { roles: ['ROLE_ADMIN'] },
+    data: { roles: ['ADMIN'] },
     children: [
       {
         path: '',
@@ -323,8 +292,7 @@ export const routes: Routes = [
     path: 'roles',
     component: Rolcomponent,
     canActivate: [authGuard, roleGuard],
-    canActivateChild: [authGuard, roleGuard],
-    data: { roles: ['ROLE_ADMIN'] },
+    data: { roles: ['ADMIN'] },
     children: [
       {
         path: '',
@@ -350,7 +318,8 @@ export const routes: Routes = [
   {
     path: 'chatia',
     component: Chatiacomponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN', 'MODERATOR', 'MEMBER', 'GUEST'] },
   },
 
   // Ruta no encontrada

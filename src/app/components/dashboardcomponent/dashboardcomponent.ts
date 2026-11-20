@@ -41,7 +41,6 @@ interface AlimentoPorReponer {
 ],
   templateUrl: './dashboardcomponent.html',
   styleUrl: './dashboardcomponent.css'
-  styleUrl: './dashboardcomponent.css'
 })
 export class Dashboardcomponent {
 
