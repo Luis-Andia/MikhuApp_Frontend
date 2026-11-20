@@ -1,110 +1,150 @@
 
-/* CONTENEDOR PRINCIPAL */
+/* =========================================
+   CONTENEDOR PRINCIPAL
+========================================= */
 .ingredientes-page {
   min-height: 100vh;
-  padding: 18px;
-  background-color: #eafaf5;
+  padding: 24px;
+  background: linear-gradient(180deg, #F4FAF7 0%, #E8F5EE 100%);
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* TARJETA */
+/* =========================================
+   TARJETA PRINCIPAL
+========================================= */
 .ingredientes-card {
   width: 100%;
-  background: #ffffff;
+  background: #FFFFFF;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 16px rgba(31, 58, 51, 0.07);
+  border: 1px solid #DCECE3;
 }
 
-/* ENCABEZADO */
+/* =========================================
+   ENCABEZADO
+========================================= */
 .ingredientes-header {
-  padding: 18px 24px;
+  padding: 24px 28px;
+  background: linear-gradient(120deg, #0AB86C 0%, #2E9D70 100%);
+  border-bottom: 1px solid #D2EADF;
 }
 
 .ingredientes-header h1 {
   margin: 0;
-  color: #123b32;
-  font-size: 21px;
-  font-weight: 600;
+  color: #FFFFFF;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
 }
 
 .ingredientes-header p {
-  margin: 5px 0 0;
-  color: #71817b;
+  margin: 7px 0 0;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 13px;
+  font-weight: 400;
 }
 
-/* TABLA */
+/* =========================================
+   CONTENEDOR DE TABLA
+========================================= */
 .tabla-wrap {
   width: 100%;
   overflow-x: auto;
+  padding: 20px 22px;
+  box-sizing: border-box;
 }
 
+/* =========================================
+   TABLA
+========================================= */
 .tabla {
   width: 100%;
-  border-collapse: collapse;
-  min-width: 800px;
+  min-width: 950px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #FFFFFF;
 }
 
 /* CABECERA */
 .tabla .mat-mdc-header-row {
-  height: 46px;
-  background-color: #d9f8ef;
+  height: 50px;
+  background-color: #E3F2EA;
 }
 
 .tabla .mat-mdc-header-cell {
   padding: 0 16px;
-  color: #45534e;
-  font-size: 12px;
-  font-weight: 600;
+  color: #1F3A33;
+  font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
-  border-right: 1px solid rgba(255,255,255,0.5);
+  letter-spacing: 0.45px;
+  border-bottom: 1px solid #CDE4D7;
   white-space: nowrap;
+}
+
+/* Redondear extremos de cabecera */
+.tabla .mat-mdc-header-cell:first-child {
+  border-top-left-radius: 9px;
+}
+
+.tabla .mat-mdc-header-cell:last-child {
+  border-top-right-radius: 9px;
 }
 
 /* FILAS */
 .tabla .mat-mdc-row {
-  height: 68px;
+  height: 64px;
+  transition: background-color 0.2s ease;
 }
 
 .tabla .mat-mdc-row:nth-child(odd) {
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
 
 .tabla .mat-mdc-row:nth-child(even) {
-  background-color: #f5fdfb;
+  background-color: #F7FBF8;
 }
 
 .tabla .mat-mdc-row:hover {
-  background-color: #eaf8f3;
+  background-color: #E8FAF1;
 }
 
 /* CELDAS */
 .tabla .mat-mdc-cell {
   padding: 0 16px;
-  color: #34443e;
+  color: #34443E;
   font-size: 13px;
-  border-bottom: none;
+  font-weight: 400;
+  border-bottom: 1px solid #EDF3EF;
   white-space: nowrap;
 }
 
-/* ACCIONES */
-.col-acciones {
-  text-align: center;
-  min-width: 100px;
+/* Primera columna: identificador */
+.tabla .mat-mdc-cell:first-child {
+  color: #1F3A33;
+  font-weight: 600;
 }
 
+/* =========================================
+   COLUMNAS DE ACCIONES
+========================================= */
+.tabla .mat-column-C8,
+.tabla .mat-column-C9 {
+  width: 75px;
+  min-width: 75px;
+  text-align: center;
+}
+
+/* Botones de acción */
 .btn-editar,
 .btn-eliminar {
-  width: 34px !important;
-  height: 34px !important;
-  line-height: 34px !important;
-  color: #78847e !important;
-}
-
-.btn-editar {
-  margin-right: 5px;
+  width: 36px !important;
+  height: 36px !important;
+  line-height: 36px !important;
+  border-radius: 50% !important;
+  transition: all 0.2s ease;
 }
 
 .btn-editar mat-icon,
@@ -115,49 +155,119 @@
   line-height: 19px;
 }
 
+/* Editar */
+.btn-editar {
+  color: #1F6485 !important;
+  background-color: #E3F0FA !important;
+}
+
 .btn-editar:hover {
-  color: #16845f !important;
+  color: #FFFFFF !important;
+  background-color: #1F6485 !important;
+}
+
+/* Eliminar */
+.btn-eliminar {
+  color: #E54848 !important;
+  background-color: #FDECEC !important;
 }
 
 .btn-eliminar:hover {
-  color: #dc4444 !important;
+  color: #FFFFFF !important;
+  background-color: #E54848 !important;
 }
 
-/* SIN REGISTROS */
+/* =========================================
+   SIN REGISTROS
+========================================= */
 .vacio {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  padding: 40px 15px;
-  color: #71817b;
+  gap: 12px;
+  margin: 0;
+  padding: 55px 20px;
+  color: #5F6F69;
   font-size: 14px;
+  font-weight: 500;
 }
 
 .vacio mat-icon {
-  color: #69a991;
+  color: #2E7D5B;
+  font-size: 25px;
+  width: 25px;
+  height: 25px;
 }
 
-/* RESPONSIVE */
+/* =========================================
+   PAGINADOR
+========================================= */
+.paginador {
+  background-color: #FFFFFF;
+  border-top: 1px solid #EDF3EF;
+  color: #5F6F69;
+  font-size: 12px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
 @media (max-width: 768px) {
   .ingredientes-page {
-    padding: 10px;
+    padding: 12px;
   }
 
   .ingredientes-header {
-    padding: 16px;
+    padding: 20px;
   }
 
   .ingredientes-header h1 {
-    font-size: 19px;
+    font-size: 20px;
   }
 
-  .tabla .mat-mdc-cell,
-  .tabla .mat-mdc-header-cell {
+  .tabla-wrap {
+    padding: 14px;
+  }
+
+  .tabla {
+    min-width: 900px;
+  }
+
+  .tabla .mat-mdc-header-cell,
+  .tabla .mat-mdc-cell {
     padding: 0 12px;
   }
 
   .tabla .mat-mdc-row {
     height: 58px;
+  }
+
+  .paginador {
+    overflow-x: auto;
+  }
+}
+
+/* =========================================
+   PANTALLAS PEQUEÑAS
+========================================= */
+@media (max-width: 480px) {
+  .ingredientes-page {
+    padding: 8px;
+  }
+
+  .ingredientes-card {
+    border-radius: 12px;
+  }
+
+  .ingredientes-header {
+    padding: 17px;
+  }
+
+  .ingredientes-header h1 {
+    font-size: 18px;
+  }
+
+  .ingredientes-header p {
+    font-size: 12px;
   }
 }

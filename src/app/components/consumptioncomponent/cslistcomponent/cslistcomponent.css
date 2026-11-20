@@ -1,0 +1,242 @@
+
+:host {
+  --mikhu-green: #2E7D5B;
+  --mikhu-green-2: #0ab86c;
+  --mikhu-green-dark: #1F3A33;
+  --mikhu-green-light: #E3F2EA;
+  --mikhu-skyblue: #0D9488;
+  --mikhu-mint: #D3F3E6;
+  --mikhu-mint-soft: #E8FAF1;
+  --mikhu-border: #B7D7C7;
+  --mikhu-ink: #0F2A24;
+  --mikhu-muted: #5F6F69;
+  --mikhu-blue: #1F6485;
+  --mikhu-blue-soft: #E3F0FA;
+  --mikhu-red: #E54848;
+  --mikhu-white: #FFFFFF;
+
+  display: block;
+  min-height: 100vh;
+  background: var(--mikhu-white);
+  color: var(--mikhu-green-dark);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ===== Encabezado ===== */
+.container > div:first-child {
+  background: var(--mikhu-green-2);
+  border-bottom: 2px solid var(--mikhu-border);
+  padding: 32px;
+}
+
+.container > div:first-child h2 {
+  max-width: 1100px;
+  margin: 0 auto;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--mikhu-white);
+}
+
+/* ===== Layout principal ===== */
+.container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 0 0 32px;
+}
+
+/* ===== Contenedor de tabla ===== */
+.container > div:nth-child(2) {
+  box-sizing: border-box;
+  width: calc(100% - 64px);
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 32px;
+  border: 1px solid var(--mikhu-green-light);
+  border-radius: 16px;
+  background: var(--mikhu-white);
+  box-shadow: 0 2px 12px rgba(31, 58, 51, 0.08);
+}
+
+/* ===== Tabla ===== */
+table {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--mikhu-white);
+
+  --mat-table-background-color: var(--mikhu-white);
+  --mat-table-header-container-height: 56px;
+  --mat-table-row-item-container-height: 60px;
+  --mat-table-header-headline-color: var(--mikhu-green-dark);
+  --mat-table-row-item-label-text-color: var(--mikhu-green-dark);
+  --mat-table-row-item-outline-color: var(--mikhu-green-light);
+}
+
+/* ===== Encabezados ===== */
+table th.mat-mdc-header-cell {
+  background: var(--mikhu-mint);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--mikhu-ink);
+  border-bottom: 1px solid var(--mikhu-border);
+  white-space: nowrap;
+}
+
+/* ===== Celdas ===== */
+table th.mat-mdc-header-cell,
+table td.mat-mdc-cell {
+  padding: 0 20px;
+  text-align: center;
+}
+
+table td.mat-mdc-cell {
+  font-size: 14px;
+  color: var(--mikhu-green-dark);
+  border-bottom: 1px solid var(--mikhu-green-light);
+}
+
+/* ===== Hover de filas ===== */
+table tr.mat-mdc-row {
+  transition: background-color 0.2s ease;
+}
+
+table tr.mat-mdc-row:hover {
+  background: var(--mikhu-mint-soft);
+}
+
+/* ===== Columna de acciones ===== */
+.btn-eliminar,
+.btn-editar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #44545A;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  --mat-icon-button-icon-color: #44545A;
+  --mat-icon-button-state-layer-color: currentColor;
+}
+
+.btn-editar {
+  color: var(--mikhu-blue);
+}
+
+.btn-eliminar {
+  color: var(--mikhu-red);
+  margin-left: 8px;
+}
+
+.btn-editar mat-icon,
+.btn-eliminar mat-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+  color: inherit;
+}
+
+.btn-editar:hover {
+  background: rgba(31, 100, 133, 0.12);
+  color: var(--mikhu-blue);
+}
+
+.btn-eliminar:hover {
+  background: rgba(229, 72, 72, 0.12);
+  color: var(--mikhu-red);
+}
+
+/* ===== Accesibilidad ===== */
+.btn-editar:focus-visible,
+.btn-eliminar:focus-visible {
+  outline: 2px solid var(--mikhu-green-dark);
+  outline-offset: 2px;
+}
+
+/* ===== Estado vacío ===== */
+.container > div:nth-child(2) > p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  margin: 0;
+  padding: 24px;
+  border-radius: 12px;
+  background: var(--mikhu-mint-soft);
+  color: var(--mikhu-muted);
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* ===== Paginador ===== */
+.paginador {
+  margin-top: 16px;
+  border-top: 1px solid var(--mikhu-mint);
+  background: var(--mikhu-white);
+  font-family: 'Roboto', sans-serif;
+
+  --mat-paginator-container-text-color: var(--mikhu-green-dark);
+  --mat-paginator-container-background-color: var(--mikhu-white);
+  --mat-paginator-enabled-icon-color: var(--mikhu-green);
+  --mat-paginator-disabled-icon-color: #B7C4BE;
+  --mat-paginator-container-size: 56px;
+  --mat-paginator-container-text-size: 13px;
+
+  --mat-form-field-outlined-outline-color: var(--mikhu-border);
+  --mat-form-field-outlined-hover-outline-color: var(--mikhu-green);
+  --mat-form-field-outlined-focus-outline-color: var(--mikhu-green);
+  --mat-select-enabled-trigger-text-color: var(--mikhu-green-dark);
+  --mat-select-enabled-arrow-color: var(--mikhu-green);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .container > div:first-child {
+    padding: 24px 20px;
+  }
+
+  .container > div:first-child h2 {
+    font-size: 25px;
+  }
+
+  .container > div:nth-child(2) {
+    width: calc(100% - 32px);
+    margin: 20px auto;
+    padding: 16px;
+  }
+
+  .tabla-wrap {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 700px;
+  }
+
+  table th.mat-mdc-header-cell,
+  table td.mat-mdc-cell {
+    padding: 0 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container > div:first-child h2 {
+    font-size: 21px;
+  }
+
+  .container > div:nth-child(2) {
+    padding: 12px;
+  }
+}

@@ -108,7 +108,7 @@ export class Csupdatecomponent implements OnInit{
   
     }
 
-    actualizarItem(): void {
+    actualizarConsumo(): void {
 
 
     const dto = {

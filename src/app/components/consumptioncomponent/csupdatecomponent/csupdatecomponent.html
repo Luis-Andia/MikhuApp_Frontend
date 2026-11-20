@@ -1,10 +1,10 @@
 <div class="container">
   <div>
-    <h2>Formulario de Actualización de Items</h2>
+    <h2>Formulario de Actualización de Consumos</h2>
   </div>
 
   <div>
-    <form [formGroup]="formConsumo" (ngSubmit)="actualizarItem()">
+    <form [formGroup]="formConsumo" (ngSubmit)="actualizarConsumo()">
       <mat-form-field appearance="outline">
         <mat-label>ID</mat-label>
         <input matInput formControlName="codigo" readonly />
@@ -54,7 +54,7 @@
       <br /><br />
 
       <button matButton type="submit">Guardar Cambios</button>
-      <button matButton type="button" class="btn-cancelar" routerLink="/items/listar">Cancelar</button>
+      <button matButton type="button" class="btn-cancelar" routerLink="/consumo/listar">Cancelar</button>
 
     </form>
 

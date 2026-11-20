@@ -1,0 +1,196 @@
+
+:host {
+  --mikhu-green: #2E7D5B;
+  --mikhu-green-dark: #1F3A33;
+  --mikhu-green-light: #E3F2EA;
+  --mikhu-mint: #D3F3E6;
+  --mikhu-mint-soft: #E8FAF1;
+  --mikhu-ink: #0F2A24;
+  --mikhu-muted: #5F6F69;
+  --mikhu-red: #E54848;
+  --mikhu-white: #FFFFFF;
+
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #F4FAF7 0%, var(--mikhu-white) 100%);
+  color: var(--mikhu-green-dark);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ===== Layout general ===== */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 32px;
+}
+
+/* ===== Encabezado ===== */
+.container > div:first-child {
+  width: 100%;
+  max-width: 480px;
+  box-sizing: border-box;
+  padding: 24px 32px;
+  border-radius: 16px 16px 0 0;
+  background: var(--mikhu-mint-soft);
+  border: 1px solid var(--mikhu-green-light);
+  border-bottom: 1px solid var(--mikhu-mint);
+}
+
+.container > div:first-child h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--mikhu-ink);
+}
+
+/* ===== Tarjeta del formulario ===== */
+.container > div:nth-child(2) {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 480px;
+  padding: 28px 32px 32px;
+  border: 1px solid var(--mikhu-green-light);
+  border-top: none;
+  border-radius: 0 0 16px 16px;
+  background: var(--mikhu-white);
+  box-shadow: 0 4px 16px rgba(31, 58, 51, 0.10);
+}
+
+/* ===== Formulario ===== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+form br {
+  display: none;
+}
+
+/* ===== Campos Angular Material ===== */
+mat-form-field {
+  width: 100%;
+
+  --mat-form-field-outlined-container-shape: 12px;
+  --mat-form-field-outlined-outline-color: #B7D7C7;
+  --mat-form-field-outlined-hover-outline-color: var(--mikhu-green);
+  --mat-form-field-outlined-focus-outline-color: var(--mikhu-green);
+  --mat-form-field-outlined-label-text-color: var(--mikhu-green-dark);
+  --mat-form-field-outlined-focus-label-text-color: var(--mikhu-green);
+  --mat-form-field-outlined-input-text-color: var(--mikhu-green-dark);
+  --mat-form-field-outlined-caret-color: var(--mikhu-green);
+  --mat-form-field-outlined-error-outline-color: var(--mikhu-red);
+  --mat-form-field-outlined-error-label-text-color: var(--mikhu-red);
+
+  --mat-select-enabled-trigger-text-color: var(--mikhu-green-dark);
+  --mat-select-enabled-arrow-color: var(--mikhu-muted);
+  --mat-select-focused-arrow-color: var(--mikhu-green);
+}
+
+/* ===== Campo ID de solo lectura ===== */
+mat-form-field:first-child {
+  --mat-form-field-outlined-outline-color: var(--mikhu-mint);
+  --mat-form-field-outlined-hover-outline-color: var(--mikhu-mint);
+  --mat-form-field-outlined-focus-outline-color: var(--mikhu-mint);
+  --mat-form-field-outlined-input-text-color: var(--mikhu-muted);
+}
+
+mat-form-field:first-child input {
+  cursor: not-allowed;
+}
+
+/* ===== Mensajes de error ===== */
+mat-error {
+  font-size: 12px;
+  color: var(--mikhu-red) !important;
+}
+
+/* ===== Botón guardar cambios ===== */
+button[type="submit"] {
+  width: 100%;
+  height: 52px;
+  margin-top: 4px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  --mat-button-filled-container-color: var(--mikhu-green);
+  --mat-button-filled-label-text-color: var(--mikhu-white);
+  --mat-button-filled-container-shape: 12px;
+}
+
+button[type="submit"]:hover {
+  --mat-button-filled-container-color: #266A4D;
+}
+
+button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+/* ===== Botón cancelar ===== */
+.btn-cancelar {
+  width: 100%;
+  height: 52px;
+  border-radius: 12px;
+  background: var(--mikhu-green-light);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+
+  --mat-button-text-label-text-color: var(--mikhu-green-dark);
+  --mat-button-text-state-layer-color: var(--mikhu-green);
+  --mat-button-text-container-shape: 12px;
+}
+
+.btn-cancelar:hover {
+  background: var(--mikhu-mint);
+}
+
+/* ===== Mensaje de respuesta ===== */
+.container > div:nth-child(2) > p {
+  margin: 16px 0 0;
+  padding: 12px 16px;
+  border-left: 4px solid var(--mikhu-green);
+  border-radius: 8px;
+  background: var(--mikhu-mint-soft);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--mikhu-green-dark);
+}
+
+/* ===== Accesibilidad ===== */
+button[type="submit"]:focus-visible,
+.btn-cancelar:focus-visible {
+  outline: 2px solid var(--mikhu-green-dark);
+  outline-offset: 2px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px 16px;
+  }
+
+  .container > div:first-child {
+    padding: 22px 20px;
+  }
+
+  .container > div:first-child h2 {
+    font-size: 19px;
+  }
+
+  .container > div:nth-child(2) {
+    padding: 24px 20px;
+  }
+
+  form {
+    gap: 14px;
+  }
+}
