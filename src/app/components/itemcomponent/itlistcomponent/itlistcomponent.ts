@@ -8,10 +8,12 @@ import { inject } from '@angular/core';
 import { Userservice } from '../../../services/userservice';
 import { RouterLink } from '@angular/router';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { Loginservice } from '../../../services/loginservice';
+import { Ilistusercomponent } from '../ilistusercomponent/ilistusercomponent';
 
 
 @Component({
-  imports: [MatTableModule, MatTableModule,MatIconModule, RouterLink, MatPaginator, MatPaginatorModule, MatButtonModule],
+  imports: [MatTableModule, MatTableModule, MatIconModule, RouterLink, MatPaginator, MatPaginatorModule, MatButtonModule, Ilistusercomponent],
   selector: 'app-itlistcomponent',
   styleUrl: './itlistcomponent.css',
   templateUrl: './itlistcomponent.html',
@@ -25,6 +27,7 @@ export class Itlistcomponent implements OnInit{
 
   private iS = inject(Itemservice)
   private cdr = inject(ChangeDetectorRef)
+  private loginService = inject(Loginservice)
 
   ngOnInit(): void {
     this.obtenerItems()
@@ -57,5 +60,26 @@ export class Itlistcomponent implements OnInit{
         this.cdr.detectChanges()
       },
     })
+  }
+
+  // Roles
+  // Comprobar si es administrador
+  get esAdmin(): boolean {
+    return this.loginService.hasAnyRole(['ADMIN']);
+  }
+
+  // Comprobar si es miembro de familia
+  get esMiembro(): boolean {
+    return this.loginService.hasAnyRole(['MEMBER']);
+  }
+
+    // Comprobar si es invitado
+  get esInvitado(): boolean {
+    return this.loginService.hasAnyRole(['GUEST']);
+  }
+ 
+  // Comprobar si es moderador de una familia
+  get esModerador(): boolean {
+    return this.loginService.hasAnyRole(['MODERATOR']);
   }
 }
