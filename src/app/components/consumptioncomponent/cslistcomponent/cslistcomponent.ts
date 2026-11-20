@@ -4,12 +4,15 @@ import { ConsumptionDTO } from '../../../models/ConsumptionDTO';
 import { Consumptionservice } from '../../../services/consumptionservice';
 import {MatIconModule} from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   imports: [
     MatIconModule,
     MatTableModule,
-    RouterLink
+    RouterLink,
+    MatPaginator,
+    MatPaginatorModule
   ],
   selector: 'app-cslistcomponent',
   styleUrl: './cslistcomponent.css',
