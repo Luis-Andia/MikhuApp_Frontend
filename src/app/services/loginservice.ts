@@ -1,8 +1,6 @@
-
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-
 import { environment } from '../../environments/environment.development';
 import { loginresponseDTO } from '../models/loginresponseDTO';
 import { loginrequestDTO } from '../models/loginrequestDTO';
@@ -13,7 +11,7 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class Loginservice {
 
-  private apiURL = `${environment.base}/login`;
+  private readonly apiURL = `${environment.base}/login`;
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID)); // Browser Common; ID Core
   
   private http = inject(HttpClient);

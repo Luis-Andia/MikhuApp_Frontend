@@ -1,7 +1,6 @@
 
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Homecomponent } from './components/homecomponent/homecomponent';
 import { Chatiacomponent } from './components/chatiacomponent/chatiacomponent';
 import { Menuadmincomponent } from './components/menuadmincomponent/menuadmincomponent';
 import { Loginservice } from './services/loginservice';
