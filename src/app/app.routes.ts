@@ -3,6 +3,10 @@ import { Routes, Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { Loginservice } from './services/loginservice';
 
+// Guards
+import { authGuard } from './core/guards/auth-guard';
+import { roleGuard } from './core/guards/role-guard';
+
 // Autenticación
 import { Logincomponent } from './components/logincomponent/logincomponent';
 import { Registrocomponent } from './components/registrocomponent/registrocomponent';
@@ -21,7 +25,7 @@ import { Itupdatecomponent } from './components/itemcomponent/itupdatecomponent/
 
 // Recetas
 import { Recipecomponent } from './components/recipecomponent/recipecomponent';
-import { Rlistcomponent as Recipecatalogocomponent, Rlistcomponent } from './components/recipecomponent/rlistcomponent/rlistcomponent';
+import { Rlistcomponent as Recipecatalogocomponent } from './components/recipecomponent/rlistcomponent/rlistcomponent';
 import { Reinsertcomponent } from './components/recipecomponent/reinsertcomponent/reinsertcomponent';
 import { Relistcomponent } from './components/recipecomponent/relistcomponent/relistcomponent';
 import { Reupdatecomponent } from './components/recipecomponent/reupdatecomponent/reupdatecomponent';
@@ -76,28 +80,20 @@ import { Registrocomponent } from './components/registrocomponent/registrocompon
 
 export const routes: Routes = [
 
-  // Pantalla principal: verificar sesión
+  // Inicio
   {
     path: '',
     pathMatch: 'full',
     redirectTo: () => {
       const loginService = inject(Loginservice);
 
-      const token = loginService.obtenerToken();
-
-      if (token && !loginService.tokenExpirado()) {
-        return '/dashboard';
-      }
-
-      if (token) {
-        loginService.cerrarSesion();
-      }
-
-      return '/login';
+      return loginService.isAuthenticated()
+        ? '/dashboard'
+        : '/login';
     }
   },
 
-  // Login: si existe una sesión vigente, ir al dashboard
+  // Login público
   {
     path: 'login',
     component: Logincomponent,
@@ -106,21 +102,17 @@ export const routes: Routes = [
         const loginService = inject(Loginservice);
         const router = inject(Router);
 
-        const token = loginService.obtenerToken();
-
-        if (token && !loginService.tokenExpirado()) {
+        if (loginService.isAuthenticated()) {
           return router.createUrlTree(['/dashboard']);
         }
 
-        if (token) {
-          loginService.cerrarSesion();
-        }
-
+        loginService.logout();
         return true;
       }
     ]
   },
 
+  // Registro público
   {
     path: 'registro',
     component: Registrocomponent
@@ -129,13 +121,16 @@ export const routes: Routes = [
   // Dashboard
   {
     path: 'dashboard',
-    component: Dashboardcomponent
+    component: Dashboardcomponent,
+    canActivate: [authGuard]
   },
 
   // Inventario
   {
     path: 'items',
     component: Itemcomponent,
+    canActivate: [authGuard],
+    canActivateChild: [authGuard],
     children: [
       {
         path: '',
@@ -161,6 +156,8 @@ export const routes: Routes = [
   {
     path: 'recetas',
     component: Recipecomponent,
+    canActivate: [authGuard],
+    canActivateChild: [authGuard],
     children: [
       {
         path: '',
@@ -189,6 +186,8 @@ export const routes: Routes = [
   {
     path: 'consumo',
     component: Consumptioncomponent,
+    canActivate: [authGuard],
+    canActivateChild: [authGuard],
     children: [
       {
         path: '',
@@ -210,6 +209,8 @@ export const routes: Routes = [
   {
     path: 'familia',
     component: Familycomponent,
+    canActivate: [authGuard],
+    canActivateChild: [authGuard],
     children: [
       {
         path: '',
@@ -235,6 +236,8 @@ export const routes: Routes = [
   {
     path: 'ingrediente',
     component: Ingredientcomponent,
+    canActivate: [authGuard],
+    canActivateChild: [authGuard],
     children: [
       {
         path: '',
@@ -260,6 +263,8 @@ export const routes: Routes = [
   {
     path: 'pais',
     component: Countrycomponent,
+    canActivate: [authGuard],
+    canActivateChild: [authGuard],
     children: [
       {
         path: '',
@@ -281,10 +286,13 @@ export const routes: Routes = [
     ]
   },
 
-  // Usuarios
+  // Usuarios: acceso administrativo
   {
     path: 'usuarios',
     component: Usercomponent,
+    canActivate: [authGuard, roleGuard],
+    canActivateChild: [authGuard, roleGuard],
+    data: { roles: ['ROLE_ADMIN'] },
     children: [
       {
         path: '',
@@ -298,10 +306,13 @@ export const routes: Routes = [
     ]
   },
 
-  // Roles
+  // Roles: acceso administrativo
   {
     path: 'roles',
     component: Rolcomponent,
+    canActivate: [authGuard, roleGuard],
+    canActivateChild: [authGuard, roleGuard],
+    data: { roles: ['ROLE_ADMIN'] },
     children: [
       {
         path: '',
@@ -313,22 +324,24 @@ export const routes: Routes = [
         component: Rinsertcomponent
       },
       {
-        path:'listar',
-        component:Rolelistcomponent
+        path: 'listar',
+        component: Rolelistcomponent
       },
       {
         path: 'editar/:id',
         component: Rupdatecomponent
-      },
+      }
     ]
   },
+
   // Asistente IA
   {
     path: 'chatia',
-    component: Chatiacomponent
+    component: Chatiacomponent,
+    canActivate: [authGuard]
   },
 
-  // Si la ruta no existe, regresar al Login
+  // Ruta no encontrada
   {
     path: '**',
     redirectTo: 'login'
