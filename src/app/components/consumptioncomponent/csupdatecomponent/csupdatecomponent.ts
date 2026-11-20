@@ -92,7 +92,7 @@ export class Csupdatecomponent implements OnInit{
   
           this.formConsumo.patchValue({
             codigo: data.idConsumption,
-            fechaConsumo: data.consumptionDate,
+            fechaConsumo: data.consumptionDate ? new Date(String(data.consumptionDate).replace(/-/g, '/')) : null,
             idItem: data.idItem,
             idReceta: data.idReceta
           });

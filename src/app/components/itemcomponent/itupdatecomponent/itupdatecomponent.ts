@@ -99,9 +99,9 @@ export class Itupdatecomponent implements OnInit{
           idFamilia: data.idFamily,
           idIngrediente: data.idIngredient,
           cantidad: data.amountAvailable,
-          fechaCompra: data.purchaseDate,
-          fechaVencimiento: data.dueDate,
-          stockMinimo: data.minimumStock,
+          fechaCompra: data.purchaseDate ? new Date(String(data.purchaseDate).replace(/-/g, '/')) : null,
+          fechaVencimiento: data.dueDate ? new Date(String(data.dueDate).replace(/-/g, '/')) : null,
+          stockMinimo: data.minimumStock, 
         });
 
       },

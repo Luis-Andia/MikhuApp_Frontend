@@ -82,5 +82,25 @@
       aria-label="Seleccionar página"
     >
     </mat-paginator>
+
+    <!-- Diálogo de confirmación -->
+    <ng-template #dialogEliminar>
+      <div class="dialog-eliminar">
+        <div class="dialog-icon">
+          <mat-icon>warning</mat-icon>
+        </div>
+
+        <h2>¿Estás seguro?</h2>
+
+        <p>Estás a punto de eliminar este Item. Esta acción no se puede deshacer.</p>
+
+        <div class="dialog-actions">
+          <button mat-stroked-button mat-dialog-close>Cancelar</button>
+
+          <button mat-flat-button color="warn" [mat-dialog-close]="true">Sí, eliminar</button>
+        </div>
+      </div>
+    </ng-template>
+
   </div>
 </div>

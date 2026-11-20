@@ -45,7 +45,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Stock Mínimo</mat-label>
         <input matInput type="number" placeholder="Ej. 3" formControlName="stockMinimo" />
-        @if (formItem.get('cantidad')?.hasError('min')) {
+        @if (formItem.get('stockMinimo')?.hasError('min')) {
           <mat-error>Para cantidad no se aceptan valores inferiores a 1</mat-error>
         }
       </mat-form-field>

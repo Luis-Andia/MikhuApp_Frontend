@@ -10,10 +10,12 @@ import { RouterLink } from '@angular/router';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { Loginservice } from '../../../services/loginservice';
 import { Ilistusercomponent } from '../ilistusercomponent/ilistusercomponent';
-
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { TemplateRef } from '@angular/core';
 
 @Component({
-  imports: [MatTableModule, MatTableModule, MatIconModule, RouterLink, MatPaginator, MatPaginatorModule, MatButtonModule, Ilistusercomponent],
+  imports: [MatTableModule, MatTableModule, MatIconModule, RouterLink, MatPaginator, MatPaginatorModule, MatButtonModule, Ilistusercomponent, MatSnackBarModule, MatDialogModule],
   selector: 'app-itlistcomponent',
   styleUrl: './itlistcomponent.css',
   templateUrl: './itlistcomponent.html',
@@ -24,10 +26,13 @@ export class Itlistcomponent implements OnInit{
   dataSource = new MatTableDataSource<ItemDTO>([])
 
   @ViewChild(MatPaginator) paginator!: MatPaginator
+  @ViewChild('dialogEliminar') dialogEliminar!: TemplateRef<any>;
 
   private iS = inject(Itemservice)
   private cdr = inject(ChangeDetectorRef)
   private loginService = inject(Loginservice)
+  private sB = inject(MatSnackBar)
+  private dg = inject(MatDialog);
 
   ngOnInit(): void {
     this.obtenerItems()
@@ -51,15 +56,50 @@ export class Itlistcomponent implements OnInit{
       }
   
   eliminarItem(id: number) {
-    this.iS.deleteItem(id).subscribe({
-      next: () => {
-        this.obtenerItems()
-        this.cdr.detectChanges()
-      }, error: (err) => {
-        console.log('Error al eliminar!!')
-        this.cdr.detectChanges()
-      },
-    })
+
+    const dialogRef = this.dg.open(this.dialogEliminar, {
+    width: '420px',
+    maxWidth: '90vw',
+    disableClose: true,
+    autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe(confirmado => {
+
+    if (confirmado) {
+      this.iS.deleteItem(id).subscribe({
+        next: () => {
+          this.obtenerItems();
+
+          this.sB.open(
+            'Item eliminado correctamente.',
+            'Cerrar',
+            {
+              duration: 3000,
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              panelClass: ['mensaje-exito']
+            }
+          );
+        },
+        error: (err) => {
+          console.error('Error al eliminar:', err);
+
+          this.sB.open(
+            'No se puede eliminar este Item porque está relacionado con otro registro.',
+            'Cerrar',
+            {
+              duration: 5000,
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              panelClass: ['mensaje-error']
+            }
+          );
+        }
+      });
+    }
+
+  });
   }
 
   // Roles
