@@ -63,12 +63,15 @@ import { Rlistcomponent as Rolelistcomponent } from './components/rolcomponent/r
 import { Rinsertcomponent } from './components/rolcomponent/rinsertcomponent/rinsertcomponent';
 import { Rupdatecomponent } from './components/rolcomponent/rupdatecomponent/rupdatecomponent';
 import { Rolcomponent } from './components/rolcomponent/rolcomponent';
+import { Landingcomponent } from './components/landingcomponent/landingcomponent';
 
 
 export const routes: Routes = [
 
   // Inicio
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', 
+    component:Landingcomponent
+  },
 
   // Login público
   { 
