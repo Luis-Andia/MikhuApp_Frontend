@@ -4,7 +4,7 @@
       <h1>Listado de Items</h1>
       <p>Gestión y control del inventario dentro de MikhuApp</p>
     </header>
-
+    @if(esAdmin){
     @if (dataSource.data.length > 0) {
       <div class="tabla-wrap">
         <table mat-table [dataSource]="dataSource" class="tabla">
@@ -103,5 +103,11 @@
       aria-label="Seleccionar página"
     >
     </mat-paginator>
+  }
+
+  @if(esModerador || esMiembro){
+    <app-ilistusercomponent></app-ilistusercomponent>
+  }
+
   </div>
 </div>

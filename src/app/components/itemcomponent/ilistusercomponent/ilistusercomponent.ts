@@ -10,6 +10,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { FamilyInventoryDTO } from '../../../models/FamilyInventoryDTO';
 import { Recommendationiacomponent } from '../../recommendationiacomponent/recommendationiacomponent';
+import { Loginservice } from '../../../services/loginservice';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class Ilistusercomponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
   private iS = inject(Itemservice)
+  private lS = inject(Loginservice)
   private uS = inject(Userservice)
   private cdr = inject(ChangeDetectorRef)
   private dialog = inject(MatDialog);
@@ -38,16 +40,19 @@ export class Ilistusercomponent implements OnInit {
     this.dataSource.paginator = this.paginator
   }
 
-  obtenerItems() {
-    const usernamelogeado = localStorage.getItem('username')
+  get username(): string {
+    return this.lS.getUsername();
+  }
 
-    if (!usernamelogeado) {
+  obtenerItems() {
+
+    if (!this.username) {
       console.log('No hay un usuario sesión activa');
       return;
     }
 
     // Obtener usuario por su username
-    this.uS.getuserbyusername(usernamelogeado).subscribe({
+    this.uS.getuserbyusername(this.username).subscribe({
       next:(data:any) =>{
         const idFamily = data.idFamily // Obtener familia del usuario
       
