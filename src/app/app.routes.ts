@@ -81,35 +81,12 @@ import { Registrocomponent } from './components/registrocomponent/registrocompon
 export const routes: Routes = [
 
   // Inicio
-  {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: () => {
-      const loginService = inject(Loginservice);
-
-      return loginService.isAuthenticated()
-        ? '/dashboard'
-        : '/login';
-    }
-  },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   // Login público
-  {
-    path: 'login',
-    component: Logincomponent,
-    canActivate: [
-      () => {
-        const loginService = inject(Loginservice);
-        const router = inject(Router);
-
-        if (loginService.isAuthenticated()) {
-          return router.createUrlTree(['/dashboard']);
-        }
-
-        loginService.logout();
-        return true;
-      }
-    ]
+  { 
+    path: 'login', 
+    component: Logincomponent 
   },
 
   // Registro público
@@ -129,8 +106,8 @@ export const routes: Routes = [
   {
     path: 'items',
     component: Itemcomponent,
-    canActivate: [authGuard],
-    canActivateChild: [authGuard],
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN', 'MODERATOR', 'MEMBER'] },
     children: [
       {
         path: '',
@@ -156,8 +133,8 @@ export const routes: Routes = [
   {
     path: 'recetas',
     component: Recipecomponent,
-    canActivate: [authGuard],
-    canActivateChild: [authGuard],
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN', 'MODERATOR', 'MEMBER', 'GUEST'] },
     children: [
       {
         path: '',
@@ -186,8 +163,8 @@ export const routes: Routes = [
   {
     path: 'consumo',
     component: Consumptioncomponent,
-    canActivate: [authGuard],
-    canActivateChild: [authGuard],
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN', 'MODERATOR', 'MEMBER', 'GUEST'] },
     children: [
       {
         path: '',
@@ -209,8 +186,8 @@ export const routes: Routes = [
   {
     path: 'familia',
     component: Familycomponent,
-    canActivate: [authGuard],
-    canActivateChild: [authGuard],
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN', 'MODERATOR', 'MEMBER', 'GUEST'] },
     children: [
       {
         path: '',
@@ -236,8 +213,8 @@ export const routes: Routes = [
   {
     path: 'ingrediente',
     component: Ingredientcomponent,
-    canActivate: [authGuard],
-    canActivateChild: [authGuard],
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN', 'MODERATOR', 'MEMBER', 'GUEST'] },
     children: [
       {
         path: '',
@@ -263,8 +240,8 @@ export const routes: Routes = [
   {
     path: 'pais',
     component: Countrycomponent,
-    canActivate: [authGuard],
-    canActivateChild: [authGuard],
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN'] },
     children: [
       {
         path: '',
@@ -291,8 +268,7 @@ export const routes: Routes = [
     path: 'usuarios',
     component: Usercomponent,
     canActivate: [authGuard, roleGuard],
-    canActivateChild: [authGuard, roleGuard],
-    data: { roles: ['ROLE_ADMIN'] },
+    data: { roles: ['ADMIN'] },
     children: [
       {
         path: '',
@@ -311,8 +287,7 @@ export const routes: Routes = [
     path: 'roles',
     component: Rolcomponent,
     canActivate: [authGuard, roleGuard],
-    canActivateChild: [authGuard, roleGuard],
-    data: { roles: ['ROLE_ADMIN'] },
+    data: { roles: ['ADMIN'] },
     children: [
       {
         path: '',
@@ -338,7 +313,8 @@ export const routes: Routes = [
   {
     path: 'chatia',
     component: Chatiacomponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN', 'MODERATOR', 'MEMBER', 'GUEST'] },
   },
 
   // Ruta no encontrada
@@ -346,5 +322,4 @@ export const routes: Routes = [
     path: '**',
     redirectTo: 'login'
   }
-
 ];

@@ -1,50 +1,32 @@
-
+import { isPlatformBrowser } from '@angular/common';
 import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
-import { inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { catchError, throwError } from 'rxjs';
+import { inject, PLATFORM_ID } from '@angular/core';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
-  const router = inject(Router);
+  const platformId = inject(PLATFORM_ID);
 
-  // No enviar el token en las peticiones de login
-  if (req.url.includes('/login')) {
+  if (!isPlatformBrowser(platformId)) {
     return next(req);
   }
 
-  let token: string | null = null;
-
-  // Obtener el token de la sesión del navegador
-  if (typeof window !== 'undefined') {
-    token = sessionStorage.getItem('token');
+  const backendUrl = 'http://localhost:8080/';
+  if (!req.url.startsWith(backendUrl)) {
+    return next(req);
   }
 
-  // Agregar el token JWT a la petición
-  const request = token
-    ? req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-    : req;
+  if (req.url.endsWith('/login')) {
+    return next(req);
+  }
 
-  return next(request).pipe(
-    catchError((error: HttpErrorResponse) => {
+  const token = sessionStorage.getItem('token');
+  if (!token) {
+    return next(req);
+  }
 
-      // Si el token no es válido o expiró
-      if (
-        error.status === 401 &&
-        token &&
-        typeof window !== 'undefined'
-      ) {
-        sessionStorage.removeItem('token');
-        sessionStorage.removeItem('username');
-
-        router.navigate(['/login']);
-      }
-
-      return throwError(() => error);
+  return next(
+    req.clone({
+      setHeaders: { Authorization: `Bearer ${token}` },
     })
   );
 };

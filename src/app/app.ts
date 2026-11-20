@@ -12,15 +12,6 @@ import { Loginservice } from './services/loginservice';
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
-export class App implements OnInit {
-
-  private loginService = inject(Loginservice);
-
-  protected readonly title = signal('MikhuApp_Frontend');
-
-  ngOnInit(): void {
-    if (typeof window !== 'undefined') {
-      this.loginService.validarSesion();
-    }
-  }
+export class App {
+  protected readonly title = signal('MikhuApp_Frontend'); 
 }

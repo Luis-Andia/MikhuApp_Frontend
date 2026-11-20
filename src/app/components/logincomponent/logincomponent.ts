@@ -1,15 +1,11 @@
-
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Loginservice } from '../../services/loginservice';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
-import { loginrequestDTO } from '../../models/loginrequestDTO';
 
 @Component({
   selector: 'app-logincomponent',
@@ -31,16 +27,18 @@ export class Logincomponent {
   mensajeError = '';
   mensajeInfo = '';
   hide = true;
+  submitting = false;
 
   constructor(
-    private lS: Loginservice,
-    private cdr: ChangeDetectorRef,
-    private fb: FormBuilder,
-    private router: Router
+    private readonly auth: Loginservice,
+    private readonly cdr: ChangeDetectorRef,
+    private readonly fb: FormBuilder,
+    private readonly router: Router,
+    private readonly route:ActivatedRoute
   ) {
-    this.formulario = this.fb.group({
+    this.formulario = this.fb.nonNullable.group({
       username: ['', Validators.required],
-      contrasena: ['', Validators.required]
+      password: ['', Validators.required]
     });
   }
 
@@ -57,30 +55,25 @@ export class Logincomponent {
       this.mensajeError = 'Ingresa tu usuario y contraseña';
       return;
     }
+    
+    this.submitting = true;
 
-    const dto: loginrequestDTO = {
-      username: this.formulario.value.username,
-      password: this.formulario.value.contrasena
-    };
+    this.auth.login(this.formulario.getRawValue()).subscribe({
+      next: () => {
+        this.submitting = false;
 
-    this.lS.postlogin(dto).subscribe({
-      next: data => {
-        console.log('Inicio de sesión correcto:', data);
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        const destination =
+          returnUrl?.startsWith('/') && !returnUrl.startsWith('//') && returnUrl !== '/'
+            ? returnUrl
+            : '/dashboard';
 
-        this.mensajeError = '';
-        this.mensajeInfo = 'Sesión iniciada correctamente';
-        this.cdr.detectChanges();
-
-        this.router.navigate(['/dashboard']);
+        void this.router.navigateByUrl(destination);
       },
-      error: err => {
-        console.error('Error al iniciar sesión:', err);
-
-        this.mensajeError = 'Usuario o contraseña incorrectos';
-        this.mensajeInfo = '';
-
-        this.cdr.detectChanges();
-      }
+      error: () => {
+        this.submitting = false;
+        this.mensajeError = 'No se pudo iniciar sesión. Verifica tus credenciales e inténtalo nuevamente.';
+      },
     });
   }
 }

@@ -31,37 +31,54 @@ export class Menuadmincomponent {
   private router = inject(Router);
 
   // Obtener nombre del usuario autenticado
-  get nombreUsuario(): string {
-    return this.loginService.getUsername() || 'Usuario';
+  get username(): string {
+    return this.loginService.getUsername();
+  }
+
+  get roles(): string {
+    return this.loginService.getRoles().join(', ');
   }
 
   // Obtener iniciales del usuario
   get inicialesUsuario(): string {
-    const nombre = this.nombreUsuario
+    const nombre = this.username
       .replace(/[^a-zA-Z0-9 ]/g, ' ')
       .trim();
 
     if (!nombre) {
-      return 'U';
-    }
+      return 'U';}
 
     const palabras = nombre.split(/\s+/);
 
     if (palabras.length > 1) {
-      return (palabras[0][0] + palabras[1][0]).toUpperCase();
-    }
-
+      return (palabras[0][0] + palabras[1][0]).toUpperCase();}
+      
     return palabras[0].substring(0, 2).toUpperCase();
   }
 
   // Comprobar si es administrador
   get esAdmin(): boolean {
-    return this.loginService.hasAnyRole(['ROLE_ADMIN']);
+    return this.loginService.hasAnyRole(['ADMIN']);
+  }
+
+  // Comprobar si es miembro de familia
+  get esMiembro(): boolean {
+    return this.loginService.hasAnyRole(['MEMBER']);
+  }
+
+    // Comprobar si es invitado
+  get esInvitado(): boolean {
+    return this.loginService.hasAnyRole(['GUEST']);
+  }
+ 
+  // Comprobar si es moderador de una familia
+  get esModerador(): boolean {
+    return this.loginService.hasAnyRole(['MODERATOR']);
   }
 
   // Cerrar sesión
   cerrarSesion(): void {
     this.loginService.logout();
-    this.router.navigate(['/login']);
+    void this.router.navigateByUrl('/login', { replaceUrl: true });
   }
 }

@@ -1,22 +1,9 @@
-
 :host {
-  --mikhu-green: #2E7D5B;
-  --mikhu-green-dark: #1F3A33;
-  --mikhu-green-light: #E3F2EA;
-  --mikhu-mint: #D3F3E6;
-  --mikhu-mint-soft: #E8FAF1;
-  --mikhu-panel: #E6F3EC;
-  --mikhu-ink: #0F2A24;
-  --mikhu-muted: #5F6F69;
-  --mikhu-border: #E3E8E6;
-  --mikhu-red: #E54848;
-  --mikhu-white: #FFFFFF;
-
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: linear-gradient(180deg, #F4F6F5 0%, var(--mikhu-white) 100%);
-  color: var(--mikhu-green-dark);
+  background: linear-gradient(180deg, #F4F6F5 0%, #FFFFFF 100%);
+  color: #1F3A33;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -37,9 +24,9 @@
   width: 100%;
   max-width: 990px;
   overflow: hidden;
-  border: 1px solid var(--mikhu-border);
+  border: 1px solid #E3E8E6;
   border-radius: 24px;
-  background: var(--mikhu-white);
+  background: #FFFFFF;
   box-shadow: 0 8px 32px rgba(31, 58, 51, 0.10);
 }
 
@@ -50,7 +37,7 @@
   align-items: flex-start;
   box-sizing: border-box;
   padding: 40px;
-  background: var(--mikhu-panel);
+  background: #E6F3EC;
 }
 
 .login-badge {
@@ -70,7 +57,7 @@
   height: 16px;
   font-size: 16px;
   line-height: 16px;
-  color: var(--mikhu-green);
+  color: #2E7D5B;
 }
 
 .login-panel h2 {
@@ -78,14 +65,14 @@
   font-size: 28px;
   font-weight: 700;
   line-height: 1.3;
-  color: var(--mikhu-green-dark);
+  color: #1F3A33;
 }
 
 .login-panel-desc {
   margin: 0;
   font-size: 15px;
   line-height: 1.6;
-  color: var(--mikhu-muted);
+  color: #5F6F69;
 }
 
 /* ===== Ilustración de ingredientes ===== */
@@ -121,7 +108,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--mikhu-green);
+  background: #2E7D5B;
 }
 
 /* ===== Panel derecho ===== */
@@ -146,8 +133,8 @@
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: var(--mikhu-mint-soft);
-  color: var(--mikhu-green);
+  background: #E8FAF1;
+  color: #2E7D5B;
 }
 
 .login-logo mat-icon {
@@ -160,24 +147,24 @@
 .login-marca-nombre {
   font-size: 22px;
   font-weight: 700;
-  color: var(--mikhu-green-dark);
+  color: #1F3A33;
 }
 
 .login-marca-nombre span {
-  color: var(--mikhu-green);
+  color: #2E7D5B;
 }
 
 .login-form-wrap h1 {
   margin: 0 0 8px;
   font-size: 28px;
   font-weight: 700;
-  color: var(--mikhu-ink);
+  color: #0F2A24;
 }
 
 .login-desc {
   margin: 0 0 24px;
   font-size: 14px;
-  color: var(--mikhu-muted);
+  color: #5F6F69;
 }
 
 /* ===== Formulario ===== */
@@ -198,7 +185,7 @@ form {
   font-weight: 500;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  color: var(--mikhu-green-dark);
+  color: #1F3A33;
 }
 
 /* ===== Campos Angular Material ===== */
@@ -207,20 +194,23 @@ form {
   width: 100%;
 
   --mat-form-field-outlined-container-shape: 12px;
-  --mat-form-field-outlined-outline-color: var(--mikhu-border);
-  --mat-form-field-outlined-hover-outline-color: var(--mikhu-green);
-  --mat-form-field-outlined-focus-outline-color: var(--mikhu-green);
-  --mat-form-field-outlined-input-text-color: var(--mikhu-ink);
-  --mat-form-field-outlined-caret-color: var(--mikhu-green);
+  --mat-form-field-outlined-outline-color: #E3E8E6;
+  --mat-form-field-outlined-hover-outline-color: #2E7D5B;
+  --mat-form-field-outlined-focus-outline-color: #2E7D5B;
+  --mat-form-field-outlined-input-text-color: #0F2A24;
+  --mat-form-field-outlined-caret-color: #2E7D5B;
 }
 
-/* Icono del usuario */
+.campo input.mat-mdc-input-element {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .campo mat-icon[matSuffix] {
   margin: 0;
-  color: var(--mikhu-muted);
+  color: #5F6F69;
 }
 
-/* Botón del ojo */
 .campo button[matSuffix] {
   width: 40px;
   height: 40px;
@@ -230,11 +220,10 @@ form {
   align-items: center;
   justify-content: center;
 
-  --mat-icon-button-icon-color: var(--mikhu-muted);
-  --mat-icon-button-state-layer-color: var(--mikhu-green);
+  --mat-icon-button-icon-color: #5F6F69;
+  --mat-icon-button-state-layer-color: #2E7D5B;
 }
 
-/* Tamaño uniforme de los iconos */
 .campo mat-icon {
   width: 20px;
   height: 20px;
@@ -242,19 +231,31 @@ form {
   line-height: 20px;
 }
 
-/* ===== Mensaje de error ===== */
+.field-error {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #E54848;
+}
+
+/* ===== Mensaje de error general ===== */
 .error_mensaje {
   margin: 0;
   padding: 8px 16px;
-  border-left: 4px solid var(--mikhu-red);
+  border-left: 4px solid #E54848;
   border-radius: 8px;
   background: rgba(229, 72, 72, 0.10);
+  color: #0F2A24;
   font-size: 14px;
   line-height: 1.4;
 }
 
 /* ===== Botón de inicio de sesión ===== */
 .btn-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
   height: 48px;
   margin-top: 8px;
   border-radius: 12px;
@@ -264,8 +265,8 @@ form {
   box-shadow: 0 4px 12px rgba(46, 125, 91, 0.30);
   transition: background-color 0.2s ease, transform 0.1s ease;
 
-  --mat-button-filled-container-color: var(--mikhu-green);
-  --mat-button-filled-label-text-color: var(--mikhu-white);
+  --mat-button-filled-container-color: #2E7D5B;
+  --mat-button-filled-label-text-color: #FFFFFF;
   --mat-button-filled-container-shape: 12px;
 }
 
@@ -278,10 +279,11 @@ form {
 }
 
 .btn-login mat-icon {
-  width: 18px;
-  height: 18px;
-  font-size: 18px;
-  line-height: 18px;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
 }
 
 /* ===== Enlace de registro ===== */
@@ -289,12 +291,12 @@ form {
   margin: 24px 0 0;
   font-size: 14px;
   text-align: center;
-  color: var(--mikhu-muted);
+  color: #5F6F69;
 }
 
 .login-registro a {
   font-weight: 500;
-  color: var(--mikhu-green);
+  color: #2E7D5B;
   text-decoration: none;
 }
 
@@ -305,17 +307,17 @@ form {
 /* ===== Pie de página ===== */
 .login-footer {
   padding: 24px 16px;
-  border-top: 1px solid var(--mikhu-border);
-  background: var(--mikhu-white);
+  border-top: 1px solid #E3E8E6;
+  background: #FFFFFF;
   font-size: 12px;
   text-align: center;
-  color: var(--mikhu-muted);
+  color: #5F6F69;
 }
 
 /* ===== Accesibilidad ===== */
 .btn-login:focus-visible,
 .login-registro a:focus-visible {
-  outline: 2px solid var(--mikhu-green-dark);
+  outline: 2px solid #1F3A33;
   outline-offset: 2px;
 }
 

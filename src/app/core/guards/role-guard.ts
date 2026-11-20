@@ -1,43 +1,26 @@
-
 import { inject } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
 import { Loginservice } from '../../services/loginservice';
 
-export const roleGuard: CanActivateFn = (route) => {
-
-  const loginService = inject(Loginservice);
+export const roleGuard: CanActivateFn = (route, state) => {
+const auth = inject(Loginservice);
   const router = inject(Router);
 
-  if (!loginService.isAuthenticated()) {
-    loginService.logout();
-    return router.createUrlTree(['/login']);
+  if (!auth.isAuthenticated()) {
+    return router.createUrlTree(['/login'], {
+      queryParams: { returnUrl: state.url },
+    });
   }
 
-  // Buscar los roles permitidos en la ruta actual
-  // y, si no existen, revisar las rutas superiores.
-  let rutaActual: ActivatedRouteSnapshot | null = route;
-  let rolesPermitidos: string[] = [];
+  const allowedRoles = route.data['roles'];
 
-  while (rutaActual) {
-    const roles = rutaActual.data['roles'];
-
-    if (Array.isArray(roles) && roles.length > 0) {
-      rolesPermitidos = roles;
-      break;
-    }
-
-    rutaActual = rutaActual.parent;
+  if (
+    !Array.isArray(allowedRoles) ||
+    !allowedRoles.every((role) => typeof role === 'string') ||
+    !auth.hasAnyRole(allowedRoles)
+  ) {
+    return router.createUrlTree(['/acceso-denegado']);
   }
 
-  // Si no hay restricciones de roles, permitir el acceso.
-  if (rolesPermitidos.length === 0) {
-    return true;
-  }
-
-  // Validar los permisos del usuario.
-  if (loginService.hasAnyRole(rolesPermitidos)) {
-    return true;
-  }
-
-  return router.createUrlTree(['/dashboard']);
+  return true;
 };
