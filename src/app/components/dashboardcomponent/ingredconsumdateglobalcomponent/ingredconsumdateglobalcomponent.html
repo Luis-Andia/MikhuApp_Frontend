@@ -1,0 +1,51 @@
+<main class="reporte-page">
+
+  <header class="reporte-header">
+    <h1>Ingredientes consumidos</h1>
+    <p>Consulta cuántas veces se consumió cada ingrediente en un rango de fechas</p>
+  </header>
+
+  <!-- Filtros -->
+  <form class="filtros" [formGroup]="formulario" (ngSubmit)="obtenerItemsConsumidosporFecha()">
+
+    <div class="campo-grupo campo-rango">
+      <label for="rango-inicio">Rango de fechas</label>
+      <mat-form-field appearance="outline" class="campo" subscriptSizing="dynamic">
+        <mat-date-range-input [formGroup]="formulario" [rangePicker]="picker" [max]="hoy">
+          <input matStartDate id="rango-inicio" formControlName="fechaInicio" placeholder="Fecha inicial">
+          <input matEndDate formControlName="fechaFin" placeholder="Fecha final">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+
+    <button matButton="filled" type="submit" class="btn-consultar">
+      <mat-icon>search</mat-icon>Consultar</button>
+  </form>
+
+  @if (mensaje) {
+    <p class="error_mensaje" role="alert">{{ mensaje }}</p>
+  }
+
+  <!-- Resultado -->
+  @if (lista.length > 0) {
+    <section class="resultado">
+      <div class="grafico-card">
+        <div class="grafico">
+          <canvas baseChart
+                  [type]="chartType"
+                  [data]="chartData"
+                  [options]="chartOptions">
+          </canvas>
+        </div>
+      </div>
+    </section>
+  } @else {
+    <p class="vacio">
+      <mat-icon>event_busy</mat-icon>
+      No hay consumos registrados en ese rango de fechas
+    </p>
+  }
+
+</main>
