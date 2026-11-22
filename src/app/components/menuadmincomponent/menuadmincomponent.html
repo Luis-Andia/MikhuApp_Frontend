@@ -21,7 +21,9 @@
     <button mat-button class="nav-link" [matMenuTriggerFor]="familiamenu">Familia<mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon></button>
     <mat-menu #familiamenu="matMenu">
       <button mat-menu-item routerLink="/familia/insertar"><mat-icon>add</mat-icon>Crear familia</button>
+      @if (esAdmin) {
       <button mat-menu-item routerLink="/familia/listar"><mat-icon>groups</mat-icon>Ver familia</button>
+      }
     </mat-menu>
 
     @if (esAdmin) {
@@ -65,12 +67,6 @@
         <button mat-menu-item routerLink="/usuarios/listar"><mat-icon>people</mat-icon>Listar usuarios</button>
       </mat-menu>
     }
-
-            <button matButton class="nav-link" [matMenuTriggerFor]="usermenu" routerLink="/user">Usuarios</button>  
-            <mat-menu #usermenu="matMenu">
-                <button mat-menu-item routerLink="/user/insertar">Agregar</button>
-                <button mat-menu-item routerLink="/user/listar">Listar</button>
-            </mat-menu>
 
     <span class="spacer"></span>
 
