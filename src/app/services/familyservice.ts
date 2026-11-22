@@ -40,4 +40,6 @@ export class Familyservice {
     deleteintegrante(idUser:number):Observable<void>{ // Buscar en backend
         return this.http.delete<void>(`${this.apiURL}/IntegrantesFamilia/${idUser}`)
     }
+
+
 }

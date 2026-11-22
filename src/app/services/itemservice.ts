@@ -43,4 +43,9 @@ export class Itemservice {
     getItembyName(nameItem:string):Observable<ItemDTO[]>{ // Va a cambiar, por 
         return this.http.get<ItemDTO[]>(`${this.apiURL}/buscarPorNombre/${nameItem}`)
     }
+
+    getlowStockitems(idFamily: number): Observable<ItemDTO[]>{
+        return this.http.get<ItemDTO[]>(`${this.apiURL}/bajoStock/${idFamily}`)
+    }
+
 }

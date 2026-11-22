@@ -65,6 +65,7 @@ import { Rupdatecomponent } from './components/rolcomponent/rupdatecomponent/rup
 import { Rolcomponent } from './components/rolcomponent/rolcomponent';
 import { Landingcomponent } from './components/landingcomponent/landingcomponent';
 import { Csupdatecomponent } from './components/consumptioncomponent/csupdatecomponent/csupdatecomponent';
+import { Fintegrantecomponent } from './components/familycomponent/fintegrantecomponent/fintegrantecomponent';
 
 
 export const routes: Routes = [
@@ -201,6 +202,14 @@ export const routes: Routes = [
         path: 'actualizar/:id',
         component: Fupdatecomponent,
       },
+
+      {
+        path: 'integrantes/:id',
+        component: Fintegrantecomponent,
+      },
+
+
+
     ],
   },
 

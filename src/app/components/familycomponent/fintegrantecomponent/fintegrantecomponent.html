@@ -1,58 +1,52 @@
+<app-menuadmincomponent></app-menuadmincomponent>
 <div class="familias-page">
   <div class="familias-card">
     <header class="familias-header">
-      <h1>Familias</h1>
-      <p>Listado de las familias dentro de MikhuApp</p>
-    </header>     
-            <div class="tabla-wrap" [hidden]="dataSource.data.length === 0">
-            <table mat-table [dataSource]="dataSource" class="tabla">
-       
-            <ng-container matColumnDef="C1">
-                <th mat-header-cell *matHeaderCellDef> ID </th>
-                <td mat-cell *matCellDef="let element"> {{element.idUser}} </td>
-            </ng-container>
+      <div class="header-titulo">
+        <h1>Listado de integrantes</h1>
+      </div>
 
-            
-            <ng-container matColumnDef="C2">
-                <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                <td mat-cell *matCellDef="let element"> {{element.nomUser}} </td>
-            </ng-container>
+      <button mat-stroked-button class="btn-volver" type="button" [routerLink]="['/familia']">
+        <mat-icon>arrow_back</mat-icon>
+        Volver a familias
+      </button>
+    </header>
+    <div class="tabla-wrap" [hidden]="dataSource.data.length === 0">
+      <table mat-table [dataSource]="dataSource" class="tabla">
+        <ng-container matColumnDef="C1">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.idUser }}</td>
+        </ng-container>
 
-            <ng-container matColumnDef="C3">
-                <th mat-header-cell *matHeaderCellDef> Correo </th>
-                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-            </ng-container>
+        <ng-container matColumnDef="C2">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let element">{{ element.nomUser }}</td>
+        </ng-container>
 
-            <ng-container matColumnDef="C4">
-                <th mat-header-cell *matHeaderCellDef class="col-acciones">Acciones</th>
-                <td mat-cell *matCellDef="let element" class="col-acciones">
-                    
-                <button matIconButton type="button" class="btn-eliminar" aria-label="Eliminar familia"
-                    (click)="eliminarintegrante(element.idUser)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-                </td>
-            </ng-container>
+        <ng-container matColumnDef="C3">
+          <th mat-header-cell *matHeaderCellDef>Correo</th>
+          <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+        </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
 
-            <mat-paginator class="paginador"
-                     [pageSize]="5"
-                     [pageSizeOptions]="[5, 10, 25, 100]"
-                     showFirstLastButtons
-                     aria-label="Seleccionar página">
-            </mat-paginator>
+      <mat-paginator
+        class="paginador"
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        showFirstLastButtons
+        aria-label="Seleccionar página"
+      >
+      </mat-paginator>
+    </div>
 
-        </div>
-        
-        @if (dataSource.data.length === 0){
-          <p class="vacio">
-            <mat-icon>family_restroom</mat-icon>
-            No hay registros disponibles
-          </p>
-        }
+    @if (dataSource.data.length === 0) {
+      <p class="vacio">
+        <mat-icon>family_restroom</mat-icon>
+        No hay registros disponibles
+      </p>
+    }
   </div>
 </div>
-

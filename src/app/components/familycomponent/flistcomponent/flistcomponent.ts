@@ -14,7 +14,7 @@ import { Menuadmincomponent } from '../../menuadmincomponent/menuadmincomponent'
   templateUrl: './flistcomponent.html',
 })
 export class Flistcomponent implements OnInit {
-    displayedColumns:string[]=['C1', 'C2', 'C3']
+    displayedColumns:string[]=['C1', 'C2', 'C3', 'C4']
     dataSource = new MatTableDataSource<FamilyDTO>([])
 
     @ViewChild(MatPaginator) paginator!: MatPaginator
