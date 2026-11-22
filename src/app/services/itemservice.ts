@@ -6,6 +6,10 @@ import { ItemDTO } from '../models/ItemDTO';
 import { Injectable } from '@angular/core';
 import { FamilyInventoryDTO } from '../models/FamilyInventoryDTO';
 import { MostConsumedIngredientsDTO } from '../models/MostConsumedIngredientsDTO';
+import { LowStockItemsDTO } from '../models/LowStockItemsDTO';
+import { NearExpirationDTO } from '../models/NearExpirationDTO';
+import { ExpiredDTO } from '../models/ExpiredDTO';
+import { IngredienteAVailableByFamilyDTO } from '../models/IngredientAvailableByFamilyDTO';
 
 @Injectable({
   providedIn: 'root' // <-- El servicio va aquí
@@ -44,8 +48,20 @@ export class Itemservice {
         return this.http.get<ItemDTO[]>(`${this.apiURL}/buscarPorNombre/${nameItem}`)
     }
 
-    getlowStockitems(idFamily: number): Observable<ItemDTO[]>{
-        return this.http.get<ItemDTO[]>(`${this.apiURL}/bajoStock/${idFamily}`)
+    getlowStockitems(idFamily: number): Observable<LowStockItemsDTO[]>{
+        return this.http.get<LowStockItemsDTO[]>(`${this.apiURL}/bajoStock/${idFamily}`)
+    }
+
+    getNearExpiration(idFamily: number): Observable<NearExpirationDTO[]>{
+        return this.http.get<NearExpirationDTO[]>(`${this.apiURL}/ProximosVencer/${idFamily}`) 
+    }
+
+    getExpired(idFamily: number): Observable<ExpiredDTO[]>{
+        return this.http.get<ExpiredDTO[]>(`${this.apiURL}/Vencidos/${idFamily}`) 
+    }
+
+    getIngredientAvailable(idFamily: number): Observable<IngredienteAVailableByFamilyDTO[]> {
+        return this.http.get<IngredienteAVailableByFamilyDTO[]>(`${this.apiURL}/CantidadIngredientesDisponibles/${idFamily}`) 
     }
 
 }

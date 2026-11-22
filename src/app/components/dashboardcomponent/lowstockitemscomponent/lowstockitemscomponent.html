@@ -1,1 +1,19 @@
-<p>lowstockitemscomponent works!</p>
+<div class="container">
+    <h2>Ingredientes con bajo stock</h2>
+
+    @if (lista.length > 0) {
+        <div class="grafico">
+            <canvas
+                baseChart
+                [type]="chartType"
+                [data]="chartData"
+                [options]="chartOptions">
+            </canvas>
+        </div>
+    } @else {
+    <div class="mensaje-vacio">
+        <mat-icon>inventory_2</mat-icon>
+        <p>No hay alimentos con bajo stock registrados.</p>
+    </div>
+    }
+</div>

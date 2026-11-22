@@ -1,0 +1,20 @@
+
+<div class="container">
+    <h2>Ingredientes disponibles por familia</h2>
+
+    @if (lista.length > 0) {
+        <div class="grafico">
+            <canvas
+                baseChart
+                [type]="chartType"
+                [data]="chartData"
+                [options]="chartOptions">
+            </canvas>
+        </div>
+    } @else {
+        <div class="mensaje-vacio">
+            <mat-icon>inventory_2</mat-icon>
+            <p>No hay ingredientes disponibles registrados.</p>
+        </div>
+    }
+</div>

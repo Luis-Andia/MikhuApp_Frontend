@@ -1,0 +1,20 @@
+
+<div class="container">
+    <h2>Alimentos próximos a vencer</h2>
+
+    @if (lista.length > 0) {
+        <div class="grafico">
+            <canvas
+                baseChart
+                [type]="chartType"
+                [data]="chartData"
+                [options]="chartOptions">
+            </canvas>
+        </div>
+    } @else {
+        <div class="mensaje-vacio">
+            <mat-icon>event_available</mat-icon>
+            <p>No hay alimentos próximos a vencer.</p>
+        </div>
+    }
+</div>

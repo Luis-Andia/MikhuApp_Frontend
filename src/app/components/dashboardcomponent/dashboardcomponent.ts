@@ -6,6 +6,10 @@ import { Menuadmincomponent } from '../menuadmincomponent/menuadmincomponent';
 import { Ingredconsumglobalcomponent } from './ingredconsumglobalcomponent/ingredconsumglobalcomponent';
 import { Ingredconsumdateglobalcomponent } from './ingredconsumdateglobalcomponent/ingredconsumdateglobalcomponent';
 import { Loginservice } from '../../services/loginservice';
+import { Lowstockitemscomponent } from './lowstockitemscomponent/lowstockitemscomponent';
+import { Nearexpirationcomponent } from './nearexpirationcomponent/nearexpirationcomponent';
+import { Expiredcomponent } from './expiredcomponent/expiredcomponent';
+import { Ingredientavailablecomponent } from './ingredientavailablecomponent/ingredientavailablecomponent';
 
 
 interface AlimentoPorConsumir {
@@ -38,7 +42,11 @@ interface AlimentoPorReponer {
     MatIconModule,
     MatButtonModule,
     Ingredconsumglobalcomponent,
-    Ingredconsumdateglobalcomponent
+    Ingredconsumdateglobalcomponent,
+    Lowstockitemscomponent,
+    Nearexpirationcomponent,
+    Expiredcomponent,
+    Ingredientavailablecomponent
 ],
   templateUrl: './dashboardcomponent.html',
   styleUrl: './dashboardcomponent.css'
