@@ -66,6 +66,7 @@ import { Rolcomponent } from './components/rolcomponent/rolcomponent';
 import { Landingcomponent } from './components/landingcomponent/landingcomponent';
 import { Csupdatecomponent } from './components/consumptioncomponent/csupdatecomponent/csupdatecomponent';
 import { Fintegrantecomponent } from './components/familycomponent/fintegrantecomponent/fintegrantecomponent';
+import { Funirfamiliacomponent } from './components/familycomponent/funirfamiliacomponent/funirfamiliacomponent';
 
 
 export const routes: Routes = [
@@ -199,10 +200,13 @@ export const routes: Routes = [
         component: Flistcomponent,
       },
       {
+        path:'unirse',
+        component:Funirfamiliacomponent
+      },
+      {
         path: 'actualizar/:id',
         component: Fupdatecomponent,
       },
-
       {
         path: 'integrantes/:id',
         component: Fintegrantecomponent,

@@ -1,1 +1,44 @@
-<p>funirfamiliacomponent works!</p>
+<app-menuadmincomponent></app-menuadmincomponent>
+<div class="familia-page">
+    <div class="familia-card">
+        <div class="familia-icono" aria-hidden="true">
+            <mat-icon>group_add</mat-icon>
+        </div>
+
+        <h2>Únete a una familia</h2>
+        <p class="familia-desc">
+            Ingresa el nombre y la clave de tu familia para gestionar juntos el inventario del hogar
+        </p>
+
+        <form [formGroup]="formulario" (ngSubmit)="unirsefamilia()">
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Contraseña</mat-label>
+                <input matInput formControlName="contrasena" [type]="hide ? 'password' : 'text'" />
+                <button
+                    matIconButton
+                    matSuffix
+                    type="button"
+                    (click)="clickEvent($event)"
+                    [attr.aria-label]="'Mostrar u ocultar contraseña'"
+                    [attr.aria-pressed]="!hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            @if (mensaje) {
+                <p class="error_mensaje">{{mensaje}}</p>
+            }
+            <button matButton="filled" type="submit">Unirme</button>
+
+            <div class="familia-nota">
+                <mat-icon>shield</mat-icon>
+                <p>Pide la clave a quien creó la familia para unirte de forma segura.</p>
+            </div>
+        </form>
+    </div>
+</div>

@@ -7,8 +7,6 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Menuadmincomponent } from '../../menuadmincomponent/menuadmincomponent';
 
-
-
 @Component({
   imports: [MatInputModule, MatIconModule, MatButtonModule, ReactiveFormsModule, Menuadmincomponent],
   selector: 'app-finsertcomponent',

@@ -41,5 +41,8 @@ export class Familyservice {
         return this.http.delete<void>(`${this.apiURL}/IntegrantesFamilia/${idUser}`)
     }
 
+    joinfamily(idUser:number, data: {nomFamily: String; passwordFamily: String}): Observable<void>{
+        return this.http.post<void>(`${this.apiURL}/joinfamily/${idUser}`, data)
+    }
 
 }
