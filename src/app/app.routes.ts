@@ -65,13 +65,8 @@ import { Rolcomponent } from './components/rolcomponent/rolcomponent';
 import { Landingcomponent } from './components/landingcomponent/landingcomponent';
 import { Csupdatecomponent } from './components/consumptioncomponent/csupdatecomponent/csupdatecomponent';
 import { Fintegrantecomponent } from './components/familycomponent/fintegrantecomponent/fintegrantecomponent';
-<<<<<<< HEAD
-import { Funirfamiliacomponent } from './components/familycomponent/funirfamiliacomponent/funirfamiliacomponent';
-
-
-=======
 import { Profilecomponent } from './components/profilecomponent/profilecomponent';
->>>>>>> Johan_Jurado
+import { Funirfamiliacomponent } from './components/familycomponent/funirfamiliacomponent/funirfamiliacomponent';
 export const routes: Routes = [
   // Inicio
   { path: '', component: Landingcomponent },
