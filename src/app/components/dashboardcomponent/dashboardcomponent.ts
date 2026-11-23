@@ -156,4 +156,25 @@ export class Dashboardcomponent {
   abrirAsistente(): void {
     // La navegación se realiza mediante el enlace del HTML.
   }
+
+  // Organizacion por roles
+  // Comprobar si es administrador
+  get esAdmin(): boolean {
+    return this.loginService.hasAnyRole(['ADMIN']);
+  }
+
+  // Comprobar si es miembro de familia
+  get esMiembro(): boolean {
+    return this.loginService.hasAnyRole(['MEMBER']);
+  }
+
+    // Comprobar si es invitado
+  get esInvitado(): boolean {
+    return this.loginService.hasAnyRole(['GUEST']);
+  }
+ 
+  // Comprobar si es moderador de una familia
+  get esModerador(): boolean {
+    return this.loginService.hasAnyRole(['MODERATOR']);
+  }
 }

@@ -10,162 +10,172 @@
     <h1>¡Hola, {{ nombreUsuario }}!</h1>
     <p>Bienvenido a MikhuApp. Aquí tienes el resumen de tu despensa.</p>
   </section>
+  @if(esInvitado || esMiembro || esModerador){
+    <!-- Indicadores principales -->
+    <section class="indicadores-grid">
 
-  <!-- Indicadores principales -->
-  <section class="indicadores-grid">
+      @for (indicador of indicadores; track indicador.titulo) {
+        <article class="indicador-card">
+          <div class="indicador-cabecera">
+            <span>{{ indicador.titulo }}</span>
+            <mat-icon [class]="indicador.clase">
+              {{ indicador.icono }}
+            </mat-icon>
+          </div>
 
-    @for (indicador of indicadores; track indicador.titulo) {
-      <article class="indicador-card">
-        <div class="indicador-cabecera">
-          <span>{{ indicador.titulo }}</span>
-          <mat-icon [class]="indicador.clase">
-            {{ indicador.icono }}
-          </mat-icon>
+          <strong [class]="indicador.clase">
+            {{ indicador.cantidad }}
+          </strong>
+        </article>
+      }
+
+    </section>
+
+    <!-- Secciones centrales -->
+    <section class="contenido-central">
+
+      <!-- Consume primero -->
+      <article class="panel consume-panel">
+
+        <div class="panel-titulo">
+          <h2>Consume primero</h2>
+
+          <a routerLink="/items/listar" class="enlace-panel">
+            Ver inventario
+            <mat-icon>arrow_forward</mat-icon>
+          </a>
         </div>
 
-        <strong [class]="indicador.clase">
-          {{ indicador.cantidad }}
-        </strong>
+        <div class="lista-consumo">
+
+          @for (alimento of alimentosPorConsumir; track alimento.nombre) {
+            <div class="consumo-item">
+
+              <div class="consumo-info">
+                <strong>{{ alimento.nombre }}</strong>
+                <span>{{ alimento.fecha }}</span>
+              </div>
+
+              <span class="consumo-cantidad">
+                {{ alimento.cantidad }}
+              </span>
+
+              <span
+                class="estado-alimento"
+                [class.estado-vencer]="alimento.estado === 'Por vencer'"
+                [class.estado-vencido]="alimento.estado === 'Vencido'"
+              >
+                <mat-icon>
+                  {{ alimento.estado === 'Vencido' ? 'error_outline' : 'schedule' }}
+                </mat-icon>
+
+                {{ alimento.estado }}
+              </span>
+
+            </div>
+          }
+
+        </div>
       </article>
-    }
 
-  </section>
+      <!-- Alimentos más consumidos -->
+      <article class="panel consumo-grafico-panel">
 
-  <!-- Secciones centrales -->
-  <section class="contenido-central">
+        <h2>Alimentos más consumidos</h2>
+        <p class="panel-subtitulo">Número de consumos registrados</p>
 
-    <!-- Consume primero -->
-    <article class="panel consume-panel">
+        <div class="grafico-lista">
 
-      <div class="panel-titulo">
-        <h2>Consume primero</h2>
+          @for (alimento of alimentosConsumidos; track alimento.nombre) {
+            <div class="grafico-item">
 
-        <a routerLink="/items/listar" class="enlace-panel">
-          Ver inventario
-          <mat-icon>arrow_forward</mat-icon>
-        </a>
+              <div class="grafico-etiqueta">
+                <span>{{ alimento.nombre }}</span>
+                <strong>{{ alimento.cantidad }}</strong>
+              </div>
+
+              <div class="barra-fondo">
+                <div
+                  class="barra-progreso"
+                  [style.width.%]="alimento.porcentaje"
+                ></div>
+              </div>
+
+            </div>
+          }
+
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Necesitas reponer -->
+    <section class="panel reponer-panel">
+
+      <div class="reponer-titulo">
+        <h2>Necesitas reponer</h2>
+        <p>Artículos que se encuentran por debajo del nivel óptimo</p>
       </div>
 
-      <div class="lista-consumo">
+      <div class="reponer-grid">
 
-        @for (alimento of alimentosPorConsumir; track alimento.nombre) {
-          <div class="consumo-item">
+        @for (alimento of alimentosPorReponer; track alimento.nombre) {
+          <article class="reponer-card">
 
-            <div class="consumo-info">
+            <div class="reponer-card-cabecera">
               <strong>{{ alimento.nombre }}</strong>
-              <span>{{ alimento.fecha }}</span>
+
+              <span class="badge-stock">
+                <mat-icon>inventory_2</mat-icon>
+                Bajo stock
+              </span>
             </div>
 
-            <span class="consumo-cantidad">
-              {{ alimento.cantidad }}
-            </span>
+            <div class="reponer-detalle">
+              <span>Nivel</span>
 
-            <span
-              class="estado-alimento"
-              [class.estado-vencer]="alimento.estado === 'Por vencer'"
-              [class.estado-vencido]="alimento.estado === 'Vencido'"
-            >
-              <mat-icon>
-                {{ alimento.estado === 'Vencido' ? 'error_outline' : 'schedule' }}
-              </mat-icon>
-
-              {{ alimento.estado }}
-            </span>
-
-          </div>
-        }
-
-      </div>
-    </article>
-
-    <!-- Alimentos más consumidos -->
-    <article class="panel consumo-grafico-panel">
-
-      <h2>Alimentos más consumidos</h2>
-      <p class="panel-subtitulo">Número de consumos registrados</p>
-
-      <div class="grafico-lista">
-
-        @for (alimento of alimentosConsumidos; track alimento.nombre) {
-          <div class="grafico-item">
-
-            <div class="grafico-etiqueta">
-              <span>{{ alimento.nombre }}</span>
-              <strong>{{ alimento.cantidad }}</strong>
+              <strong>
+                {{ alimento.cantidadActual }} de
+                {{ alimento.cantidadMinima }} mínimo
+              </strong>
             </div>
 
-            <div class="barra-fondo">
+            <div class="barra-fondo barra-stock">
               <div
-                class="barra-progreso"
+                class="barra-progreso barra-progreso-stock"
                 [style.width.%]="alimento.porcentaje"
               ></div>
             </div>
 
-          </div>
+          </article>
         }
 
       </div>
-    </article>
+    </section>
 
-  </section>
+      <!--Reporte de ingredientes con bajo stock por familia -->
+      <app-lowstockitemscomponent></app-lowstockitemscomponent>
+      <!--Reporte de Proximos a vencer -->
+      <app-nearexpirationcomponent></app-nearexpirationcomponent>
+      <!--Reporte de Vencidos -->
+      <app-expiredcomponent></app-expiredcomponent>
+      <!--Reporte de Cantidad de ingredientes disponibles por familia -->
+      <app-ingredientavailablecomponent></app-ingredientavailablecomponent>
+  }
 
-  <!-- Necesitas reponer -->
-  <section class="panel reponer-panel">
-
-    <div class="reponer-titulo">
-      <h2>Necesitas reponer</h2>
-      <p>Artículos que se encuentran por debajo del nivel óptimo</p>
+  @if (esAdmin) {
+  <section class="admin-reportes-grid">
+    <!-- Reporte Top 5 alimentos más consumidos a nivel global -->
+    <div class="admin-reporte-item">
+      <app-ingredconsumglobalcomponent></app-ingredconsumglobalcomponent>
     </div>
 
-    <div class="reponer-grid">
-
-      @for (alimento of alimentosPorReponer; track alimento.nombre) {
-        <article class="reponer-card">
-
-          <div class="reponer-card-cabecera">
-            <strong>{{ alimento.nombre }}</strong>
-
-            <span class="badge-stock">
-              <mat-icon>inventory_2</mat-icon>
-              Bajo stock
-            </span>
-          </div>
-
-          <div class="reponer-detalle">
-            <span>Nivel</span>
-
-            <strong>
-              {{ alimento.cantidadActual }} de
-              {{ alimento.cantidadMinima }} mínimo
-            </strong>
-          </div>
-
-          <div class="barra-fondo barra-stock">
-            <div
-              class="barra-progreso barra-progreso-stock"
-              [style.width.%]="alimento.porcentaje"
-            ></div>
-          </div>
-
-        </article>
-      }
-
+    <!-- Reporte Top 5 alimentos más consumidos a nivel global por fecha -->
+    <div class="admin-reporte-item">
+      <app-ingredconsumdateglobalcomponent></app-ingredconsumdateglobalcomponent>
     </div>
-
   </section>
-
-  <!--Reporte Top 5 Alimentos mas consumidos a nivel global -->
-  <app-ingredconsumglobalcomponent></app-ingredconsumglobalcomponent>
-  <!--Reporte Top 5 Alimentos mas consumidos a nivel global por fecha -->
-  <app-ingredconsumdateglobalcomponent></app-ingredconsumdateglobalcomponent>
-  <!--Reporte de ingredientes con bajo stock por familia -->
-  <app-lowstockitemscomponent></app-lowstockitemscomponent>
-  <!--Reporte de Proximos a vencer -->
-  <app-nearexpirationcomponent></app-nearexpirationcomponent>
-  <!--Reporte de Vencidos -->
-  <app-expiredcomponent></app-expiredcomponent>
-  <!--Reporte de Cantidad de ingredientes disponibles por familia -->
-  <app-ingredientavailablecomponent></app-ingredientavailablecomponent>
+  }
 
 
   <!-- Acceso al asistente IA -->

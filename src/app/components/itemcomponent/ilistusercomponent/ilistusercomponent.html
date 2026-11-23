@@ -4,20 +4,19 @@
       <div>
       <h1>Listado de Items</h1>
       <p>Gestión y control del inventario dentro de MikhuApp</p>
-      </div> 
-    <div class="acciones">
-        <!-- Tu botón "Agregar item" (ajusta la ruta a la que uses) -->
-        <button mat-flat-button routerLink="/items/insertar"> <!--Se le podra pasar id familia?-->
-          <mat-icon>add</mat-icon> Agregar item
-        </button>
-
-        <!-- Botón de recomendaciones, al costado -->
-        <button mat-stroked-button type="button"
-                (click)="abrirRecomendaciones()"
-                [disabled]="dataSource.data.length === 0">
-          <mat-icon>auto_awesome</mat-icon> Recomendar platillos
-        </button>
       </div>
+    <div class="acciones">
+      <button mat-flat-button routerLink="/items/insertar">
+        <mat-icon>add</mat-icon> Agregar item
+      </button>
+
+      <button mat-stroked-button type="button"
+              class="btn-recomendar"
+              (click)="abrirRecomendaciones()"
+              [disabled]="dataSource.data.length === 0">
+        <mat-icon>auto_awesome</mat-icon> Recomendar platillos
+      </button>
+    </div>
     </header>
 
     @if (dataSource.data.length > 0) {

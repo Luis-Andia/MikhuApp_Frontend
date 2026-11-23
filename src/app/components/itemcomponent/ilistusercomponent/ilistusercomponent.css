@@ -6,7 +6,6 @@
   box-sizing: border-box;
 }
 
-/* TARJETA */
 .ingredientes-card {
   width: 100%;
   background: #ffffff;
@@ -17,7 +16,9 @@
 
 /* ENCABEZADO */
 .ingredientes-header {
-  padding: 18px 24px;
+  padding: 24px 28px;
+  background: linear-gradient(120deg, #0AB86C 0%, #2E9D70 100%);
+  border-bottom: 1px solid #D2EADF;
 }
 
 .cabecera {
@@ -35,15 +36,17 @@
 
 .ingredientes-header h1 {
   margin: 0;
-  color: #123b32;
-  font-size: 21px;
-  font-weight: 600;
+  color: #FFFFFF;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
 }
 
 .ingredientes-header p {
-  margin: 5px 0 0;
-  color: #71817b;
+  margin: 7px 0 0;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 13px;
+  font-weight: 400;
 }
 
 /* TABLA */
@@ -102,6 +105,11 @@
 }
 
 /* ACCIONES */
+.btn-recomendar {
+  --mat-button-outlined-container-color: #ffffff;
+  background-color: #ffffff;
+}
+
 .col-acciones {
   text-align: center;
   min-width: 100px;

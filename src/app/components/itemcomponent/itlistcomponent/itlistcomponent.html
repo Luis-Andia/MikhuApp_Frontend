@@ -1,10 +1,11 @@
 <div class="ingredientes-page">
+  @if (esAdmin) {
   <div class="ingredientes-card">
     <header class="ingredientes-header">
       <h1>Listado de Items</h1>
       <p>Gestión y control del inventario dentro de MikhuApp</p>
     </header>
-    @if (esAdmin) {
+    
       @if (dataSource.data.length > 0) {
         <div class="tabla-wrap">
           <table mat-table [dataSource]="dataSource" class="tabla">
@@ -103,13 +104,14 @@
         aria-label="Seleccionar página"
       >
       </mat-paginator>
-    }
+  </div>
+  }
 
     @if (esModerador || esMiembro) {
       <app-ilistusercomponent></app-ilistusercomponent>
     }
-
-    <!-- Diálogo de confirmación -->
+    
+  <!-- Diálogo de confirmación -->
     <ng-template #dialogEliminar>
       <div class="dialog-eliminar">
         <div class="dialog-icon">
@@ -127,5 +129,6 @@
         </div>
       </div>
     </ng-template>
-  </div>
 </div>
+
+    

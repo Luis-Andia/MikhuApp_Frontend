@@ -41,8 +41,16 @@ export class Ingredconsumglobalcomponent implements OnInit {
         display: true,
         text: 'Numero de consumos registrados'
       }
+    }, 
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Ingredientes'
+        }
+      }
     }
-  };
+  }
 
   constructor(private cS: Consumptionservice, private uS:Userservice, private cdr:ChangeDetectorRef){}
 

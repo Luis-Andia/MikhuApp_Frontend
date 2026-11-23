@@ -480,83 +480,26 @@
   }
 }
 
-/* Adaptación a móviles */
-
-@media (max-width: 700px) {
-  .dashboard-page {
-    padding: 24px 16px;
-  }
-
-  .bienvenida {
-    margin-bottom: 25px;
-  }
-
-  .bienvenida h1 {
-    font-size: 25px;
-  }
-
-  .indicadores-grid {
-    gap: 10px;
-  }
-
-  .indicador-card {
-    min-height: 110px;
-    padding: 14px;
-  }
-
-  .indicador-cabecera {
-    font-size: 11px;
-  }
-
-  .indicador-card > strong {
-    font-size: 27px;
-  }
-
-  .contenido-central {
-    grid-template-columns: 1fr;
-  }
-
-  .consume-panel,
-  .consumo-grafico-panel {
-    min-height: auto;
-  }
-
-  .reponer-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .asistente-banner {
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 19px;
-  }
-
-  .asistente-abrir {
-    width: 100%;
-  }
+/* Contenedor de reportes del administrador: uno debajo de otro */
+.admin-reportes-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr); /* una sola columna */
+  gap: 24px;
+  width: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+  align-items: start; /* cada reporte toma su altura natural */
 }
 
-@media (max-width: 420px) {
-  .indicadores-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .consumo-item {
-    grid-template-columns: minmax(0, 1fr) 20px;
-  }
-
-  .estado-alimento {
-    grid-column: 1 / -1;
-    justify-self: start;
-    margin-top: -5px;
-  }
-
-  .reponer-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .panel-titulo {
-    align-items: flex-start;
-    flex-direction: column;
-  }
+/* Cada reporte ocupa todo el ancho */
+.admin-reporte-item {
+  min-width: 0; /* evita que gráficos/tablas desborden */
+  width: 100%;
 }
+
+/* El componente hijo llena el ancho del contenedor */
+.admin-reporte-item > * {
+  display: block;
+  width: 100%;
+}
+
