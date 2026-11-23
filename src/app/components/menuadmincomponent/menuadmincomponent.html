@@ -79,12 +79,14 @@
     </div>
 
     <button mat-icon-button class="user-avatar" [matMenuTriggerFor]="cuentamenu" [attr.aria-label]="'Perfil de ' + username" [title]="username">{{ inicialesUsuario }}</button>
-    <span class="role">Roles: {{ roles }}</span>
     <mat-menu #cuentamenu="matMenu">
       <div class="profile-menu-header">
         <strong>{{ username }}</strong>
+        <span class="role">Roles: {{ roles }}</span>
         <span>Sesión activa</span>
       </div>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="editarPerfil()"><mat-icon>edit</mat-icon><span>Editar perfil</span></button>
       <mat-divider></mat-divider>
       <button mat-menu-item (click)="cerrarSesion()"><mat-icon>logout</mat-icon><span>Cerrar sesión</span></button>
     </mat-menu>

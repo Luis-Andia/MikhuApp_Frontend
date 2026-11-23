@@ -28,13 +28,12 @@ export class Userservice {
     return this.http.get<userlistDTO>(`${this.apiURL}/${id}`);
   }
 
-  updateUser(dto: UserinsertDTO): Observable<UserinsertDTO> {
-    return this.http.put<UserinsertDTO>(this.apiURL, dto);
+  updateUser(id: number, dto: UserinsertDTO): Observable<UserinsertDTO> {
+  return this.http.put<UserinsertDTO>(`${this.apiURL}/${id}`, dto);
+}
+
+  getuserbyusername(username: String): Observable<userlistDTO[]> {
+    const url = `${this.apiURL}/username/${username}`;
+    return this.http.get<userlistDTO[]>(url);
   }
-
-  getuserbyusername(username:String):Observable<userlistDTO[]>{
-        const url = `${this.apiURL}/username/${username}`;
-        return this.http.get<userlistDTO[]>(url)
-    }
-
 }

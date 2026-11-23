@@ -1,4 +1,3 @@
-
 import { Routes, Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { Loginservice } from './services/loginservice';
@@ -66,32 +65,28 @@ import { Rolcomponent } from './components/rolcomponent/rolcomponent';
 import { Landingcomponent } from './components/landingcomponent/landingcomponent';
 import { Csupdatecomponent } from './components/consumptioncomponent/csupdatecomponent/csupdatecomponent';
 import { Fintegrantecomponent } from './components/familycomponent/fintegrantecomponent/fintegrantecomponent';
-
-
+import { Profilecomponent } from './components/profilecomponent/profilecomponent';
 export const routes: Routes = [
-
   // Inicio
-  { path: '', 
-    component:Landingcomponent
-  },
+  { path: '', component: Landingcomponent },
 
   // Login público
-  { 
-    path: 'login', 
-    component: Logincomponent 
+  {
+    path: 'login',
+    component: Logincomponent,
   },
 
   // Registro público
   {
     path: 'registro',
-    component: Registrocomponent
+    component: Registrocomponent,
   },
 
   // Dashboard
   {
     path: 'dashboard',
     component: Dashboardcomponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
 
   // Inventario
@@ -142,13 +137,13 @@ export const routes: Routes = [
       },
       {
         path: 'actualizar/:id',
-        component: Reupdatecomponent
+        component: Reupdatecomponent,
       },
       {
         path: 'ingredientes/:idRecipe',
-        component: Recipeingredientcomponent
-      }
-    ]
+        component: Recipeingredientcomponent,
+      },
+    ],
   },
 
   // Consumos
@@ -207,9 +202,6 @@ export const routes: Routes = [
         path: 'integrantes/:id',
         component: Fintegrantecomponent,
       },
-
-
-
     ],
   },
 
@@ -277,13 +269,13 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'listar',
-        component: Ulistcomponent
-      }
-    ]
+        component: Ulistcomponent,
+      },
+    ],
   },
 
   // Roles: acceso administrativo
@@ -296,21 +288,21 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'listar',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'registrar',
-        component: Rinsertcomponent
+        component: Rinsertcomponent,
       },
       {
         path: 'listar',
-        component: Rolelistcomponent
+        component: Rolelistcomponent,
       },
       {
         path: 'editar/:id',
-        component: Rupdatecomponent
-      }
-    ]
+        component: Rupdatecomponent,
+      },
+    ],
   },
 
   // Asistente IA
@@ -321,10 +313,17 @@ export const routes: Routes = [
     data: { roles: ['ADMIN', 'MODERATOR', 'MEMBER', 'GUEST'] },
   },
 
+  // Perfil de usuario
+  {
+    path: 'perfil',
+    component: Profilecomponent,
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN', 'MODERATOR', 'MEMBER', 'GUEST'] },
+  },
+
   // Ruta no encontrada
   {
     path: '**',
-    redirectTo: 'login'
-  }
-
+    redirectTo: 'login',
+  },
 ];
