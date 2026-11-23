@@ -1,4 +1,3 @@
-
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -20,18 +19,21 @@ import { MatDividerModule } from '@angular/material/divider';
     MatMenuModule,
     MatDividerModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
   ],
   templateUrl: './menuadmincomponent.html',
-  styleUrl: './menuadmincomponent.css'
+  styleUrl: './menuadmincomponent.css',
 })
 export class Menuadmincomponent {
-
   private loginService = inject(Loginservice);
   private router = inject(Router);
 
   // Obtener nombre del usuario autenticado
   get username(): string {
+    const guardado = sessionStorage.getItem('username');
+    if (guardado) {
+      return guardado;
+    }
     return this.loginService.getUsername();
   }
 
@@ -41,18 +43,18 @@ export class Menuadmincomponent {
 
   // Obtener iniciales del usuario
   get inicialesUsuario(): string {
-    const nombre = this.username
-      .replace(/[^a-zA-Z0-9 ]/g, ' ')
-      .trim();
+    const nombre = this.username.replace(/[^a-zA-Z0-9 ]/g, ' ').trim();
 
     if (!nombre) {
-      return 'U';}
+      return 'U';
+    }
 
     const palabras = nombre.split(/\s+/);
 
     if (palabras.length > 1) {
-      return (palabras[0][0] + palabras[1][0]).toUpperCase();}
-      
+      return (palabras[0][0] + palabras[1][0]).toUpperCase();
+    }
+
     return palabras[0].substring(0, 2).toUpperCase();
   }
 
@@ -66,16 +68,19 @@ export class Menuadmincomponent {
     return this.loginService.hasAnyRole(['MEMBER']);
   }
 
-    // Comprobar si es invitado
+  // Comprobar si es invitado
   get esInvitado(): boolean {
     return this.loginService.hasAnyRole(['GUEST']);
   }
- 
+
   // Comprobar si es moderador de una familia
   get esModerador(): boolean {
     return this.loginService.hasAnyRole(['MODERATOR']);
   }
 
+  editarPerfil(): void {
+    void this.router.navigate(['perfil']);
+  }
   // Cerrar sesión
   cerrarSesion(): void {
     this.loginService.logout();
