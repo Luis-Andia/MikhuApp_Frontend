@@ -3,15 +3,16 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { inject } from '@angular/core';
-import { Userservice } from '../../../services/userservice';
 import { RouterLink } from '@angular/router';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { Loginservice } from '../../../services/loginservice';
 import { ConsumptionDTO } from '../../../models/ConsumptionDTO';
 import { Consumptionservice } from '../../../services/consumptionservice';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TemplateRef } from '@angular/core';
+import { Recipeservice } from '../../../services/recipeservice';
+import { Itemservice } from '../../../services/itemservice';
+import { RecipeDTO } from '../../../models/RecipeDTO';
 
 @Component({
   imports: [
@@ -31,16 +32,20 @@ import { TemplateRef } from '@angular/core';
 export class Cslistcomponent implements OnInit {
   displayedColumns: string[] = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6'];
   dataSource = new MatTableDataSource<ConsumptionDTO>([]);
-  @ViewChild('dialogEliminar') dialogEliminar!: TemplateRef<any>;
+  recetas: RecipeDTO[] = []
 
+  @ViewChild('dialogEliminar') dialogEliminar!: TemplateRef<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   private csS = inject(Consumptionservice);
   private cdr = inject(ChangeDetectorRef);
   private sB = inject(MatSnackBar);
   private dg = inject(MatDialog);
+  private rS = inject(Recipeservice);
+  private iS = inject(Itemservice);
 
   ngOnInit(): void {
+    this.obtenerRecetas();
     this.obtenerConsumos();
   }
 
@@ -59,6 +64,21 @@ export class Cslistcomponent implements OnInit {
         this.cdr.detectChanges();
       },
     });
+  }
+
+  obtenerRecetas(){
+    this.rS.getRecipes().subscribe({
+      next:data => {
+        this.recetas = data
+        this.cdr.detectChanges()
+      }, error:err => {
+        console.log('Ocurrio un error al listar las recetas')
+      }
+    })
+  }
+
+  obtenerNombreReceta(idReceta: number): string {
+    return this.recetas.find(receta => receta.idRecipe === idReceta)?.nomRecipe ?? 'Receta no encontrada';
   }
 
   eliminarConsumos(id: number) {

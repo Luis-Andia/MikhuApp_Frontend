@@ -21,10 +21,12 @@
           <td mat-cell *matCellDef="let element">{{ element.idItem }}</td>
         </ng-container>
 
-        <!-- Weight Column -->
+        <!-- Receta Column -->
         <ng-container matColumnDef="C3">
-          <th mat-header-cell *matHeaderCellDef>ID Receta</th>
-          <td mat-cell *matCellDef="let element">{{ element.idReceta }}</td>
+            <th mat-header-cell *matHeaderCellDef> Receta </th>
+            <td mat-cell *matCellDef="let element">
+              {{recetas.find(c => c.idRecipe === element.idReceta)?.nomRecipe}}
+            </td>
         </ng-container>
 
         <!-- Symbol Column -->

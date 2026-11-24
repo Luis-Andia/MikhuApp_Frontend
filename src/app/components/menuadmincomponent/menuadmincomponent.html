@@ -21,11 +21,10 @@
     <button mat-button class="nav-link" [matMenuTriggerFor]="familiamenu">Familia<mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon></button>
     <mat-menu #familiamenu="matMenu">
       <button mat-menu-item routerLink="/familia/insertar"><mat-icon>add</mat-icon>Crear familia</button>
-      @if (esAdmin) {
+      @if(esAdmin) {
       <button mat-menu-item routerLink="/familia/listar"><mat-icon>groups</mat-icon>Ver familia</button>
       }
       <button mat-menu-item routerLink="/familia/unirse"><mat-icon>add</mat-icon>Unirse</button>
-
     </mat-menu>
 
     @if (esAdmin) {
