@@ -42,7 +42,6 @@ export class Profilecomponent implements OnInit {
     this.buscarUsuarioActual();
   }
 
-  // REEMPLAZA TU METODO buscarUsuarioActual POR ESTE:
   buscarUsuarioActual(): void {
     const actualUsername = this.loginService.getUsername();
 
@@ -100,7 +99,6 @@ export class Profilecomponent implements OnInit {
     });
   }
 
-  // REEMPLAZA TU METODO actualizarPerfil POR ESTE:
   actualizarPerfil(): void {
     if (this.formulario.invalid) {
       this.mensaje = 'Los campos son obligatorios';

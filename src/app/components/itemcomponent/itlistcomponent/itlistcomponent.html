@@ -23,8 +23,10 @@
 
             <!-- ID Ingrediente -->
             <ng-container matColumnDef="C3">
-              <th mat-header-cell *matHeaderCellDef>ID Ingrediente</th>
-              <td mat-cell *matCellDef="let element">{{ element.idIngredient }}</td>
+              <th mat-header-cell *matHeaderCellDef> Ingrendiente </th>
+              <td mat-cell *matCellDef="let element">
+                {{ingredientes.find(c => c.idIngredient === element.idIngredient)?.nomIngredient}}
+              </td>
             </ng-container>
 
             <!-- Cantidad Disponible -->

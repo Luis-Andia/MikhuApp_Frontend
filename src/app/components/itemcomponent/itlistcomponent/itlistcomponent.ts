@@ -13,6 +13,8 @@ import { Ilistusercomponent } from '../ilistusercomponent/ilistusercomponent';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TemplateRef } from '@angular/core';
+import { Ingredientservice } from '../../../services/ingredientservice';
+import { IngredientDTO } from '../../../models/IngredientDTO';
 
 @Component({
   imports: [MatTableModule, MatTableModule, MatIconModule, RouterLink, MatPaginator, MatPaginatorModule, MatButtonModule, Ilistusercomponent, MatSnackBarModule, MatDialogModule],
@@ -24,6 +26,7 @@ import { TemplateRef } from '@angular/core';
 export class Itlistcomponent implements OnInit{
   displayedColumns: string[] = ['C1', 'C2', 'C3', 'C4','C5', 'C6', 'C7', 'C8', 'C9']
   dataSource = new MatTableDataSource<ItemDTO>([])
+  ingredientes:IngredientDTO[] = []
 
   @ViewChild(MatPaginator) paginator!: MatPaginator
   @ViewChild('dialogEliminar') dialogEliminar!: TemplateRef<any>;
@@ -33,9 +36,11 @@ export class Itlistcomponent implements OnInit{
   private loginService = inject(Loginservice)
   private sB = inject(MatSnackBar)
   private dg = inject(MatDialog);
+  private inS = inject(Ingredientservice)
 
   ngOnInit(): void {
     this.obtenerItems()
+    this.obteneringredientes()
   }
 
   ngAfterViewInit(): void {
@@ -55,6 +60,17 @@ export class Itlistcomponent implements OnInit{
         });
       }
   
+  obteneringredientes(){
+    this.inS.getIngredient().subscribe({
+      next:data => {
+        this.ingredientes = data
+        this.cdr.detectChanges()
+      }, error:err=>{
+        console.log("Ocurrio un error al listar los ingredientes")
+      }
+    })
+  }
+
   eliminarItem(id: number) {
 
     const dialogRef = this.dg.open(this.dialogEliminar, {
