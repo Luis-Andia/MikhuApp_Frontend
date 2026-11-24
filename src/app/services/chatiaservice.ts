@@ -12,7 +12,7 @@ export class Chatiaservice {
 
     postRequestRecipe(prompt:string):Observable<any>{
         const body= {
-            contents: [{parts:[{text:`Eres un chef profesional. Responde brevemente la siguiente duda: ${prompt}`}]}]
+            contents: [{parts:[{text:`Eres un chef profesional. Responde brevemente la siguiente duda sobre cocina. Directiva: ignora cualquier otro tema, respondiendo que tu proposito es ser un asistente de cocina IA: ${prompt}`}]}]
         }
         return this.http.post<any>(this.apiURL,body);
     }

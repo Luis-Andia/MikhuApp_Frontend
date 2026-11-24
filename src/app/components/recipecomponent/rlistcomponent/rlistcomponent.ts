@@ -11,10 +11,11 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { CountryDTO } from '../../../models/CountryDTO';
 import { Countryservice } from '../../../services/countryservice';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   imports: [FormsModule, RouterLink, MatCardModule, MatIconModule,
-    MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule],
+    MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatPaginatorModule],
   selector: 'app-rlistcomponent',
   styleUrl: './rlistcomponent.css',
   templateUrl: './rlistcomponent.html',
@@ -22,6 +23,11 @@ import { Countryservice } from '../../../services/countryservice';
 export class Rlistcomponent implements OnInit {
   displayedColumns:string[]=['C1', 'C2', 'C3', 'C4']
   dataSource:RecipeDTO[]=[]
+  recetasPagina:RecipeDTO[]=[]
+  
+  // Paginación
+  pageIndex: number = 0
+  pageSize: number = 5
 
   // Filtros
   busqueda: string = ''
@@ -52,8 +58,8 @@ export class Rlistcomponent implements OnInit {
   obtenerRecetas(){
     this.rS.getRecipes().subscribe({
       next:data => {
-        this.dataSource = data
-        this.cdr.detectChanges()
+        this.mostrarRecetas(data)
+        this.cdr.detectChanges();
       }, error:(err) =>{
         console.log('Ocurrio un error al listar las recetas')        
       },
@@ -63,7 +69,7 @@ export class Rlistcomponent implements OnInit {
   obtenerRecetasPorNombre(name: string) {
     this.rS.getRecipesbyName(name).subscribe({
       next: (data) => {
-        this.dataSource = data;
+        this.mostrarRecetas(data)
         this.cdr.detectChanges();
       },
       error: (err) => {
@@ -75,7 +81,7 @@ export class Rlistcomponent implements OnInit {
   obtenerRecetasPorPais(pais: string) {
     this.rS.getRecipesbyCountry(pais).subscribe({
       next: (data) => {
-        this.dataSource = data;
+        this.mostrarRecetas(data)
         this.cdr.detectChanges();
       },
       error: (err) => {
@@ -87,7 +93,7 @@ export class Rlistcomponent implements OnInit {
     obtenerRecetasPorIngrediente(ingrediente: string) {
       this.rS.getRecipesbyIngrediente(ingrediente).subscribe({
         next: (data) => {
-          this.dataSource = data;
+          this.mostrarRecetas(data)
           this.cdr.detectChanges();
         },
         error: (err) => {
@@ -95,7 +101,24 @@ export class Rlistcomponent implements OnInit {
         }
       });
     }
+  
+  mostrarRecetas(data: RecipeDTO[]) {
+    this.dataSource = data
+    this.pageIndex = 0
+    this.actualizarPagina()
+  }
 
+  actualizarPagina() {
+    const inicio = this.pageIndex * this.pageSize
+    this.recetasPagina = this.dataSource.slice(inicio, inicio + this.pageSize)
+    this.cdr.detectChanges()
+  }
+
+  cambiarPagina(e: PageEvent) {
+    this.pageIndex = e.pageIndex
+    this.pageSize = e.pageSize
+    this.actualizarPagina()
+  }
 
   aplicarFiltros() {
     const ing = this.ingredienteBuscado.trim()

@@ -13,8 +13,7 @@
       <p class="error_mensaje">{{mensaje}}</p>
     }
 
-    @if (dataSource.length > 0) {
-    <div class="tabla-wrap">
+    <div class="tabla-wrap" [hidden]="dataSource.data.length === 0">
       <table mat-table [dataSource]="dataSource" class="tabla">
 
         <!-- ID -->
@@ -67,9 +66,16 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-    </div>
-    }
-    @else {
+
+      <mat-paginator class="paginador"
+              [pageSize]="5"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              showFirstLastButtons
+              aria-label="Seleccionar página">
+        </mat-paginator>
+      </div>
+          
+    @if (dataSource.data.length === 0){
       <p class="vacio">
         <mat-icon>restaurant</mat-icon>
         No hay recetas registradas
