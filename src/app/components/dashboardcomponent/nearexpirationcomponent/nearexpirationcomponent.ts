@@ -1,10 +1,13 @@
 
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject} from '@angular/core';
 import { NearExpirationDTO } from '../../../models/NearExpirationDTO';
 import { ChartData, ChartOptions } from 'chart.js';
 import { Itemservice } from '../../../services/itemservice';
 import { BaseChartDirective } from 'ng2-charts';
 import { MatIconModule } from '@angular/material/icon';
+import { Userservice } from '../../../services/userservice';
+import { Loginservice } from '../../../services/loginservice';
+
 
 type TipoGrafico = 'bar' | 'line' | 'pie' | 'doughnut' | 'radar';
 
@@ -88,12 +91,33 @@ export class Nearexpirationcomponent implements OnInit {
     private cdr: ChangeDetectorRef,
   ) {}
 
-  ngOnInit(): void {
-    this.Proximosvencer();
+  private uS = inject(Userservice);
+  private idFamily: number = 0;
+  private loginService = inject(Loginservice);
+  get nombreUsuario(): string {
+    return this.loginService.getUsername() || 'Usuario';
   }
 
-  Proximosvencer(): void {
-    this.iS.getNearExpiration(1).subscribe({
+  ngOnInit(): void {
+    this.uS.getuserbyusername(this.nombreUsuario).subscribe({
+      next: (data: any) => {
+        this.idFamily = data.idFamily;
+
+        if (!this.idFamily) {
+          console.log('El usuario no tiene una familia asociada');
+        }
+        
+        this.Proximosvencer(this.idFamily);
+
+      },
+      error: (err) => {
+        console.log('Error al obtener la información del usuario logueado');
+      },
+    });
+  }
+
+  Proximosvencer(idFamilia:number): void {
+    this.iS.getNearExpiration(idFamilia).subscribe({
       next: (data: NearExpirationDTO[]) => {
 
         this.lista = data;

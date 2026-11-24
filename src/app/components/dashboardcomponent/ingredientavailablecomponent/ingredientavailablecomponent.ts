@@ -1,10 +1,11 @@
-
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { IngredienteAVailableByFamilyDTO } from '../../../models/IngredientAvailableByFamilyDTO';
 import { ChartData, ChartOptions } from 'chart.js';
 import { Itemservice } from '../../../services/itemservice';
 import { BaseChartDirective } from 'ng2-charts';
 import { MatIconModule } from '@angular/material/icon';
+import { Userservice } from '../../../services/userservice';
+import { Loginservice } from '../../../services/loginservice';
 
 type TipoGrafico = 'bar' | 'line' | 'pie' | 'doughnut' | 'radar';
 
@@ -15,7 +16,6 @@ type TipoGrafico = 'bar' | 'line' | 'pie' | 'doughnut' | 'radar';
   templateUrl: './ingredientavailablecomponent.html',
 })
 export class Ingredientavailablecomponent implements OnInit {
-
   lista: IngredienteAVailableByFamilyDTO[] = [];
 
   public chartType: TipoGrafico = 'bar';
@@ -76,14 +76,36 @@ export class Ingredientavailablecomponent implements OnInit {
     private cdr: ChangeDetectorRef,
   ) {}
 
-  ngOnInit(): void {
-    this.IngredientesDisponibles();
+  private uS = inject(Userservice);
+  private idFamily: number = 0;
+  private loginService = inject(Loginservice);
+
+  get nombreUsuario(): string {
+    return this.loginService.getUsername() || 'Usuario';
   }
 
-  IngredientesDisponibles(): void {
-    this.iS.getIngredientAvailable(1).subscribe({
-      next: (data: IngredienteAVailableByFamilyDTO[]) => {
+  ngOnInit(): void {
 
+    this.uS.getuserbyusername(this.nombreUsuario).subscribe({
+      next: (data: any) => {
+        this.idFamily = data.idFamily;
+
+        if (!this.idFamily) {
+          console.log('El usuario no tiene una familia asociada');
+        }
+        
+        this.IngredientesDisponibles(this.idFamily);
+
+      },
+      error: (err) => {
+        console.log('Error al obtener la información del usuario logueado');
+      },
+    });
+  }
+
+  IngredientesDisponibles(idFamilia:number): void {
+    this.iS.getIngredientAvailable(idFamilia).subscribe({
+      next: (data: IngredienteAVailableByFamilyDTO[]) => {
         this.lista = data;
 
         this.chartData = {

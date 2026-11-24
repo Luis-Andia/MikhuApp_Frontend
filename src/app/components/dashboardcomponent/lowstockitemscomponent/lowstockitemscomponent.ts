@@ -1,9 +1,11 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { LowStockItemsDTO } from '../../../models/LowStockItemsDTO';
 import { ChartData, ChartOptions } from 'chart.js';
 import { Itemservice } from '../../../services/itemservice';
 import { BaseChartDirective } from 'ng2-charts';
 import { MatIconModule } from '@angular/material/icon';
+import { Userservice } from '../../../services/userservice';
+import { Loginservice } from '../../../services/loginservice';
 
 
 type TipoGrafico = 'bar' | 'line' | 'pie' | 'doughnut' | 'radar';
@@ -44,12 +46,38 @@ export class Lowstockitemscomponent implements OnInit{
     private iS: Itemservice,
     private cdr: ChangeDetectorRef,
   ) {}
-  ngOnInit(): void {
-    this.bajoStock();
-  }
-  bajoStock(): void {
 
-    this.iS.getlowStockitems(1).subscribe({
+  private uS = inject(Userservice);
+  private idFamily: number = 0;
+  private loginService = inject(Loginservice);
+
+  get nombreUsuario(): string {
+    return this.loginService.getUsername() || 'Usuario';
+  }
+
+
+  ngOnInit(): void {
+
+    this.uS.getuserbyusername(this.nombreUsuario).subscribe({
+      next: (data: any) => {
+        this.idFamily = data.idFamily;
+
+        if (!this.idFamily) {
+          console.log('El usuario no tiene una familia asociada');
+        }
+        
+        this.bajoStock(this.idFamily);
+
+      },
+      error: (err) => {
+        console.log('Error al obtener la información del usuario logueado');
+      },
+    });
+
+  }
+  bajoStock(idFamilia: number): void {
+
+    this.iS.getlowStockitems(idFamilia).subscribe({
     next: (data: LowStockItemsDTO[]) => {
       this.lista = data;
 

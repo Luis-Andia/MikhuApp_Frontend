@@ -1,10 +1,12 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { NearExpirationDTO } from '../../../models/NearExpirationDTO';
 import { ChartData, ChartOptions } from 'chart.js';
 import { Itemservice } from '../../../services/itemservice';
 import { BaseChartDirective } from 'ng2-charts';
 import { MatIconModule } from '@angular/material/icon';
 import { ExpiredDTO } from '../../../models/ExpiredDTO';
+import { Userservice } from '../../../services/userservice';
+import { Loginservice } from '../../../services/loginservice';
 
 type TipoGrafico = 'bar' | 'line' | 'pie' | 'doughnut' | 'radar';
 
@@ -82,17 +84,39 @@ export class Expiredcomponent implements OnInit{
     },
   };
 
+  private uS = inject(Userservice);
+  private idFamily: number = 0;
+  private loginService = inject(Loginservice);
+
+  get nombreUsuario(): string {
+    return this.loginService.getUsername() || 'Usuario';
+  }
+
   constructor(
     private iS: Itemservice,
     private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
-    this.Vencidos();
+    this.uS.getuserbyusername(this.nombreUsuario).subscribe({
+      next: (data: any) => {
+        this.idFamily = data.idFamily;
+
+        if (!this.idFamily) {
+          console.log('El usuario no tiene una familia asociada');
+        }
+        
+        this.Vencidos(this.idFamily);
+
+      },
+      error: (err) => {
+        console.log('Error al obtener la información del usuario logueado');
+      },
+    });
   }
 
-  Vencidos(): void {
-    this.iS.getExpired(1).subscribe({
+  Vencidos(idFamilia: number): void {
+    this.iS.getExpired(idFamilia).subscribe({
       next: (data: ExpiredDTO[]) => {
 
         this.lista = data;  

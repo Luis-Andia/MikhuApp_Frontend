@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,6 +11,7 @@ import { Nearexpirationcomponent } from './nearexpirationcomponent/nearexpiratio
 import { Expiredcomponent } from './expiredcomponent/expiredcomponent';
 import { Ingredientavailablecomponent } from './ingredientavailablecomponent/ingredientavailablecomponent';
 import { Itemservice } from '../../services/itemservice';
+import { Userservice } from '../../services/userservice';
 
 @Component({
   selector: 'app-dashboardcomponent',
@@ -34,6 +35,8 @@ import { Itemservice } from '../../services/itemservice';
 export class Dashboardcomponent implements OnInit {
   private loginService = inject(Loginservice);
   private iS = inject(Itemservice);
+  private uS = inject(Userservice);
+  private idFamily: number = 0;
 
   // Usuario que inició sesión
   get nombreUsuario(): string {
@@ -41,7 +44,7 @@ export class Dashboardcomponent implements OnInit {
   }
 
   // Indicadores principales (datos de demostración)
-  indicadores = [
+  indicadores = signal([
     {
       titulo: 'Alimentos en inventario',
       cantidad: 0,
@@ -66,33 +69,55 @@ export class Dashboardcomponent implements OnInit {
       icono: 'inventory',
       clase: 'indicador-azul',
     },
-  ];
+  ]);
 
   ngOnInit(): void {
-    if (this.esInvitado || this.esMiembro || this.esModerador) {
-      this.cargarIndicadores();
-    }
+    this.uS.getuserbyusername(this.nombreUsuario).subscribe({
+      next: (data: any) => {
+        this.idFamily = data.idFamily;
+
+        if (!this.idFamily) {
+          console.log('El usuario no tiene una familia asociada');
+        }
+
+        if (this.esInvitado || this.esMiembro || this.esModerador) {
+            this.cargarIndicadores(this.idFamily);
+        }
+      },
+      error: (err) => {
+        console.log('Error al obtener la información del usuario logueado');
+      },
+    });
   }
+  //cambio
 
-  private cargarIndicadores(): void {
-    // 1. Alimentos en inventario:
-    this.iS.getIngredientAvailable(1).subscribe((items) => {
-    this.indicadores[0].cantidad = items.length;
+  private actualizarCantidad(indice: number, nuevaCantidad: number): void {
+    this.indicadores.update((lista) =>
+      lista.map((ind, i) =>
+        i === indice ? { ...ind, cantidad: nuevaCantidad } : ind
+      )
+    );
+  }
+  // cambio
+  private cargarIndicadores(idFamilia: number): void {
+    // 1. Alimentos en inventario
+    this.iS.getIngredientAvailable(idFamilia).subscribe((items) => {
+      this.actualizarCantidad(0, items.length);
     });
 
-    // 2. Por vencer en 3 días:
-    this.iS.getNearExpiration(1).subscribe((lista) => {
-      this.indicadores[1].cantidad = lista.length;
+    // 2. Por vencer en 3 días
+    this.iS.getNearExpiration(idFamilia).subscribe((lista) => {
+      this.actualizarCantidad(1, lista.length);
     });
 
-    // 3. Vencidos:
-    this.iS.getExpired(1).subscribe((lista) => {
-    this.indicadores[2].cantidad = lista.length;
+    // 3. Vencidos
+    this.iS.getExpired(idFamilia).subscribe((lista) => {
+      this.actualizarCantidad(2, lista.length);
     });
 
-    // 4. Con bajo stock:
-    this.iS.getlowStockitems(1).subscribe((lista) => {
-    this.indicadores[3].cantidad = lista.length;
+    // 4. Con bajo stock
+    this.iS.getlowStockitems(idFamilia).subscribe((lista) => {
+      this.actualizarCantidad(3, lista.length);
     });
   }
 

@@ -11,7 +11,7 @@
   @if (esInvitado || esMiembro || esModerador) {
     <!-- Indicadores principales -->
     <section class="indicadores-grid">
-      @for (indicador of indicadores; track indicador.titulo) {
+      @for (indicador of indicadores(); track indicador.titulo) {
         <article class="indicador-card">
           <div class="indicador-cabecera">
             <span>{{ indicador.titulo }}</span>
