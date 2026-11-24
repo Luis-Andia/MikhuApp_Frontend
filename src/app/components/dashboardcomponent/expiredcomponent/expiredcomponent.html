@@ -1,6 +1,6 @@
 
 <div class="container">
-    <h2>Alimentos próximos a vencer</h2>
+    <h2>Alimentos vencidos</h2>
 
     @if (lista.length > 0) {
         <div class="grafico">
@@ -14,7 +14,7 @@
     } @else {
         <div class="mensaje-vacio">
             <mat-icon>event_available</mat-icon>
-            <p>No hay alimentos próximos a vencer.</p>
+            <p>No hay alimentos vencidos.</p>
         </div>
     }
 </div>

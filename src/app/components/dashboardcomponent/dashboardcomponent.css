@@ -503,3 +503,38 @@
   width: 100%;
 }
 
+.dashboard-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Grid de 2 columnas para los 4 reportes */
+.reportes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Responsivo: 1 columna en tablets/móviles */
+@media (max-width: 960px) {
+  .reportes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estandariza las tarjetas hijas desde el padre */
+.reporte-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}

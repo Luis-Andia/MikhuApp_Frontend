@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,27 +10,7 @@ import { Lowstockitemscomponent } from './lowstockitemscomponent/lowstockitemsco
 import { Nearexpirationcomponent } from './nearexpirationcomponent/nearexpirationcomponent';
 import { Expiredcomponent } from './expiredcomponent/expiredcomponent';
 import { Ingredientavailablecomponent } from './ingredientavailablecomponent/ingredientavailablecomponent';
-
-
-interface AlimentoPorConsumir {
-  nombre: string;
-  fecha: string;
-  cantidad: number;
-  estado: 'Por vencer' | 'Vencido';
-}
-
-interface AlimentoConsumido {
-  nombre: string;
-  cantidad: number;
-  porcentaje: number;
-}
-
-interface AlimentoPorReponer {
-  nombre: string;
-  cantidadActual: number;
-  cantidadMinima: number;
-  porcentaje: number;
-}
+import { Itemservice } from '../../services/itemservice';
 
 @Component({
   selector: 'app-dashboardcomponent',
@@ -46,14 +26,14 @@ interface AlimentoPorReponer {
     Lowstockitemscomponent,
     Nearexpirationcomponent,
     Expiredcomponent,
-    Ingredientavailablecomponent
-],
+    Ingredientavailablecomponent,
+  ],
   templateUrl: './dashboardcomponent.html',
-  styleUrl: './dashboardcomponent.css'
+  styleUrl: './dashboardcomponent.css',
 })
-export class Dashboardcomponent {
-
+export class Dashboardcomponent implements OnInit {
   private loginService = inject(Loginservice);
+  private iS = inject(Itemservice);
 
   // Usuario que inició sesión
   get nombreUsuario(): string {
@@ -64,94 +44,57 @@ export class Dashboardcomponent {
   indicadores = [
     {
       titulo: 'Alimentos en inventario',
-      cantidad: 24,
+      cantidad: 0,
       icono: 'kitchen',
-      clase: 'indicador-verde'
+      clase: 'indicador-verde',
     },
     {
       titulo: 'Por vencer en 3 días',
-      cantidad: 3,
+      cantidad: 0,
       icono: 'schedule',
-      clase: 'indicador-amarillo'
+      clase: 'indicador-amarillo',
     },
     {
       titulo: 'Vencidos',
-      cantidad: 2,
+      cantidad: 0,
       icono: 'warning',
-      clase: 'indicador-rojo'
+      clase: 'indicador-rojo',
     },
     {
       titulo: 'Con bajo stock',
-      cantidad: 4,
+      cantidad: 0,
       icono: 'inventory',
-      clase: 'indicador-azul'
-    }
+      clase: 'indicador-azul',
+    },
   ];
 
-  // Alimentos que requieren atención (datos de demostración)
-  alimentosPorConsumir: AlimentoPorConsumir[] = [
-    {
-      nombre: 'Leche',
-      fecha: '03/11/2026',
-      cantidad: 2,
-      estado: 'Por vencer'
-    },
-    {
-      nombre: 'Pollo',
-      fecha: '31/10/2026',
-      cantidad: 1,
-      estado: 'Vencido'
-    },
-    {
-      nombre: 'Tomate',
-      fecha: '04/11/2026',
-      cantidad: 5,
-      estado: 'Por vencer'
-    },
-    {
-      nombre: 'Queso fresco',
-      fecha: '30/10/2026',
-      cantidad: 1,
-      estado: 'Vencido'
+  ngOnInit(): void {
+    if (this.esInvitado || this.esMiembro || this.esModerador) {
+      this.cargarIndicadores();
     }
-  ];
+  }
 
-  // Alimentos más consumidos (datos de demostración)
-  alimentosConsumidos: AlimentoConsumido[] = [
-    { nombre: 'Arroz', cantidad: 12, porcentaje: 100 },
-    { nombre: 'Huevos', cantidad: 9, porcentaje: 75 },
-    { nombre: 'Papa amarilla', cantidad: 7, porcentaje: 58 },
-    { nombre: 'Cebolla roja', cantidad: 6, porcentaje: 50 },
-    { nombre: 'Pollo', cantidad: 5, porcentaje: 42 }
-  ];
+  private cargarIndicadores(): void {
+    // 1. Alimentos en inventario:
+    this.iS.getIngredientAvailable(1).subscribe((items) => {
+    this.indicadores[0].cantidad = items.length;
+    });
 
-  // Alimentos que necesitan reposición (datos de demostración)
-  alimentosPorReponer: AlimentoPorReponer[] = [
-    {
-      nombre: 'Aceite vegetal',
-      cantidadActual: 1,
-      cantidadMinima: 2,
-      porcentaje: 50
-    },
-    {
-      nombre: 'Sal de cocina',
-      cantidadActual: 1,
-      cantidadMinima: 2,
-      porcentaje: 50
-    },
-    {
-      nombre: 'Ajo',
-      cantidadActual: 2,
-      cantidadMinima: 5,
-      porcentaje: 40
-    },
-    {
-      nombre: 'Lentejas',
-      cantidadActual: 1,
-      cantidadMinima: 3,
-      porcentaje: 33
-    }
-  ];
+    // 2. Por vencer en 3 días:
+    this.iS.getNearExpiration(1).subscribe((lista) => {
+      this.indicadores[1].cantidad = lista.length;
+    });
+
+    // 3. Vencidos:
+    this.iS.getExpired(1).subscribe((lista) => {
+    this.indicadores[2].cantidad = lista.length;
+    });
+
+    // 4. Con bajo stock:
+    this.iS.getlowStockitems(1).subscribe((lista) => {
+    this.indicadores[3].cantidad = lista.length;
+    });
+  }
 
   abrirAsistente(): void {
     // La navegación se realiza mediante el enlace del HTML.
@@ -168,11 +111,11 @@ export class Dashboardcomponent {
     return this.loginService.hasAnyRole(['MEMBER']);
   }
 
-    // Comprobar si es invitado
+  // Comprobar si es invitado
   get esInvitado(): boolean {
     return this.loginService.hasAnyRole(['GUEST']);
   }
- 
+
   // Comprobar si es moderador de una familia
   get esModerador(): boolean {
     return this.loginService.hasAnyRole(['MODERATOR']);

@@ -95,7 +95,7 @@ export class Expiredcomponent implements OnInit{
     this.iS.getExpired(1).subscribe({
       next: (data: ExpiredDTO[]) => {
 
-        this.lista = data;
+        this.lista = data;  
 
         // Agrupar alimentos por fecha de vencimiento
         const agrupados = new Map<string, ExpiredDTO[]>();
