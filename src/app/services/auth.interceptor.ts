@@ -2,6 +2,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
 import { inject, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
@@ -18,7 +19,10 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     return next(req);
   }
 
-  const backendUrl = 'http://localhost:8080/';
+  const backendUrl = environment.base.endsWith('/')
+    ? environment.base
+    : `${environment.base}/`;
+    
   if (!req.url.startsWith(backendUrl)) {
     return next(req);
   }
