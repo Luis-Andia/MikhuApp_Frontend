@@ -1,76 +1,62 @@
-
-<div class="roles-container">
-
-  <div class="roles-header">
-    <div>
-      <h2>Gestión de roles</h2>
-      <p>Consulta y administra los roles registrados en MikhuApp.</p>
-    </div>
+<header class="encabezado">
+  <div class="encabezado-inner">
+    <p class="encabezado-etiqueta"><span class="punto"></span>Administración</p>
+    <h1>Roles</h1>
+    <p class="encabezado-desc">Listado de los roles dentro de MikhuApp</p>
   </div>
+</header>
 
-  <div class="roles-content">
+<main class="familias-page">
+  <div class="familias-card">
 
-    <div class="roles-title">
-      <h3>Listado de roles</h3>
-      <span class="roles-count">
-        {{ listaRoles.length }} registros
-      </span>
-    </div>
+    <div class="tabla-wrap" [hidden]="dataSource.data.length === 0">
+      <table mat-table [dataSource]="dataSource" class="tabla">
 
-    <div class="loading" *ngIf="cargando">
-      Cargando roles...
-    </div>
+        <ng-container matColumnDef="C1">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.idRol}} </td>
+        </ng-container>
 
-    <div class="message" *ngIf="!cargando && mensaje">
-      {{ mensaje }}
-    </div>
+        <ng-container matColumnDef="C2">
+            <th mat-header-cell *matHeaderCellDef> Nombre del rol </th>
+            <td mat-cell *matCellDef="let element"> {{element.rol}} </td>
+        </ng-container>
 
-    <div class="table-container" *ngIf="!cargando && listaRoles.length > 0">
+        <ng-container matColumnDef="C3">
+            <th mat-header-cell *matHeaderCellDef> ID del usuario </th>
+            <td mat-cell *matCellDef="let element"> {{element.idUser}} </td>
+        </ng-container>
 
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre del rol</th>
-            <th>ID del usuario</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
+        <ng-container matColumnDef="C4">
+            <th mat-header-cell *matHeaderCellDef class="col-acciones">Acciones</th>
+            <td mat-cell *matCellDef="let element" class="col-acciones">
 
-        <tbody>
-          <tr *ngFor="let rol of listaRoles">
-
-            <td>{{ rol.idRol }}</td>
-
-            <td>
-              <span class="role-badge">{{ rol.rol }}</span>
-            </td>
-
-            <td>{{ rol.idUser }}</td>
-
-            <td>
-              <button
-                type="button"
-                class="delete-button"
-                [disabled]="rol.idRol === 1 || rol.rol === 'ROLE_ADMIN' || eliminandoId === rol.idRol"
-                (click)="eliminarRol(rol)">
-
-                {{ eliminandoId === rol.idRol ? 'Eliminando...' : 'Eliminar' }}
-
+              <button matIconButton type="button" class="btn-eliminar"
+                      aria-label="Eliminar rol"
+                      [disabled]="esProtegido(element) || eliminandoId === element.idRol"
+                      (click)="eliminarRol(element)">
+                      <mat-icon>delete</mat-icon>
               </button>
             </td>
+        </ng-container>
 
-          </tr>
-        </tbody>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
 
+      <mat-paginator class="paginador"
+             [pageSize]="5"
+             [pageSizeOptions]="[5, 10, 25, 100]"
+             showFirstLastButtons
+             aria-label="Seleccionar página">
+      </mat-paginator>
     </div>
 
-    <div class="roles-footer">
-      <button type="button" (click)="listarRoles()">
-        Actualizar listado
-      </button>
-    </div>
-
+    @if (dataSource.data.length === 0){
+      <p class="vacio">
+        <mat-icon>admin_panel_settings</mat-icon>
+        No hay roles registrados
+      </p>
+    }
   </div>
-</div>
+</main>
