@@ -6,7 +6,9 @@
       <span class="brand-name">MikhuApp</span>
     </a>
 
-    <button mat-icon-button routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" aria-label="Inicio"><mat-icon>home</mat-icon></button>
+    <button mat-icon-button routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" aria-label="Inicio">
+      <mat-icon>home</mat-icon>
+    </button>
 
     <a mat-button class="nav-link" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
 
@@ -21,18 +23,18 @@
     <button mat-button class="nav-link" [matMenuTriggerFor]="familiamenu">Familia<mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon></button>
     <mat-menu #familiamenu="matMenu">
       <button mat-menu-item routerLink="/familia/insertar"><mat-icon>add</mat-icon>Crear familia</button>
-      @if(esAdmin) {
-      <button mat-menu-item routerLink="/familia/listar"><mat-icon>groups</mat-icon>Ver familia</button>
+      @if (esAdmin) {
+        <button mat-menu-item routerLink="/familia/listar"><mat-icon>groups</mat-icon>Ver familia</button>
       }
       <button mat-menu-item routerLink="/familia/unirse"><mat-icon>add</mat-icon>Unirse</button>
     </mat-menu>
 
     @if (esAdmin) {
-    <button mat-button class="nav-link" [matMenuTriggerFor]="ingredientemenu">Ingrediente<mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon></button>
-    <mat-menu #ingredientemenu="matMenu">
-      <button mat-menu-item routerLink="/ingrediente/insertar"><mat-icon>add</mat-icon>Agregar</button>
-      <button mat-menu-item routerLink="/ingrediente/listar"><mat-icon>groups</mat-icon>Listar</button>
-    </mat-menu>
+      <button mat-button class="nav-link" [matMenuTriggerFor]="ingredientemenu">Ingrediente<mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon></button>
+      <mat-menu #ingredientemenu="matMenu">
+        <button mat-menu-item routerLink="/ingrediente/insertar"><mat-icon>add</mat-icon>Agregar</button>
+        <button mat-menu-item routerLink="/ingrediente/listar"><mat-icon>groups</mat-icon>Listar</button>
+      </mat-menu>
     }
 
     <button mat-button class="nav-link" [matMenuTriggerFor]="inventariomenu">Inventario<mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon></button>
@@ -44,9 +46,13 @@
     <button mat-button class="nav-link" [matMenuTriggerFor]="recetamenu">Recetas<mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon></button>
     <mat-menu #recetamenu="matMenu">
       <button mat-menu-item routerLink="/recetas"><mat-icon>menu_book</mat-icon>Catálogo</button>
-      <button mat-menu-item routerLink="/recetas/insertar"><mat-icon>add</mat-icon>Agregar receta</button>
+
+      @if (!esMiembro) {
+        <button mat-menu-item routerLink="/recetas/insertar"><mat-icon>add</mat-icon>Agregar receta</button>
+      }
+
       @if (esAdmin) {
-      <button mat-menu-item routerLink="/recetas/listar"><mat-icon>list</mat-icon>Listar recetas</button>
+        <button mat-menu-item routerLink="/recetas/listar"><mat-icon>list</mat-icon>Listar recetas</button>
       }
     </mat-menu>
 
@@ -71,7 +77,10 @@
 
     <span class="spacer"></span>
 
-    <a class="ia-button" routerLink="/chatia"><mat-icon>auto_awesome</mat-icon><span>Asistente IA</span></a>
+    <a class="ia-button" routerLink="/chatia">
+      <mat-icon>auto_awesome</mat-icon>
+      <span>Asistente IA</span>
+    </a>
 
     <div class="language-selector" aria-label="Idioma seleccionado: español">
       <span class="language-active">ES</span>
@@ -79,7 +88,10 @@
       <span class="language-option">EN</span>
     </div>
 
-    <button mat-icon-button class="user-avatar" [matMenuTriggerFor]="cuentamenu" [attr.aria-label]="'Perfil de ' + username" [title]="username">{{ inicialesUsuario }}</button>
+    <button mat-icon-button class="user-avatar" [matMenuTriggerFor]="cuentamenu" [attr.aria-label]="'Perfil de ' + username" [title]="username">
+      {{ inicialesUsuario }}
+    </button>
+
     <mat-menu #cuentamenu="matMenu">
       <div class="profile-menu-header">
         <strong>{{ username }}</strong>

@@ -104,10 +104,19 @@
 
             <div class="select-wrapper">
               <select id="pais" formControlName="pais">
-                @for (pais of paises; track pais) {
-                  <option [value]="pais">{{ pais }}</option>
+
+                <option value="" disabled>
+                  {{ paises.length > 0 ? 'Selecciona tu país' : 'Cargando países...' }}
+                </option>
+
+                @for (pais of paises; track pais.idCountry) {
+                  <option [value]="pais.idCountry">
+                    {{ pais.nomCountry }}
+                  </option>
                 }
+
               </select>
+
               <mat-icon>keyboard_arrow_down</mat-icon>
             </div>
           </div>
@@ -234,9 +243,13 @@
           matButton="filled"
           type="submit"
           class="btn-registro"
+          [disabled]="cargando"
         >
-          Crear cuenta
-          <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+          {{ cargando ? 'Creando cuenta...' : 'Crear cuenta' }}
+
+          <mat-icon iconPositionEnd>
+            {{ cargando ? 'hourglass_empty' : 'arrow_forward' }}
+          </mat-icon>
         </button>
 
       </form>
