@@ -1,80 +1,160 @@
-/* Contenedor general de la página centrado */
+
+/* ===== Contenedor general ===== */
 .container {
-  padding: 32px;
-  background-color: #f7fdfb;
   min-height: 90vh;
+  padding: 32px;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  background: #f4faf7;
 }
 
-/* Tarjeta principal que envuelve todo (título y formulario) */
+/* ===== Tarjeta principal ===== */
 .formulario-card {
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
   width: 100%;
-  max-width: 600px;
-  border: 1px solid #e2f4ed;
-  overflow: hidden; /* Asegura que el header respete las esquinas redondeadas */
-  padding-bottom: 32px;
+  max-width: 560px;
+  padding-bottom: 30px;
+  overflow: hidden;
+  box-sizing: border-box;
   text-align: center;
+  background: #ffffff;
+  border: 1px solid #dcefe6;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(31, 58, 51, 0.07);
 }
 
-/* Encabezado superior con fondo verde menta */
+/* ===== Encabezado ===== */
 .formulario-header {
-  background-color: #eafaf3;
   padding: 24px 32px;
-  border-bottom: 1px solid #d5f2e6;
   margin-bottom: 24px;
+  background: #e8f7f0;
+  border-bottom: 1px solid #d5eee2;
 }
 
 .formulario-header h2 {
-  font-size: 20px;
-  font-weight: 600;
-  color: #1a2e26;
   margin: 0;
+  color: #1f3a33;
+  font-size: 20px;
+  font-weight: 700;
 }
 
-/* Espaciado interno para el formulario dentro de la tarjeta */
+.formulario-header p {
+  margin: 8px 0 0;
+  color: #58736a;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ===== Formulario ===== */
 form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   padding: 0 32px;
 }
 
-/* Estilo para los campos de Angular Material */
 mat-form-field {
   width: 100%;
+
+  --mat-form-field-outlined-container-shape: 10px;
+  --mat-form-field-outlined-outline-color: #cbded5;
+  --mat-form-field-outlined-hover-outline-color: #2e7d5b;
+  --mat-form-field-outlined-focus-outline-color: #2e7d5b;
+  --mat-form-field-outlined-focus-label-text-color: #2e7d5b;
+  --mat-form-field-outlined-caret-color: #2e7d5b;
 }
 
-/* Botón principal de Guardar */
+/* ===== Errores de validación ===== */
+mat-error {
+  font-size: 12px;
+}
+
+/* ===== Botón principal ===== */
 button[mat-raised-button] {
-  background-color: #1b4d3e !important;
-  color: #ffffff !important;
-  border-radius: 10px !important;
-  padding: 12px 24px !important;
-  font-weight: 500;
-  font-size: 15px;
-  box-shadow: none !important;
   width: 100%;
-  margin-top: 8px;
-  transition: background-color 0.2s;
+  min-height: 46px;
+  margin-top: 6px;
+  border-radius: 10px !important;
+  background-color: #2e7d5b !important;
+  color: #ffffff !important;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(46, 125, 91, 0.16) !important;
+  transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
 button[mat-raised-button]:hover {
-  background-color: #153c30 !important;
+  background-color: #256849 !important;
 }
 
-/* Mensajes de error y texto */
-mat-error {
-  font-size: 12px;
-  color: #e57373 !important;
+button[mat-raised-button]:active {
+  transform: scale(0.99);
 }
 
+/* ===== Mensajes ===== */
 .mensaje {
-  margin-top: 16px;
-  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border-radius: 9px;
+  font-size: 13px;
   font-weight: 500;
-  text-align: center;
-  color: #2e5a4c;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.mensaje-success {
+  color: #216747;
+  background: #e7f6ee;
+  border-left: 4px solid #2e8b62;
+}
+
+.mensaje-error {
+  color: #a83232;
+  background: #fff0f0;
+  border-left: 4px solid #dc5555;
+}
+
+.mensaje-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-weight: 700;
+}
+
+.mensaje-success .mensaje-icono {
+  background: #ccebd9;
+  color: #216747;
+}
+
+.mensaje-error .mensaje-icono {
+  background: #ffdddd;
+  color: #a83232;
+}
+
+/* ===== Adaptación para móviles ===== */
+@media (max-width: 600px) {
+  .container {
+    padding: 18px 12px;
+  }
+
+  .formulario-header {
+    padding: 20px 18px;
+  }
+
+  form {
+    padding: 0 18px;
+  }
+
+  .formulario-card {
+    max-width: 100%;
+  }
 }
