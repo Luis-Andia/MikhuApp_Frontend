@@ -1,74 +1,81 @@
-        
-<div class="container">
-    <div>
-        <h2>Lista de Usuarios</h2>
+<header class="encabezado">
+  <div class="encabezado-inner">
+    <p class="encabezado-etiqueta"><span class="punto"></span>Administración</p>
+    <h1>Usuarios</h1>
+    <p class="encabezado-desc">Gestión y control de los usuarios dentro de MikhuApp</p>
+  </div>
+</header>
+
+<main class="familias-page">
+  <div class="familias-card">
+
+    <div class="tabla-wrap" [hidden]="dataSource.data.length === 0">
+      <table mat-table [dataSource]="dataSource" class="tabla">
+
+        <ng-container matColumnDef="C1">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.idUser}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="C2">
+          <th mat-header-cell *matHeaderCellDef> ID Rol </th>
+          <td mat-cell *matCellDef="let element"> {{element.idRole}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="C3">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.nomUser}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="C4">
+          <th mat-header-cell *matHeaderCellDef> Apellido </th>
+          <td mat-cell *matCellDef="let element"> {{element.lastNameUser}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="C5">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="C6">
+          <th mat-header-cell *matHeaderCellDef> ID Familia </th>
+          <td mat-cell *matCellDef="let element"> {{element.idFamily}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="C7">
+          <th mat-header-cell *matHeaderCellDef> ID País </th>
+          <td mat-cell *matCellDef="let element"> {{element.idCountry}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="C8">
+          <th mat-header-cell *matHeaderCellDef class="col-acciones">Acciones</th>
+          <td mat-cell *matCellDef="let element" class="col-acciones">
+            <button matIconButton type="button" class="btn-eliminar"
+                    aria-label="Eliminar usuario"
+                    (click)="eliminarUser(element.idUser)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator class="paginador"
+             [pageSize]="5"
+             [pageSizeOptions]="[5, 10, 25, 100]"
+             showFirstLastButtons
+             aria-label="Seleccionar página">
+      </mat-paginator>
     </div>
-        <div>
-        @if(dataSource.length>0){
-        <!--Muestre la tabla-->
-        <table mat-table [dataSource]="dataSource" class="mat-shadow-2">
 
-            <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
+    @if (dataSource.data.length === 0) {
+      <p class="vacio">
+        <mat-icon>group</mat-icon>
+        No hay usuarios registrados
+      </p>
+    }
 
-            <!-- Position Column -->
-            <ng-container matColumnDef="C1">
-                <th mat-header-cell *matHeaderCellDef> ID </th>
-                <td mat-cell *matCellDef="let element"> {{element.idUser}} </td>
-            </ng-container>
-
-                <!-- Name Column -->
-            <ng-container matColumnDef="C2">
-                <th mat-header-cell *matHeaderCellDef> ID Rol </th>
-                <td mat-cell *matCellDef="let element"> {{element.idRole}} </td>
-            </ng-container>
-
-            <!-- Weight Column -->
-            <ng-container matColumnDef="C3">
-                <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                <td mat-cell *matCellDef="let element"> {{element.nomUser}} </td>
-            </ng-container>
-
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="C4">
-                <th mat-header-cell *matHeaderCellDef> Apellido </th>
-                <td mat-cell *matCellDef="let element"> {{element.lastNameUser}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="C5">
-                <th mat-header-cell *matHeaderCellDef> Email </th>
-                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="C6">
-                <th mat-header-cell *matHeaderCellDef> ID Familia </th>
-                <td mat-cell *matCellDef="let element"> {{element.idFamily}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="C7">
-                <th mat-header-cell *matHeaderCellDef> ID Pais </th>
-                <td mat-cell *matCellDef="let element"> {{element.idCountry}} </td>
-            </ng-container>
-
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="C8">
-                <th mat-header-cell *matHeaderCellDef> Eliminar</th>
-                <td mat-cell *matCellDef="let element">
-                    <button matButton (click)="eliminarUser(element.idUser)">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-
-        }@else {
-        <!--mensaje-->
-        <p>No hay registros disponibles!!</p>
-        }
-
-    </div>
-</div>
-
+  </div>
+</main>

@@ -1,59 +1,83 @@
+<div class="receta-page">
+  <div class="receta-card">
 
-<div class="form-container">
-  <div class="form-card">
+    <div class="receta-icono" aria-hidden="true">
+      <mat-icon>admin_panel_settings</mat-icon>
+    </div>
+
     <h2>Registrar nuevo rol</h2>
-    <p>Completa los datos para asignar un rol a un usuario.</p>
+    <p class="receta-desc">
+      Completa los datos para asignar un rol a un usuario
+    </p>
 
     <form [formGroup]="formulario" (ngSubmit)="registrarRol()">
-
-      <div class="form-group">
-        <label for="rol">Nombre del rol</label>
+      <!-- Nombre del rol -->
+      <mat-form-field appearance="outline" class="campo">
+        <mat-label>Nombre del rol</mat-label>
         <input
-          id="rol"
+          matInput
           type="text"
           formControlName="rol"
-          placeholder="Ejemplo: ROLE_ADMIN"
+          maxlength="30"
         />
-
-        <small *ngIf="formulario.get('rol').touched &&
-                      formulario.get('rol').invalid">
+      </mat-form-field>
+      @if (formulario.get('rol')?.touched && formulario.get('rol')?.invalid) {
+        <p class="error_mensaje">
           El nombre del rol es obligatorio y admite máximo 30 caracteres.
-        </small>
-      </div>
+        </p>
+      }
 
-      <div class="form-group">
-        <label for="idUser">ID del usuario</label>
+      <!-- ID del usuario -->
+      <mat-form-field appearance="outline" class="campo">
+        <mat-label>ID del usuario</mat-label>
         <input
-          id="idUser"
+          matInput
           type="number"
           formControlName="idUser"
-          placeholder="Ejemplo: 1"
+          min="1"
         />
-
-        <small *ngIf="formulario.get('idUser').touched &&
-                      formulario.get('idUser').invalid">
+      </mat-form-field>
+      @if (formulario.get('idUser')?.touched && formulario.get('idUser')?.invalid) {
+        <p class="error_mensaje">
           Ingresa un ID de usuario válido.
-        </small>
-      </div>
+        </p>
+      }
 
-      <div class="success-message" *ngIf="mensaje">
-        {{ mensaje }}
-      </div>
+      @if (mensaje) {
+        <p class="exito_mensaje">{{ mensaje }}</p>
+      }
 
-      <div class="error-message" *ngIf="error">
-        {{ error }}
-      </div>
+      @if (error) {
+        <p class="error_mensaje">{{ error }}</p>
+      }
 
-      <div class="buttons">
-        <button type="button" class="cancel" (click)="cancelar()">
-          Cancelar
-        </button>
-
-        <button type="submit" [disabled]="guardando">
+      <div class="accion">
+        <button
+          mat-flat-button
+          type="submit"
+          class="btn-registrar"
+          [disabled]="guardando"
+        >
+          <mat-icon>add_circle_outline</mat-icon>
           {{ guardando ? 'Registrando...' : 'Registrar rol' }}
         </button>
+
+        <button
+          mat-stroked-button
+          type="button"
+          class="btn-cancelar"
+          (click)="cancelar()"
+          [disabled]="guardando"
+        >
+          Cancelar
+        </button>
       </div>
 
+      <div class="receta-nota">
+        <mat-icon>lightbulb</mat-icon>
+        <p>Verifica que el ID del usuario exista antes de asignar un nuevo rol.</p>
+      </div>
     </form>
+
   </div>
 </div>

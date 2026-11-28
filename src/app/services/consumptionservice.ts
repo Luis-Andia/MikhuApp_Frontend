@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment.development';
 import { ConsumptionDTO } from '../models/ConsumptionDTO';
 import { Cons, Observable } from 'rxjs';
 import { MostConsumedIngredientsDTO } from '../models/MostConsumedIngredientsDTO';
+import { HistorialConsumoResponseDTO } from '../models/HistorialConsumoResponseDTO';
 
 @Service()
 export class Consumptionservice {
@@ -21,6 +22,7 @@ export class Consumptionservice {
   insertconsumption(dto: ConsumptionDTO): Observable<ConsumptionDTO> {
     return this.http.post<ConsumptionDTO>(this.apiURL, dto);
   }
+
   listId(id: number): Observable<ConsumptionDTO> {
     return this.http.get<ConsumptionDTO>(`${this.apiURL}/${id}`);
   }
@@ -43,5 +45,9 @@ export class Consumptionservice {
     .set('fechaFin', fechaFin)
 
     return this.http.get<MostConsumedIngredientsDTO[]>(`${this.apiURL}/fecha`, { params })
+  }
+
+  getconsumptionsbyFamily(idFamily: number): Observable<HistorialConsumoResponseDTO[]> {
+    return this.http.get<HistorialConsumoResponseDTO[]>(`${this.apiURL}/familia/${idFamily}`);
   }
 }

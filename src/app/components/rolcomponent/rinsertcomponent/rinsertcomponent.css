@@ -1,91 +1,236 @@
+:host {
+  --mikhu-green: #2E7D5B;
+  --mikhu-green-dark: #1F3A33;
+  --mikhu-green-light: #E3F2EA;
+  --mikhu-mint: #D3F3E6;
+  --mikhu-mint-soft: #E8FAF1;
+  --mikhu-ink: #0F2A24;
+  --mikhu-red: #E54848;
+  --mikhu-muted: #5F6F69;
+  --mikhu-white: #FFFFFF;
 
-.form-container {
-  padding: 30px;
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #F4FAF7 0%, var(--mikhu-white) 100%);
+  color: var(--mikhu-green-dark);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ===== Layout ===== */
+.receta-page {
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
+  padding: 32px;
 }
 
-.form-card {
-  background: white;
+/* ===== Tarjeta ===== */
+.receta-card {
+  box-sizing: border-box;
   width: 100%;
-  max-width: 550px;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  max-width: 544px;
+  padding: 32px;
+  border-radius: 16px;
+  background: var(--mikhu-white);
+  box-shadow: 0 2px 12px rgba(31, 58, 51, 0.08);
 }
 
-h2 {
+.receta-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 24px;
+  border-radius: 16px;
+  background: var(--mikhu-mint);
+  color: var(--mikhu-green);
+}
+
+.receta-icono mat-icon {
+  width: 28px;
+  height: 28px;
+  font-size: 28px;
+  line-height: 28px;
+}
+
+.receta-card h2 {
   margin: 0 0 8px;
-  color: #263238;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--mikhu-ink);
 }
 
-p {
-  color: #718096;
-  margin-bottom: 25px;
+.receta-desc {
+  margin: 0 0 24px;
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.85;
 }
 
-.form-group {
+/* ===== Formulario ===== */
+form {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  gap: 20px;
 }
 
-label {
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #37474f;
-}
-
-input {
-  padding: 12px;
-  border: 1px solid #d5ded8;
-  border-radius: 7px;
-  font-size: 14px;
-}
-
-input:focus {
-  outline: none;
-  border-color: #2e7d32;
-}
-
-small {
-  color: #d32f2f;
-  margin-top: 6px;
-}
-
-.buttons {
+.campo-grupo {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo-grupo label {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--mikhu-ink);
+}
+
+.campo {
+  width: 100%;
+
+  --mat-form-field-outlined-container-shape: 12px;
+  --mat-form-field-outlined-outline-color: #D5E5DC;
+  --mat-form-field-outlined-hover-outline-color: var(--mikhu-green);
+  --mat-form-field-outlined-focus-outline-color: var(--mikhu-green);
+  --mat-form-field-outlined-label-text-color: var(--mikhu-muted);
+  --mat-form-field-outlined-focus-label-text-color: var(--mikhu-green);
+  --mat-form-field-outlined-input-text-color: var(--mikhu-green-dark);
+  --mat-form-field-outlined-caret-color: var(--mikhu-green);
+}
+
+.campo input::placeholder {
+  color: var(--mikhu-muted);
+  opacity: 0.8;
+}
+
+.error_campo {
+  color: var(--mikhu-red);
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+/* ===== Mensajes de estado ===== */
+.error_mensaje {
+  margin: 0;
+  padding: 10px 16px;
+  border-left: 4px solid var(--mikhu-red);
+  border-radius: 8px;
+  background: rgba(229, 72, 72, 0.10);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--mikhu-green-dark);
+}
+
+.exito_mensaje {
+  margin: 0;
+  padding: 10px 16px;
+  border-left: 4px solid var(--mikhu-green);
+  border-radius: 8px;
+  background: var(--mikhu-mint-soft);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--mikhu-green-dark);
+}
+
+/* ===== Botones ===== */
+.accion {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
-  margin-top: 25px;
 }
 
-button {
-  padding: 11px 18px;
-  border: none;
-  border-radius: 7px;
-  background: #2e7d32;
-  color: white;
+.btn-registrar {
+  width: 100%;
+  height: 52px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
   cursor: pointer;
-  font-weight: 600;
+
+  --mat-button-filled-container-color: var(--mikhu-green);
+  --mat-button-filled-label-text-color: var(--mikhu-white);
+  --mat-button-filled-container-shape: 12px;
+  --mat-button-filled-disabled-container-color: var(--mikhu-mint);
+  --mat-button-filled-disabled-label-text-color: var(--mikhu-muted);
 }
 
-button.cancel {
-  background: #e8ece9;
-  color: #37474f;
+.btn-registrar:not(:disabled):hover {
+  --mat-button-filled-container-color: #266A4D;
 }
 
-button:disabled {
-  opacity: 0.6;
+.btn-registrar mat-icon {
+  width: 22px;
+  height: 22px;
+  margin: 0 8px 0 0;
+  font-size: 22px;
+  line-height: 22px;
+}
+
+.btn-cancelar {
+  width: 100%;
+  height: 44px;
+  border: 1px solid #DCE7E1;
+  border-radius: 12px;
+  background: var(--mikhu-white);
+  color: var(--mikhu-green-dark);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-cancelar:hover:not(:disabled) {
+  background: #F3F8F5;
+  border-color: var(--mikhu-mint);
+}
+
+.btn-cancelar:disabled,
+.btn-registrar:disabled {
   cursor: not-allowed;
+  opacity: 0.65;
 }
 
-.success-message {
-  color: #28743b;
-  margin-top: 12px;
+/* ===== Nota informativa ===== */
+.receta-nota {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--mikhu-mint-soft);
 }
 
-.error-message {
-  color: #d32f2f;
-  margin-top: 12px;
+.receta-nota mat-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  line-height: 22px;
+  color: var(--mikhu-green);
+}
+
+.receta-nota p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ===== Accesibilidad ===== */
+.btn-registrar:focus-visible,
+.btn-cancelar:focus-visible {
+  outline: 2px solid var(--mikhu-green-dark);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .receta-page {
+    padding: 16px;
+  }
+
+  .receta-card {
+    padding: 24px 20px;
+  }
 }

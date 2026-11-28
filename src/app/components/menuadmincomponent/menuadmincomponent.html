@@ -33,7 +33,7 @@
       <button mat-button class="nav-link" [matMenuTriggerFor]="ingredientemenu">Ingrediente<mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon></button>
       <mat-menu #ingredientemenu="matMenu">
         <button mat-menu-item routerLink="/ingrediente/insertar"><mat-icon>add</mat-icon>Agregar</button>
-        <button mat-menu-item routerLink="/ingrediente/listar"><mat-icon>groups</mat-icon>Listar</button>
+        <button mat-menu-item routerLink="/ingrediente/listar"><mat-icon>grocery</mat-icon>Listar</button>
       </mat-menu>
     }
 
@@ -66,7 +66,7 @@
       <button mat-button class="nav-link" [matMenuTriggerFor]="rolmenu">Roles<mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon></button>
       <mat-menu #rolmenu="matMenu">
         <button mat-menu-item routerLink="/roles/registrar"><mat-icon>add</mat-icon>Registrar rol</button>
-        <button mat-menu-item routerLink="/roles/listar"><mat-icon>receipt_long</mat-icon>Listar roles</button>
+        <button mat-menu-item routerLink="/roles/listar"><mat-icon>groups</mat-icon>Listar roles</button>
       </mat-menu>
 
       <button mat-button class="nav-link" [matMenuTriggerFor]="usuariomenu">Usuarios<mat-icon class="menu-arrow">keyboard_arrow_down</mat-icon></button>
@@ -81,12 +81,6 @@
       <mat-icon>auto_awesome</mat-icon>
       <span>Asistente IA</span>
     </a>
-
-    <div class="language-selector" aria-label="Idioma seleccionado: español">
-      <span class="language-active">ES</span>
-      <span class="language-divider">|</span>
-      <span class="language-option">EN</span>
-    </div>
 
     <button mat-icon-button class="user-avatar" [matMenuTriggerFor]="cuentamenu" [attr.aria-label]="'Perfil de ' + username" [title]="username">
       {{ inicialesUsuario }}

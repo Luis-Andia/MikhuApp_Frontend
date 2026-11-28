@@ -13,6 +13,8 @@ import { TemplateRef } from '@angular/core';
 import { Recipeservice } from '../../../services/recipeservice';
 import { Itemservice } from '../../../services/itemservice';
 import { RecipeDTO } from '../../../models/RecipeDTO';
+import { Loginservice } from '../../../services/loginservice';
+import { Cslistusercomponent } from '../cslistusercomponent/cslistusercomponent';
 
 @Component({
   imports: [
@@ -23,8 +25,9 @@ import { RecipeDTO } from '../../../models/RecipeDTO';
     MatPaginatorModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatButtonModule
-  ],
+    MatButtonModule,
+    Cslistusercomponent
+],
   selector: 'app-cslistcomponent',
   styleUrl: './cslistcomponent.css',
   templateUrl: './cslistcomponent.html',
@@ -42,7 +45,8 @@ export class Cslistcomponent implements OnInit {
   private sB = inject(MatSnackBar);
   private dg = inject(MatDialog);
   private rS = inject(Recipeservice);
-  private iS = inject(Itemservice);
+  private loginService = inject(Loginservice)
+  
 
   ngOnInit(): void {
     this.obtenerRecetas();
@@ -119,5 +123,26 @@ export class Cslistcomponent implements OnInit {
         });
       }
     });
+  }
+
+  // Roles
+  // Comprobar si es administrador
+  get esAdmin(): boolean {
+    return this.loginService.hasAnyRole(['ADMIN']);
+  }
+
+  // Comprobar si es miembro de familia
+  get esMiembro(): boolean {
+    return this.loginService.hasAnyRole(['MEMBER']);
+  }
+
+    // Comprobar si es invitado
+  get esInvitado(): boolean {
+    return this.loginService.hasAnyRole(['GUEST']);
+  }
+ 
+  // Comprobar si es moderador de una familia
+  get esModerador(): boolean {
+    return this.loginService.hasAnyRole(['MODERATOR']);
   }
 }

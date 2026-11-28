@@ -1,5 +1,6 @@
 :host {
   --mikhu-green: #2E7D5B;
+  --mikhu-green-2: #0ab86c;
   --mikhu-green-dark: #1F3A33;
   --mikhu-green-light: #E3F2EA;
   --mikhu-skyblue: #0D9488;
@@ -7,156 +8,286 @@
   --mikhu-mint-soft: #E8FAF1;
   --mikhu-border: #B7D7C7;
   --mikhu-ink: #0F2A24;
-  --mikhu-muted: #5F6F69;
+  --mikhu-muted: #64756E;
   --mikhu-blue: #1F6485;
-  --mikhu-blue-soft: #E3F0FA;
+  --mikhu-red: #DC5252;
   --mikhu-white: #FFFFFF;
 
   display: block;
   min-height: 100vh;
-  background: var(--mikhu-white);
+  background: #F7FAF8;
   color: var(--mikhu-green-dark);
   font-family: 'Roboto', sans-serif;
 }
 
-/* ===== Contenedor principal ===== */
-.container {
+/* ===== Encabezado ===== */
+.encabezado {
+  background: linear-gradient(120deg, #0AB86C 0%, #2E9B70 100%);
+  border-bottom: 1px solid var(--mikhu-border);
+}
+
+.encabezado-inner {
   box-sizing: border-box;
-  max-width: 1200px;
+  max-width: 1150px;
   margin: 0 auto;
-  padding: 32px;
+  padding: 36px 32px 40px;
 }
 
-.container h2 {
-  margin: 0 0 24px;
-  padding-bottom: 12px;
-  border-bottom: 2px solid var(--mikhu-border);
-  font-size: 28px;
+.encabezado-etiqueta {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 12px;
+  font-size: 11px;
   font-weight: 700;
-  line-height: 1.2;
-  color: var(--mikhu-ink);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
 }
 
-/* ===== Tabla Angular Material ===== */
-.mat-mdc-table {
+.encabezado-etiqueta .punto {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #D3F3E6;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.15);
+}
+
+.encabezado h1 {
+  margin: 0 0 10px;
+  font-size: 38px;
+  font-weight: 750;
+  letter-spacing: -0.8px;
+  line-height: 1.15;
+  color: var(--mikhu-white);
+}
+
+.encabezado-desc {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ===== Layout principal ===== */
+.familias-page {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
   width: 100%;
-  overflow-x: auto;
-  border: 2px solid var(--mikhu-border);
-  border-radius: 16px;
+  padding: 40px 32px;
+}
+
+.familias-card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1150px;
+  padding: 32px;
+  border: 1px solid #E5EEE9;
+  border-radius: 18px;
   background: var(--mikhu-white);
-  box-shadow: 0 4px 16px rgba(31, 58, 51, 0.08);
+  box-shadow:
+    0 3px 8px rgba(31, 58, 51, 0.03),
+    0 12px 32px rgba(31, 58, 51, 0.055);
+}
+
+/* ===== Tabla ===== */
+.tabla-wrap {
+  overflow-x: auto;
+  width: 100%;
+  border: 1px solid #E2EEE7;
+  border-radius: 13px;
+  background: var(--mikhu-white);
+}
+
+/* ===== Configuración general ===== */
+.tabla {
+  width: 100%;
+  min-width: 920px;
 
   --mat-table-background-color: var(--mikhu-white);
-  --mat-table-header-headline-color: var(--mikhu-white);
+  --mat-table-header-container-height: 58px;
+  --mat-table-row-item-container-height: 66px;
+  --mat-table-header-headline-color: var(--mikhu-ink);
   --mat-table-row-item-label-text-color: var(--mikhu-green-dark);
+  --mat-table-row-item-outline-color: #E8F2EC;
 }
 
-/* Encabezado de la tabla */
-.mat-mdc-header-row {
-  height: 52px;
-  background: var(--mikhu-skyblue);
-}
-
-.mat-mdc-header-cell {
-  padding: 0 16px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
-  color: var(--mikhu-white);
-  border-bottom-color: var(--mikhu-border);
-  white-space: nowrap;
-}
-
-/* Filas y celdas */
-.mat-mdc-row {
-  height: 56px;
-  transition: background-color 0.15s ease;
-}
-
-.mat-mdc-row:nth-child(even) {
-  background: var(--mikhu-mint-soft);
-}
-
-.mat-mdc-row:hover {
-  background: var(--mikhu-green-light);
-}
-
-.mat-mdc-cell {
-  padding: 8px 16px;
-  font-size: 14px;
-  color: var(--mikhu-green-dark);
-  border-bottom-color: var(--mikhu-border);
-  white-space: nowrap;
-}
-
-/* Columnas específicas (ID, ID Rol, ID Familia, ID Pais) */
-.mat-column-C1,
-.mat-column-C2,
-.mat-column-C6,
-.mat-column-C7 {
-  text-align: center;
-  font-weight: 500;
-  color: var(--mikhu-muted);
-}
-
-.mat-column-C1 {
-  font-weight: 700;
+/* ===== Encabezados de columnas ===== */
+.tabla th.mat-mdc-header-cell {
+  background: #E8F6EF;
   color: var(--mikhu-ink);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #D5E9DD;
+  white-space: nowrap;
 }
 
-/* Columna Eliminar */
-.mat-column-C8 {
+.tabla th.mat-mdc-header-cell,
+.tabla td.mat-mdc-cell {
+  padding: 0 22px;
+}
+
+/* ===== Celdas ===== */
+.tabla td.mat-mdc-cell {
+  color: var(--mikhu-green-dark);
+  font-size: 14px;
+  font-weight: 450;
+  border-bottom: 1px solid #EDF3EF;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+/* Alternancia suave */
+.tabla tr.mat-mdc-row:nth-child(even) {
+  background: #FCFEFD;
+}
+
+/* Hover de filas */
+.tabla tr.mat-mdc-row {
+  transition: background-color 0.2s ease;
+}
+
+.tabla tr.mat-mdc-row:hover {
+  background: #F0F9F3;
+}
+
+/* Última fila sin borde inferior */
+.tabla tr.mat-mdc-row:last-child td {
+  border-bottom: none;
+}
+
+/* ===== Botones de acciones ===== */
+.tabla .col-acciones {
+  width: 130px;
   text-align: center;
-  width: 96px;
 }
 
-.mat-column-C8 button {
-  border-radius: 10px;
-  color: var(--mikhu-blue);
-  transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+.tabla td.col-acciones {
+  white-space: nowrap;
 }
 
-.mat-column-C8 button:hover {
-  background: rgba(180, 35, 24, 0.12);
-  color: #B42318;
+/* Botón base (eliminar) */
+.btn-eliminar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 39px;
+  height: 39px;
+  padding: 0;
+  border: none;
+  border-radius: 11px;
+  background: transparent;
+  color: #64756E;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+
+  --mat-icon-button-icon-color: currentColor;
+  --mat-icon-button-state-layer-color: currentColor;
 }
 
-.mat-column-C8 mat-icon {
-  font-size: 20px;
+/* Iconos */
+.btn-eliminar mat-icon {
   width: 20px;
   height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+  color: inherit;
+}
+
+/* Hover eliminar */
+.btn-eliminar:hover:not(:disabled) {
+  background: #FDECEC;
+  color: var(--mikhu-red);
+  transform: translateY(-2px);
+}
+
+/* Focus accesible */
+.btn-eliminar:focus-visible {
+  outline: 2px solid var(--mikhu-green);
+  outline-offset: 3px;
+}
+
+/* Eliminar deshabilitado */
+.btn-eliminar:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  color: #64756E;
+
+  --mat-icon-button-disabled-icon-color: #64756E;
 }
 
 /* ===== Estado vacío ===== */
-.container > div:last-child > p {
+.vacio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   margin: 0;
-  padding: 32px 24px;
-  border: 2px dashed var(--mikhu-border);
-  border-radius: 16px;
-  background: var(--mikhu-mint-soft);
-  text-align: center;
-  font-size: 15px;
-  font-weight: 500;
+  padding: 36px 24px;
+  border: 1px dashed #B7D7C7;
+  border-radius: 13px;
+  background: #F3FAF6;
   color: var(--mikhu-muted);
+  font-size: 14px;
+  font-weight: 500;
 }
 
-/* ===== Accesibilidad y responsive ===== */
-button:focus-visible {
-  outline: 2px solid var(--mikhu-green-dark);
-  outline-offset: 2px;
+.vacio mat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  color: var(--mikhu-green);
 }
 
+/* ===== Paginador ===== */
+.paginador {
+  border-top: 1px solid #E8F2EC;
+  background: var(--mikhu-white);
+  font-family: 'Roboto', sans-serif;
+
+  --mat-paginator-container-text-color: var(--mikhu-green-dark);
+  --mat-paginator-container-background-color: var(--mikhu-white);
+  --mat-paginator-enabled-icon-color: var(--mikhu-green);
+  --mat-paginator-disabled-icon-color: #B7C4BE;
+  --mat-paginator-container-size: 58px;
+  --mat-paginator-container-text-size: 13px;
+
+  --mat-form-field-outlined-outline-color: var(--mikhu-border);
+  --mat-form-field-outlined-hover-outline-color: var(--mikhu-green);
+  --mat-form-field-outlined-focus-outline-color: var(--mikhu-green);
+  --mat-select-enabled-trigger-text-color: var(--mikhu-green-dark);
+  --mat-select-enabled-arrow-color: var(--mikhu-green);
+}
+
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
-  .container {
-    padding: 16px;
+  .encabezado-inner {
+    padding: 28px 22px 32px;
   }
 
-  .container h2 {
-    font-size: 22px;
+  .encabezado h1 {
+    font-size: 32px;
   }
 
-  .container > div:last-child {
-    overflow-x: auto;
+  .familias-page {
+    padding: 26px 18px;
+  }
+
+  .familias-card {
+    padding: 22px 16px;
+  }
+
+  .tabla th.mat-mdc-header-cell,
+  .tabla td.mat-mdc-cell {
+    padding: 0 16px;
   }
 }
