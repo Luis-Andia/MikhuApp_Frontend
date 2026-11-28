@@ -12,6 +12,7 @@ import { Recipeservice } from '../../../services/recipeservice';
 import { Ingredientservice } from '../../../services/ingredientservice';
 import { Countryservice } from '../../../services/countryservice';
 import { Recipeingredientservice } from '../../../services/recipeingredientservice';
+import { MatIconModule } from '@angular/material/icon';
 
 interface IngredienteAsignado extends RecipeIngredientDTO {
   nombreIngrediente: string;
@@ -21,7 +22,7 @@ interface IngredienteAsignado extends RecipeIngredientDTO {
 @Component({
   selector: 'app-recipeingredientcomponent',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatIconModule],
   templateUrl: './recipeingredientcomponent.html',
   styleUrl: './recipeingredientcomponent.css'
 })
